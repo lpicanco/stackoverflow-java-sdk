@@ -15,6 +15,7 @@ public enum TimelineType implements ValueEnum {
 	VOTES("votes"),
 	COMMENT("comment"),
 	ANSWER("answer"),
+	QUESTION("question"),
 	REVISION("revision");
 	
     /**
