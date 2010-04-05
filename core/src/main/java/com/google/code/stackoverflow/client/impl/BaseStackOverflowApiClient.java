@@ -1,0 +1,1231 @@
+/**
+ *
+ */
+package com.google.code.stackoverflow.client.impl;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.zip.GZIPInputStream;
+
+import com.google.code.stackoverflow.client.StackOverflowApiClient;
+import com.google.code.stackoverflow.client.StackOverflowApiClientException;
+import com.google.code.stackoverflow.client.constant.ApplicationConstants;
+import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls;
+import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls.StackOverflowApiUrlBuilder;
+import com.google.code.stackoverflow.schema.Answer;
+import com.google.code.stackoverflow.schema.AnswerSortOrder;
+import com.google.code.stackoverflow.schema.Answers;
+import com.google.code.stackoverflow.schema.Badge;
+import com.google.code.stackoverflow.schema.BadgeSortOrder;
+import com.google.code.stackoverflow.schema.Badges;
+import com.google.code.stackoverflow.schema.Comment;
+import com.google.code.stackoverflow.schema.CommentSortOrder;
+import com.google.code.stackoverflow.schema.Comments;
+import com.google.code.stackoverflow.schema.Error;
+import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.Question;
+import com.google.code.stackoverflow.schema.QuestionSortOrder;
+import com.google.code.stackoverflow.schema.QuestionTimelines;
+import com.google.code.stackoverflow.schema.Questions;
+import com.google.code.stackoverflow.schema.Reputation;
+import com.google.code.stackoverflow.schema.Reputations;
+import com.google.code.stackoverflow.schema.Statistics;
+import com.google.code.stackoverflow.schema.Tag;
+import com.google.code.stackoverflow.schema.TagSortOrder;
+import com.google.code.stackoverflow.schema.Tags;
+import com.google.code.stackoverflow.schema.Timeline;
+import com.google.code.stackoverflow.schema.UnansweredQuestionSortOrder;
+import com.google.code.stackoverflow.schema.User;
+import com.google.code.stackoverflow.schema.UserFavoriteSortOrder;
+import com.google.code.stackoverflow.schema.UserQuestionSortOrder;
+import com.google.code.stackoverflow.schema.UserSortOrder;
+import com.google.code.stackoverflow.schema.UserTimelines;
+import com.google.code.stackoverflow.schema.Users;
+
+/**
+ * @author Nabeel Mukhtar
+ *
+ */
+public abstract class BaseStackOverflowApiClient implements StackOverflowApiClient {
+
+    /** Field description */
+    private static final String GZIP_ENCODING = "gzip";
+
+    /** The static logger. */
+    protected final Logger LOG = Logger.getLogger(getClass().getCanonicalName());
+    
+    /** Field description */
+    private Map<String, String> requestHeaders;
+    
+    /** Field description */
+    private String applicationKey;
+
+    /** Field description */
+    private String apiVersion = ApplicationConstants.DEFAULT_API_VERSION;
+    
+    /**
+     * Constructs ...
+     *
+     *
+     * @param consumerKey
+     * @param consumerSecret
+     */
+    protected BaseStackOverflowApiClient(String applicationKey) {
+        requestHeaders = new HashMap<String, String>();
+
+        // by default we compress contents
+        requestHeaders.put("Accept-Encoding", "gzip, deflate");
+        this.applicationKey = applicationKey;
+    }
+    
+    /**
+     * Constructs ...
+     *
+     *
+     * @param consumerKey
+     * @param consumerSecret
+     */
+    protected BaseStackOverflowApiClient(String applicationKey, String apiVersion) {
+    	this(applicationKey);
+    	this.apiVersion = apiVersion;
+    }
+    
+
+    public String getApiVersion() {
+		return apiVersion;
+	}
+
+	public void setApiVersion(String apiVersion) {
+		this.apiVersion = apiVersion;
+	}
+
+	/**
+     * {@inheritDoc}
+     */
+    public void setRequestHeaders(Map<String, String> requestHeaders) {
+        this.requestHeaders = requestHeaders;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Map<String, String> getRequestHeaders() {
+        return requestHeaders;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void addRequestHeader(String headerName, String headerValue) {
+        requestHeaders.put(headerName, headerValue);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void removeRequestHeader(String headerName) {
+        requestHeaders.remove(headerName);
+    }
+    
+	/**
+	 * @return the applicationKey
+	 */
+	public String getApplicationKey() {
+		return applicationKey;
+	}
+
+	/**
+	 * @param applicationKey the applicationKey to set
+	 */
+	public void setApplicationKey(String applicationKey) {
+		this.applicationKey = applicationKey;
+	}
+
+    /**
+     * Method description
+     *
+     *
+     *
+     * @param clazz
+     * @param xmlContent
+     * @param <T>
+     *
+     * @return
+     */
+    protected abstract <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent);
+
+    /**
+     * Method description
+     *
+     *
+     * @param element
+     *
+     * @return
+     */
+    protected abstract String marshallObject(Object element);
+
+    /**
+     * Method description
+     * @param applicationId TODO
+     * @param urlFormat
+     *
+     *
+     * @return
+     */
+    protected abstract StackOverflowApiUrlBuilder createStackOverflowApiUrlBuilder(String urlFormat);
+
+	/**
+	 * Stolen liberally from http://www.kodejava.org/examples/266.html
+	 */
+	protected static String convertStreamToString(InputStream is) {
+        /*
+         * To convert the InputStream to String we use the BufferedReader.readLine()
+         * method. We iterate until the BufferedReader return null which means
+         * there's no more data to read. Each line will appended to a StringBuilder
+         * and returned as String.
+         */
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+ 
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+ 
+        return sb.toString();
+    }
+
+    /**
+     * Method description
+     *
+     *
+     *
+     *
+     * @param clazz
+     * @param is
+     * @param <T>
+     *
+     * @return
+     */
+    protected <T> T readResponse(Class<T> clazz, InputStream is) {
+        try {
+            return unmarshallObject(clazz, is);
+        } finally {
+            closeStream(is);
+        }
+    }
+
+    /**
+    *
+    *
+    */
+    protected InputStream callApiMethod(String apiUrl) {
+    	return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK);
+    }
+
+    /**
+     *
+     *
+     * @param apiUrl
+     * @param expected
+     * @param httpHeaders
+     *
+     * @return
+     */
+    protected InputStream callApiMethod(String apiUrl, int expected) {
+        try {
+            URL               url     = new URL(apiUrl);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+
+            if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
+                request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
+            }
+
+            if (ApplicationConstants.READ_TIMEOUT > -1) {
+                request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
+            }
+
+            for (String headerName : requestHeaders.keySet()) {
+                request.setRequestProperty(headerName, requestHeaders.get(headerName));
+            }
+            
+            if (request.getResponseCode() != expected) {
+                Error error = readResponse(Error.class,
+                        getWrappedInputStream(request.getErrorStream(),
+                            GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
+            	
+                throw createStackOverflowApiClientException(error);
+            } else {
+                return getWrappedInputStream(request.getInputStream(),
+                                             GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
+            }
+        } catch (IOException e) {
+            throw new StackOverflowApiClientException(e);
+        }
+    }
+
+    /**
+     *
+     *
+     * @param apiUrl
+     * @param xmlContent
+     * @param contentType
+     * @param method
+     * @param expected
+     *
+     * @return
+     */
+    protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, String method,
+            int expected) {
+        try {
+            URL               url     = new URL(apiUrl);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+
+            if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
+                request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
+            }
+
+            if (ApplicationConstants.READ_TIMEOUT > -1) {
+                request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
+            }
+
+            for (String headerName : requestHeaders.keySet()) {
+                request.setRequestProperty(headerName, requestHeaders.get(headerName));
+            }
+
+            request.setRequestMethod(method);
+            request.setDoOutput(true);
+
+            if (contentType != null) {
+                request.setRequestProperty("Content-Type", contentType);
+            }
+
+            if (xmlContent != null) {
+                PrintStream out = new PrintStream(new BufferedOutputStream(request.getOutputStream()));
+
+                out.print(xmlContent);
+                out.flush();
+                out.close();
+            }
+
+            request.connect();
+
+            if (request.getResponseCode() != expected) {
+                Error error = readResponse(Error.class,
+                        getWrappedInputStream(request.getErrorStream(),
+                            GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
+                throw createStackOverflowApiClientException(error);
+            } else {
+                return getWrappedInputStream(request.getInputStream(),
+                                             GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
+            }
+        } catch (IOException e) {
+            throw new StackOverflowApiClientException(e);
+        }
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param is
+     *
+     */
+    protected void closeStream(InputStream is) {
+        try {
+            is.close();
+        } catch (IOException e) {
+        	LOG.log(Level.SEVERE, "An error occurred while closing stream.", e);	
+        }
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param connection
+     *
+     */
+    protected void closeConnection(HttpURLConnection connection) {
+        try {
+        	if (connection != null) {
+        		connection.disconnect();
+        	}
+        } catch (Exception e) {
+        	LOG.log(Level.SEVERE, "An error occurred while disconnecting connection.", e);	
+        }
+    }
+    
+    /**
+     * Method description
+     *
+     *
+     * @param error
+     * @return
+     */
+    protected StackOverflowApiClientException createStackOverflowApiClientException(Error error) {
+    	StackOverflowApiClientException exception = new StackOverflowApiClientException(error.getMessage());
+    	exception.setErrorCode((int) error.getErrorCode());
+    	exception.setTimestamp(new Date());
+    	return exception;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param is
+     * @param gzip
+     * @return
+     * @throws IOException
+     */
+    protected InputStream getWrappedInputStream(InputStream is, boolean gzip) throws IOException {
+        if (gzip) {
+            return new BufferedInputStream(new GZIPInputStream(is));
+        } else {
+            return new BufferedInputStream(is);
+        }
+    }
+
+    /**
+     * Get property as long.
+     *
+     * @param s
+     *
+     * @return
+     */
+    protected boolean isNullOrEmpty(String s) {
+        return ((s == null) || (s.length() == 0));
+    }
+
+    /**
+     *
+     *
+     * @param name
+     * @param value
+     */
+    protected void assertNotNullOrEmpty(String name, String value) {
+        if (isNullOrEmpty(value)) {
+            throw new IllegalArgumentException(name + " cannot be null or empty.");
+        }
+    }
+
+    /**
+     *
+     *
+     * @param name
+     * @param value
+     */
+    protected void assertNotNullOrEmpty(String name, Collection<?> value) {
+        if ((value == null) || value.isEmpty()) {
+            throw new IllegalArgumentException(name + " cannot be null or empty.");
+        }
+    }
+
+    /**
+     *
+     *
+     * @param name
+     * @param value
+     */
+    protected void assertPositiveNumber(String name, int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException(name + " cannot be less than zero.");
+        }
+    }
+
+    /**
+     *
+     *
+     * @param name
+     * @param value
+     */
+    protected void assertNotNull(String name, Object value) {
+        if (value == null) {
+            throw new IllegalArgumentException(name + " cannot be null.");
+        }
+    }
+
+	@Override
+	public List<Question> getFavoriteQuestionsByUser(long userId, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getFavoriteQuestionsByUser(long userId,
+			TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withTimePeriod(timePeriod).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getFavoriteQuestionsByUser(long userId,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getFavoriteQuestionsByUser(long userId,
+			UserFavoriteSortOrder sort, Paging paging, TimePeriod timePeriod,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public Question getQuestion(long questionId, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTION);
+        String                apiUrl  = builder.withField("id", String.valueOf(questionId)).withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(questions.getQuestions());
+	}
+
+	@Override
+	public Question getQuestion(long questionId, Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTION);
+        String                apiUrl  = builder.withField("id", String.valueOf(questionId)).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(questions.getQuestions());
+	}
+
+	@Override
+	public Question getQuestion(long questionId, Paging paging,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTION);
+        String                apiUrl  = builder.withField("id", String.valueOf(questionId)).withPaging(paging).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(questions.getQuestions());
+	}
+
+	@Override
+	public List<Timeline> getQuestionTimeline(long questionId,
+			TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTION_TIMELINE);
+        String                apiUrl  = builder.withField("id", String.valueOf(questionId)).withTimePeriod(timePeriod).buildUrl();
+
+        QuestionTimelines timelines = readResponse(QuestionTimelines.class, callApiMethod(apiUrl));
+        return timelines.getTimelines();
+	}
+
+	@Override
+	public List<Question> getQuestions(Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS);
+        String                apiUrl  = builder.withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestions(TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS);
+        String                apiUrl  = builder.withTimePeriod(timePeriod).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestions(Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS);
+        String                apiUrl  = builder.withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestions(QuestionSortOrder sort, Paging paging,
+			TimePeriod timePeriod, Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestionsByUser(long userId, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestionsByUser(long userId, TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withTimePeriod(timePeriod).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestionsByUser(long userId,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestionsByUser(long userId,
+			UserQuestionSortOrder sort, Paging paging, TimePeriod timePeriod,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getTaggedQuestions(List<String> tags,
+			Paging paging, TimePeriod timePeriod,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGGED_QUESTIONS);
+        String                apiUrl  = builder.withParameters("tagged", tags).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Tag> getTags(Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS);
+        String                apiUrl  = builder.withPaging(paging).buildUrl();
+
+        Tags tags = readResponse(Tags.class, callApiMethod(apiUrl));
+        
+        return tags.getTags();
+	}
+
+	@Override
+	public List<Tag> getTags(TagSortOrder sort, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).withPaging(paging).buildUrl();
+
+        Tags tags = readResponse(Tags.class, callApiMethod(apiUrl));
+        
+        return tags.getTags();
+	}
+
+	@Override
+	public List<Tag> getTagsForUser(long userId, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS_FOR_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withPaging(paging).buildUrl();
+
+        Tags tags = readResponse(Tags.class, callApiMethod(apiUrl));
+        
+        return tags.getTags();
+	}
+
+	@Override
+	public List<Question> getUnansweredQuestions(Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS);
+        String                apiUrl  = builder.withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getUnansweredQuestions(TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS);
+        String                apiUrl  = builder.withTimePeriod(timePeriod).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getUnansweredQuestions(Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS);
+        String                apiUrl  = builder.withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getUnansweredQuestions(
+			UnansweredQuestionSortOrder sort, Paging paging,
+			TimePeriod timePeriod, Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Comment> getUserMentions(long userId, TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_MENTIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withTimePeriod(timePeriod).buildUrl();
+
+        Comments mentions = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return mentions.getComments();
+	}
+
+	@Override
+	public List<Timeline> getUserTimeline(long userId, TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_TIMELINE);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withTimePeriod(timePeriod).buildUrl();
+
+        UserTimelines timelines = readResponse(UserTimelines.class, callApiMethod(apiUrl));
+        
+        return timelines.getTimelines();
+	}
+
+	@Override
+	public List<User> getUsers(Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USERS);
+        String                apiUrl  = builder.withPaging(paging).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
+	}
+
+	@Override
+	public List<User> getUsers(String filter) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USERS);
+        String                apiUrl  = builder.withParameter("filter", filter).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
+	}
+
+	@Override
+	public List<User> getUsers(String filter, UserSortOrder sort, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USERS_SORTED);
+        String                apiUrl  = builder.withParameter("filter", filter).withFieldEnum("sort", sort).withPaging(paging).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
+	}
+	
+	@Override
+	public Answer getAnswer(long answerId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWER);
+        String                apiUrl  = builder.withField("id", String.valueOf(answerId)).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(answers.getAnswers());
+	}
+
+	@Override
+	public List<Answer> getAnswersByUser(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+
+	@Override
+	public List<Answer> getAnswersByUser(long userId, AnswerSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+
+	@Override
+	public List<Badge> getBadges() {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_BADGES);
+        String                apiUrl  = builder.buildUrl();
+
+        Badges badges = readResponse(Badges.class, callApiMethod(apiUrl));
+        
+        return badges.getBadges();
+	}
+
+	@Override
+	public List<Badge> getBadges(BadgeSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_BADGES_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
+
+        Badges badges = readResponse(Badges.class, callApiMethod(apiUrl));
+        
+        return badges.getBadges();
+	}
+
+	@Override
+	public List<Badge> getBadgesForUser(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_BADGES_FOR_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Badges badges = readResponse(Badges.class, callApiMethod(apiUrl));
+        
+        return badges.getBadges();
+	}
+
+	@Override
+	public List<Question> getFavoriteQuestionsByUser(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getFavoriteQuestionsByUser(long userId,
+			UserFavoriteSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public Question getQuestion(long questionId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTION);
+        String                apiUrl  = builder.withField("id", String.valueOf(questionId)).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(questions.getQuestions());
+	}
+
+	@Override
+	public List<Timeline> getQuestionTimeline(long questionId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTION_TIMELINE);
+        String                apiUrl  = builder.withField("id", String.valueOf(questionId)).buildUrl();
+
+        QuestionTimelines timelines = readResponse(QuestionTimelines.class, callApiMethod(apiUrl));
+        return timelines.getTimelines();
+	}
+
+	@Override
+	public List<Question> getQuestions() {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS);
+        String                apiUrl  = builder.buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestions(QuestionSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
+        
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestionsByUser(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getQuestionsByUser(long userId,
+			UserQuestionSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getTaggedQuestions(List<String> tags) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGGED_QUESTIONS);
+        String                apiUrl  = builder.withParameters("tagged", tags).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Tag> getTags() {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS);
+        String                apiUrl  = builder.buildUrl();
+
+        Tags tags = readResponse(Tags.class, callApiMethod(apiUrl));
+        
+        return tags.getTags();
+	}
+
+	@Override
+	public List<Tag> getTags(TagSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
+
+        Tags tags = readResponse(Tags.class, callApiMethod(apiUrl));
+        
+        return tags.getTags();
+	}
+
+	@Override
+	public List<Tag> getTagsForUser(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS_FOR_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Tags tags = readResponse(Tags.class, callApiMethod(apiUrl));
+        
+        return tags.getTags();
+	}
+
+	@Override
+	public List<Question> getUnansweredQuestions() {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS);
+        String                apiUrl  = builder.buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> getUnansweredQuestions(UnansweredQuestionSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public User getUser(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(users.getUsers());
+	}
+
+	@Override
+	public List<Comment> getUserMentions(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_MENTIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Comments mentions = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return mentions.getComments();
+	}
+
+	@Override
+	public List<Timeline> getUserTimeline(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_TIMELINE);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        UserTimelines timelines = readResponse(UserTimelines.class, callApiMethod(apiUrl));
+        
+        return timelines.getTimelines();
+	}
+
+	@Override
+	public List<User> getUsers() {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USERS);
+        String                apiUrl  = builder.buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
+	}
+
+	@Override
+	public List<User> getUsers(UserSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USERS_SORTED);
+        String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
+	}
+	
+	@Override
+	public List<Reputation> getUserReputations(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_REPUTATIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Reputations reputations = readResponse(Reputations.class, callApiMethod(apiUrl));
+        
+        return reputations.getReputations();
+	}
+
+	@Override
+	public List<Reputation> getUserReputations(long userId,
+			TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_REPUTATIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withTimePeriod(timePeriod).buildUrl();
+
+        Reputations reputations = readResponse(Reputations.class, callApiMethod(apiUrl));
+        
+        return reputations.getReputations();
+	}
+
+	@Override
+	public List<Reputation> getUserReputations(long userId, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_REPUTATIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withPaging(paging).buildUrl();
+
+        Reputations reputations = readResponse(Reputations.class, callApiMethod(apiUrl));
+        
+        return reputations.getReputations();
+	}
+
+	@Override
+	public List<Reputation> getUserReputations(long userId,
+			Paging paging, TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USER_REPUTATIONS);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
+
+        Reputations reputations = readResponse(Reputations.class, callApiMethod(apiUrl));
+        
+        return reputations.getReputations();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, CommentSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withTimePeriod(timePeriod).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withPaging(paging).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, CommentSortOrder sort,
+			Paging paging, TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, long toUserId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withField("toid", String.valueOf(toUserId)).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, long toUserId,
+			CommentSortOrder sort) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withField("toid", String.valueOf(toUserId)).withFieldEnum("sort", sort).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, long toUserId,
+			TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withField("toid", String.valueOf(toUserId)).withTimePeriod(timePeriod).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, long toUserId,
+			Paging paging) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withField("toid", String.valueOf(toUserId)).withPaging(paging).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public List<Comment> getUserComments(long userId, long toUserId,
+			CommentSortOrder sort, Paging paging, TimePeriod timePeriod) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withField("toid", String.valueOf(toUserId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+
+	@Override
+	public Comment getComment(long commentId) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENT);
+        String                apiUrl  = builder.withField("id", String.valueOf(commentId)).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(comments.getComments());
+	}
+
+	@Override
+	public Statistics getStatistics() {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_STATISTICS);
+        String                apiUrl  = builder.buildUrl();
+
+        return readResponse(Statistics.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Answer getAnswer(long answerId, Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWER);
+        String                apiUrl  = builder.withField("id", String.valueOf(answerId)).withFetchOptions(filterOptions).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(answers.getAnswers());
+	}
+
+	@Override
+	public List<Answer> getAnswersByUser(long userId,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFetchOptions(filterOptions).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+
+	@Override
+	public List<Answer> getAnswersByUser(long userId, AnswerSortOrder sort,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withFetchOptions(filterOptions).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+	
+	private <T> T getFirstElement(List<T> list) {
+		if (list.isEmpty()) {
+			return null;
+		}
+		return list.get(0);
+	}
+}
