@@ -147,8 +147,11 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	
 	// Answer Methods
 	public List<Answer> getAnswersByUser(long userId); 
+	public List<Answer> getAnswersByUser(long userId, Set<FilterOption> filterOptions); 
 	public List<Answer> getAnswersByUser(long userId, AnswerSortOrder sort);
+	public List<Answer> getAnswersByUser(long userId, AnswerSortOrder sort, Set<FilterOption> filterOptions);
 	public Answer getAnswer(long answerId);
+	public Answer getAnswer(long answerId, Set<FilterOption> filterOptions);
 	
 	// Comment Methods
 	public List<Comment> getUserComments(long userId);

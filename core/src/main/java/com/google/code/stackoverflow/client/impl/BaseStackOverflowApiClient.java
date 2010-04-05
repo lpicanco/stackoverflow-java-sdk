@@ -1190,6 +1190,38 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
         return readResponse(Statistics.class, callApiMethod(apiUrl));
 	}
 	
+	@Override
+	public Answer getAnswer(long answerId, Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWER);
+        String                apiUrl  = builder.withField("id", String.valueOf(answerId)).withFetchOptions(filterOptions).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(answers.getAnswers());
+	}
+
+	@Override
+	public List<Answer> getAnswersByUser(long userId,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFetchOptions(filterOptions).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+
+	@Override
+	public List<Answer> getAnswersByUser(long userId, AnswerSortOrder sort,
+			Set<FilterOption> filterOptions) {
+		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER_SORTED);
+        String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withFetchOptions(filterOptions).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+	
 	private <T> T getFirstElement(List<T> list) {
 		if (list.isEmpty()) {
 			return null;
