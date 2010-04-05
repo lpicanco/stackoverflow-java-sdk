@@ -4,6 +4,7 @@
 package com.google.code.stackoverflow.client.examples;
 
 import java.text.MessageFormat;
+import java.util.EnumSet;
 import java.util.List;
 
 import org.apache.commons.cli.BasicParser;
@@ -16,6 +17,7 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
+import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.QuestionSortOrder;
 
@@ -71,7 +73,7 @@ public class QuestionsApiExample {
     			Question question = client.getQuestion(Long.valueOf(idValue));
     			printResult(question);
     		} else {
-    			List<Question> questions = client.getQuestions(QuestionSortOrder.HOT);
+    			List<Question> questions = client.getQuestions(EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
     			for (Question question : questions) {
     				printResult(question);
     			}
