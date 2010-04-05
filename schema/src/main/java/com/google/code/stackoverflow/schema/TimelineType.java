@@ -12,6 +12,9 @@ import java.util.Map;
  */
 public enum TimelineType implements ValueEnum {
 
+	VOTES("votes"),
+	COMMENT("comment"),
+	ANSWER("answer"),
 	REVISION("revision");
 	
     /**
