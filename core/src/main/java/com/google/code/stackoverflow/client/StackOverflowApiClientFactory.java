@@ -10,7 +10,7 @@ import com.google.code.stackoverflow.client.impl.AsyncStackOverflowApiClientAdap
 import com.google.code.stackoverflow.client.impl.StackOverflowApiJsonClient;
 
 /**
- * A factory for creating LinkedInApiClient objects.
+ * A factory for creating StackOverflowApiClient objects.
  * 
  * @author Nabeel Mukhtar
  */
@@ -23,7 +23,7 @@ public class StackOverflowApiClientFactory {
     private String applicationKey;
 
     /**
-     * Instantiates a new linked in api client factory.
+     * Instantiates a new stack overflow api client factory.
      * 
      * @param apiConsumer the api consumer
      */
@@ -46,7 +46,7 @@ public class StackOverflowApiClientFactory {
      * @param consumerKey the consumer key
      * @param consumerSecret the consumer secret
      * 
-     * @return the linked in api client factory
+     * @return the stack overflow api client factory
      */
     public static StackOverflowApiClientFactory newInstance(String applicationKey) {
     	if (applicationKey == null || applicationKey.length() == 0) {
@@ -56,11 +56,11 @@ public class StackOverflowApiClientFactory {
     }
 
 	/**
-     * Creates a new LinkedInApiClient object.
+     * Creates a new StackOverflowApiClient object.
      * 
      * @param accessToken the access token
      * 
-     * @return the linked in api client
+     * @return the stack overflow api client
      */
 	public StackOverflowApiClient createStackOverflowApiClient() {
 		final StackOverflowApiClient client = new StackOverflowApiJsonClient(applicationKey);
@@ -69,11 +69,11 @@ public class StackOverflowApiClientFactory {
     }
 
 	/**
-     * Creates a new LinkedInApiClient object.
+     * Creates a new StackOverflowApiClient object.
      * 
      * @param accessToken the access token
      * 
-     * @return the linked in api client
+     * @return the stack overflow api client
      */
 	public StackOverflowApiClient createStackOverflowApiClient(String apiVersion) {
 		final StackOverflowApiClient client = new StackOverflowApiJsonClient(applicationKey, apiVersion);
@@ -82,11 +82,11 @@ public class StackOverflowApiClientFactory {
     }
 	
     /**
-     * Creates a new LinkedInApiClient object.
+     * Creates a new StackOverflowApiClient object.
      * 
      * @param accessToken the access token
      * 
-     * @return the linked in api client
+     * @return the stack overflow api client
      */
 	public StackOverflowApiClient createStackOverflowApiClient(Class<? extends StackOverflowApiClient> implClass) {
     	try {
@@ -99,11 +99,11 @@ public class StackOverflowApiClientFactory {
     }
     
     /**
-     * Creates a new LinkedInApiClient object.
+     * Creates a new StackOverflowApiClient object.
      * 
      * @param accessToken the access token
      * 
-     * @return the async linked in api client
+     * @return the async stack overflow api client
      */
     public AsyncStackOverflowApiClient createAsyncStackOverflowApiClient() {
         final StackOverflowApiClient client = createStackOverflowApiClient();

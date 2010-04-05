@@ -65,13 +65,7 @@ public class AsyncApiExample {
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
-    			System.out.println("Sending message to users with ids:" + idValue);
-    			// TODO-NM: Implement this method.
-        		System.out.println("Your message has been sent. Check the LinkedIn site for confirmation.");
     		} else {
-    			System.out.println("Sending message to current user.");
-    			// TODO-NM: Implement this method.
-        		System.out.println("Your message has been sent. Check the LinkedIn site for confirmation.");
     		}
         } else {
             printHelp(options);

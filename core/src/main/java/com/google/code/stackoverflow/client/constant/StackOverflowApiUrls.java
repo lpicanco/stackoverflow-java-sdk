@@ -21,7 +21,7 @@ import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.ValueEnum;
 
 /**
- * The Class LinkedInApiUrls.
+ * The Class StackOverflowApiUrls.
  */
 public final class StackOverflowApiUrls {
 
@@ -31,7 +31,7 @@ public final class StackOverflowApiUrls {
     /** The static logger. */
     private static final Logger LOG = Logger.getLogger(StackOverflowApiUrls.class.getCanonicalName());
     
-    /** The Constant linkedInApiUrls. */
+    /** The Constant stackOverflowApiUrls. */
     private static final Properties stackOverflowApiUrls = new Properties();
 
     static {
@@ -108,12 +108,12 @@ public final class StackOverflowApiUrls {
         stackOverflowApiUrls.getProperty("com.google.code.stackoverflow.client.getComment");
     
     /**
-     * Instantiates a new linked in api urls.
+     * Instantiates a new stackoverflow in api urls.
      */
     private StackOverflowApiUrls() {}
 
     /**
-     * The Class LinkedInApiUrlBuilder.
+     * The Class StackOverflowApiUrlBuilder.
      */
     public static class StackOverflowApiUrlBuilder {
         
@@ -136,7 +136,7 @@ public final class StackOverflowApiUrls {
 	    private Map<String, String> fieldsMap = new HashMap<String, String>();
     	
     	/**
-	     * Instantiates a new linked in api url builder.
+	     * Instantiates a new stack overflow api url builder.
 	     * 
 	     * @param urlFormat the url format
 	     * @param urlType the url type
@@ -148,7 +148,7 @@ public final class StackOverflowApiUrls {
     	}
     	
     	/**
-	     * Instantiates a new linked in api url builder.
+	     * Instantiates a new stack overflow api url builder.
 	     * 
 	     * @param urlFormat the url format
 	     */
@@ -164,7 +164,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param value the value
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withParameter(String name, String value) {
 	    	if (value != null && value.length() > 0) {
@@ -180,7 +180,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param values the values
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withParameters(String name, Collection<String> values) {
 	    	StringBuilder builder = new StringBuilder();
@@ -201,7 +201,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param value the value
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withParameterEnum(String name, ValueEnum value) {
 	    	withParameter(name, value.value());
@@ -215,7 +215,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param value the value
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withPaging(Paging paging) {
 	    	if (paging != null) {
@@ -232,7 +232,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param value the value
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withTimePeriod(TimePeriod timePeriod) {
 	    	if (timePeriod != null) {
@@ -262,7 +262,7 @@ public final class StackOverflowApiUrls {
 	     * 
 	     * @param enumMap the enum map
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withParameterEnumMap(Map<? extends ValueEnum, String> enumMap) {
 	    	for (ValueEnum parameter : enumMap.keySet()) {
@@ -277,7 +277,7 @@ public final class StackOverflowApiUrls {
 	     * 
 	     * @param name the name
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withEmptyField(String name) {
     		fieldsMap.put(name, "");
@@ -291,7 +291,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param value the value
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withField(String name, String value) {
 	    	withField(name, value, false);
@@ -305,7 +305,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param value the value
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withField(String name, String value, boolean escape) {
 	    	if (escape) {
@@ -323,7 +323,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param value the value
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withFieldEnum(String name, ValueEnum value) {
 	    	if (value.value() == null || value.value().length() == 0) {
@@ -341,7 +341,7 @@ public final class StackOverflowApiUrls {
 	     * @param name the name
 	     * @param enumSet the enum set
 	     * 
-	     * @return the linked in api url builder
+	     * @return the stack overflow api url builder
 	     */
 	    public StackOverflowApiUrlBuilder withFieldEnumSet(String name, Set<? extends ValueEnum> enumSet) {
 	    	StringBuilder builder = new StringBuilder();

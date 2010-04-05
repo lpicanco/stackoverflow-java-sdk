@@ -6,7 +6,7 @@ package com.google.code.stackoverflow.client;
 import java.util.Map;
 
 /**
- * The Interface LinkedInCommunicationClient.
+ * The Interface StackOverflowCommunicationClient.
  *
  * @author Nabeel Mukhtar
  */

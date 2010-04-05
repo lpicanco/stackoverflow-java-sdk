@@ -29,7 +29,7 @@ import com.google.code.stackoverflow.schema.UserQuestionSortOrder;
 
 
 /**
- * The Interface LinkedInApiClient. It acts as a facade for the whole LinkedIn API.
+ * The Interface StackOverflowApiClient. It acts as a facade for the whole StackOverflow API.
  * 
  * @author Nabeel Mukhtar
  */
