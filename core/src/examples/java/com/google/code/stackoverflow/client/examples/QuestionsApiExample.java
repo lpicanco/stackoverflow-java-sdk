@@ -20,6 +20,7 @@ import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.QuestionSortOrder;
+import com.google.code.stackoverflow.schema.Timeline;
 
 /**
  * @author Nabeel Mukhtar
@@ -77,12 +78,21 @@ public class QuestionsApiExample {
     			for (Question question : questions) {
     				printResult(question);
     			}
+    			
+    			List<Timeline> questionTimeline = client.getQuestionTimeline(2420689L);
+    			for (Timeline timeline : questionTimeline) {
+					printResult(timeline);
+				}
     		}
         } else {
             printHelp(options);
         }
     }
 	
+	private static void printResult(Timeline timeline) {
+		System.out.println(timeline.getDetail() + ":" + timeline.getTimelineType());
+	}
+
 	private static void printResult(Question question) {
 		System.out.println(question.getTitle() + ":" + question.getAnswerCount());
 	}
