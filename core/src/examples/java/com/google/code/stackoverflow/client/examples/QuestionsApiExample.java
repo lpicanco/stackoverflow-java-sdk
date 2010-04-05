@@ -19,7 +19,6 @@ import com.google.code.stackoverflow.client.StackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.QuestionSortOrder;
 import com.google.code.stackoverflow.schema.Timeline;
 
 /**
