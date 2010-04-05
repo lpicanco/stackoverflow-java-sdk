@@ -53,7 +53,7 @@ public abstract class BaseJsonAdapter implements Serializable {
 		converters.put(Date.class, new Converter<Long, Date>() {
 			@Override
 			public Date convert(Long source) {
-				return (source == null)? null : new Date(source.longValue());
+				return (source == null)? null : new Date(source.longValue() * 1000);
 			}
 		});
 		converters.put(BadgeClass.class, new Converter<String, BadgeClass>() {
