@@ -54,7 +54,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetFavoriteQuestionsByUserLongPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> favoriteQuestionsByUser = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getPaging());
-		assertNotNull("Questions should never be null.", favoriteQuestionsByUser);
+		assertNotNullOrEmpty("Questions should never be null.", favoriteQuestionsByUser);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetFavoriteQuestionsByUserLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> favoriteQuestionsByUser = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
-		assertNotNull("Questions should never be null.", favoriteQuestionsByUser);
+		assertNotNullOrEmpty("Questions should never be null.", favoriteQuestionsByUser);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetFavoriteQuestionsByUserLongSetOfFilterOption() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> favoriteQuestionsByUser = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", favoriteQuestionsByUser);
+		assertNotNullOrEmpty("Questions should never be null.", favoriteQuestionsByUser);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetFavoriteQuestionsByUserLongUserFavoriteSortOrderPagingTimePeriodSetOfFilterOption() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> favoriteQuestionsByUser = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", favoriteQuestionsByUser);
+		assertNotNullOrEmpty("Questions should never be null.", favoriteQuestionsByUser);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionTimelineLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Question Id."), TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID);
     	List<Timeline> questionTimeline = client.getQuestionTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID), getTimePeriod());
-		assertNotNull("Question timeline should never be null.", questionTimeline);
+		assertNotNullOrEmpty("Question timeline should never be null.", questionTimeline);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestionsPaging() {
 		List<Question> questions = client.getQuestions(getPaging());
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestionsTimePeriod() {
 		List<Question> questions = client.getQuestions(getTimePeriod());
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestionsSetOfFilterOption() {
 		List<Question> questions = client.getQuestions(EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestionsQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
 		List<Question> questions = client.getQuestions(Question.SortOrder.HOT, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionsByUserLongPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getPaging());
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionsByUserLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionsByUserLongSetOfFilterOption() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionsByUserLongUserQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), User.QuestionSortOrder.MOST_RECENTLY_UPDATED, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetTaggedQuestionsListOfStringPagingTimePeriodSetOfFilterOption() {
 		List<Question> questions = client.getTaggedQuestions(getTags(), getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -218,7 +218,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetTagsPaging() {
 		List<Tag> tags = client.getTags(getPaging());
-		assertNotNull("Tags should never be null.", tags);
+		assertNotNullOrEmpty("Tags should never be null.", tags);
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetTagsTagSortOrderPaging() {
 		List<Tag> tags = client.getTags(Tag.SortOrder.MOST_POPULAR, getPaging());
-		assertNotNull("Tags should never be null.", tags);
+		assertNotNullOrEmpty("Tags should never be null.", tags);
 	}
 
 	/**
@@ -237,7 +237,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetTagsForUserLongPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Tag> tags = client.getTagsForUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getPaging());
-		assertNotNull("Tags should never be null.", tags);
+		assertNotNullOrEmpty("Tags should never be null.", tags);
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUnansweredQuestionsPaging() {
 		List<Question> questions = client.getUnansweredQuestions(getPaging());
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUnansweredQuestionsTimePeriod() {
 		List<Question> questions = client.getUnansweredQuestions(getTimePeriod());
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -264,7 +264,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUnansweredQuestionsSetOfFilterOption() {
 		List<Question> questions = client.getUnansweredQuestions(EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -273,7 +273,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUnansweredQuestionsUnansweredQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
 		List<Question> questions = client.getUnansweredQuestions(Question.UnansweredSortOrder.VOTES, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -283,7 +283,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserMentionsLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> mentions = client.getUserMentions(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
-		assertNotNull("Mentions should never be null.", mentions);
+		assertNotNullOrEmpty("Mentions should never be null.", mentions);
 	}
 
 	/**
@@ -293,7 +293,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserTimelineLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Timeline> timelines = client.getUserTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
-		assertNotNull("User Timelines should never be null.", timelines);
+		assertNotNullOrEmpty("User Timelines should never be null.", timelines);
 	}
 
 	/**
@@ -302,7 +302,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUsersPaging() {
 		List<User> users = client.getUsers(getPaging());
-		assertNotNull("Users should never be null.", users);
+		assertNotNullOrEmpty("Users should never be null.", users);
 	}
 
 	/**
@@ -312,7 +312,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUsersString() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Filter."), TestConstants.STACK_OVERFLOW_TEST_USER_FILTER);
 		List<User> users = client.getUsers(TestConstants.STACK_OVERFLOW_TEST_USER_FILTER);
-		assertNotNull("Users should never be null.", users);
+		assertNotNullOrEmpty("Users should never be null.", users);
 	}
 
 	/**
@@ -322,7 +322,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUsersStringUserSortOrderPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Filter."), TestConstants.STACK_OVERFLOW_TEST_USER_FILTER);
 		List<User> users = client.getUsers(TestConstants.STACK_OVERFLOW_TEST_USER_FILTER, User.SortOrder.MOST_REPUTED, getPaging());
-		assertNotNull("Users should never be null.", users);
+		assertNotNullOrEmpty("Users should never be null.", users);
 	}
 
 	/**
@@ -342,7 +342,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetAnswersByUserLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Answer> answers = client.getAnswersByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Answers should never be null.", answers);
+		assertNotNullOrEmpty("Answers should never be null.", answers);
 	}
 
 	/**
@@ -352,7 +352,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetAnswersByUserLongAnswerSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Answer> answers = client.getAnswersByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Answer.SortOrder.MOST_RECENTLY_UPDATED);
-		assertNotNull("Answers should never be null.", answers);
+		assertNotNullOrEmpty("Answers should never be null.", answers);
 	}
 
 	/**
@@ -361,7 +361,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetBadges() {
 		List<Badge> badges = client.getBadges();
-		assertNotNull("Badges should never be null.", badges);
+		assertNotNullOrEmpty("Badges should never be null.", badges);
 	}
 
 	/**
@@ -370,7 +370,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetBadgesBadgeSortOrder() {
 		List<Badge> badges = client.getBadges(BadgeSortOrder.TAGS);
-		assertNotNull("Badges should never be null.", badges);
+		assertNotNullOrEmpty("Badges should never be null.", badges);
 	}
 
 	/**
@@ -380,7 +380,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetBadgesForUser() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Badge> badges = client.getBadgesForUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Badges should never be null.", badges);
+		assertNotNullOrEmpty("Badges should never be null.", badges);
 	}
 
 	/**
@@ -390,7 +390,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetFavoriteQuestionsByUserLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -400,7 +400,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetFavoriteQuestionsByUserLongUserFavoriteSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), User.FavoriteSortOrder.MOST_RECENTLY_UPDATED);
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -420,7 +420,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionTimelineLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Question Id."), TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID);
 		List<Timeline> timelines = client.getQuestionTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID));
-		assertNotNull("Question timelines should never be null.", timelines);
+		assertNotNullOrEmpty("Question timelines should never be null.", timelines);
 	}
 
 	/**
@@ -429,7 +429,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestions() {
 		List<Question> questions = client.getQuestions();
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -438,7 +438,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestionsQuestionSortOrder() {
 		List<Question> questions = client.getQuestions(Question.SortOrder.VOTES);
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -448,7 +448,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionsByUserLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -458,7 +458,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetQuestionsByUserLongUserQuestionSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), User.QuestionSortOrder.MOST_RECENTLY_CREATED);
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -468,7 +468,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetTaggedQuestionsListOfString() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Tags."), TestConstants.STACK_OVERFLOW_TEST_TAGS);
 		List<Question> questions = client.getTaggedQuestions(getTags());
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -477,7 +477,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetTags() {
 		List<Tag> tags = client.getTags();
-		assertNotNull("Tags should never be null.", tags);
+		assertNotNullOrEmpty("Tags should never be null.", tags);
 	}
 
 	/**
@@ -486,7 +486,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetTagsTagSortOrder() {
 		List<Tag> tags = client.getTags(Tag.SortOrder.MOST_RECENTLY_UPDATED);
-		assertNotNull("Tags should never be null.", tags);
+		assertNotNullOrEmpty("Tags should never be null.", tags);
 	}
 
 	/**
@@ -496,7 +496,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetTagsForUserLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Tag> tags = client.getTagsForUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Tags should never be null.", tags);
+		assertNotNullOrEmpty("Tags should never be null.", tags);
 	}
 
 	/**
@@ -505,7 +505,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUnansweredQuestions() {
 		List<Question> questions = client.getUnansweredQuestions();
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -514,7 +514,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUnansweredQuestionsUnansweredQuestionSortOrder() {
 		List<Question> questions = client.getUnansweredQuestions(Question.UnansweredSortOrder.VOTES);
-		assertNotNull("Questions should never be null.", questions);
+		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
 	/**
@@ -534,7 +534,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserMentionsLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> mentions = client.getUserMentions(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Mentions should never be null.", mentions);
+		assertNotNullOrEmpty("Mentions should never be null.", mentions);
 	}
 
 	/**
@@ -544,7 +544,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserTimelineLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Timeline> timelines = client.getUserTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("User timeline should never be null.", timelines);
+		assertNotNullOrEmpty("User timeline should never be null.", timelines);
 	}
 
 	/**
@@ -553,7 +553,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUsers() {
 		List<User> users = client.getUsers();
-		assertNotNull("Users should never be null.", users);
+		assertNotNullOrEmpty("Users should never be null.", users);
 	}
 
 	/**
@@ -562,7 +562,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUsersUserSortOrder() {
 		List<User> users = client.getUsers(User.SortOrder.NAME_ASCENDING);
-		assertNotNull("Users should never be null.", users);
+		assertNotNullOrEmpty("Users should never be null.", users);
 	}
 
 	/**
@@ -572,7 +572,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserReputationsLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Reputation> reputations = client.getUserReputations(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Reputations should never be null.", reputations);
+		assertNotNullOrEmpty("Reputations should never be null.", reputations);
 	}
 
 	/**
@@ -582,7 +582,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserReputationsLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Reputation> reputations = client.getUserReputations(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
-		assertNotNull("Reputations should never be null.", reputations);
+		assertNotNullOrEmpty("Reputations should never be null.", reputations);
 	}
 
 	/**
@@ -592,7 +592,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserReputationsLongPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Reputation> reputations = client.getUserReputations(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getPaging());
-		assertNotNull("Reputations should never be null.", reputations);
+		assertNotNullOrEmpty("Reputations should never be null.", reputations);
 	}
 
 	/**
@@ -602,7 +602,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserReputationsLongPagingTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Reputation> reputations = client.getUserReputations(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getPaging(), getTimePeriod());
-		assertNotNull("Reputations should never be null.", reputations);
+		assertNotNullOrEmpty("Reputations should never be null.", reputations);
 	}
 
 	/**
@@ -612,7 +612,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -622,7 +622,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongCommentSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.MOST_VOTED);
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -632,7 +632,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -642,7 +642,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getPaging());
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -652,7 +652,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongCommentSortOrderPagingTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.MOST_RECENTLY_CREATED, getPaging(), getTimePeriod());
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -662,7 +662,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -672,7 +672,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongLongCommentSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.MOST_RECENTLY_CREATED);
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -682,7 +682,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -692,7 +692,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongLongPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getPaging());
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 
 	/**
@@ -702,6 +702,6 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	public void testGetUserCommentsLongLongCommentSortOrderPagingTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.MOST_RECENTLY_CREATED, getPaging(), getTimePeriod());
-		assertNotNull("Comments should never be null.", comments);
+		assertNotNullOrEmpty("Comments should never be null.", comments);
 	}
 }
