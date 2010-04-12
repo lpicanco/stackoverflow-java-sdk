@@ -220,8 +220,12 @@ public final class StackOverflowApiUrls {
 	     */
 	    public StackOverflowApiUrlBuilder withPaging(Paging paging) {
 	    	if (paging != null) {
-		    	withParameter("page", String.valueOf(paging.getPageNumber()));
-		    	withParameter("pagesize", String.valueOf(paging.getPageSize()));
+	    		if (paging.getPageNumber() > 0) {
+			    	withParameter("page", String.valueOf(paging.getPageNumber()));
+	    		}
+	    		if (paging.getPageSize() > 0) {
+			    	withParameter("pagesize", String.valueOf(paging.getPageSize()));
+	    		}
 	    	}
     		
     		return this;
