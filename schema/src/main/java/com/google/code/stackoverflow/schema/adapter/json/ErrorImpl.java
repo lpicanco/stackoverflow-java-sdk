@@ -57,8 +57,8 @@ public class ErrorImpl extends BaseJsonAdapter implements Error, Adaptable<Error
 	public void adaptFrom(JSONObject adaptee) {
 		JSONObject error = (JSONObject) adaptee.get("error");
 		if (error != null) {
-			setErrorCode((Long) error.get("Code"));
-			setMessage((String) error.get("Message"));
+			setErrorCode((Long) error.get("code"));
+			setMessage((String) error.get("message"));
 		}
 	}
 
