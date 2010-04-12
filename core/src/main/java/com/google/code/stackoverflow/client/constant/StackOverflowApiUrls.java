@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.ValueEnum;
 
 /**
@@ -241,6 +242,25 @@ public final class StackOverflowApiUrls {
 		    	}
 		    	if (timePeriod.getEndDate() != null) {
 			    	withParameter("todate", String.valueOf(timePeriod.getEndDate().getTime() / 1000));
+		    	}
+	    	}
+    		
+    		return this;
+    	}
+	    
+    	/**
+	     * With parameter enum.
+	     * 
+	     * @param name the name
+	     * @param value the value
+	     * 
+	     * @return the stack overflow api url builder
+	     */
+	    public StackOverflowApiUrlBuilder withSort(SortEnum sort) {
+	    	if (sort != null) {
+		    	withParameter("sort", sort.value());
+		    	if (sort.order() != null) {
+			    	withParameter("order", sort.order().value());
 		    	}
 	    	}
     		
