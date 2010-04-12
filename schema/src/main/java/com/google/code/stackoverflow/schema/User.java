@@ -8,9 +8,12 @@ import java.util.Map;
 public interface User extends SchemaEntity {
 	
 	public enum SortOrder implements SortEnum {
-		REPUTATION("reputation", Order.ASCENDING),
-		CREATION("creation", Order.ASCENDING),
-		NAME("name", Order.ASCENDING);
+		MOST_REPUTED("reputation", Order.ASCENDING),
+		LEAST_REPUTED("reputation", Order.DESCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		NAME_ASCENDING("name", Order.ASCENDING),
+		NAME_DESCENDING("name", Order.DESCENDING);
 		
 	    /**
 	     * Field Description.
@@ -56,11 +59,16 @@ public interface User extends SchemaEntity {
 	}
 	
 	public enum FavoriteSortOrder implements SortEnum {
-		ACTIVITY("activity", Order.ASCENDING),
-		VIEWS("views", Order.ASCENDING),
-		CREATION("creation", Order.ASCENDING),
-		ADDED("added", Order.ASCENDING),
-		VOTES("votes", Order.ASCENDING);
+		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		MOST_VIEWED("views", Order.ASCENDING),
+		LEAST_VIEWED("views", Order.DESCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		MOST_RECENTLY_ADDED("added", Order.ASCENDING),
+		LEAST_RECENTLY_ADDED("added", Order.DESCENDING),
+		MOST_VOTED("votes", Order.ASCENDING),
+		LEAST_VOTED("votes", Order.DESCENDING);
 		
 	    /**
 	     * Field Description.
@@ -106,10 +114,14 @@ public interface User extends SchemaEntity {
 	}
 	
 	public enum QuestionSortOrder implements SortEnum {
-		ACTIVITY("activity", Order.ASCENDING),
-		VIEWS("views", Order.ASCENDING),
-		CREATION("creation", Order.ASCENDING),
-		VOTES("votes", Order.ASCENDING);
+		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		MOST_VIEWED("views", Order.ASCENDING),
+		LEAST_VIEWED("views", Order.DESCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		MOST_VOTED("votes", Order.ASCENDING),
+		LEAST_VOTED("votes", Order.DESCENDING);
 		
 	    /**
 	     * Field Description.

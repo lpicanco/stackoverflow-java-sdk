@@ -8,8 +8,10 @@ import java.util.Map;
 public interface Comment extends SchemaEntity {
 	
 	public enum SortOrder implements SortEnum {
-		CREATION("creation", Order.ASCENDING),
-		VOTES("votes", Order.ASCENDING);
+		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		MOST_VOTED("votes", Order.ASCENDING),
+		LEAST_VOTED("votes", Order.DESCENDING);
 		
 	    /**
 	     * Field Description.

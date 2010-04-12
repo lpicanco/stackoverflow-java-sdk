@@ -8,10 +8,14 @@ import java.util.Map;
 public interface Answer extends SchemaEntity {
 	
 	public enum SortOrder implements SortEnum {
-		ACTIVITY("activity", Order.ASCENDING),
-		VIEWS("views", Order.ASCENDING),
-		CREATION("creation", Order.ASCENDING),
-		VOTES("votes", Order.ASCENDING);
+		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		MOST_VIEWED("views", Order.ASCENDING),
+		LEAST_VIEWED("views", Order.DESCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		MOST_VOTED("votes", Order.ASCENDING),
+		LEAST_VOTED("votes", Order.DESCENDING);
 		
 	    /**
 	     * Field Description.

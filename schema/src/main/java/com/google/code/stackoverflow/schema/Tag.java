@@ -6,9 +6,12 @@ import java.util.Map;
 public interface Tag extends SchemaEntity {
 	
 	public enum SortOrder implements SortEnum {
-		POPULAR("popular", Order.ASCENDING),
-		NAME("name", Order.ASCENDING),
-		ACTIVITY("activity", Order.ASCENDING);
+		MOST_POPULAR("popular", Order.ASCENDING),
+		LEAST_POPULAR("popular", Order.DESCENDING),
+		NAME_ASCENDING("name", Order.ASCENDING),
+		NAME_DESCENDING("name", Order.DESCENDING),
+		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING);
 		
 	    /**
 	     * Field Description.
