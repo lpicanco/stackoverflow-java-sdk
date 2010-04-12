@@ -12,6 +12,13 @@ import java.util.Date;
 public interface Error
     extends SchemaEntity
 {
+	public interface ErrorCodes {
+		public int NOT_FOUND = 404;
+		public int INTERNAL_SERVER_ERROR = 500;
+		public int INVALID_APPLICATION_KEY = 4000;
+		public int INVALID_PAGE_SIZE = 4001;
+		public int INVALID_SORT = 4002;
+	}
     /**
      * Gets the value of the timestamp property.
      * 
@@ -40,7 +47,7 @@ public interface Error
      *     {@link String }
      *     
      */
-    long getErrorCode();
+    int getErrorCode();
 
     /**
      * Sets the value of the errorCode property.
@@ -50,8 +57,28 @@ public interface Error
      *     {@link String }
      *     
      */
-    void setErrorCode(long value);
+    void setErrorCode(int value);
 
+    /**
+     * Gets the value of the errorCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    int getStatusCode();
+
+    /**
+     * Sets the value of the errorCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setStatusCode(int value);
+    
     /**
      * Gets the value of the message property.
      * 

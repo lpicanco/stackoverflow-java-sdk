@@ -19,12 +19,13 @@ public class ErrorImpl extends BaseJsonAdapter implements Error, Adaptable<Error
 	 * 
 	 */
 	private static final long serialVersionUID = -5493694517895646459L;
-	private long errorCode;
+	private int errorCode;
+	private int statusCode;
 	private String message;
 	private Date timestamp;
 
 	@Override
-	public long getErrorCode() {
+	public int getErrorCode() {
 		return errorCode;
 	}
 
@@ -39,7 +40,7 @@ public class ErrorImpl extends BaseJsonAdapter implements Error, Adaptable<Error
 	}
 
 	@Override
-	public void setErrorCode(long value) {
+	public void setErrorCode(int value) {
 		errorCode = value;
 	}
 
@@ -57,7 +58,7 @@ public class ErrorImpl extends BaseJsonAdapter implements Error, Adaptable<Error
 	public void adaptFrom(JSONObject adaptee) {
 		JSONObject error = (JSONObject) adaptee.get("error");
 		if (error != null) {
-			setErrorCode((Long) error.get("code"));
+			setErrorCode(((Long) error.get("code")).intValue());
 			setMessage((String) error.get("message"));
 		}
 	}
@@ -65,5 +66,15 @@ public class ErrorImpl extends BaseJsonAdapter implements Error, Adaptable<Error
 	@Override
 	public JSONObject adaptTo() {
 		return null;
+	}
+
+	@Override
+	public int getStatusCode() {
+		return statusCode;
+	}
+
+	@Override
+	public void setStatusCode(int value) {
+		statusCode = value;
 	}
 }
