@@ -32,6 +32,7 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	private String ownerDisplayName;
 	private Date creationDate;
 	private Date lastEditDate;
+	private Date lastActivityDate;
 	private long upVoteCount;
 	private long downVoteCount;
 	private long favoriteCount;
@@ -189,6 +190,16 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	@Override
 	public void setLastEditDate(Date lastEditDate) {
 		this.lastEditDate = lastEditDate;
+	}
+	
+	@Override
+	public Date getLastActivityDate() {
+		return lastActivityDate;
+	}
+	
+	@Override
+	public void setLastActivityDate(Date lastActivityDate) {
+		this.lastActivityDate = lastActivityDate;
 	}
 	
 	@Override

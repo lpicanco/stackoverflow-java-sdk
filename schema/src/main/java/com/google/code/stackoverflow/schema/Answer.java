@@ -207,4 +207,13 @@ public interface Answer extends SchemaEntity {
 	 */
 	public void setLastEditDate(Date lastEditDate);
 
+	/**
+	 * @return the lastActivityDate
+	 */
+	public Date getLastActivityDate();
+
+	/**
+	 * @param lastEditDate the lastActivityDate to set
+	 */
+	public void setLastActivityDate(Date lastActivityDate);
 }
