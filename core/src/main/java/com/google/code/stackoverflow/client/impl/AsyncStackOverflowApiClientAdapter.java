@@ -15,24 +15,16 @@ import com.google.code.stackoverflow.client.StackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.schema.Answer;
-import com.google.code.stackoverflow.schema.AnswerSortOrder;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Comment;
-import com.google.code.stackoverflow.schema.CommentSortOrder;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.QuestionSortOrder;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
-import com.google.code.stackoverflow.schema.TagSortOrder;
 import com.google.code.stackoverflow.schema.Timeline;
-import com.google.code.stackoverflow.schema.UnansweredQuestionSortOrder;
 import com.google.code.stackoverflow.schema.User;
-import com.google.code.stackoverflow.schema.UserFavoriteSortOrder;
-import com.google.code.stackoverflow.schema.UserQuestionSortOrder;
-import com.google.code.stackoverflow.schema.UserSortOrder;
 
 /**
  * @author Nabeel Mukhtar
@@ -175,7 +167,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Answer>> getAnswersByUser(final long userId,
-			final AnswerSortOrder sort) {
+			final Answer.SortOrder sort) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
@@ -186,7 +178,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Answer>> getAnswersByUser(final long userId,
-			final AnswerSortOrder sort, final Set<FilterOption> filterOptions) {
+			final Answer.SortOrder sort, final Set<FilterOption> filterOptions) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
@@ -247,7 +239,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId,
-			final UserFavoriteSortOrder sort) {
+			final User.FavoriteSortOrder sort) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
@@ -291,7 +283,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId,
-			final UserFavoriteSortOrder sort, final Paging paging, final TimePeriod timePeriod,
+			final User.FavoriteSortOrder sort, final Paging paging, final TimePeriod timePeriod,
 			final Set<FilterOption> filterOptions) {
 		return execute(new Callable<List<Question>>() {
             @Override
@@ -395,7 +387,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Question>> getQuestions(final QuestionSortOrder sort) {
+	public Future<List<Question>> getQuestions(final Question.SortOrder sort) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
@@ -415,7 +407,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Question>> getQuestions(final QuestionSortOrder sort,
+	public Future<List<Question>> getQuestions(final Question.SortOrder sort,
 			final Paging paging, final TimePeriod timePeriod,
 			final Set<FilterOption> filterOptions) {
 		return execute(new Callable<List<Question>>() {
@@ -438,7 +430,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Question>> getQuestionsByUser(final long userId,
-			final UserQuestionSortOrder sort) {
+			final User.QuestionSortOrder sort) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
@@ -481,7 +473,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Question>> getQuestionsByUser(final long userId,
-			final UserQuestionSortOrder sort, final Paging paging, final TimePeriod timePeriod,
+			final User.QuestionSortOrder sort, final Paging paging, final TimePeriod timePeriod,
 			final Set<FilterOption> filterOptions) {
 		return execute(new Callable<List<Question>>() {
             @Override
@@ -534,7 +526,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Tag>> getTags(final TagSortOrder sort) {
+	public Future<List<Tag>> getTags(final Tag.SortOrder sort) {
 		return execute(new Callable<List<Tag>>() {
             @Override
             public List<Tag> call() throws Exception {
@@ -554,7 +546,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Tag>> getTags(final TagSortOrder sort, final Paging paging) {
+	public Future<List<Tag>> getTags(final Tag.SortOrder sort, final Paging paging) {
 		return execute(new Callable<List<Tag>>() {
             @Override
             public List<Tag> call() throws Exception {
@@ -595,7 +587,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Question>> getUnansweredQuestions(
-			final UnansweredQuestionSortOrder sort) {
+			final Question.UnansweredSortOrder sort) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
@@ -637,7 +629,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Question>> getUnansweredQuestions(
-			final UnansweredQuestionSortOrder sort, final Paging paging,
+			final Question.UnansweredSortOrder sort, final Paging paging,
 			final TimePeriod timePeriod, final Set<FilterOption> filterOptions) {
 		return execute(new Callable<List<Question>>() {
             @Override
@@ -669,7 +661,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Comment>> getUserComments(final long userId,
-			final CommentSortOrder sort) {
+			final Comment.SortOrder sort) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
@@ -701,7 +693,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Comment>> getUserComments(final long userId,
-			final CommentSortOrder sort, final Paging paging, final TimePeriod timePeriod) {
+			final Comment.SortOrder sort, final Paging paging, final TimePeriod timePeriod) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
@@ -722,7 +714,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Comment>> getUserComments(final long userId, final long toUserId,
-			final CommentSortOrder sort) {
+			final Comment.SortOrder sort) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
@@ -755,7 +747,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 
 	@Override
 	public Future<List<Comment>> getUserComments(final long userId, final long toUserId,
-			final CommentSortOrder sort, final Paging paging, final TimePeriod timePeriod) {
+			final Comment.SortOrder sort, final Paging paging, final TimePeriod timePeriod) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
@@ -880,7 +872,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<User>> getUsers(final UserSortOrder sort) {
+	public Future<List<User>> getUsers(final User.SortOrder sort) {
 		return execute(new Callable<List<User>>() {
             @Override
             public List<User> call() throws Exception {
@@ -890,7 +882,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<User>> getUsers(final String filter, final UserSortOrder sort,
+	public Future<List<User>> getUsers(final String filter, final User.SortOrder sort,
 			final Paging paging) {
 		return execute(new Callable<List<User>>() {
             @Override

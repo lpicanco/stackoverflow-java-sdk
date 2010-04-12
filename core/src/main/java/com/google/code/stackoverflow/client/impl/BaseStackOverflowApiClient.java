@@ -28,32 +28,24 @@ import com.google.code.stackoverflow.client.constant.ApplicationConstants;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls.StackOverflowApiUrlBuilder;
 import com.google.code.stackoverflow.schema.Answer;
-import com.google.code.stackoverflow.schema.AnswerSortOrder;
 import com.google.code.stackoverflow.schema.Answers;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Badges;
 import com.google.code.stackoverflow.schema.Comment;
-import com.google.code.stackoverflow.schema.CommentSortOrder;
 import com.google.code.stackoverflow.schema.Comments;
 import com.google.code.stackoverflow.schema.Error;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.QuestionSortOrder;
 import com.google.code.stackoverflow.schema.QuestionTimelines;
 import com.google.code.stackoverflow.schema.Questions;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Reputations;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
-import com.google.code.stackoverflow.schema.TagSortOrder;
 import com.google.code.stackoverflow.schema.Tags;
 import com.google.code.stackoverflow.schema.Timeline;
-import com.google.code.stackoverflow.schema.UnansweredQuestionSortOrder;
 import com.google.code.stackoverflow.schema.User;
-import com.google.code.stackoverflow.schema.UserFavoriteSortOrder;
-import com.google.code.stackoverflow.schema.UserQuestionSortOrder;
-import com.google.code.stackoverflow.schema.UserSortOrder;
 import com.google.code.stackoverflow.schema.UserTimelines;
 import com.google.code.stackoverflow.schema.Users;
 
@@ -505,7 +497,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 
 	@Override
 	public List<Question> getFavoriteQuestionsByUser(long userId,
-			UserFavoriteSortOrder sort, Paging paging, TimePeriod timePeriod,
+			User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod,
 			Set<FilterOption> filterOptions) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
@@ -587,7 +579,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Question> getQuestions(QuestionSortOrder sort, Paging paging,
+	public List<Question> getQuestions(Question.SortOrder sort, Paging paging,
 			TimePeriod timePeriod, Set<FilterOption> filterOptions) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_SORTED);
         String                apiUrl  = builder.withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
@@ -630,7 +622,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 
 	@Override
 	public List<Question> getQuestionsByUser(long userId,
-			UserQuestionSortOrder sort, Paging paging, TimePeriod timePeriod,
+			User.QuestionSortOrder sort, Paging paging, TimePeriod timePeriod,
 			Set<FilterOption> filterOptions) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
@@ -663,7 +655,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Tag> getTags(TagSortOrder sort, Paging paging) {
+	public List<Tag> getTags(Tag.SortOrder sort, Paging paging) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS_SORTED);
         String                apiUrl  = builder.withFieldEnum("sort", sort).withPaging(paging).buildUrl();
 
@@ -714,7 +706,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 
 	@Override
 	public List<Question> getUnansweredQuestions(
-			UnansweredQuestionSortOrder sort, Paging paging,
+			Question.UnansweredSortOrder sort, Paging paging,
 			TimePeriod timePeriod, Set<FilterOption> filterOptions) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS_SORTED);
         String                apiUrl  = builder.withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
@@ -765,7 +757,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<User> getUsers(String filter, UserSortOrder sort, Paging paging) {
+	public List<User> getUsers(String filter, User.SortOrder sort, Paging paging) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USERS_SORTED);
         String                apiUrl  = builder.withParameter("filter", filter).withFieldEnum("sort", sort).withPaging(paging).buildUrl();
 
@@ -795,7 +787,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Answer> getAnswersByUser(long userId, AnswerSortOrder sort) {
+	public List<Answer> getAnswersByUser(long userId, Answer.SortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
 
@@ -846,7 +838,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 
 	@Override
 	public List<Question> getFavoriteQuestionsByUser(long userId,
-			UserFavoriteSortOrder sort) {
+			User.FavoriteSortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_FAVORITE_QUESTIONS_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
 
@@ -885,7 +877,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Question> getQuestions(QuestionSortOrder sort) {
+	public List<Question> getQuestions(Question.SortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_SORTED);
         String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
         
@@ -906,7 +898,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 
 	@Override
 	public List<Question> getQuestionsByUser(long userId,
-			UserQuestionSortOrder sort) {
+			User.QuestionSortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_QUESTIONS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
 
@@ -936,7 +928,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Tag> getTags(TagSortOrder sort) {
+	public List<Tag> getTags(Tag.SortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_TAGS_SORTED);
         String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
 
@@ -966,7 +958,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Question> getUnansweredQuestions(UnansweredQuestionSortOrder sort) {
+	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_UN_ANSWERED_QUESTIONS_SORTED);
         String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
 
@@ -1016,7 +1008,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<User> getUsers(UserSortOrder sort) {
+	public List<User> getUsers(User.SortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_USERS_SORTED);
         String                apiUrl  = builder.withFieldEnum("sort", sort).buildUrl();
 
@@ -1078,7 +1070,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Comment> getUserComments(long userId, CommentSortOrder sort) {
+	public List<Comment> getUserComments(long userId, Comment.SortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).buildUrl();
 
@@ -1108,7 +1100,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Comment> getUserComments(long userId, CommentSortOrder sort,
+	public List<Comment> getUserComments(long userId, Comment.SortOrder sort,
 			Paging paging, TimePeriod timePeriod) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
@@ -1130,7 +1122,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 
 	@Override
 	public List<Comment> getUserComments(long userId, long toUserId,
-			CommentSortOrder sort) {
+			Comment.SortOrder sort) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withField("toid", String.valueOf(toUserId)).withFieldEnum("sort", sort).buildUrl();
 
@@ -1163,7 +1155,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 
 	@Override
 	public List<Comment> getUserComments(long userId, long toUserId,
-			CommentSortOrder sort, Paging paging, TimePeriod timePeriod) {
+			Comment.SortOrder sort, Paging paging, TimePeriod timePeriod) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_COMMENTS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withField("toid", String.valueOf(toUserId)).withFieldEnum("sort", sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
 
@@ -1212,7 +1204,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Answer> getAnswersByUser(long userId, AnswerSortOrder sort,
+	public List<Answer> getAnswersByUser(long userId, Answer.SortOrder sort,
 			Set<FilterOption> filterOptions) {
 		StackOverflowApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiUrls.GET_ANSWERS_BY_USER_SORTED);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withFieldEnum("sort", sort).withFetchOptions(filterOptions).buildUrl();

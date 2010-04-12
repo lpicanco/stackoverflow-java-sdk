@@ -12,23 +12,15 @@ import org.junit.Test;
 
 import com.google.code.stackoverflow.client.constant.TestConstants;
 import com.google.code.stackoverflow.schema.Answer;
-import com.google.code.stackoverflow.schema.AnswerSortOrder;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Comment;
-import com.google.code.stackoverflow.schema.CommentSortOrder;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.QuestionSortOrder;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Tag;
-import com.google.code.stackoverflow.schema.TagSortOrder;
 import com.google.code.stackoverflow.schema.Timeline;
-import com.google.code.stackoverflow.schema.UnansweredQuestionSortOrder;
 import com.google.code.stackoverflow.schema.User;
-import com.google.code.stackoverflow.schema.UserFavoriteSortOrder;
-import com.google.code.stackoverflow.schema.UserQuestionSortOrder;
-import com.google.code.stackoverflow.schema.UserSortOrder;
 
 /**
  * @author nmukhtar
@@ -167,7 +159,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	 */
 	@Test
 	public void testGetQuestionsQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
-		List<Question> questions = client.getQuestions(QuestionSortOrder.HOT, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
+		List<Question> questions = client.getQuestions(Question.SortOrder.HOT, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
 		assertNotNull("Questions should never be null.", questions);
 	}
 
@@ -207,7 +199,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestionsByUserLongUserQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), UserQuestionSortOrder.RECENT, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
+		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), User.QuestionSortOrder.ACTIVITY, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
 		assertNotNull("Questions should never be null.", questions);
 	}
 
@@ -230,11 +222,11 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.TagSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
 	 */
 	@Test
 	public void testGetTagsTagSortOrderPaging() {
-		List<Tag> tags = client.getTags(TagSortOrder.POPULAR, getPaging());
+		List<Tag> tags = client.getTags(Tag.SortOrder.POPULAR, getPaging());
 		assertNotNull("Tags should never be null.", tags);
 	}
 
@@ -276,11 +268,11 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.UnansweredQuestionSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, java.util.Set)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.UnansweredSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, java.util.Set)}.
 	 */
 	@Test
 	public void testGetUnansweredQuestionsUnansweredQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
-		List<Question> questions = client.getUnansweredQuestions(UnansweredQuestionSortOrder.VOTES, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
+		List<Question> questions = client.getUnansweredQuestions(Question.UnansweredSortOrder.VOTES, getPaging(), getTimePeriod(), EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
 		assertNotNull("Questions should never be null.", questions);
 	}
 
@@ -324,12 +316,12 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(java.lang.String, com.google.code.stackoverflow.schema.UserSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(java.lang.String, com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
 	 */
 	@Test
 	public void testGetUsersStringUserSortOrderPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Filter."), TestConstants.STACK_OVERFLOW_TEST_USER_FILTER);
-		List<User> users = client.getUsers(TestConstants.STACK_OVERFLOW_TEST_USER_FILTER, UserSortOrder.REPUTATION, getPaging());
+		List<User> users = client.getUsers(TestConstants.STACK_OVERFLOW_TEST_USER_FILTER, User.SortOrder.REPUTATION, getPaging());
 		assertNotNull("Users should never be null.", users);
 	}
 
@@ -354,12 +346,12 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswersByUser(long, com.google.code.stackoverflow.schema.AnswerSortOrder)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswersByUser(long, com.google.code.stackoverflow.schema.SortOrder)}.
 	 */
 	@Test
 	public void testGetAnswersByUserLongAnswerSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Answer> answers = client.getAnswersByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), AnswerSortOrder.RECENT);
+		List<Answer> answers = client.getAnswersByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Answer.SortOrder.ACTIVITY);
 		assertNotNull("Answers should never be null.", answers);
 	}
 
@@ -407,7 +399,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetFavoriteQuestionsByUserLongUserFavoriteSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Question> questions = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), UserFavoriteSortOrder.RECENT);
+		List<Question> questions = client.getFavoriteQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), User.FavoriteSortOrder.ACTIVITY);
 		assertNotNull("Questions should never be null.", questions);
 	}
 
@@ -445,7 +437,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	 */
 	@Test
 	public void testGetQuestionsQuestionSortOrder() {
-		List<Question> questions = client.getQuestions(QuestionSortOrder.VOTES);
+		List<Question> questions = client.getQuestions(Question.SortOrder.VOTES);
 		assertNotNull("Questions should never be null.", questions);
 	}
 
@@ -465,7 +457,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetQuestionsByUserLongUserQuestionSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), UserQuestionSortOrder.NEWEST);
+		List<Question> questions = client.getQuestionsByUser(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), User.QuestionSortOrder.CREATION);
 		assertNotNull("Questions should never be null.", questions);
 	}
 
@@ -489,11 +481,11 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.TagSortOrder)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.SortOrder)}.
 	 */
 	@Test
 	public void testGetTagsTagSortOrder() {
-		List<Tag> tags = client.getTags(TagSortOrder.RECENT);
+		List<Tag> tags = client.getTags(Tag.SortOrder.ACTIVITY);
 		assertNotNull("Tags should never be null.", tags);
 	}
 
@@ -517,11 +509,11 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.UnansweredQuestionSortOrder)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.UnansweredSortOrder)}.
 	 */
 	@Test
 	public void testGetUnansweredQuestionsUnansweredQuestionSortOrder() {
-		List<Question> questions = client.getUnansweredQuestions(UnansweredQuestionSortOrder.VOTES);
+		List<Question> questions = client.getUnansweredQuestions(Question.UnansweredSortOrder.VOTES);
 		assertNotNull("Questions should never be null.", questions);
 	}
 
@@ -565,11 +557,11 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.UserSortOrder)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.SortOrder)}.
 	 */
 	@Test
 	public void testGetUsersUserSortOrder() {
-		List<User> users = client.getUsers(UserSortOrder.NAME);
+		List<User> users = client.getUsers(User.SortOrder.NAME);
 		assertNotNull("Users should never be null.", users);
 	}
 
@@ -624,12 +616,12 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, com.google.code.stackoverflow.schema.CommentSortOrder)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, com.google.code.stackoverflow.schema.SortOrder)}.
 	 */
 	@Test
 	public void testGetUserCommentsLongCommentSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), CommentSortOrder.SCORE);
+		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.VOTES);
 		assertNotNull("Comments should never be null.", comments);
 	}
 
@@ -654,12 +646,12 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, com.google.code.stackoverflow.schema.CommentSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod)}.
 	 */
 	@Test
 	public void testGetUserCommentsLongCommentSortOrderPagingTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), CommentSortOrder.RECENT, getPaging(), getTimePeriod());
+		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.CREATION, getPaging(), getTimePeriod());
 		assertNotNull("Comments should never be null.", comments);
 	}
 
@@ -674,12 +666,12 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, long, com.google.code.stackoverflow.schema.CommentSortOrder)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, long, com.google.code.stackoverflow.schema.SortOrder)}.
 	 */
 	@Test
 	public void testGetUserCommentsLongLongCommentSortOrder() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), CommentSortOrder.RECENT);
+		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.CREATION);
 		assertNotNull("Comments should never be null.", comments);
 	}
 
@@ -704,12 +696,12 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, long, com.google.code.stackoverflow.schema.CommentSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUserComments(long, long, com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod)}.
 	 */
 	@Test
 	public void testGetUserCommentsLongLongCommentSortOrderPagingTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), CommentSortOrder.RECENT, getPaging(), getTimePeriod());
+		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.CREATION, getPaging(), getTimePeriod());
 		assertNotNull("Comments should never be null.", comments);
 	}
 }

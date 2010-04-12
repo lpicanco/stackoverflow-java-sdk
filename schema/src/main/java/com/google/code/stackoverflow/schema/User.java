@@ -1,10 +1,159 @@
 package com.google.code.stackoverflow.schema;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public interface User extends SchemaEntity {
+	
+	public enum SortOrder implements SortEnum {
+		REPUTATION("reputation", Order.ASCENDING),
+		CREATION("creation", Order.ASCENDING),
+		NAME("name", Order.ASCENDING);
+		
+	    /**
+	     * Field Description.
+	     */
+		private static final Map<String, SortOrder> stringToEnum = new HashMap<String, SortOrder>();
 
+		static { // Initialize map from constant name to enum constant
+			for (SortOrder op : values()) {
+				stringToEnum.put(op.value(), op);
+			}
+		}
+		
+	    /** Field description */
+	    private final String value;
+	    
+	    /** Field description */
+	    private final Order order;
+	    
+	    /**
+	     * Constructs ...
+	     *
+	     *
+	     * @param name
+	     */
+	    SortOrder(String value, Order order) {
+	        this.value = value;
+	        this.order = order;
+	    }
+
+		@Override
+		public String value() {
+			return value;
+		}
+		
+		public static SortOrder fromValue(String value) {
+			return stringToEnum.get(value);
+		}
+
+		@Override
+		public Order order() {
+			return order;
+		}
+	}
+	
+	public enum FavoriteSortOrder implements SortEnum {
+		ACTIVITY("activity", Order.ASCENDING),
+		VIEWS("views", Order.ASCENDING),
+		CREATION("creation", Order.ASCENDING),
+		ADDED("added", Order.ASCENDING),
+		VOTES("votes", Order.ASCENDING);
+		
+	    /**
+	     * Field Description.
+	     */
+		private static final Map<String, FavoriteSortOrder> stringToEnum = new HashMap<String, FavoriteSortOrder>();
+
+		static { // Initialize map from constant name to enum constant
+			for (FavoriteSortOrder op : values()) {
+				stringToEnum.put(op.value(), op);
+			}
+		}
+		
+	    /** Field description */
+	    private final String value;
+
+	    /** Field description */
+	    private final Order order;
+	    
+	    /**
+	     * Constructs ...
+	     *
+	     *
+	     * @param name
+	     */
+	    FavoriteSortOrder(String value, Order order) {
+	        this.value = value;
+	        this.order = order;
+	    }
+
+		@Override
+		public String value() {
+			return value;
+		}
+		
+		public static FavoriteSortOrder fromValue(String value) {
+			return stringToEnum.get(value);
+		}
+
+		@Override
+		public Order order() {
+			return order;
+		}
+	}
+	
+	public enum QuestionSortOrder implements SortEnum {
+		ACTIVITY("activity", Order.ASCENDING),
+		VIEWS("views", Order.ASCENDING),
+		CREATION("creation", Order.ASCENDING),
+		VOTES("votes", Order.ASCENDING);
+		
+	    /**
+	     * Field Description.
+	     */
+		private static final Map<String, QuestionSortOrder> stringToEnum = new HashMap<String, QuestionSortOrder>();
+
+		static { // Initialize map from constant name to enum constant
+			for (QuestionSortOrder op : values()) {
+				stringToEnum.put(op.value(), op);
+			}
+		}
+		
+	    /** Field description */
+	    private final String value;
+	    
+	    /** Field description */
+	    private final Order order;
+	    
+	    /**
+	     * Constructs ...
+	     *
+	     *
+	     * @param name
+	     */
+	    QuestionSortOrder(String value, Order order) {
+	        this.value = value;
+	        this.order = order;
+	    }
+
+		@Override
+		public String value() {
+			return value;
+		}
+		
+		public static QuestionSortOrder fromValue(String value) {
+			return stringToEnum.get(value);
+		}
+
+		@Override
+		public Order order() {
+			return order;
+		}
+	}
+	
 	/**
 	 * @return the userId
 	 */
