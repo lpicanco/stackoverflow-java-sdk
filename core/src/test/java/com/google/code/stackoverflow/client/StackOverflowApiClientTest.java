@@ -5,6 +5,7 @@ package com.google.code.stackoverflow.client;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -105,5 +106,13 @@ public abstract class StackOverflowApiClientTest extends TestCase {
 	protected static void assertNotNullOrEmpty(String message, String value) {
 		assertNotNull(message, value);
 		assertFalse(message, "".equals(value));
+	}
+	
+	/**
+	 *
+	 */
+	protected static void assertNotNullOrEmpty(String message, Collection<?> value) {
+		assertNotNull(message, value);
+		assertFalse(message, value.isEmpty());
 	}
 }
