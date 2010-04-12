@@ -270,6 +270,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
                 Error error = readResponse(Error.class,
                         getWrappedInputStream(request.getErrorStream(),
                             GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
+                error.setStatusCode(request.getResponseCode());
             	
                 throw createStackOverflowApiClientException(error);
             } else {
@@ -331,6 +332,8 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
                 Error error = readResponse(Error.class,
                         getWrappedInputStream(request.getErrorStream(),
                             GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
+                error.setStatusCode(request.getResponseCode());
+                
                 throw createStackOverflowApiClientException(error);
             } else {
                 return getWrappedInputStream(request.getInputStream(),
