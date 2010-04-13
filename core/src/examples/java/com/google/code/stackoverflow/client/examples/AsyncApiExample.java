@@ -66,10 +66,12 @@ public class AsyncApiExample {
     		Future<List<Tag>> tagsFuture = client.getTags();
 			System.out.println("Done fetching badges and tags asynchronously. Now blocking for result.");
 			List<Badge> badges = badgesFuture.get();
+			System.out.println("============ Badges ============");
 			for (Badge badge : badges) {
 				printResult(badge);
 			}
 			List<Tag> tags = tagsFuture.get();
+			System.out.println("============ Tags ============");
 			for (Tag tag : tags) {
 				printResult(tag);
 			}
