@@ -4,6 +4,8 @@
 package com.google.code.stackoverflow.client.examples;
 
 import java.text.MessageFormat;
+import java.util.List;
+import java.util.concurrent.Future;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -13,8 +15,10 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClient;
+import com.google.code.stackoverflow.client.AsyncStackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
+import com.google.code.stackoverflow.schema.Badge;
+import com.google.code.stackoverflow.schema.Tag;
 
 /**
  * @author Nabeel Mukhtar
@@ -28,11 +32,6 @@ public class AsyncApiExample {
     private static final String APPLICATION_KEY_OPTION = "key";
 	
     /**
-     * ID
-     */
-    private static final String ID_OPTION = "id";
-    
-    /**
      * Name of the help command line option.
      */
     private static final String HELP_OPTION = "help";
@@ -40,7 +39,7 @@ public class AsyncApiExample {
     /**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Options options = buildOptions();
         try {
             CommandLine line = new BasicParser().parse(options, args);
@@ -54,24 +53,40 @@ public class AsyncApiExample {
     /**
      * Process command line options and call the service. 
      */
-    private static void processCommandLine(CommandLine line, Options options) {
+    private static void processCommandLine(CommandLine line, Options options) throws Exception {
         if(line.hasOption(HELP_OPTION)) {
             printHelp(options);            
         } else if(line.hasOption(APPLICATION_KEY_OPTION)) {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
     		final StackOverflowApiClientFactory factory = StackOverflowApiClientFactory.newInstance(keyValue);
-    		final StackOverflowApiClient client = factory.createStackOverflowApiClient();
+    		final AsyncStackOverflowApiClient client = factory.createAsyncStackOverflowApiClient();
+			System.out.println("Fetching badges and tags asynchronously.");
+    		Future<List<Badge>> badgesFuture = client.getBadges();
+    		Future<List<Tag>> tagsFuture = client.getTags();
+			System.out.println("Done fetching badges and tags asynchronously. Now blocking for result.");
+			List<Badge> badges = badgesFuture.get();
+			for (Badge badge : badges) {
+				printResult(badge);
+			}
+			List<Tag> tags = tagsFuture.get();
+			for (Tag tag : tags) {
+				printResult(tag);
+			}
     		
-    		if(line.hasOption(ID_OPTION)) {
-    			String idValue = line.getOptionValue(ID_OPTION);
-    		} else {
-    		}
         } else {
             printHelp(options);
         }
     }
 	
+	private static void printResult(Tag tag) {
+		System.out.println(tag.getName() + ":" + tag.getCount());
+	}
+
+	private static void printResult(Badge badge) {
+		System.out.println(badge.getName() + ":" + badge.getRank() + ":" + badge.getAwardCount());
+	}
+
 	/**
      * Build command line options object.
      */
@@ -90,13 +105,6 @@ public class AsyncApiExample {
         Option consumerKey = OptionBuilder.create(APPLICATION_KEY_OPTION);
         opts.addOption(consumerKey);
         
-        String idMsg = "ID of the users to whom a message is to be sent (separated by comma).";
-        OptionBuilder.withArgName("id");
-        OptionBuilder.hasArg();
-        OptionBuilder.withDescription(idMsg);
-        Option id = OptionBuilder.create(ID_OPTION);
-        opts.addOption(id);
-        
         return opts;
     }
     
@@ -106,8 +114,8 @@ public class AsyncApiExample {
     private static void printHelp(Options options) {
         int width = 80;
         String syntax = AsyncApiExample.class.getName() + " <options>";
-        String header = MessageFormat.format("\nThe -{0} option is required. The -{1} option is optional.", APPLICATION_KEY_OPTION, ID_OPTION);
-        String footer = MessageFormat.format("\nIf you do not specify -{0} option, the message is sent to the current user. You can specify multiple ids separated by comma.", ID_OPTION);
+        String header = MessageFormat.format("\nThe -{0} option is required.", APPLICATION_KEY_OPTION);
+        String footer = "";
         new HelpFormatter().printHelp(width, syntax, header, options, footer, false);
     }
 }

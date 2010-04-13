@@ -32,11 +32,6 @@ public class BadgesAndTagsApiExample {
     private static final String APPLICATION_KEY_OPTION = "key";
 	
     /**
-     * ID
-     */
-    private static final String ID_OPTION = "id";
-    
-    /**
      * Name of the help command line option.
      */
     private static final String HELP_OPTION = "help";
@@ -67,20 +62,16 @@ public class BadgesAndTagsApiExample {
     		final StackOverflowApiClientFactory factory = StackOverflowApiClientFactory.newInstance(keyValue);
     		final StackOverflowApiClient client = factory.createStackOverflowApiClient();
     		
-    		if(line.hasOption(ID_OPTION)) {
-    			String idValue = line.getOptionValue(ID_OPTION);
-    		} else {
-    			List<Badge> badges = client.getBadges(BadgeSortOrder.TAGS);
-    			System.out.println("============ Badges ============");
-    			for (Badge badge : badges) {
-    				printResult(badge);
-    			}
-    			List<Tag> tags = client.getTags();
-    			System.out.println("============ Tags ============");
-    			for(Tag tag : tags) {
-    				printResult(tag);
-    			}
-    		}
+			List<Badge> badges = client.getBadges(BadgeSortOrder.TAGS);
+			System.out.println("============ Badges ============");
+			for (Badge badge : badges) {
+				printResult(badge);
+			}
+			List<Tag> tags = client.getTags();
+			System.out.println("============ Tags ============");
+			for(Tag tag : tags) {
+				printResult(tag);
+			}
         } else {
             printHelp(options);
         }
@@ -112,13 +103,6 @@ public class BadgesAndTagsApiExample {
         Option consumerKey = OptionBuilder.create(APPLICATION_KEY_OPTION);
         opts.addOption(consumerKey);
         
-        String idMsg = "ID of the users to whom a message is to be sent (separated by comma).";
-        OptionBuilder.withArgName("id");
-        OptionBuilder.hasArg();
-        OptionBuilder.withDescription(idMsg);
-        Option id = OptionBuilder.create(ID_OPTION);
-        opts.addOption(id);
-        
         return opts;
     }
     
@@ -128,8 +112,8 @@ public class BadgesAndTagsApiExample {
     private static void printHelp(Options options) {
         int width = 80;
         String syntax = BadgesAndTagsApiExample.class.getName() + " <options>";
-        String header = MessageFormat.format("\nThe -{0} option is required. The -{1} option is optional.", APPLICATION_KEY_OPTION, ID_OPTION);
-        String footer = MessageFormat.format("\nIf you do not specify -{0} option, the message is sent to the current user. You can specify multiple ids separated by comma.", ID_OPTION);
+        String header = MessageFormat.format("\nThe -{0} option is required.", APPLICATION_KEY_OPTION);
+        String footer = "";
         new HelpFormatter().printHelp(width, syntax, header, options, footer, false);
     }
 }

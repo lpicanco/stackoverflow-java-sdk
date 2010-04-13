@@ -4,6 +4,7 @@
 package com.google.code.stackoverflow.client.examples;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -15,6 +16,7 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
+import com.google.code.stackoverflow.schema.Comment;
 
 /**
  * @author Nabeel Mukhtar
@@ -65,12 +67,19 @@ public class CommentsApiExample {
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
-    		} else {
+    			List<Comment> userComments = client.getUserComments(Long.valueOf(idValue));
+    			for (Comment comment : userComments) {
+    				printResult(comment);
+    			}
     		}
         } else {
             printHelp(options);
         }
     }
+
+	private static void printResult(Comment comment) {
+		System.out.println(comment.getOwnerDisplayName() + ":" + comment.getBody());
+	}
 
 	/**
      * Build command line options object.
