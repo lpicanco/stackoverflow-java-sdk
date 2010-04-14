@@ -1,0 +1,39 @@
+http://dev.meta.stackoverflow.com/questions/34594/overall-api-method-list
+http://dev.meta.stackoverflow.com/questions/34652/python-library-for-stack-overflow-api
+
+Greetings,
+
+You are receiving this email because you have either expressed an interest in our API or have helped us in the past with our decisions around the development Stack Overflow - we value your opinion!
+
+We are currently developing what will eventually be the public API for all of our Stack Overflow sites, but for now this is to remain somewhat private and exclusive.  Please do not share this with others or on twitter until we have an opportunity to get your opinion and make changes based on feedback.  
+
+We have set up a separate development Meta site for discussion of the current methods and to make requests for any methods that are currently missing.  You can find it at:  http://dev.meta.stackoverflow.com   - use the password: icanhazapi  
+
+All requests require an API Key which we will rotate every few days.  It can always be found in the API development meta site at the top of every page.  An example API request with the current key is below:
+
+http://api.stackoverflow.com/0.5/questions?key=knockknock
+
+Browse the docs that are there, try the methods, and provide feedback that will help shape the methods that will be available to all.
+
+This interface currently supports JSON by default - we will eventually support XML in the near future.  Stay tuned to the API meta site - we will be very active on this site during development.
+
+Thanks!  
+
+
+X. 1. Sort Order Enumeration.
+
+key: required = api key given to your application
+page: default = 1
+pagesize: default = 30
+body: default = false
+comments: default = false - include comments in the question
+fromdate: default = all - format: unix epoch
+todate: default = all - format: unix epoch
+tagged: filter questions by one or more tags separated by a space (uses AND)
+
+X. 1. sort has been changed from resource to parameter..asc, desc have been added
+2. create request builders....like balma.
+X. 3. error codes.
+X. 4. Make sort orders inner classes.
+5. Remove BadgeSortOrder.
+6. Add a provider.. StackOverflow, MathOverflow, SuperUser, ServerFault. Look at signpost...opensocial...
