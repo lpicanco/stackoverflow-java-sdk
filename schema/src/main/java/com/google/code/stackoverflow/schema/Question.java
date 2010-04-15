@@ -258,4 +258,35 @@ public interface Question extends SchemaEntity {
 	 */
 	public void setTags(List<String> tags);
 
+	public List<Comment> getComments();
+
+	public void setComments(List<Comment> comments);
+
+	public long getAcceptedAnswerId();
+
+	public void setAcceptedAnswerId(long acceptedAnswerId);
+
+	public String getBody();
+
+	public void setBody(String body);
+
+	public Date getClosedDate();
+
+	public void setClosedDate(Date closedDate);
+
+	public String getClosedReason();
+
+	public void setClosedReason(String closedReason);
+
+	public Date getLockedDate();
+
+	public void setLockedDate(Date lockedDate);
+
+	public Date getBountyClosesDate();
+
+	public void setBountyClosesDate(Date bountyClosesDate);
+
+	public long getBountyAmount();
+
+	public void setBountyAmount(long bountyAmount);
 }

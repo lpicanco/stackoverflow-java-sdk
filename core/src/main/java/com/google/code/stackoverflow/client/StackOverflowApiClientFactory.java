@@ -6,6 +6,7 @@ package com.google.code.stackoverflow.client;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
 import com.google.code.stackoverflow.client.impl.AsyncStackOverflowApiClientAdapter;
 import com.google.code.stackoverflow.client.impl.StackOverflowApiJsonClient;
 

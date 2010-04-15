@@ -11,8 +11,8 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClientException;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls.StackOverflowApiUrlBuilder;
+import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
 import com.google.code.stackoverflow.schema.Answers;
 import com.google.code.stackoverflow.schema.Badges;
 import com.google.code.stackoverflow.schema.Comments;
