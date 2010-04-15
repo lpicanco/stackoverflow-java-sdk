@@ -37,4 +37,4 @@ X. 3. error codes.
 X. 4. Make sort orders inner classes.
 5. Remove BadgeSortOrder.
 6. Add a provider.. StackOverflow, MathOverflow, SuperUser, ServerFault. Look at signpost...opensocial...
-7. Convert error codes to exceptions.
+X. 7. Convert error codes to exceptions.
