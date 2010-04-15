@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.google.code.stackoverflow.client;
+package com.google.code.stackoverflow.client.exception;
 
 import java.util.Date;
 

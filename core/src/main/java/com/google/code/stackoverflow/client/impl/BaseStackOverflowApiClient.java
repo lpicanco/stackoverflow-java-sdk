@@ -23,10 +23,17 @@ import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
-import com.google.code.stackoverflow.client.StackOverflowApiClientException;
 import com.google.code.stackoverflow.client.constant.ApplicationConstants;
+import com.google.code.stackoverflow.client.constant.ErrorCodes;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls.StackOverflowApiUrlBuilder;
+import com.google.code.stackoverflow.client.exception.InternalServerException;
+import com.google.code.stackoverflow.client.exception.InvalidApplicationKeyException;
+import com.google.code.stackoverflow.client.exception.InvalidOrderException;
+import com.google.code.stackoverflow.client.exception.InvalidPageSizeException;
+import com.google.code.stackoverflow.client.exception.InvalidSortException;
+import com.google.code.stackoverflow.client.exception.NotFoundException;
+import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Answers;
 import com.google.code.stackoverflow.schema.Badge;
@@ -384,10 +391,29 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
      * @return
      */
     protected StackOverflowApiClientException createStackOverflowApiClientException(Error error) {
-    	StackOverflowApiClientException exception = new StackOverflowApiClientException(error.getMessage());
-    	exception.setErrorCode((int) error.getErrorCode());
-    	exception.setTimestamp(new Date());
-    	return exception;
+    	switch (error.getErrorCode()) {
+    	
+		case ErrorCodes.INTERNAL_SERVER_ERROR:
+			return new InternalServerException(error.getMessage(), new Date());
+
+		case ErrorCodes.INVALID_APPLICATION_KEY:
+			return new InvalidApplicationKeyException(error.getMessage(), new Date());
+			
+		case ErrorCodes.INVALID_ORDER:
+			return new InvalidOrderException(error.getMessage(), new Date());
+			
+		case ErrorCodes.INVALID_PAGE_SIZE:
+			return new InvalidPageSizeException(error.getMessage(), new Date());
+			
+		case ErrorCodes.INVALID_SORT:
+			return new InvalidSortException(error.getMessage(), new Date());
+
+		case ErrorCodes.NOT_FOUND:
+			return new NotFoundException(error.getMessage(), new Date());
+			
+		default:
+			return new StackOverflowApiClientException(error.getMessage(), error.getStatusCode(), error.getErrorCode(), new Date());
+		}
     }
 
     /**

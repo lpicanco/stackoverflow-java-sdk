@@ -11,6 +11,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.Answer;
+import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
@@ -41,8 +42,15 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	private String title;
 	private List<String> tags = new ArrayList<String>();
 	private List<Answer> answers = new ArrayList<Answer>();
+	private List<Comment> comments = new ArrayList<Comment>();
+	private long acceptedAnswerId;
+	private String body;
+	private Date closedDate;
+	private String closedReason;
+	private Date lockedDate;
+	private Date bountyClosesDate;
+	private long bountyAmount;
 	
-
 	public List<Answer> getAnswers() {
 		return answers;
 	}
@@ -170,6 +178,128 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	public void setTags(List<String> tags) {
 		this.tags = tags;
 	}
+	
+	@Override
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	@Override
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	/**
+	 * @return the acceptedAnswerId
+	 */
+	@Override
+	public long getAcceptedAnswerId() {
+		return acceptedAnswerId;
+	}
+
+	/**
+	 * @param acceptedAnswerId the acceptedAnswerId to set
+	 */
+	@Override
+	public void setAcceptedAnswerId(long acceptedAnswerId) {
+		this.acceptedAnswerId = acceptedAnswerId;
+	}
+
+	/**
+	 * @return the body
+	 */
+	@Override
+	public String getBody() {
+		return body;
+	}
+
+	/**
+	 * @param body the body to set
+	 */
+	@Override
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	/**
+	 * @return the closedDate
+	 */
+	@Override
+	public Date getClosedDate() {
+		return closedDate;
+	}
+
+	/**
+	 * @param closedDate the closedDate to set
+	 */
+	@Override
+	public void setClosedDate(Date closedDate) {
+		this.closedDate = closedDate;
+	}
+
+	/**
+	 * @return the closedReason
+	 */
+	@Override
+	public String getClosedReason() {
+		return closedReason;
+	}
+
+	/**
+	 * @param closedReason the closedReason to set
+	 */
+	@Override
+	public void setClosedReason(String closedReason) {
+		this.closedReason = closedReason;
+	}
+
+	/**
+	 * @return the lockedDate
+	 */
+	@Override
+	public Date getLockedDate() {
+		return lockedDate;
+	}
+
+	/**
+	 * @param lockedDate the lockedDate to set
+	 */
+	@Override
+	public void setLockedDate(Date lockedDate) {
+		this.lockedDate = lockedDate;
+	}
+
+	/**
+	 * @return the bountyClosesDate
+	 */
+	@Override
+	public Date getBountyClosesDate() {
+		return bountyClosesDate;
+	}
+
+	/**
+	 * @param bountyClosesDate the bountyClosesDate to set
+	 */
+	@Override
+	public void setBountyClosesDate(Date bountyClosesDate) {
+		this.bountyClosesDate = bountyClosesDate;
+	}
+
+	/**
+	 * @return the bountyAmount
+	 */
+	@Override
+	public long getBountyAmount() {
+		return bountyAmount;
+	}
+
+	/**
+	 * @param bountyAmount the bountyAmount to set
+	 */
+	@Override
+	public void setBountyAmount(long bountyAmount) {
+		this.bountyAmount = bountyAmount;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -187,6 +317,14 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 		if (tags != null) {
 			for (String tag : (Iterable<String>) tags) {
 				getTags().add(tag);
+			}
+		}
+		JSONArray comments = (JSONArray) adaptee.get("comments");
+		if (comments != null) {
+			for (Object o : comments) {			
+				CommentImpl comment = new CommentImpl();
+				comment.adaptFrom((JSONObject) o);
+				getComments().add(comment);
 			}
 		}
 	}
@@ -207,6 +345,12 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 			tags.add(tag);
 		}
 		adapter.put("tags", tags);
+
+		JSONArray comments = new JSONArray();
+		for (Comment comment : getComments()) {
+			comments.add(((CommentImpl) comment).adaptTo());
+		}
+		adapter.put("comments", comments);
 		return adapter;
 	}
 }
