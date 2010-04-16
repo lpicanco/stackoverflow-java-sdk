@@ -6,7 +6,7 @@ package com.google.code.stackoverflow.schema.adapter.json;
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.Badge;
-import com.google.code.stackoverflow.schema.BadgeClass;
+import com.google.code.stackoverflow.schema.BadgeRank;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
@@ -21,7 +21,7 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	private static final long serialVersionUID = -6303516718529213320L;
 	
 	private long badge_id;
-	private BadgeClass badgeClass;
+	private BadgeRank badgeClass;
 	private String name;
 	private String description;
 	private long awardCount;
@@ -34,11 +34,11 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 		this.badge_id = badge_id;
 	}
 
-	public BadgeClass getRank() {
+	public BadgeRank getRank() {
 		return badgeClass;
 	}
 
-	public void setRank(BadgeClass badgeClass) {
+	public void setRank(BadgeRank badgeClass) {
 		this.badgeClass = badgeClass;
 	}
 

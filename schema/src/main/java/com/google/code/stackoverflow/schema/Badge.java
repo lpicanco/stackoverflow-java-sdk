@@ -16,12 +16,12 @@ public interface Badge extends SchemaEntity {
 	/**
 	 * @return the badgeClass
 	 */
-	public BadgeClass getRank();
+	public BadgeRank getRank();
 
 	/**
 	 * @param badgeClass the badgeClass to set
 	 */
-	public void setRank(BadgeClass badgeClass);
+	public void setRank(BadgeRank badgeClass);
 
 	/**
 	 * @return the name

@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum BadgeClass implements ValueEnum {
+public enum BadgeRank implements ValueEnum {
 	GOLD("gold"),
 	SILVER("silver"),
 	BRONZE("bronze");
@@ -18,10 +18,10 @@ public enum BadgeClass implements ValueEnum {
     /**
      * Field Description.
      */
-	private static final Map<String, BadgeClass> stringToEnum = new HashMap<String, BadgeClass>();
+	private static final Map<String, BadgeRank> stringToEnum = new HashMap<String, BadgeRank>();
 
 	static { // Initialize map from constant name to enum constant
-		for (BadgeClass op : values()) {
+		for (BadgeRank op : values()) {
 			stringToEnum.put(op.value(), op);
 		}
 	}
@@ -35,7 +35,7 @@ public enum BadgeClass implements ValueEnum {
      *
      * @param name
      */
-    BadgeClass(String value) {
+    BadgeRank(String value) {
         this.value = value;
     }
 
@@ -44,7 +44,7 @@ public enum BadgeClass implements ValueEnum {
 		return value;
 	}
 	
-	public static BadgeClass fromValue(String value) {
+	public static BadgeRank fromValue(String value) {
 		return stringToEnum.get(value);
 	}
 }
