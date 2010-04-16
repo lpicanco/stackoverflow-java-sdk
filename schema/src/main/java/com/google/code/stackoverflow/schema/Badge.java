@@ -52,5 +52,14 @@ public interface Badge extends SchemaEntity {
 	 * @param awardCount the awardCount to set
 	 */
 	public void setAwardCount(long awardCount);
+	
+	/**
+	 * @return the tagBased
+	 */
+	public boolean isTagBased();
 
+	/**
+	 * @param tagBased the tagBased to set
+	 */
+	public void setTagBased(boolean tagBased);
 }

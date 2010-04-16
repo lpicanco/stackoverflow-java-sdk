@@ -21,10 +21,11 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	private static final long serialVersionUID = -6303516718529213320L;
 	
 	private long badge_id;
-	private BadgeRank badgeRank;
+	private BadgeRank rank;
 	private String name;
 	private String description;
 	private long awardCount;
+	private boolean tagBased;
 	
 	public long getBadge_id() {
 		return badge_id;
@@ -35,11 +36,11 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	}
 
 	public BadgeRank getRank() {
-		return badgeRank;
+		return rank;
 	}
 
-	public void setRank(BadgeRank badgeRank) {
-		this.badgeRank = badgeRank;
+	public void setRank(BadgeRank rank) {
+		this.rank = rank;
 	}
 
 	public String getName() {
@@ -66,6 +67,20 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 		this.awardCount = awardCount;
 	}
 	
+	/**
+	 * @return the tagBased
+	 */
+	public boolean isTagBased() {
+		return tagBased;
+	}
+
+	/**
+	 * @param tagBased the tagBased to set
+	 */
+	public void setTagBased(boolean tagBased) {
+		this.tagBased = tagBased;
+	}
+
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
