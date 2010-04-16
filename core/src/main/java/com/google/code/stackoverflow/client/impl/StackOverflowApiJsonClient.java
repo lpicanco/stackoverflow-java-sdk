@@ -20,6 +20,7 @@ import com.google.code.stackoverflow.schema.Error;
 import com.google.code.stackoverflow.schema.QuestionTimelines;
 import com.google.code.stackoverflow.schema.Questions;
 import com.google.code.stackoverflow.schema.Reputations;
+import com.google.code.stackoverflow.schema.Revisions;
 import com.google.code.stackoverflow.schema.SchemaEntity;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tags;
@@ -33,6 +34,7 @@ import com.google.code.stackoverflow.schema.adapter.json.ErrorImpl;
 import com.google.code.stackoverflow.schema.adapter.json.QuestionTimelinesImpl;
 import com.google.code.stackoverflow.schema.adapter.json.QuestionsImpl;
 import com.google.code.stackoverflow.schema.adapter.json.ReputationsImpl;
+import com.google.code.stackoverflow.schema.adapter.json.RevisionsImpl;
 import com.google.code.stackoverflow.schema.adapter.json.StatisticsImpl;
 import com.google.code.stackoverflow.schema.adapter.json.TagsImpl;
 import com.google.code.stackoverflow.schema.adapter.json.UserTimelinesImpl;
@@ -62,6 +64,7 @@ public class StackOverflowApiJsonClient extends BaseStackOverflowApiClient {
 		ADAPTER_CLASSES_MAP.put(Tags.class, TagsImpl.class);
 		ADAPTER_CLASSES_MAP.put(Users.class, UsersImpl.class);
 		ADAPTER_CLASSES_MAP.put(UserTimelines.class, UserTimelinesImpl.class);
+		ADAPTER_CLASSES_MAP.put(Revisions.class, RevisionsImpl.class);
 	}
 	
 

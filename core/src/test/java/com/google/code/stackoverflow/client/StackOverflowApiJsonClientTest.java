@@ -17,6 +17,7 @@ import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Reputation;
+import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Timeline;
 import com.google.code.stackoverflow.schema.User;
@@ -711,5 +712,15 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
 		List<Comment> comments = client.getUserComments(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), Comment.SortOrder.MOST_RECENTLY_CREATED, getPaging(), getTimePeriod());
 		assertNotNullOrEmpty("Comments should never be null.", comments);
+	}
+	
+	/**
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getRevisionsForPost(long)}.
+	 */
+	@Test
+	public void testGetRevisionsForPostLong() {
+    	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Question Id."), TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID);
+		List<Revision> revisions = client.getRevisionsForPost(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID));
+		assertNotNullOrEmpty("Revisions should never be null.", revisions);
 	}
 }

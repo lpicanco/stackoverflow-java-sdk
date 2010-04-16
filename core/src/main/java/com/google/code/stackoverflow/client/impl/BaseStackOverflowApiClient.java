@@ -50,6 +50,8 @@ import com.google.code.stackoverflow.schema.QuestionTimelines;
 import com.google.code.stackoverflow.schema.Questions;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Reputations;
+import com.google.code.stackoverflow.schema.Revision;
+import com.google.code.stackoverflow.schema.Revisions;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Tags;
@@ -1273,6 +1275,36 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
         Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
         
         return answers.getAnswers();
+	}
+	
+	@Override
+	public Revision getRevisionForPost(long postId, String revisionGuid) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
+        String                apiUrl  = builder.withField("id", String.valueOf(postId)).withField("revisionguid", revisionGuid).buildUrl();
+
+        Revisions revisions = readResponse(Revisions.class, callApiMethod(apiUrl));
+        
+        return getFirstElement(revisions.getRevisions());
+	}
+
+	@Override
+	public List<Revision> getRevisionsForPost(long postId) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
+        String                apiUrl  = builder.withField("id", String.valueOf(postId)).buildUrl();
+
+        Revisions revisions = readResponse(Revisions.class, callApiMethod(apiUrl));
+        
+        return revisions.getRevisions();
+	}
+
+	@Override
+	public List<Revision> getRevisionsForPost(long postId, TimePeriod timePeriod) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
+        String                apiUrl  = builder.withField("id", String.valueOf(postId)).withTimePeriod(timePeriod).buildUrl();
+
+        Revisions revisions = readResponse(Revisions.class, callApiMethod(apiUrl));
+        
+        return revisions.getRevisions();
 	}
 	
 	private <T> T getFirstElement(List<T> list) {

@@ -13,6 +13,7 @@ import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Reputation;
+import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Timeline;
@@ -161,4 +162,9 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	
 	// Statistics Method
 	public Statistics getStatistics();
+	
+	// Revision Methods
+	public List<Revision> getRevisionsForPost(long postId);
+	public List<Revision> getRevisionsForPost(long postId, TimePeriod timePeriod);
+	public Revision getRevisionForPost(long postId, String revisionGuid);
 }

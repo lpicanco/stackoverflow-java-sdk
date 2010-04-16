@@ -19,6 +19,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.BadgeClass;
 import com.google.code.stackoverflow.schema.PostType;
+import com.google.code.stackoverflow.schema.RevisionType;
 import com.google.code.stackoverflow.schema.TimelineType;
 import com.google.code.stackoverflow.schema.UserType;
 import com.google.code.stackoverflow.schema.adapter.Converter;
@@ -78,6 +79,12 @@ public abstract class BaseJsonAdapter implements Serializable {
 			@Override
 			public UserType convert(String source) {
 				return UserType.fromValue(source);
+			}
+		});
+		converters.put(RevisionType.class, new Converter<String, RevisionType>() {
+			@Override
+			public RevisionType convert(String source) {
+				return RevisionType.fromValue(source);
 			}
 		});
 	}

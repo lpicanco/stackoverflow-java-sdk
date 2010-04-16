@@ -15,6 +15,7 @@ import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Reputation;
+import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Timeline;
@@ -116,4 +117,9 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	
 	// Statistics Method
 	public Future<Statistics> getStatistics();
+	
+	// Revision Methods
+	public Future<List<Revision>> getRevisionsForPost(long postId);
+	public Future<List<Revision>> getRevisionsForPost(long postId, TimePeriod timePeriod);
+	public Future<Revision> getRevisionForPost(long postId, String revisionGuid);
 }

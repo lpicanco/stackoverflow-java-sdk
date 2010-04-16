@@ -32,6 +32,8 @@ public final class StackOverflowApiMethods {
 	public static final String GET_COMMENTS_BY_USER = "com.google.code.stackoverflow.client.getCommentsByUser";
 	public static final String GET_COMMENTS_BY_USER_TO_USER = "com.google.code.stackoverflow.client.getCommentsByUserToUser";
 	public static final String GET_COMMENT = "com.google.code.stackoverflow.client.getComment";
+	public static final String GET_REVISIONS_FOR_POST = "com.google.code.stackoverflow.client.getRevisionsForPost";
+	public static final String GET_REVISION_FOR_POST = "com.google.code.stackoverflow.client.getRevisionForPost";
 
 	/**
 	 * Instantiates a new stackoverflow in api urls.
