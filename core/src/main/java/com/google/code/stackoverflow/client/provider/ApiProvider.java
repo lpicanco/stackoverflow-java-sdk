@@ -10,5 +10,5 @@ import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
  *
  */
 public interface ApiProvider {
-	public ApiUrlBuilder createApiUrlBuilder(String urlFormat, String applicationKey, String apiVersion);
+	public ApiUrlBuilder createApiUrlBuilder(String methodName, String applicationKey, String apiVersion);
 }

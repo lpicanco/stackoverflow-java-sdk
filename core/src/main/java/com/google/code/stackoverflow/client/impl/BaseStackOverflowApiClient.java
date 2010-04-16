@@ -205,7 +205,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
      *
      * @return
      */
-    protected abstract ApiUrlBuilder createStackOverflowApiUrlBuilder(String urlFormat);
+    protected abstract ApiUrlBuilder createStackOverflowApiUrlBuilder(String methodName);
 
 	/**
 	 * Stolen liberally from http://www.kodejava.org/examples/266.html

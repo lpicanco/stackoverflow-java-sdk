@@ -136,7 +136,7 @@ public class StackOverflowApiJsonClient extends BaseStackOverflowApiClient {
      *
      * @return
      */
-    protected ApiUrlBuilder createStackOverflowApiUrlBuilder(String urlFormat) {
-        return getApiProvider().createApiUrlBuilder(urlFormat, getApplicationKey(), getApiVersion());
+    protected ApiUrlBuilder createStackOverflowApiUrlBuilder(String methodName) {
+        return getApiProvider().createApiUrlBuilder(methodName, getApplicationKey(), getApiVersion());
     }
 }
