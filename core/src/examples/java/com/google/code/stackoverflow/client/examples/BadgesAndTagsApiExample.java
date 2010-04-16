@@ -17,7 +17,6 @@ import org.apache.commons.cli.ParseException;
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
 import com.google.code.stackoverflow.schema.Badge;
-import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Tag;
 
 /**
@@ -62,7 +61,7 @@ public class BadgesAndTagsApiExample {
     		final StackOverflowApiClientFactory factory = StackOverflowApiClientFactory.newInstance(keyValue);
     		final StackOverflowApiClient client = factory.createStackOverflowApiClient();
     		
-			List<Badge> badges = client.getBadges(BadgeSortOrder.TAGS);
+			List<Badge> badges = client.getBadgesByName();
 			System.out.println("============ Badges ============");
 			for (Badge badge : badges) {
 				printResult(badge);

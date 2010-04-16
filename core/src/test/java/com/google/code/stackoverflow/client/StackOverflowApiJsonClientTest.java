@@ -13,7 +13,6 @@ import org.junit.Test;
 import com.google.code.stackoverflow.client.constant.TestConstants;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
-import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
@@ -365,14 +364,23 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadges(com.google.code.stackoverflow.schema.BadgeSortOrder)}.
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadgesByName(com.google.code.stackoverflow.schema.BadgeSortOrder)}.
 	 */
 	@Test
-	public void testGetBadgesBadgeSortOrder() {
-		List<Badge> badges = client.getBadges(BadgeSortOrder.TAGS);
+	public void testGetBadgesByName() {
+		List<Badge> badges = client.getBadgesByName();
 		assertNotNullOrEmpty("Badges should never be null.", badges);
 	}
 
+	/**
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadgesByTags(com.google.code.stackoverflow.schema.BadgeSortOrder)}.
+	 */
+	@Test
+	public void testGetBadgesByTags() {
+		List<Badge> badges = client.getBadgesByTags();
+		assertNotNullOrEmpty("Badges should never be null.", badges);
+	}
+	
 	/**
 	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadgesForUser(long)}.
 	 */

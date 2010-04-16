@@ -37,7 +37,7 @@ public class QuestionTimelinesImpl extends BaseJsonAdapter implements QuestionTi
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
-		JSONArray timelines = (JSONArray) adaptee.get("posttimelines");
+		JSONArray timelines = (JSONArray) adaptee.get("post_timelines");
 		if (timelines != null) {
 			for (Object o : timelines) {			
 				TimelineImpl timeline = new TimelineImpl();

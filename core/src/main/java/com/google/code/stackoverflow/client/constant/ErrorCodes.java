@@ -10,4 +10,5 @@ public interface ErrorCodes {
 	public int INVALID_PAGE_SIZE = 4001;
 	public int INVALID_SORT = 4002;
 	public int INVALID_ORDER = 4003;
+	public int REQUEST_LIMIT_EXCEEDED = 4004;
 }

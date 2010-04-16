@@ -24,11 +24,13 @@ public class TimelineImpl extends BaseJsonAdapter implements Timeline, Adaptable
 	
 	private TimelineType timelineType;
 	private long postId;
-	private long actionUserId;
+	private long userId;
+	private long ownerUserId;
 	private String action;
 	private Date creationDate;
 	private String description;
 	private String detail;
+	private String revisionGuid;
 	
 	public TimelineType getTimelineType() {
 		return timelineType;
@@ -78,12 +80,12 @@ public class TimelineImpl extends BaseJsonAdapter implements Timeline, Adaptable
 		this.detail = detail;
 	}
 
-	public long getActionUserId() {
-		return actionUserId;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setActionUserId(long actionUserId) {
-		this.actionUserId = actionUserId;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	@Override
@@ -96,5 +98,25 @@ public class TimelineImpl extends BaseJsonAdapter implements Timeline, Adaptable
 		JSONObject adapter = new JSONObject();
 		copyProperties(adapter, this);
 		return adapter;
+	}
+
+	@Override
+	public long getOwnerUserId() {
+		return ownerUserId;
+	}
+
+	@Override
+	public void setOwnerUserId(long ownerUserId) {
+		this.ownerUserId = ownerUserId;
+	}
+
+	@Override
+	public String getRevisionGuid() {
+		return revisionGuid;
+	}
+
+	@Override
+	public void setRevisionGuid(String revisionGuid) {
+		this.revisionGuid = revisionGuid;
 	}
 }
