@@ -36,5 +36,5 @@ X. 1. sort has been changed from resource to parameter..asc, desc have been adde
 X. 3. error codes.
 X. 4. Make sort orders inner classes.
 X. 5. Remove BadgeSortOrder.
-6. Add a provider.. StackOverflow, MathOverflow, SuperUser, ServerFault. Look at signpost...opensocial...
+X. 6. Add a provider.. StackOverflow, MathOverflow, SuperUser, ServerFault. Look at signpost...opensocial...
 X. 7. Convert error codes to exceptions.
