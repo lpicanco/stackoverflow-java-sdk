@@ -21,7 +21,7 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	private static final long serialVersionUID = -6303516718529213320L;
 	
 	private long badge_id;
-	private BadgeRank badgeClass;
+	private BadgeRank badgeRank;
 	private String name;
 	private String description;
 	private long awardCount;
@@ -35,11 +35,11 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	}
 
 	public BadgeRank getRank() {
-		return badgeClass;
+		return badgeRank;
 	}
 
-	public void setRank(BadgeRank badgeClass) {
-		this.badgeClass = badgeClass;
+	public void setRank(BadgeRank badgeRank) {
+		this.badgeRank = badgeRank;
 	}
 
 	public String getName() {
