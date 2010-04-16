@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 import org.json.simple.JSONObject;
 
-import com.google.code.stackoverflow.schema.BadgeClass;
+import com.google.code.stackoverflow.schema.BadgeRank;
 import com.google.code.stackoverflow.schema.PostType;
 import com.google.code.stackoverflow.schema.RevisionType;
 import com.google.code.stackoverflow.schema.TimelineType;
@@ -57,10 +57,10 @@ public abstract class BaseJsonAdapter implements Serializable {
 				return (source == null)? null : new Date(source.longValue() * 1000);
 			}
 		});
-		converters.put(BadgeClass.class, new Converter<String, BadgeClass>() {
+		converters.put(BadgeRank.class, new Converter<String, BadgeRank>() {
 			@Override
-			public BadgeClass convert(String source) {
-				return BadgeClass.fromValue(source);
+			public BadgeRank convert(String source) {
+				return BadgeRank.fromValue(source);
 			}
 		});
 		converters.put(PostType.class, new Converter<String, PostType>() {
