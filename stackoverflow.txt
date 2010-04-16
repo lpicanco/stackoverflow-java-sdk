@@ -38,3 +38,4 @@ X. 4. Make sort orders inner classes.
 X. 5. Remove BadgeSortOrder.
 X. 6. Add a provider.. StackOverflow, MathOverflow, SuperUser, ServerFault. Look at signpost...opensocial...
 X. 7. Convert error codes to exceptions.
+8. User Timeline and Post Timeline are different. Change them
