@@ -66,13 +66,32 @@ public interface Timeline extends SchemaEntity {
 	public void setDetail(String detail);
 
 	/**
-	 * @return the actionUserId
+	 * @return the userId
 	 */
-	public long getActionUserId();
+	public long getUserId();
 
 	/**
-	 * @param actionUserId the actionUserId to set
+	 * @param userId the userId to set
 	 */
-	public void setActionUserId(long actionUserId);
+	public void setUserId(long userId);
 
+	/**
+	 * @return the ownerUserId
+	 */
+	public long getOwnerUserId();
+
+	/**
+	 * @param ownerUserId the ownerUserId to set
+	 */
+	public void setOwnerUserId(long ownerUserId);
+	
+	/**
+	 * @return the revisionGuid
+	 */
+	public String getRevisionGuid();
+	
+	/**
+	 * @param revisionGuid the revisionGuid to set
+	 */
+	public void setRevisionGuid(String revisionGuid);
 }

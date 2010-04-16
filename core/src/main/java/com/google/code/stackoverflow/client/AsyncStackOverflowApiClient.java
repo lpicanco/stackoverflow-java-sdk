@@ -11,7 +11,6 @@ import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
-import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
@@ -81,7 +80,8 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	
 	// Badge Methods
 	public Future<List<Badge>> getBadges();
-	public Future<List<Badge>> getBadges(BadgeSortOrder sort);
+	public Future<List<Badge>> getBadgesByName();
+	public Future<List<Badge>> getBadgesByTags();
 	public Future<List<Badge>> getBadgesForUser(long userId);
 
 	// Tag Methods

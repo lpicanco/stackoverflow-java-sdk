@@ -9,7 +9,6 @@ import java.util.Set;
 
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
-import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
@@ -126,7 +125,8 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	
 	// Badge Methods
 	public List<Badge> getBadges();
-	public List<Badge> getBadges(BadgeSortOrder sort);
+	public List<Badge> getBadgesByName();
+	public List<Badge> getBadgesByTags();
 	public List<Badge> getBadgesForUser(long userId);
 
 	// Tag Methods

@@ -16,7 +16,6 @@ import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
-import com.google.code.stackoverflow.schema.BadgeSortOrder;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
@@ -198,15 +197,25 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Badge>> getBadges(final BadgeSortOrder sort) {
+	public Future<List<Badge>> getBadgesByName() {
 		return execute(new Callable<List<Badge>>() {
             @Override
             public List<Badge> call() throws Exception {
-                return client.getBadges(sort);
+                return client.getBadgesByName();
             }
         });
 	}
 
+	@Override
+	public Future<List<Badge>> getBadgesByTags() {
+		return execute(new Callable<List<Badge>>() {
+            @Override
+            public List<Badge> call() throws Exception {
+                return client.getBadgesByTags();
+            }
+        });
+	}
+	
 	@Override
 	public Future<List<Badge>> getBadgesForUser(final long userId) {
 		return execute(new Callable<List<Badge>>() {
