@@ -4,7 +4,7 @@
 package com.google.code.stackoverflow.client.provider;
 
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
-import com.google.code.stackoverflow.client.provider.url.ServerFaultApiUrlBuilder;
+import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 
 /**
  * @author nmukhtar
@@ -15,6 +15,6 @@ public class ServerFaultApiProvider implements ApiProvider {
 	
 	@Override
 	public ApiUrlBuilder createApiUrlBuilder(String urlFormat,String applicationKey, String apiVersion) {
-		return new ServerFaultApiUrlBuilder(urlFormat, applicationKey, HOST_NAME, apiVersion);
+		return new DefaultApiUrlBuilder(urlFormat, applicationKey, HOST_NAME, apiVersion);
 	}
 }
