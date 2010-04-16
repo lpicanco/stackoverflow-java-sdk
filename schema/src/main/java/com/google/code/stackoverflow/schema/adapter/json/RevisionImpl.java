@@ -37,6 +37,7 @@ public class RevisionImpl extends BaseJsonAdapter implements Revision, Adaptable
 	private boolean setCommunityWiki;
 	private long userId;
 	private String body;
+	private String title;
 	private String lastBody;
 	private String lastTitle;
 	
@@ -183,6 +184,18 @@ public class RevisionImpl extends BaseJsonAdapter implements Revision, Adaptable
 	 */
 	public void setBody(String body) {
 		this.body = body;
+	}
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	/**
 	 * @return the lastBody

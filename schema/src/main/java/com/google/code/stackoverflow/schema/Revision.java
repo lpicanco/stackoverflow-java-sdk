@@ -117,6 +117,16 @@ public interface Revision extends SchemaEntity {
 	public void setUserId(long userId);
 
 	/**
+	 * @return the title
+	 */
+	public String getTitle();
+	
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title);
+	
+	/**
 	 * @return the body
 	 */
 	public String getBody();
