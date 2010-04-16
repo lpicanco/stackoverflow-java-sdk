@@ -40,6 +40,7 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	private long score;
 	private boolean communityOwned;
 	private String title;
+	private String body;
 	private List<Comment> comments = new ArrayList<Comment>();
 	
 	@Override
@@ -170,6 +171,17 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	@Override
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	
+	@Override
+	public String getBody() {
+		return body;
+	}
+
+	@Override
+	public void setBody(String body) {
+		this.body = body;
 	}
 
 	@Override

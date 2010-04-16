@@ -225,6 +225,9 @@ public class RevisionImpl extends BaseJsonAdapter implements Revision, Adaptable
 	@SuppressWarnings("unchecked")
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
+		// modify response to conform
+		adaptee.put("question", adaptee.get("is_question"));
+		adaptee.put("rollback", adaptee.get("is_rollback"));
 		copyProperties(this, adaptee);
 		JSONArray tags = (JSONArray) adaptee.get("tags");
 		if (tags != null) {

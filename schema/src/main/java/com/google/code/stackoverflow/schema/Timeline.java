@@ -94,4 +94,24 @@ public interface Timeline extends SchemaEntity {
 	 * @param revisionGuid the revisionGuid to set
 	 */
 	public void setRevisionGuid(String revisionGuid);
+	
+	/**
+	 * @return the commentId
+	 */
+	public long getCommentId();
+	
+	/**
+	 * @param commentId the commentId to set
+	 */
+	public void setCommentId(long commentId);
+
+	/**
+	 * @return the postType
+	 */
+	public PostType getPostType();
+	
+	/**
+	 * @param postType the postType to set
+	 */
+	public void setPostType(PostType postType);
 }

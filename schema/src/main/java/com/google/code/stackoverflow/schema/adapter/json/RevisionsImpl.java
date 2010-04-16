@@ -36,7 +36,6 @@ public class RevisionsImpl extends BaseJsonAdapter implements Revisions, Adaptab
 
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
-		copyProperties(this, adaptee);
 		JSONArray revisions = (JSONArray) adaptee.get("revisions");
 		if (revisions != null) {
 			for (Object o : revisions) {			
@@ -51,7 +50,6 @@ public class RevisionsImpl extends BaseJsonAdapter implements Revisions, Adaptab
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
-		copyProperties(adapter, this);
 		JSONArray revisions = new JSONArray();
 		for (Revision revision : getRevisions()) {
 			revisions.add(((RevisionImpl) revision).adaptTo());

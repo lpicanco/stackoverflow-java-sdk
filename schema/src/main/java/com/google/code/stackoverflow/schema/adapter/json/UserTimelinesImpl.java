@@ -37,7 +37,6 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
-		copyProperties(this, adaptee);
 		JSONArray timelines = (JSONArray) adaptee.get("usertimelines");
 		if (timelines != null) {
 			for (Object o : timelines) {			
@@ -52,7 +51,6 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
-		copyProperties(adapter, this);
 		JSONArray timelines = new JSONArray();
 		for (Timeline timeline : getTimelines()) {
 			timelines.add(((TimelineImpl) timeline).adaptTo());

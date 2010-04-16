@@ -102,6 +102,8 @@ public abstract class BaseJsonAdapter implements Serializable {
 						}
 						descriptor.getWriteMethod().invoke(dest, value);
 					}
+				} else {
+					logger.warning("Additional property '" + entry.getKey() + "' found in response for object." + dest.getClass());
 				}
 			}
 		} catch (Exception e) {

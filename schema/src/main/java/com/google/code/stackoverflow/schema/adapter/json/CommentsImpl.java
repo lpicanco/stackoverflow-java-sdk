@@ -36,7 +36,6 @@ public class CommentsImpl extends BaseJsonAdapter implements Comments, Adaptable
 
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
-		copyProperties(this, adaptee);
 		JSONArray comments = (JSONArray) adaptee.get("comments");
 		if (comments != null) {
 			for (Object o : comments) {			
@@ -51,7 +50,6 @@ public class CommentsImpl extends BaseJsonAdapter implements Comments, Adaptable
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
-		copyProperties(adapter, this);
 		JSONArray comments = new JSONArray();
 		for (Comment comment : getComments()) {
 			comments.add(((CommentImpl) comment).adaptTo());

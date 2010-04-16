@@ -36,7 +36,6 @@ public class TagsImpl extends BaseJsonAdapter implements Tags, Adaptable<Tags, J
 
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
-		copyProperties(this, adaptee);
 		JSONArray tags = (JSONArray) adaptee.get("tags");
 		if (tags != null) {
 			for (Object o : tags) {			
@@ -51,7 +50,6 @@ public class TagsImpl extends BaseJsonAdapter implements Tags, Adaptable<Tags, J
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
-		copyProperties(adapter, this);
 		JSONArray tags = new JSONArray();
 		for (Tag tag : getTags()) {
 			tags.add(((TagImpl) tag).adaptTo());
