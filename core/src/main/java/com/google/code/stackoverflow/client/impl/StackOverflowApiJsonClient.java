@@ -11,8 +11,8 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.google.code.stackoverflow.client.constant.StackOverflowApiUrls.StackOverflowApiUrlBuilder;
 import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
+import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackoverflow.schema.Answers;
 import com.google.code.stackoverflow.schema.Badges;
 import com.google.code.stackoverflow.schema.Comments;
@@ -136,7 +136,7 @@ public class StackOverflowApiJsonClient extends BaseStackOverflowApiClient {
      *
      * @return
      */
-    protected StackOverflowApiUrlBuilder createStackOverflowApiUrlBuilder(String urlFormat) {
-        return new StackOverflowApiUrlBuilder(urlFormat, getApplicationKey(), getApiVersion());
+    protected ApiUrlBuilder createStackOverflowApiUrlBuilder(String urlFormat) {
+        return getApiProvider().createApiUrlBuilder(urlFormat, getApplicationKey(), getApiVersion());
     }
 }

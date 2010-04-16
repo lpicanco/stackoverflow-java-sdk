@@ -14,6 +14,7 @@ import com.google.code.stackoverflow.client.AsyncStackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
 import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
+import com.google.code.stackoverflow.client.provider.ApiProvider;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.Comment;
@@ -120,6 +121,16 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	@Override
 	public void setApplicationKey(String applicationKey) {
 		client.setApplicationKey(applicationKey);
+	}
+	
+	@Override
+	public ApiProvider getApiProvider() {
+		return client.getApiProvider();
+	}
+
+	@Override
+	public void setApiProvider(ApiProvider apiProvider) {
+		client.setApiProvider(apiProvider);
 	}
 
 	@Override
