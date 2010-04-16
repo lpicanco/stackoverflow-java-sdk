@@ -5,6 +5,8 @@ package com.google.code.stackoverflow.client;
 
 import java.util.Map;
 
+import com.google.code.stackoverflow.client.provider.ApiProvider;
+
 /**
  * The Interface StackOverflowCommunicationClient.
  *
@@ -40,4 +42,20 @@ public interface StackOverflowCommunicationClient {
      * @param headerName the header name
      */
     public void removeRequestHeader(String headerName);
+    
+    /**
+     * Method description
+     *
+     *
+     * @param apiProvider
+     */
+    public void setApiProvider(ApiProvider apiProvider);
+    
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public ApiProvider getApiProvider();
 }

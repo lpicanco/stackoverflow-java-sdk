@@ -21,6 +21,7 @@ import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Reputation;
+import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Timeline;
@@ -908,6 +909,37 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
             @Override
             public List<User> call() throws Exception {
                 return client.getUsers(filter, sort, paging);
+            }
+        });
+	}
+
+	@Override
+	public Future<Revision> getRevisionForPost(final long postId, final String revisionGuid) {
+		return execute(new Callable<Revision>() {
+            @Override
+            public Revision call() throws Exception {
+                return client.getRevisionForPost(postId, revisionGuid);
+            }
+        });
+	}
+
+	@Override
+	public Future<List<Revision>> getRevisionsForPost(final long postId) {
+		return execute(new Callable<List<Revision>>() {
+            @Override
+            public List<Revision> call() throws Exception {
+                return client.getRevisionsForPost(postId);
+            }
+        });
+	}
+
+	@Override
+	public Future<List<Revision>> getRevisionsForPost(final long postId,
+			final TimePeriod timePeriod) {
+		return execute(new Callable<List<Revision>>() {
+            @Override
+            public List<Revision> call() throws Exception {
+                return client.getRevisionsForPost(postId, timePeriod);
             }
         });
 	}
