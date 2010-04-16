@@ -36,7 +36,6 @@ public class UsersImpl extends BaseJsonAdapter implements Users, Adaptable<Users
 
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
-		copyProperties(this, adaptee);
 		JSONArray users = (JSONArray) adaptee.get("users");
 		if (users != null) {
 			for (Object o : users) {			
@@ -51,7 +50,6 @@ public class UsersImpl extends BaseJsonAdapter implements Users, Adaptable<Users
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
-		copyProperties(adapter, this);
 		JSONArray users = new JSONArray();
 		for (User user : getUsers()) {
 			users.add(((UserImpl) user).adaptTo());

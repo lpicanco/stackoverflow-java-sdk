@@ -36,7 +36,6 @@ public class ReputationsImpl extends BaseJsonAdapter implements Reputations, Ada
 
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
-		copyProperties(this, adaptee);
 		JSONArray reputations = (JSONArray) adaptee.get("repchanges");
 		if (reputations != null) {
 			for (Object o : reputations) {			
@@ -51,7 +50,6 @@ public class ReputationsImpl extends BaseJsonAdapter implements Reputations, Ada
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
-		copyProperties(adapter, this);
 		JSONArray reputations = new JSONArray();
 		for (Reputation reputation : getReputations()) {
 			reputations.add(((ReputationImpl) reputation).adaptTo());

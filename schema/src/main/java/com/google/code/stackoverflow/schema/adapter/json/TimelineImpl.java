@@ -7,6 +7,7 @@ import java.util.Date;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.schema.PostType;
 import com.google.code.stackoverflow.schema.Timeline;
 import com.google.code.stackoverflow.schema.TimelineType;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -31,6 +32,8 @@ public class TimelineImpl extends BaseJsonAdapter implements Timeline, Adaptable
 	private String description;
 	private String detail;
 	private String revisionGuid;
+	private long commentId;
+	private PostType postType;
 	
 	public TimelineType getTimelineType() {
 		return timelineType;
@@ -118,5 +121,25 @@ public class TimelineImpl extends BaseJsonAdapter implements Timeline, Adaptable
 	@Override
 	public void setRevisionGuid(String revisionGuid) {
 		this.revisionGuid = revisionGuid;
+	}
+
+	@Override
+	public long getCommentId() {
+		return commentId;
+	}
+
+	@Override
+	public void setCommentId(long commentId) {
+		this.commentId = commentId;
+	}
+
+	@Override
+	public PostType getPostType() {
+		return postType;
+	}
+
+	@Override
+	public void setPostType(PostType postType) {
+		this.postType = postType;
 	}
 }

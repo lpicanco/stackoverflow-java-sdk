@@ -4,14 +4,14 @@ package com.google.code.stackoverflow.schema;
 public interface Badge extends SchemaEntity {
 
 	/**
-	 * @return the badge_id
+	 * @return the badgeId
 	 */
-	public long getBadge_id();
+	public long getBadgeId();
 
 	/**
-	 * @param badge_id the badge_id to set
+	 * @param badgeId the badgeId to set
 	 */
-	public void setBadge_id(long badge_id);
+	public void setBadgeId(long badgeId);
 
 	/**
 	 * @return the badgeClass

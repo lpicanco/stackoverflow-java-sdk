@@ -36,7 +36,6 @@ public class QuestionsImpl extends BaseJsonAdapter implements Questions, Adaptab
 
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
-		copyProperties(this, adaptee);
 		JSONArray questions = (JSONArray) adaptee.get("questions");
 		if (questions != null) {
 			for (Object o : questions) {			
@@ -51,7 +50,6 @@ public class QuestionsImpl extends BaseJsonAdapter implements Questions, Adaptab
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
-		copyProperties(adapter, this);
 		JSONArray questions = new JSONArray();
 		for (Question question : getQuestions()) {
 			questions.add(((QuestionImpl) question).adaptTo());

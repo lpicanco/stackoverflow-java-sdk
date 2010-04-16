@@ -190,7 +190,17 @@ public interface Answer extends SchemaEntity {
 	 * @param title the title to set
 	 */
 	public void setTitle(String title);
+	
+	/**
+	 * @return the body
+	 */
+	public String getBody();
 
+	/**
+	 * @param body the body to set
+	 */
+	public void setBody(String body);
+	
 	/**
 	 * @return the comments
 	 */
