@@ -7,11 +7,11 @@ public interface QuestionTimelines extends SchemaEntity {
 	/**
 	 * @return the timelines
 	 */
-	public List<Timeline> getTimelines();
+	public List<PostTimeline> getTimelines();
 
 	/**
 	 * @param timelines the timelines to set
 	 */
-	public void setTimelines(List<Timeline> timelines);
+	public void setTimelines(List<PostTimeline> timelines);
 
 }

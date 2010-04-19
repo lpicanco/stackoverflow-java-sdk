@@ -16,7 +16,7 @@ import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
-import com.google.code.stackoverflow.schema.Timeline;
+import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.User;
 
 
@@ -105,8 +105,8 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public Question getQuestion(long questionId, Paging paging);
 	public Question getQuestion(long questionId, Set<FilterOption> filterOptions);
 	public Question getQuestion(long questionId, Paging paging, Set<FilterOption> filterOptions);
-	public List<Timeline> getQuestionTimeline(long questionId);
-	public List<Timeline> getQuestionTimeline(long questionId, TimePeriod timePeriod);
+	public List<PostTimeline> getQuestionTimeline(long questionId);
+	public List<PostTimeline> getQuestionTimeline(long questionId, TimePeriod timePeriod);
 	
 	// User Methods
 	public List<User> getUsers();
@@ -114,8 +114,8 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public List<User> getUsers(String filter);
 	public List<User> getUsers(User.SortOrder sort);
 	public List<User> getUsers(String filter, User.SortOrder sort, Paging paging);
-	public List<Timeline> getUserTimeline(long userId);
-	public List<Timeline> getUserTimeline(long userId, TimePeriod timePeriod);
+	public List<PostTimeline> getUserTimeline(long userId);
+	public List<PostTimeline> getUserTimeline(long userId, TimePeriod timePeriod);
 	public List<Comment> getUserMentions(long userId);
 	public List<Comment> getUserMentions(long userId, TimePeriod timePeriod);
 	public List<Reputation> getUserReputations(long userId);

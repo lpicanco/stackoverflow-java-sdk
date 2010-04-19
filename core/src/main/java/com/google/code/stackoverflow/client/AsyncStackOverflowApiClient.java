@@ -18,7 +18,7 @@ import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
-import com.google.code.stackoverflow.schema.Timeline;
+import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.User;
 
 
@@ -60,8 +60,8 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<Question> getQuestion(long questionId, Paging paging);
 	public Future<Question> getQuestion(long questionId, Set<FilterOption> filterOptions);
 	public Future<Question> getQuestion(long questionId, Paging paging, Set<FilterOption> filterOptions);
-	public Future<List<Timeline>> getQuestionTimeline(long questionId);
-	public Future<List<Timeline>> getQuestionTimeline(long questionId, TimePeriod timePeriod);
+	public Future<List<PostTimeline>> getQuestionTimeline(long questionId);
+	public Future<List<PostTimeline>> getQuestionTimeline(long questionId, TimePeriod timePeriod);
 	
 	// User Methods
 	public Future<List<User>> getUsers();
@@ -69,8 +69,8 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<User>> getUsers(String filter);
 	public Future<List<User>> getUsers(User.SortOrder sort);
 	public Future<List<User>> getUsers(String filter, User.SortOrder sort, Paging paging);
-	public Future<List<Timeline>> getUserTimeline(long userId);
-	public Future<List<Timeline>> getUserTimeline(long userId, TimePeriod timePeriod);
+	public Future<List<PostTimeline>> getUserTimeline(long userId);
+	public Future<List<PostTimeline>> getUserTimeline(long userId, TimePeriod timePeriod);
 	public Future<List<Comment>> getUserMentions(long userId);
 	public Future<List<Comment>> getUserMentions(long userId, TimePeriod timePeriod);
 	public Future<List<Reputation>> getUserReputations(long userId);

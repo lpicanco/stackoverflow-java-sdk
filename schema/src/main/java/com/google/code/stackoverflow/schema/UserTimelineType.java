@@ -10,21 +10,21 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum TimelineType implements ValueEnum {
+public enum UserTimelineType implements ValueEnum {
 
-	VOTES("votes"),
+	BADGE("badge"),
 	COMMENT("comment"),
-	ANSWER("answer"),
-	QUESTION("question"),
+	ASK_OR_ANSWERED("askoranswered"),
+	ACCEPTED("accepted"),
 	REVISION("revision");
 	
     /**
      * Field Description.
      */
-	private static final Map<String, TimelineType> stringToEnum = new HashMap<String, TimelineType>();
+	private static final Map<String, UserTimelineType> stringToEnum = new HashMap<String, UserTimelineType>();
 
 	static { // Initialize map from constant name to enum constant
-		for (TimelineType op : values()) {
+		for (UserTimelineType op : values()) {
 			stringToEnum.put(op.value(), op);
 		}
 	}
@@ -38,7 +38,7 @@ public enum TimelineType implements ValueEnum {
      *
      * @param name
      */
-    TimelineType(String value) {
+    UserTimelineType(String value) {
         this.value = value;
     }
 
@@ -47,7 +47,7 @@ public enum TimelineType implements ValueEnum {
 		return value;
 	}
 	
-	public static TimelineType fromValue(String value) {
+	public static UserTimelineType fromValue(String value) {
 		return stringToEnum.get(value);
 	}
 	

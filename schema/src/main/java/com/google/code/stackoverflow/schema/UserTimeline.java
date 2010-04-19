@@ -3,17 +3,17 @@ package com.google.code.stackoverflow.schema;
 import java.util.Date;
 
 
-public interface Timeline extends SchemaEntity {
+public interface UserTimeline extends SchemaEntity {
 
 	/**
 	 * @return the timeline_type
 	 */
-	public TimelineType getTimelineType();
+	public PostTimelineType getTimelineType();
 
 	/**
 	 * @param timeline_type the timeline_type to set
 	 */
-	public void setTimelineType(TimelineType timelineType);
+	public void setTimelineType(PostTimelineType timelineType);
 
 	/**
 	 * @return the post_id

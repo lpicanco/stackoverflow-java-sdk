@@ -19,7 +19,7 @@ import com.google.code.stackoverflow.client.StackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.Timeline;
+import com.google.code.stackoverflow.schema.PostTimeline;
 
 /**
  * @author Nabeel Mukhtar
@@ -78,8 +78,8 @@ public class QuestionsApiExample {
     				printResult(question);
     			}
     			
-    			List<Timeline> questionTimeline = client.getQuestionTimeline(2420689L);
-    			for (Timeline timeline : questionTimeline) {
+    			List<PostTimeline> questionTimeline = client.getQuestionTimeline(2420689L);
+    			for (PostTimeline timeline : questionTimeline) {
 					printResult(timeline);
 				}
     		}
@@ -88,7 +88,7 @@ public class QuestionsApiExample {
         }
     }
 	
-	private static void printResult(Timeline timeline) {
+	private static void printResult(PostTimeline timeline) {
 		System.out.println(timeline.getDetail() + ":" + timeline.getTimelineType());
 	}
 

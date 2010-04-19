@@ -24,7 +24,7 @@ import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
-import com.google.code.stackoverflow.schema.Timeline;
+import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.User;
 
 /**
@@ -357,21 +357,21 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Timeline>> getQuestionTimeline(final long questionId) {
-		return execute(new Callable<List<Timeline>>() {
+	public Future<List<PostTimeline>> getQuestionTimeline(final long questionId) {
+		return execute(new Callable<List<PostTimeline>>() {
             @Override
-            public List<Timeline> call() throws Exception {
+            public List<PostTimeline> call() throws Exception {
                 return client.getQuestionTimeline(questionId);
             }
         });
 	}
 
 	@Override
-	public Future<List<Timeline>> getQuestionTimeline(final long questionId,
+	public Future<List<PostTimeline>> getQuestionTimeline(final long questionId,
 			final TimePeriod timePeriod) {
-		return execute(new Callable<List<Timeline>>() {
+		return execute(new Callable<List<PostTimeline>>() {
             @Override
-            public List<Timeline> call() throws Exception {
+            public List<PostTimeline> call() throws Exception {
                 return client.getQuestionTimeline(questionId, timePeriod);
             }
         });
@@ -842,21 +842,21 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Timeline>> getUserTimeline(final long userId) {
-		return execute(new Callable<List<Timeline>>() {
+	public Future<List<PostTimeline>> getUserTimeline(final long userId) {
+		return execute(new Callable<List<PostTimeline>>() {
             @Override
-            public List<Timeline> call() throws Exception {
+            public List<PostTimeline> call() throws Exception {
                 return client.getUserTimeline(userId);
             }
         });
 	}
 
 	@Override
-	public Future<List<Timeline>> getUserTimeline(final long userId,
+	public Future<List<PostTimeline>> getUserTimeline(final long userId,
 			final TimePeriod timePeriod) {
-		return execute(new Callable<List<Timeline>>() {
+		return execute(new Callable<List<PostTimeline>>() {
             @Override
-            public List<Timeline> call() throws Exception {
+            public List<PostTimeline> call() throws Exception {
                 return client.getUserTimeline(userId, timePeriod);
             }
         });
