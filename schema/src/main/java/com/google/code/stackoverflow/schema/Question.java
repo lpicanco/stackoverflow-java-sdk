@@ -289,4 +289,14 @@ public interface Question extends SchemaEntity {
 	public long getBountyAmount();
 
 	public void setBountyAmount(long bountyAmount);
+	
+	/**
+	 * @return the ownerEmailHash
+	 */
+	public String getOwnerEmailHash();
+
+	/**
+	 * @param ownerEmailHash the ownerEmailHash to set
+	 */
+	public void setOwnerEmailHash(String ownerEmailHash);
 }

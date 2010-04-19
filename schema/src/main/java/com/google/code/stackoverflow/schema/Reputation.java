@@ -65,4 +65,13 @@ public interface Reputation extends SchemaEntity {
 	 */
 	public void setNegativeRep(long negativeRep);
 
+	/**
+	 * @return the userId
+	 */
+	public long getUserId();
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId);
 }

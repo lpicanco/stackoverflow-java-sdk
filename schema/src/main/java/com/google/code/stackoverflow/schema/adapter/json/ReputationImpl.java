@@ -22,6 +22,18 @@ public class ReputationImpl extends BaseJsonAdapter implements Reputation,
 	private PostType postType;
 	private String title;
 
+	private long userId;
+	
+	@Override
+	public long getUserId() {
+		return userId;
+	}
+
+	@Override
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	
 	@Override
 	public long getNegativeRep() {
 		return negativeRep;

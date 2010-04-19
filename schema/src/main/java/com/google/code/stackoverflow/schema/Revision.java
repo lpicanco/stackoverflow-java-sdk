@@ -156,4 +156,13 @@ public interface Revision extends SchemaEntity {
 	 */
 	public void setLastTitle(String lastTitle);
 
+	/**
+	 * @return the postId
+	 */
+	public long getPostId();
+	
+	/**
+	 * @param postId the postId to set
+	 */
+	public void setPostId(long postId);
 }

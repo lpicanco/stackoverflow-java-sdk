@@ -40,7 +40,20 @@ public class RevisionImpl extends BaseJsonAdapter implements Revision, Adaptable
 	private String title;
 	private String lastBody;
 	private String lastTitle;
+	private long postId;
 	
+	/**
+	 * @return the postId
+	 */
+	public long getPostId() {
+		return postId;
+	}
+	/**
+	 * @param postId the postId to set
+	 */
+	public void setPostId(long postId) {
+		this.postId = postId;
+	}
 	/**
 	 * @return the comment
 	 */

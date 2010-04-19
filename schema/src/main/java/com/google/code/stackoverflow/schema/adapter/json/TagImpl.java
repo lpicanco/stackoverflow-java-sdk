@@ -21,6 +21,17 @@ public class TagImpl extends BaseJsonAdapter implements Tag, Adaptable<Tag, JSON
 	
 	private String name;
 	private long count;
+	private long userId;
+	
+	@Override
+	public long getUserId() {
+		return userId;
+	}
+
+	@Override
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
 	public String getName() {
 		return name;
