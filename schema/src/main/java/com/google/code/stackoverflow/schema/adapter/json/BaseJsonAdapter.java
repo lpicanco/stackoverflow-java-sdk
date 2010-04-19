@@ -20,7 +20,7 @@ import org.json.simple.JSONObject;
 import com.google.code.stackoverflow.schema.BadgeRank;
 import com.google.code.stackoverflow.schema.PostType;
 import com.google.code.stackoverflow.schema.RevisionType;
-import com.google.code.stackoverflow.schema.TimelineType;
+import com.google.code.stackoverflow.schema.PostTimelineType;
 import com.google.code.stackoverflow.schema.UserType;
 import com.google.code.stackoverflow.schema.adapter.Converter;
 
@@ -69,10 +69,10 @@ public abstract class BaseJsonAdapter implements Serializable {
 				return PostType.fromValue(source);
 			}
 		});
-		converters.put(TimelineType.class, new Converter<String, TimelineType>() {
+		converters.put(PostTimelineType.class, new Converter<String, PostTimelineType>() {
 			@Override
-			public TimelineType convert(String source) {
-				return TimelineType.fromValue(source);
+			public PostTimelineType convert(String source) {
+				return PostTimelineType.fromValue(source);
 			}
 		});
 		converters.put(UserType.class, new Converter<String, UserType>() {

@@ -55,7 +55,7 @@ import com.google.code.stackoverflow.schema.Revisions;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Tags;
-import com.google.code.stackoverflow.schema.Timeline;
+import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.UserTimelines;
 import com.google.code.stackoverflow.schema.Users;
@@ -592,7 +592,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Timeline> getQuestionTimeline(long questionId,
+	public List<PostTimeline> getQuestionTimeline(long questionId,
 			TimePeriod timePeriod) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withField("id", String.valueOf(questionId)).withTimePeriod(timePeriod).buildUrl();
@@ -780,7 +780,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Timeline> getUserTimeline(long userId, TimePeriod timePeriod) {
+	public List<PostTimeline> getUserTimeline(long userId, TimePeriod timePeriod) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).withTimePeriod(timePeriod).buildUrl();
 
@@ -921,7 +921,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Timeline> getQuestionTimeline(long questionId) {
+	public List<PostTimeline> getQuestionTimeline(long questionId) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withField("id", String.valueOf(questionId)).buildUrl();
 
@@ -1051,7 +1051,7 @@ public abstract class BaseStackOverflowApiClient implements StackOverflowApiClie
 	}
 
 	@Override
-	public List<Timeline> getUserTimeline(long userId) {
+	public List<PostTimeline> getUserTimeline(long userId) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withField("id", String.valueOf(userId)).buildUrl();
 

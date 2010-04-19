@@ -10,7 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.QuestionTimelines;
-import com.google.code.stackoverflow.schema.Timeline;
+import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.UserTimelines;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
@@ -25,13 +25,13 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 	 */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
-	private List<Timeline> timelines = new ArrayList<Timeline>();
+	private List<PostTimeline> timelines = new ArrayList<PostTimeline>();
 
-	public List<Timeline> getTimelines() {
+	public List<PostTimeline> getTimelines() {
 		return timelines;
 	}
 
-	public void setTimelines(List<Timeline> timelines) {
+	public void setTimelines(List<PostTimeline> timelines) {
 		this.timelines = timelines;
 	}
 
@@ -52,7 +52,7 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
 		JSONArray timelines = new JSONArray();
-		for (Timeline timeline : getTimelines()) {
+		for (PostTimeline timeline : getTimelines()) {
 			timelines.add(((TimelineImpl) timeline).adaptTo());
 		}
 		adapter.put("usertimelines", timelines);

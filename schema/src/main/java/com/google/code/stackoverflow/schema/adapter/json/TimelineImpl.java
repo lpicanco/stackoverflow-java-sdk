@@ -8,22 +8,22 @@ import java.util.Date;
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.PostType;
-import com.google.code.stackoverflow.schema.Timeline;
-import com.google.code.stackoverflow.schema.TimelineType;
+import com.google.code.stackoverflow.schema.PostTimeline;
+import com.google.code.stackoverflow.schema.PostTimelineType;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
  * @author nmukhtar
  *
  */
-public class TimelineImpl extends BaseJsonAdapter implements Timeline, Adaptable<Timeline, JSONObject> {
+public class TimelineImpl extends BaseJsonAdapter implements PostTimeline, Adaptable<PostTimeline, JSONObject> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1401085998475480138L;
 	
-	private TimelineType timelineType;
+	private PostTimelineType timelineType;
 	private long postId;
 	private long userId;
 	private long ownerUserId;
@@ -35,11 +35,11 @@ public class TimelineImpl extends BaseJsonAdapter implements Timeline, Adaptable
 	private long commentId;
 	private PostType postType;
 	
-	public TimelineType getTimelineType() {
+	public PostTimelineType getTimelineType() {
 		return timelineType;
 	}
 	
-	public void setTimelineType(TimelineType timelineType) {
+	public void setTimelineType(PostTimelineType timelineType) {
 		this.timelineType = timelineType;
 	}
 	
