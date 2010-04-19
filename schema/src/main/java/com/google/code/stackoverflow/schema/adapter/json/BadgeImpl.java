@@ -26,7 +26,18 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	private String description;
 	private long awardCount;
 	private boolean tagBased;
+	private long userId;
 	
+	@Override
+	public long getUserId() {
+		return userId;
+	}
+
+	@Override
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	public long getBadgeId() {
 		return badgeId;
 	}

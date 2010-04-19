@@ -50,6 +50,7 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	private Date lockedDate;
 	private Date bountyClosesDate;
 	private long bountyAmount;
+	private String ownerEmailHash;
 	
 	public List<Answer> getAnswers() {
 		return answers;
@@ -300,7 +301,17 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	public void setBountyAmount(long bountyAmount) {
 		this.bountyAmount = bountyAmount;
 	}
+	
+	@Override
+	public String getOwnerEmailHash() {
+		return ownerEmailHash;
+	}
 
+	@Override
+	public void setOwnerEmailHash(String ownerEmailHash) {
+		this.ownerEmailHash = ownerEmailHash;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void adaptFrom(JSONObject adaptee) {

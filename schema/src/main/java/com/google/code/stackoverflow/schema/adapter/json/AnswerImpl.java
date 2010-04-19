@@ -42,6 +42,8 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	private String title;
 	private String body;
 	private List<Comment> comments = new ArrayList<Comment>();
+	private String ownerEmailHash;
+	
 	
 	@Override
 	public long getAnswerId() {
@@ -214,6 +216,16 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 		this.lastActivityDate = lastActivityDate;
 	}
 	
+	@Override
+	public String getOwnerEmailHash() {
+		return ownerEmailHash;
+	}
+
+	@Override
+	public void setOwnerEmailHash(String ownerEmailHash) {
+		this.ownerEmailHash = ownerEmailHash;
+	}
+
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);

@@ -230,4 +230,14 @@ public interface Answer extends SchemaEntity {
 	 * @param lastEditDate the lastActivityDate to set
 	 */
 	public void setLastActivityDate(Date lastActivityDate);
+	
+	/**
+	 * @return the ownerEmailHash
+	 */
+	public String getOwnerEmailHash();
+
+	/**
+	 * @param ownerEmailHash the ownerEmailHash to set
+	 */
+	public void setOwnerEmailHash(String ownerEmailHash);
 }

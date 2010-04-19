@@ -75,5 +75,14 @@ public interface Tag extends SchemaEntity {
 	 * @param count the count to set
 	 */
 	public void setCount(long count);
+	
+	/**
+	 * @return the userId
+	 */
+	public long getUserId();
 
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId);
 }

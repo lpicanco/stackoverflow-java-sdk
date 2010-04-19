@@ -62,4 +62,14 @@ public interface Badge extends SchemaEntity {
 	 * @param tagBased the tagBased to set
 	 */
 	public void setTagBased(boolean tagBased);
+
+	/**
+	 * @return the userId
+	 */
+	public long getUserId();
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId);
 }
