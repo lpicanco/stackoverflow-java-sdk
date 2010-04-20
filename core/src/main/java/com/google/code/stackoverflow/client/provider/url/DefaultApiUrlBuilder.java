@@ -202,7 +202,26 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 
 		return this;
 	}
+	
+	@Override
+	public ApiUrlBuilder withId(long id) {
+		withField("id", String.valueOf(id), false);
+		return this;
+	}
 
+	@Override
+	public ApiUrlBuilder withIds(long... ids) {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < ids.length; i++) {
+			builder.append(ids[i]);
+			if (i < ids.length - 1) {
+				builder.append(";");
+			}
+		}
+		withField("id", builder.toString(), false);
+		return this;
+	}
+	
 	/**
 	 * With parameter enum.
 	 * 
