@@ -11,7 +11,6 @@ import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.TagApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
-import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.adapter.json.TagsImpl;
 
@@ -32,7 +31,7 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	}
 
 	@Override
-	public TagApiQuery withSort(SortEnum sort) {
+	public TagApiQuery withSort(Tag.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}

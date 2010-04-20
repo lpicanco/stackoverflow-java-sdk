@@ -13,7 +13,6 @@ import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.AnswerApiQuery;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.FilterOption;
-import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.adapter.json.AnswersImpl;
 
 /**
@@ -39,7 +38,7 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	}
 
 	@Override
-	public AnswerApiQuery withSort(SortEnum sort) {
+	public AnswerApiQuery withSort(Answer.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}

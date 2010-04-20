@@ -10,7 +10,6 @@ import org.json.simple.JSONObject;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.UserApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
-import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.json.UsersImpl;
 
@@ -37,7 +36,7 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 	}
 
 	@Override
-	public UserApiQuery withSort(SortEnum sort) {
+	public UserApiQuery withSort(User.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}

@@ -15,7 +15,6 @@ import com.google.code.stackoverflow.client.query.QuestionApiQuery;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.QuestionsImpl;
 
@@ -74,11 +73,17 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	}
 
 	@Override
-	public QuestionApiQuery withSort(SortEnum sort) {
+	public QuestionApiQuery withSort(Question.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
 
+	@Override
+	public QuestionApiQuery withSort(Question.UnansweredSortOrder sort) {
+		apiUrlBuilder.withSort(sort);
+		return this;
+	}
+	
 	@Override
 	public QuestionApiQuery withTags(String... tag) {
 		apiUrlBuilder.withParameters("tagged", Arrays.asList(tag));

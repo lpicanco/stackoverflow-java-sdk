@@ -8,7 +8,6 @@ import java.util.Set;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
 
 /**
@@ -49,8 +48,13 @@ public interface QuestionApiQuery extends StackOverflowApiQuery<Question> {
 	/**
 	 * 
 	 */
-	public QuestionApiQuery withSort(SortEnum sort);
+	public QuestionApiQuery withSort(Question.SortOrder sort);
 
+	/**
+	 * 
+	 */
+	public QuestionApiQuery withSort(Question.UnansweredSortOrder sort);
+	
 	/**
 	 * 
 	 */

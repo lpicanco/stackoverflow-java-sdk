@@ -5,7 +5,6 @@ package com.google.code.stackoverflow.client.query;
 
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Paging;
-import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
 
 /**
@@ -46,7 +45,7 @@ public interface CommentApiQuery extends StackOverflowApiQuery<Comment> {
 	/**
 	 * 
 	 */
-	public CommentApiQuery withSort(SortEnum sort);
+	public CommentApiQuery withSort(Comment.SortOrder sort);
 
 	/**
 	 * 

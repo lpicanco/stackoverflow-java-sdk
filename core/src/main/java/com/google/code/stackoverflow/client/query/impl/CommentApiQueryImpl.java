@@ -12,7 +12,6 @@ import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.CommentApiQuery;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Paging;
-import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.CommentsImpl;
 
@@ -65,7 +64,7 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	}
 
 	@Override
-	public CommentApiQuery withSort(SortEnum sort) {
+	public CommentApiQuery withSort(Comment.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
