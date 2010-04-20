@@ -51,6 +51,26 @@ public interface ApiUrlBuilder {
 			ValueEnum value);
 
 	/**
+	 * With id.
+	 * 
+	 * @param id
+	 *            the id
+	 * 
+	 * @return the stack overflow api url builder
+	 */
+	public ApiUrlBuilder withId(long id);
+	
+	/**
+	 * With ids.
+	 * 
+	 * @param ids
+	 *            the ids
+	 * 
+	 * @return the stack overflow api url builder
+	 */
+	public ApiUrlBuilder withIds(long... ids);
+	
+	/**
 	 * With parameter enum.
 	 * 
 	 * @param name
