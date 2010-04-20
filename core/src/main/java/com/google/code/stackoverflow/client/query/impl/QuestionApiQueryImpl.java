@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
-import com.google.code.stackoverflow.query.QuestionApiQuery;
+import com.google.code.stackoverflow.client.query.QuestionApiQuery;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
@@ -27,7 +27,6 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 
 	public QuestionApiQueryImpl(String applicationId) {
 		super(applicationId);
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
@@ -103,5 +102,10 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 		QuestionsImpl adapter = new QuestionsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getQuestions();
+	}
+
+	@Override
+	public void reset() {
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS, getApplicationKey(), getApiVersion());
 	}
 }

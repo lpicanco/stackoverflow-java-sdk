@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query;
+package com.google.code.stackoverflow.client.query;
 
 import java.util.List;
 

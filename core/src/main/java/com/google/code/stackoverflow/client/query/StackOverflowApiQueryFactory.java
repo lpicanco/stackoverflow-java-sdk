@@ -1,19 +1,19 @@
 /**
  *
  */
-package com.google.code.stackoverflow.query;
+package com.google.code.stackoverflow.client.query;
 
-import com.google.code.stackoverflow.query.impl.AnswerApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.BadgeApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.CommentApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.QuestionApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.QuestionTimelineApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.ReputationApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.RevisionApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.StatisticsApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.TagApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.UserApiQueryImpl;
-import com.google.code.stackoverflow.query.impl.UserTimelineApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.AnswerApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.BadgeApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.CommentApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.QuestionApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.QuestionTimelineApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.ReputationApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.RevisionApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.StatisticsApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.TagApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.UserApiQueryImpl;
+import com.google.code.stackoverflow.client.query.impl.UserTimelineApiQueryImpl;
 
 
 /**

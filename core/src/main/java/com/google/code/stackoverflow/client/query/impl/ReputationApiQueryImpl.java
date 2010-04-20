@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.List;
 
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
-import com.google.code.stackoverflow.query.ReputationApiQuery;
+import com.google.code.stackoverflow.client.query.ReputationApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.TimePeriod;
@@ -22,7 +22,6 @@ public class ReputationApiQueryImpl extends BaseStackOverflowApiQuery<Reputation
 
 	public ReputationApiQueryImpl(String applicationId) {
 		super(applicationId);
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
@@ -48,5 +47,10 @@ public class ReputationApiQueryImpl extends BaseStackOverflowApiQuery<Reputation
 		ReputationsImpl adapter = new ReputationsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getReputations();
+	}
+
+	@Override
+	public void reset() {
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS, getApplicationKey(), getApiVersion());
 	}
 }

@@ -1,4 +1,4 @@
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,7 +11,7 @@ import org.json.simple.parser.JSONParser;
 import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
 import com.google.code.stackoverflow.client.impl.StackOverflowApiGateway;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
-import com.google.code.stackoverflow.query.StackOverflowApiQuery;
+import com.google.code.stackoverflow.client.query.StackOverflowApiQuery;
 import com.google.code.stackoverflow.schema.adapter.json.ErrorImpl;
 
 public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGateway implements StackOverflowApiQuery<T> {
@@ -25,6 +25,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
 
         // by default we compress contents
         requestHeaders.put("Accept-Encoding", "gzip, deflate");
+        this.reset();
 	}
 
 	public BaseStackOverflowApiQuery(String applicationId, String apiVersion) {
@@ -44,12 +45,6 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
         } catch (Exception e) {
             throw new StackOverflowApiClientException(e);
         }
-	}
-
-	@Override
-	public void reset() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

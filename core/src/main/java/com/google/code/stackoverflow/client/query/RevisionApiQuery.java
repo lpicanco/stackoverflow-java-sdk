@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query;
+package com.google.code.stackoverflow.client.query;
 
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.TimePeriod;

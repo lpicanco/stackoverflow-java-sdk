@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.List;
 
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
-import com.google.code.stackoverflow.query.RevisionApiQuery;
+import com.google.code.stackoverflow.client.query.RevisionApiQuery;
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.RevisionsImpl;
@@ -21,7 +21,6 @@ public class RevisionApiQueryImpl extends BaseStackOverflowApiQuery<Revision> im
 
 	public RevisionApiQueryImpl(String applicationId) {
 		super(applicationId);
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_REVISION_FOR_POST, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
@@ -47,5 +46,10 @@ public class RevisionApiQueryImpl extends BaseStackOverflowApiQuery<Revision> im
 		RevisionsImpl adapter = new RevisionsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getRevisions();
+	}
+
+	@Override
+	public void reset() {
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_REVISION_FOR_POST, getApplicationKey(), getApiVersion());
 	}
 }

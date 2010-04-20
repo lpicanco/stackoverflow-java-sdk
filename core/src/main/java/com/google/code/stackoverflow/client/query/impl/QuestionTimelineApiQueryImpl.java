@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.List;
 
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
-import com.google.code.stackoverflow.query.QuestionTimelineApiQuery;
+import com.google.code.stackoverflow.client.query.QuestionTimelineApiQuery;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.QuestionTimelinesImpl;
@@ -21,7 +21,6 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 
 	public QuestionTimelineApiQueryImpl(String applicationId) {
 		super(applicationId);
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
@@ -41,5 +40,10 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 		QuestionTimelinesImpl adapter = new QuestionTimelinesImpl();
 		adapter.adaptFrom(json);
 		return adapter.getTimelines();
+	}
+
+	@Override
+	public void reset() {
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE, getApplicationKey(), getApiVersion());
 	}
 }
