@@ -15,7 +15,7 @@ import com.google.code.stackoverflow.schema.TimePeriod;
 public interface CommentApiQuery extends StackOverflowApiQuery<Comment> {
 	
 	public enum Classification {
-		COMMENT, MENTION;
+		COMMENT, USER_COMMENT, MENTION, CONVERSATION;
 	}
 
 	/**

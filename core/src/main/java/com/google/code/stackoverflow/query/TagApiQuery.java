@@ -13,6 +13,10 @@ import com.google.code.stackoverflow.schema.Tag;
  */
 public interface TagApiQuery extends StackOverflowApiQuery<Tag> {
 	
+	public enum Classification {
+		NONE, BY_USER;
+	}
+	
 	/**
 	 * 
 	 */
@@ -27,4 +31,9 @@ public interface TagApiQuery extends StackOverflowApiQuery<Tag> {
 	 * 
 	 */
 	public TagApiQuery withSort(SortEnum sort);
+	
+	/**
+	 * 
+	 */
+	public TagApiQuery withClassification(Classification classification);
 }

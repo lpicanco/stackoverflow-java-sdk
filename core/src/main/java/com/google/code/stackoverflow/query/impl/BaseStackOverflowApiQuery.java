@@ -1,33 +1,44 @@
 package com.google.code.stackoverflow.query.impl;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
-import com.google.code.stackoverflow.client.constant.ApplicationConstants;
-import com.google.code.stackoverflow.client.provider.ApiProvider;
-import com.google.code.stackoverflow.client.provider.StackOverflowApiProvider;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
+import com.google.code.stackoverflow.client.impl.StackOverflowApiGateway;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackoverflow.query.StackOverflowApiQuery;
+import com.google.code.stackoverflow.schema.adapter.json.ErrorImpl;
 
-public class BaseStackOverflowApiQuery<T> implements StackOverflowApiQuery<T> {
+public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGateway implements StackOverflowApiQuery<T> {
 	
-	private ApiProvider apiProvider = new StackOverflowApiProvider();
 	protected ApiUrlBuilder apiUrlBuilder;
-	private String applicationId;
-	private String apiVersion = ApplicationConstants.DEFAULT_API_VERSION;
+    private final JSONParser parser = new JSONParser();
 	
 	public BaseStackOverflowApiQuery(String applicationId) {
-		this.applicationId = applicationId;
+		super.setApplicationKey(applicationId);
 	}
 
 	public BaseStackOverflowApiQuery(String applicationId, String apiVersion) {
-		this.applicationId = applicationId;
-		this.apiVersion = apiVersion;
+		super.setApplicationKey(applicationId);
+		super.setApiVersion(apiVersion);
 	}
 	
 	@Override
 	public List<T> list() {
-		// TODO Auto-generated method stub
-		return null;
+        try {
+        	InputStream jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
+        	Object response = parser.parse(new InputStreamReader(jsonContent));
+        	if (response instanceof JSONObject) {
+        		return unmarshall((JSONObject) response);
+        	}
+        	throw new StackOverflowApiClientException("Unknown content found in response:" + response.toString());
+        } catch (Exception e) {
+            throw new StackOverflowApiClientException(e);
+        }
 	}
 
 	@Override
@@ -38,49 +49,56 @@ public class BaseStackOverflowApiQuery<T> implements StackOverflowApiQuery<T> {
 
 	@Override
 	public T singleResult() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * @return the apiProvider
-	 */
-	public ApiProvider getApiProvider() {
-		return apiProvider;
-	}
-
-	/**
-	 * @param apiProvider the apiProvider to set
-	 */
-	public void setApiProvider(ApiProvider apiProvider) {
-		this.apiProvider = apiProvider;
-	}
-
-	/**
-	 * @return the applicationId
-	 */
-	public String getApplicationId() {
-		return applicationId;
-	}
-
-	/**
-	 * @param applicationId the applicationId to set
-	 */
-	public void setApplicationId(String applicationId) {
-		this.applicationId = applicationId;
+        try {
+        	InputStream jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
+        	Object response = parser.parse(new InputStreamReader(jsonContent));
+        	if (response instanceof JSONObject) {
+        		return getFirstElement(unmarshall((JSONObject) response));
+        	}
+        	throw new StackOverflowApiClientException("Unknown content found in response:" + response.toString());
+        } catch (Exception e) {
+            throw new StackOverflowApiClientException(e);
+        }
 	}
 	
-	/**
-	 * @return the apiVersion
-	 */
-	public String getApiVersion() {
-		return apiVersion;
-	}
+    /**
+     *
+     */
+    @SuppressWarnings("unchecked")
+	protected <A> A unmarshallObject(Class<A> clazz, InputStream jsonContent) {
+    	if (clazz.equals(Error.class)) {
+            try {
+            	Object response = parser.parse(new InputStreamReader(jsonContent));
+            	if (response instanceof JSONObject) {
+            		ErrorImpl error = new ErrorImpl();
+            		error.adaptFrom((JSONObject)response);
+            		return (A) error;
+            	}
+            } catch (Exception e) {
+                throw new StackOverflowApiClientException(e);
+            }
+    	}
+    	return null;
+    }
 
-	/**
-	 * @param apiVersion the apiVersion to set
-	 */
-	public void setApiVersion(String apiVersion) {
-		this.apiVersion = apiVersion;
+    /**
+     * Method description
+     *
+     *
+     * @param element
+     *
+     * @return
+     */
+    protected String marshallObject(Object element) {
+    	return null;
+    }
+	
+	protected abstract List<T> unmarshall(JSONObject json);
+	
+	private T getFirstElement(List<T> list) {
+		if (list.isEmpty()) {
+			return null;
+		}
+		return list.get(0);
 	}
 }

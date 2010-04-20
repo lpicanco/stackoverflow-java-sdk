@@ -3,11 +3,18 @@
  */
 package com.google.code.stackoverflow.query.impl;
 
+import java.util.List;
+
+import org.json.simple.JSONObject;
+
+import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
+import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.query.CommentApiQuery;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
+import com.google.code.stackoverflow.schema.adapter.json.CommentsImpl;
 
 /**
  * @author nmukhtar
@@ -17,47 +24,75 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 
 	public CommentApiQueryImpl(String applicationId) {
 		super(applicationId);
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_COMMENT, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
 	public CommentApiQuery withClassification(Classification classification) {
-		// TODO Auto-generated method stub
-		return null;
+		switch (classification) {
+		case MENTION:
+			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_USER_MENTIONS);
+			
+			break;
+
+		case USER_COMMENT:
+			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+			
+			break;
+			
+		case CONVERSATION:
+			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
+			
+			break;
+			
+		default:
+			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENT);
+		
+			break;
+		}
+		return this;
 	}
 
 	@Override
 	public CommentApiQuery withCommentIds(long... commentIds) {
-		// TODO Auto-generated method stub
-		return null;
+		apiUrlBuilder.withIds(commentIds);
+		return this;
 	}
 
 	@Override
 	public CommentApiQuery withPaging(Paging paging) {
-		// TODO Auto-generated method stub
-		return null;
+		apiUrlBuilder.withPaging(paging);
+		return this;
 	}
 
 	@Override
 	public CommentApiQuery withSort(SortEnum sort) {
-		// TODO Auto-generated method stub
-		return null;
+		apiUrlBuilder.withSort(sort);
+		return this;
 	}
 
 	@Override
 	public CommentApiQuery withTimePeriod(TimePeriod timePeriod) {
-		// TODO Auto-generated method stub
-		return null;
+		apiUrlBuilder.withTimePeriod(timePeriod);
+		return this;
 	}
 
 	@Override
 	public CommentApiQuery withToUserId(long toUserId) {
-		// TODO Auto-generated method stub
-		return null;
+		apiUrlBuilder.withField("toid", String.valueOf(toUserId));
+		return this;
 	}
 
 	@Override
 	public CommentApiQuery withUserIds(long... userIds) {
-		// TODO Auto-generated method stub
-		return null;
+		apiUrlBuilder.withIds(userIds);
+		return this;
+	}
+
+	@Override
+	protected List<Comment> unmarshall(JSONObject json) {
+		CommentsImpl adapter = new CommentsImpl();
+		adapter.adaptFrom(json);
+		return adapter.getComments();
 	}
 }

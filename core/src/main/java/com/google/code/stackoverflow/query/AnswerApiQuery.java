@@ -15,6 +15,10 @@ import com.google.code.stackoverflow.schema.SortEnum;
  */
 public interface AnswerApiQuery extends StackOverflowApiQuery<Answer> {
 	
+	public enum Classification {
+		NONE, BY_USER;
+	}
+	
 	/**
 	 * 
 	 */
@@ -34,4 +38,9 @@ public interface AnswerApiQuery extends StackOverflowApiQuery<Answer> {
 	 * 
 	 */
 	public AnswerApiQuery withFetchOptions(Set<FilterOption> fetchOptions);
+	
+	/**
+	 * 
+	 */
+	public AnswerApiQuery withClassification(Classification classification);
 }
