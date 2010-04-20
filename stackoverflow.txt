@@ -32,7 +32,7 @@ todate: default = all - format: unix epoch
 tagged: filter questions by one or more tags separated by a space (uses AND)
 
 X. 1. sort has been changed from resource to parameter..asc, desc have been added
-2. create request builders....like balma.
+X. 2. create request builders....like balma.
 X. 3. error codes.
 X. 4. Make sort orders inner classes.
 X. 5. Remove BadgeSortOrder.
