@@ -5,11 +5,13 @@ import java.util.List;
 import com.google.code.stackoverflow.client.constant.ApplicationConstants;
 import com.google.code.stackoverflow.client.provider.ApiProvider;
 import com.google.code.stackoverflow.client.provider.StackOverflowApiProvider;
+import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackoverflow.query.StackOverflowApiQuery;
 
 public class BaseStackOverflowApiQuery<T> implements StackOverflowApiQuery<T> {
 	
 	private ApiProvider apiProvider = new StackOverflowApiProvider();
+	protected ApiUrlBuilder apiUrlBuilder;
 	private String applicationId;
 	private String apiVersion = ApplicationConstants.DEFAULT_API_VERSION;
 	
