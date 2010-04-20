@@ -3,7 +3,6 @@
  */
 package com.google.code.stackoverflow.client;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -11,12 +10,14 @@ import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.PostTimeline;
+import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.User;
 
 
@@ -26,53 +27,6 @@ import com.google.code.stackoverflow.schema.User;
  * @author Nabeel Mukhtar
  */
 public interface StackOverflowApiClient extends StackOverflowAuthenticationClient {
-	
-	public class TimePeriod {
-		private Date startDate;
-		private Date endDate;
-		
-		public TimePeriod(Date startDate, Date endDate) {
-			this.startDate = startDate;
-			this.endDate = endDate;
-		}
-		
-		/**
-		 * @return the startDate
-		 */
-		public Date getStartDate() {
-			return startDate;
-		}
-		
-		/**
-		 * @return the endDate
-		 */
-		public Date getEndDate() {
-			return endDate;
-		}
-	}
-	
-	public final class Paging {
-		private int pageNumber;
-		private int pageSize;
-		
-		public Paging(int pageNumber, int pageSize) {
-			this.pageNumber = pageNumber;
-			this.pageSize = pageSize;
-		}
-		
-		/**
-		 * @return the pageNumber
-		 */
-		public int getPageNumber() {
-			return pageNumber;
-		}
-		/**
-		 * @return the pageSize
-		 */
-		public int getPageSize() {
-			return pageSize;
-		}
-	}
 	
 	// Question Methods
 	public List<Question> getQuestions();
