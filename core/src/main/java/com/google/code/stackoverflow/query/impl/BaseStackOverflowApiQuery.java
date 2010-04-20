@@ -2,6 +2,7 @@ package com.google.code.stackoverflow.query.impl;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.simple.JSONObject;
@@ -20,10 +21,14 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
 	
 	public BaseStackOverflowApiQuery(String applicationId) {
 		super.setApplicationKey(applicationId);
+        requestHeaders = new HashMap<String, String>();
+
+        // by default we compress contents
+        requestHeaders.put("Accept-Encoding", "gzip, deflate");
 	}
 
 	public BaseStackOverflowApiQuery(String applicationId, String apiVersion) {
-		super.setApplicationKey(applicationId);
+		this(applicationId);
 		super.setApiVersion(apiVersion);
 	}
 	
