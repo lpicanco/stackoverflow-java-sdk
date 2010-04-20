@@ -16,9 +16,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
-import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.client.constant.TestConstants;
+import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.TimePeriod;
 
 /**
  * @author Nabeel Mukhtar

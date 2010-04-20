@@ -4,6 +4,7 @@
 package com.google.code.stackoverflow.query;
 
 import com.google.code.stackoverflow.schema.PostTimeline;
+import com.google.code.stackoverflow.schema.TimePeriod;
 
 /**
  * @author nmukhtar
@@ -11,4 +12,13 @@ import com.google.code.stackoverflow.schema.PostTimeline;
  */
 public interface UserTimelineApiQuery extends StackOverflowApiQuery<PostTimeline> {
 
+	/**
+	 * 
+	 */
+	public UserTimelineApiQuery withUserIds(long... userIds);
+	
+	/**
+	 * 
+	 */
+	public UserTimelineApiQuery withTimePeriod(TimePeriod timePeriod);
 }

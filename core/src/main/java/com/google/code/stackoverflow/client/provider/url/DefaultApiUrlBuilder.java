@@ -12,11 +12,11 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
-import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.client.constant.ApplicationConstants;
 import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.SortEnum;
+import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.ValueEnum;
 
 /**

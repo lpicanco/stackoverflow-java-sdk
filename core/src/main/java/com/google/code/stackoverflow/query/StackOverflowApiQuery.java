@@ -19,4 +19,9 @@ public interface StackOverflowApiQuery<T> {
 	 *
 	 */
 	public List<T> list();
+	
+	/**
+	 *
+	 */
+	public void reset();
 }

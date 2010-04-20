@@ -14,7 +14,7 @@ public class ServerFaultApiProvider implements ApiProvider {
 	private static final String HOST_NAME = "api.serverfault.com";
 	
 	@Override
-	public ApiUrlBuilder createApiUrlBuilder(String methodName,String applicationKey, String apiVersion) {
+	public ApiUrlBuilder createApiUrlBuilder(String methodName, String applicationKey, String apiVersion) {
 		return new DefaultApiUrlBuilder(methodName, applicationKey, HOST_NAME, apiVersion);
 	}
 }

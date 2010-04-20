@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
-import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.SortEnum;
+import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.ValueEnum;
 
 public interface ApiUrlBuilder {

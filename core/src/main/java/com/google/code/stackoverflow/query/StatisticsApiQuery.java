@@ -10,5 +10,4 @@ import com.google.code.stackoverflow.schema.Statistics;
  *
  */
 public interface StatisticsApiQuery extends StackOverflowApiQuery<Statistics> {
-
 }

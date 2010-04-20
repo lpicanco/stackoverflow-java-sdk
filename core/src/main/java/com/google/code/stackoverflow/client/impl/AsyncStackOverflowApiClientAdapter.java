@@ -12,19 +12,19 @@ import java.util.concurrent.Future;
 
 import com.google.code.stackoverflow.client.AsyncStackOverflowApiClient;
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
-import com.google.code.stackoverflow.client.StackOverflowApiClient.Paging;
-import com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod;
 import com.google.code.stackoverflow.client.provider.ApiProvider;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.PostTimeline;
+import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.User;
 
 /**
