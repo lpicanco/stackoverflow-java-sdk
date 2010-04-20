@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
-import com.google.code.stackoverflow.query.TagApiQuery;
+import com.google.code.stackoverflow.client.query.TagApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.Tag;
@@ -23,7 +23,6 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 
 	public TagApiQueryImpl(String applicationId) {
 		super(applicationId);
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_TAGS, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
@@ -65,5 +64,10 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 		TagsImpl adapter = new TagsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getTags();
+	}
+
+	@Override
+	public void reset() {
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_TAGS, getApplicationKey(), getApiVersion());
 	}
 }

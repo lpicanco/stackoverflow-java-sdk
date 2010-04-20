@@ -15,8 +15,8 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.code.stackoverflow.query.QuestionApiQuery;
-import com.google.code.stackoverflow.query.StackOverflowApiQueryFactory;
+import com.google.code.stackoverflow.client.query.QuestionApiQuery;
+import com.google.code.stackoverflow.client.query.StackOverflowApiQueryFactory;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Question;
 

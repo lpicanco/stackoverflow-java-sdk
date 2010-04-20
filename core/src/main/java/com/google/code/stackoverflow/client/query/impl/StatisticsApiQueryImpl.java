@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
-import com.google.code.stackoverflow.query.StatisticsApiQuery;
+import com.google.code.stackoverflow.client.query.StatisticsApiQuery;
 import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.adapter.json.StatisticsImpl;
 
@@ -21,7 +21,6 @@ public class StatisticsApiQueryImpl extends BaseStackOverflowApiQuery<Statistics
 
 	public StatisticsApiQueryImpl(String applicationId) {
 		super(applicationId);
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_STATISTICS, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
@@ -29,5 +28,10 @@ public class StatisticsApiQueryImpl extends BaseStackOverflowApiQuery<Statistics
 		Statistics adapter = new StatisticsImpl();
 		((StatisticsImpl) adapter).adaptFrom(json);
 		return Collections.singletonList(adapter);
+	}
+
+	@Override
+	public void reset() {
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_STATISTICS, getApplicationKey(), getApiVersion());
 	}
 }

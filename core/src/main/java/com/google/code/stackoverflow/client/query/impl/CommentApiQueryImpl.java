@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.query.impl;
+package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
-import com.google.code.stackoverflow.query.CommentApiQuery;
+import com.google.code.stackoverflow.client.query.CommentApiQuery;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.SortEnum;
@@ -24,7 +24,6 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 
 	public CommentApiQueryImpl(String applicationId) {
 		super(applicationId);
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_COMMENT, getApplicationKey(), getApiVersion());
 	}
 
 	@Override
@@ -94,5 +93,10 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 		CommentsImpl adapter = new CommentsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getComments();
+	}
+
+	@Override
+	public void reset() {
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_COMMENT, getApplicationKey(), getApiVersion());
 	}
 }
