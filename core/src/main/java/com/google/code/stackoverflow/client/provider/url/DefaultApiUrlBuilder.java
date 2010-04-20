@@ -95,6 +95,20 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 			throw new UnsupportedOperationException("Method '" + methodName + "' not supported.");
 		}
 	}
+	
+	/**
+	 * 
+	 */
+	public ApiUrlBuilder withMethod(String methodName) {
+		if (stackOverflowApiUrls.containsKey(methodName)) {
+			this.urlFormat = stackOverflowApiUrls.getProperty(methodName);
+		} else {
+			throw new UnsupportedOperationException("Method '" + methodName + "' not supported.");
+		}
+		
+		return this;
+	}
+	
 
 	/**
 	 * With parameter.
