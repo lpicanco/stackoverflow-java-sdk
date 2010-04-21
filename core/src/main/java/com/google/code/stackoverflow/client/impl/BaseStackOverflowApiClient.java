@@ -21,7 +21,7 @@ import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.QuestionTimelines;
+import com.google.code.stackoverflow.schema.PostTimelines;
 import com.google.code.stackoverflow.schema.Questions;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Reputations;
@@ -32,6 +32,7 @@ import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Tags;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.User;
+import com.google.code.stackoverflow.schema.UserTimeline;
 import com.google.code.stackoverflow.schema.UserTimelines;
 import com.google.code.stackoverflow.schema.Users;
 
@@ -218,7 +219,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withId(questionId).withTimePeriod(timePeriod).buildUrl();
 
-        QuestionTimelines timelines = readResponse(QuestionTimelines.class, callApiMethod(apiUrl));
+        PostTimelines timelines = readResponse(PostTimelines.class, callApiMethod(apiUrl));
         return timelines.getTimelines();
 	}
 
@@ -401,7 +402,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<PostTimeline> getUserTimeline(long userId, TimePeriod timePeriod) {
+	public List<UserTimeline> getUserTimeline(long userId, TimePeriod timePeriod) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withId(userId).withTimePeriod(timePeriod).buildUrl();
 
@@ -546,7 +547,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withId(questionId).buildUrl();
 
-        QuestionTimelines timelines = readResponse(QuestionTimelines.class, callApiMethod(apiUrl));
+        PostTimelines timelines = readResponse(PostTimelines.class, callApiMethod(apiUrl));
         return timelines.getTimelines();
 	}
 
@@ -672,7 +673,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<PostTimeline> getUserTimeline(long userId) {
+	public List<UserTimeline> getUserTimeline(long userId) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withId(userId).buildUrl();
 

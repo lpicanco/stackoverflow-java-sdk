@@ -3,14 +3,14 @@
  */
 package com.google.code.stackoverflow.client.query;
 
-import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
+import com.google.code.stackoverflow.schema.UserTimeline;
 
 /**
  * @author nmukhtar
  *
  */
-public interface UserTimelineApiQuery extends StackOverflowApiQuery<PostTimeline> {
+public interface UserTimelineApiQuery extends StackOverflowApiQuery<UserTimeline> {
 
 	/**
 	 * 

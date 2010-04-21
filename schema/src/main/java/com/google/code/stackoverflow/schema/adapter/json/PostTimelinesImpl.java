@@ -9,7 +9,7 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.code.stackoverflow.schema.QuestionTimelines;
+import com.google.code.stackoverflow.schema.PostTimelines;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
@@ -17,7 +17,7 @@ import com.google.code.stackoverflow.schema.adapter.Adaptable;
  * @author nmukhtar
  *
  */
-public class QuestionTimelinesImpl extends BaseJsonAdapter implements QuestionTimelines, Adaptable<QuestionTimelines, JSONObject> {
+public class PostTimelinesImpl extends BaseJsonAdapter implements PostTimelines, Adaptable<PostTimelines, JSONObject> {
 
 	/**
 	 * 
@@ -39,7 +39,7 @@ public class QuestionTimelinesImpl extends BaseJsonAdapter implements QuestionTi
 		JSONArray timelines = (JSONArray) adaptee.get("post_timelines");
 		if (timelines != null) {
 			for (Object o : timelines) {			
-				TimelineImpl timeline = new TimelineImpl();
+				PostTimelineImpl timeline = new PostTimelineImpl();
 				timeline.adaptFrom((JSONObject) o);
 				getTimelines().add(timeline);
 			}
@@ -52,7 +52,7 @@ public class QuestionTimelinesImpl extends BaseJsonAdapter implements QuestionTi
 		JSONObject adapter = new JSONObject();
 		JSONArray timelines = new JSONArray();
 		for (PostTimeline timeline : getTimelines()) {
-			timelines.add(((TimelineImpl) timeline).adaptTo());
+			timelines.add(((PostTimelineImpl) timeline).adaptTo());
 		}
 		adapter.put("post_timelines", timelines);
 		return adapter;

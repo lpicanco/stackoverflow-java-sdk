@@ -9,15 +9,15 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.UserTimelineApiQuery;
-import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
+import com.google.code.stackoverflow.schema.UserTimeline;
 import com.google.code.stackoverflow.schema.adapter.json.UserTimelinesImpl;
 
 /**
  * @author nmukhtar
  *
  */
-public class UserTimelineApiQueryImpl extends BaseStackOverflowApiQuery<PostTimeline> implements UserTimelineApiQuery {
+public class UserTimelineApiQueryImpl extends BaseStackOverflowApiQuery<UserTimeline> implements UserTimelineApiQuery {
 
 	public UserTimelineApiQueryImpl(String applicationId) {
 		super(applicationId);
@@ -36,7 +36,7 @@ public class UserTimelineApiQueryImpl extends BaseStackOverflowApiQuery<PostTime
 	}
 
 	@Override
-	protected List<PostTimeline> unmarshall(JSONObject json) {
+	protected List<UserTimeline> unmarshall(JSONObject json) {
 		UserTimelinesImpl adapter = new UserTimelinesImpl();
 		adapter.adaptFrom(json);
 		return adapter.getTimelines();

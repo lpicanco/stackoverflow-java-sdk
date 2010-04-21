@@ -35,8 +35,9 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
 	
 	@Override
 	public List<T> list() {
+		InputStream jsonContent = null;
         try {
-        	InputStream jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
+        	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
         	Object response = parser.parse(new InputStreamReader(jsonContent));
         	if (response instanceof JSONObject) {
         		return unmarshall((JSONObject) response);
@@ -44,13 +45,16 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
         	throw new StackOverflowApiClientException("Unknown content found in response:" + response.toString());
         } catch (Exception e) {
             throw new StackOverflowApiClientException(e);
-        }
+        } finally {
+	        closeStream(jsonContent);
+	    }
 	}
 
 	@Override
 	public T singleResult() {
+		InputStream jsonContent = null;
         try {
-        	InputStream jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
+        	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
         	Object response = parser.parse(new InputStreamReader(jsonContent));
         	if (response instanceof JSONObject) {
         		return getFirstElement(unmarshall((JSONObject) response));
@@ -58,7 +62,9 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
         	throw new StackOverflowApiClientException("Unknown content found in response:" + response.toString());
         } catch (Exception e) {
             throw new StackOverflowApiClientException(e);
-        }
+        } finally {
+	        closeStream(jsonContent);
+	    }
 	}
 	
     /**

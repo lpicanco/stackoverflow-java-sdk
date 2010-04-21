@@ -21,6 +21,7 @@ import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.User;
+import com.google.code.stackoverflow.schema.UserTimeline;
 
 /**
  * @author nmukhtar
@@ -292,7 +293,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUserTimelineLongTimePeriod() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<PostTimeline> timelines = client.getUserTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
+		List<UserTimeline> timelines = client.getUserTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID), getTimePeriod());
 		assertNotNullOrEmpty("User Timelines should never be null.", timelines);
 	}
 
@@ -552,7 +553,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	@Test
 	public void testGetUserTimelineLong() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test User Id."), TestConstants.STACK_OVERFLOW_TEST_USER_ID);
-		List<PostTimeline> timelines = client.getUserTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
+		List<UserTimeline> timelines = client.getUserTimeline(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_USER_ID));
 		assertNotNullOrEmpty("User timeline should never be null.", timelines);
 	}
 

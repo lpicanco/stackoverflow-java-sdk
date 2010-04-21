@@ -2,7 +2,7 @@ package com.google.code.stackoverflow.schema;
 
 import java.util.List;
 
-public interface QuestionTimelines extends SchemaEntity {
+public interface PostTimelines extends SchemaEntity {
 
 	/**
 	 * @return the timelines

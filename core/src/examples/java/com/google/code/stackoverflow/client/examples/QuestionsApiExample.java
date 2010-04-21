@@ -89,7 +89,7 @@ public class QuestionsApiExample {
     }
 	
 	private static void printResult(PostTimeline timeline) {
-		System.out.println(timeline.getDetail() + ":" + timeline.getTimelineType());
+		System.out.println(timeline.getAction() + ":" + timeline.getTimelineType());
 	}
 
 	private static void printResult(Question question) {

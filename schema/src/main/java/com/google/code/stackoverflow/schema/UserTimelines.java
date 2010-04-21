@@ -7,11 +7,11 @@ public interface UserTimelines extends SchemaEntity {
 	/**
 	 * @return the timelines
 	 */
-	public List<PostTimeline> getTimelines();
+	public List<UserTimeline> getTimelines();
 
 	/**
 	 * @param timelines the timelines to set
 	 */
-	public void setTimelines(List<PostTimeline> timelines);
+	public void setTimelines(List<UserTimeline> timelines);
 
 }

@@ -9,8 +9,7 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.code.stackoverflow.schema.QuestionTimelines;
-import com.google.code.stackoverflow.schema.PostTimeline;
+import com.google.code.stackoverflow.schema.UserTimeline;
 import com.google.code.stackoverflow.schema.UserTimelines;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
@@ -18,20 +17,20 @@ import com.google.code.stackoverflow.schema.adapter.Adaptable;
  * @author nmukhtar
  *
  */
-public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines, Adaptable<QuestionTimelines, JSONObject> {
+public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines, Adaptable<UserTimelines, JSONObject> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
-	private List<PostTimeline> timelines = new ArrayList<PostTimeline>();
+	private List<UserTimeline> timelines = new ArrayList<UserTimeline>();
 
-	public List<PostTimeline> getTimelines() {
+	public List<UserTimeline> getTimelines() {
 		return timelines;
 	}
 
-	public void setTimelines(List<PostTimeline> timelines) {
+	public void setTimelines(List<UserTimeline> timelines) {
 		this.timelines = timelines;
 	}
 
@@ -40,7 +39,7 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 		JSONArray timelines = (JSONArray) adaptee.get("usertimelines");
 		if (timelines != null) {
 			for (Object o : timelines) {			
-				TimelineImpl timeline = new TimelineImpl();
+				UserTimelineImpl timeline = new UserTimelineImpl();
 				timeline.adaptFrom((JSONObject) o);
 				getTimelines().add(timeline);
 			}
@@ -52,8 +51,8 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();
 		JSONArray timelines = new JSONArray();
-		for (PostTimeline timeline : getTimelines()) {
-			timelines.add(((TimelineImpl) timeline).adaptTo());
+		for (UserTimeline timeline : getTimelines()) {
+			timelines.add(((UserTimelineImpl) timeline).adaptTo());
 		}
 		adapter.put("usertimelines", timelines);
 		return adapter;

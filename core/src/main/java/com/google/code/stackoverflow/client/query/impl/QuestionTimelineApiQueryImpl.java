@@ -11,7 +11,7 @@ import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.QuestionTimelineApiQuery;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
-import com.google.code.stackoverflow.schema.adapter.json.QuestionTimelinesImpl;
+import com.google.code.stackoverflow.schema.adapter.json.PostTimelinesImpl;
 
 /**
  * @author nmukhtar
@@ -37,7 +37,7 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 
 	@Override
 	protected List<PostTimeline> unmarshall(JSONObject json) {
-		QuestionTimelinesImpl adapter = new QuestionTimelinesImpl();
+		PostTimelinesImpl adapter = new PostTimelinesImpl();
 		adapter.adaptFrom(json);
 		return adapter.getTimelines();
 	}

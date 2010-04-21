@@ -21,6 +21,7 @@ import com.google.code.stackoverflow.schema.BadgeRank;
 import com.google.code.stackoverflow.schema.PostType;
 import com.google.code.stackoverflow.schema.RevisionType;
 import com.google.code.stackoverflow.schema.PostTimelineType;
+import com.google.code.stackoverflow.schema.UserTimelineType;
 import com.google.code.stackoverflow.schema.UserType;
 import com.google.code.stackoverflow.schema.adapter.Converter;
 
@@ -75,6 +76,12 @@ public abstract class BaseJsonAdapter implements Serializable {
 				return PostTimelineType.fromValue(source);
 			}
 		});
+		converters.put(UserTimelineType.class, new Converter<String, UserTimelineType>() {
+			@Override
+			public UserTimelineType convert(String source) {
+				return UserTimelineType.fromValue(source);
+			}
+		});
 		converters.put(UserType.class, new Converter<String, UserType>() {
 			@Override
 			public UserType convert(String source) {
@@ -97,8 +104,11 @@ public abstract class BaseJsonAdapter implements Serializable {
 				Object value = entry.getValue();
 				if (descriptor != null && descriptor.getWriteMethod() != null) {
 					if (includeProperty(descriptor.getName(), value)) {
-						if (converters.containsKey(descriptor.getPropertyType())) {
+						if (value != null && converters.containsKey(descriptor.getPropertyType())) {
 							value = ((Converter<Object, Object>) converters.get(descriptor.getPropertyType())).convert(value);
+							if (value == null) {
+								logger.warning("Could not convert property '" + entry.getKey() + "' with value:" + entry.getValue());
+							}
 						}
 						descriptor.getWriteMethod().invoke(dest, value);
 					}
@@ -129,6 +139,9 @@ public abstract class BaseJsonAdapter implements Serializable {
 	}
 
 	protected String convertToCamelCase(String original) {
+		if (original.startsWith("is_")) {
+			original = original.substring(3);			
+		}
 		StringBuilder builder = new StringBuilder();
 		boolean upperCase = false;
 		for (int i = 0; i < original.length(); i++) {

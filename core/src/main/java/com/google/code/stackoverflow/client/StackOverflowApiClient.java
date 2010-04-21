@@ -19,6 +19,7 @@ import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.User;
+import com.google.code.stackoverflow.schema.UserTimeline;
 
 
 /**
@@ -68,8 +69,8 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public List<User> getUsers(String filter);
 	public List<User> getUsers(User.SortOrder sort);
 	public List<User> getUsers(String filter, User.SortOrder sort, Paging paging);
-	public List<PostTimeline> getUserTimeline(long userId);
-	public List<PostTimeline> getUserTimeline(long userId, TimePeriod timePeriod);
+	public List<UserTimeline> getUserTimeline(long userId);
+	public List<UserTimeline> getUserTimeline(long userId, TimePeriod timePeriod);
 	public List<Comment> getUserMentions(long userId);
 	public List<Comment> getUserMentions(long userId, TimePeriod timePeriod);
 	public List<Reputation> getUserReputations(long userId);

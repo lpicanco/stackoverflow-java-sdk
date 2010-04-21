@@ -8,12 +8,12 @@ public interface UserTimeline extends SchemaEntity {
 	/**
 	 * @return the timeline_type
 	 */
-	public PostTimelineType getTimelineType();
+	public UserTimelineType getTimelineType();
 
 	/**
 	 * @param timeline_type the timeline_type to set
 	 */
-	public void setTimelineType(PostTimelineType timelineType);
+	public void setTimelineType(UserTimelineType timelineType);
 
 	/**
 	 * @return the post_id
@@ -75,26 +75,6 @@ public interface UserTimeline extends SchemaEntity {
 	 */
 	public void setUserId(long userId);
 
-	/**
-	 * @return the ownerUserId
-	 */
-	public long getOwnerUserId();
-
-	/**
-	 * @param ownerUserId the ownerUserId to set
-	 */
-	public void setOwnerUserId(long ownerUserId);
-	
-	/**
-	 * @return the revisionGuid
-	 */
-	public String getRevisionGuid();
-	
-	/**
-	 * @param revisionGuid the revisionGuid to set
-	 */
-	public void setRevisionGuid(String revisionGuid);
-	
 	/**
 	 * @return the commentId
 	 */

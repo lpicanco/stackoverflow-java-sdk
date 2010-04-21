@@ -46,26 +46,6 @@ public interface PostTimeline extends SchemaEntity {
 	public void setCreationDate(Date creationDate);
 
 	/**
-	 * @return the description
-	 */
-	public String getDescription();
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description);
-
-	/**
-	 * @return the detail
-	 */
-	public String getDetail();
-
-	/**
-	 * @param detail the detail to set
-	 */
-	public void setDetail(String detail);
-
-	/**
 	 * @return the userId
 	 */
 	public long getUserId();
@@ -104,14 +84,4 @@ public interface PostTimeline extends SchemaEntity {
 	 * @param commentId the commentId to set
 	 */
 	public void setCommentId(long commentId);
-
-	/**
-	 * @return the postType
-	 */
-	public PostType getPostType();
-	
-	/**
-	 * @param postType the postType to set
-	 */
-	public void setPostType(PostType postType);
 }
