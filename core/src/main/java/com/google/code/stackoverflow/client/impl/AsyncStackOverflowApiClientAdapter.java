@@ -26,6 +26,7 @@ import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.User;
+import com.google.code.stackoverflow.schema.UserTimeline;
 
 /**
  * @author Nabeel Mukhtar
@@ -842,21 +843,21 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<PostTimeline>> getUserTimeline(final long userId) {
-		return execute(new Callable<List<PostTimeline>>() {
+	public Future<List<UserTimeline>> getUserTimeline(final long userId) {
+		return execute(new Callable<List<UserTimeline>>() {
             @Override
-            public List<PostTimeline> call() throws Exception {
+            public List<UserTimeline> call() throws Exception {
                 return client.getUserTimeline(userId);
             }
         });
 	}
 
 	@Override
-	public Future<List<PostTimeline>> getUserTimeline(final long userId,
+	public Future<List<UserTimeline>> getUserTimeline(final long userId,
 			final TimePeriod timePeriod) {
-		return execute(new Callable<List<PostTimeline>>() {
+		return execute(new Callable<List<UserTimeline>>() {
             @Override
-            public List<PostTimeline> call() throws Exception {
+            public List<UserTimeline> call() throws Exception {
                 return client.getUserTimeline(userId, timePeriod);
             }
         });

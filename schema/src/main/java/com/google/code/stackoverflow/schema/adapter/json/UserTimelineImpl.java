@@ -8,38 +8,36 @@ import java.util.Date;
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.PostType;
-import com.google.code.stackoverflow.schema.PostTimeline;
-import com.google.code.stackoverflow.schema.PostTimelineType;
+import com.google.code.stackoverflow.schema.UserTimeline;
+import com.google.code.stackoverflow.schema.UserTimelineType;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
  * @author nmukhtar
  *
  */
-public class TimelineImpl extends BaseJsonAdapter implements PostTimeline, Adaptable<PostTimeline, JSONObject> {
+public class UserTimelineImpl extends BaseJsonAdapter implements UserTimeline, Adaptable<UserTimeline, JSONObject> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1401085998475480138L;
 	
-	private PostTimelineType timelineType;
+	private UserTimelineType timelineType;
 	private long postId;
 	private long userId;
-	private long ownerUserId;
 	private String action;
 	private Date creationDate;
 	private String description;
 	private String detail;
-	private String revisionGuid;
 	private long commentId;
 	private PostType postType;
 	
-	public PostTimelineType getTimelineType() {
+	public UserTimelineType getTimelineType() {
 		return timelineType;
 	}
 	
-	public void setTimelineType(PostTimelineType timelineType) {
+	public void setTimelineType(UserTimelineType timelineType) {
 		this.timelineType = timelineType;
 	}
 	
@@ -101,26 +99,6 @@ public class TimelineImpl extends BaseJsonAdapter implements PostTimeline, Adapt
 		JSONObject adapter = new JSONObject();
 		copyProperties(adapter, this);
 		return adapter;
-	}
-
-	@Override
-	public long getOwnerUserId() {
-		return ownerUserId;
-	}
-
-	@Override
-	public void setOwnerUserId(long ownerUserId) {
-		this.ownerUserId = ownerUserId;
-	}
-
-	@Override
-	public String getRevisionGuid() {
-		return revisionGuid;
-	}
-
-	@Override
-	public void setRevisionGuid(String revisionGuid) {
-		this.revisionGuid = revisionGuid;
 	}
 
 	@Override

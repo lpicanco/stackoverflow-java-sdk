@@ -25,9 +25,11 @@ import com.google.code.stackoverflow.client.exception.InvalidApplicationKeyExcep
 import com.google.code.stackoverflow.client.exception.InvalidOrderException;
 import com.google.code.stackoverflow.client.exception.InvalidPageSizeException;
 import com.google.code.stackoverflow.client.exception.InvalidSortException;
+import com.google.code.stackoverflow.client.exception.InvalidVectorFormatException;
 import com.google.code.stackoverflow.client.exception.NotFoundException;
 import com.google.code.stackoverflow.client.exception.RequestLimitExceededException;
 import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
+import com.google.code.stackoverflow.client.exception.TooManyIdsException;
 import com.google.code.stackoverflow.client.provider.ApiProvider;
 import com.google.code.stackoverflow.client.provider.StackOverflowApiProvider;
 import com.google.code.stackoverflow.schema.Error;
@@ -321,6 +323,12 @@ public abstract class StackOverflowApiGateway {
 			
 		case ErrorCodes.REQUEST_LIMIT_EXCEEDED:
 			return new RequestLimitExceededException(error.getMessage(), new Date());
+			
+		case ErrorCodes.INVALID_VECTOR_FORMAT:
+			return new InvalidVectorFormatException(error.getMessage(), new Date());
+			
+		case ErrorCodes.TOO_MANY_IDS:
+			return new TooManyIdsException(error.getMessage(), new Date());
 			
 		default:
 			return new StackOverflowApiClientException(error.getMessage(), error.getStatusCode(), error.getErrorCode(), new Date());
