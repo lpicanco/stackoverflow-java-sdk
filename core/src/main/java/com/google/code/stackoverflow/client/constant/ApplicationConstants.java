@@ -55,6 +55,11 @@ public final class ApplicationConstants {
     /** The Constant READ_TIMEOUT. */
     public static final int READ_TIMEOUT = getIntProperty("com.google.code.stackoverflow.client.readTimeout");
     
+    /** The Constant MAX_RATE_LIMIT_HEADER. */
+    public static final String MAX_RATE_LIMIT_HEADER = getProperty("com.google.code.stackoverflow.client.maxRateLimitHeader");
+
+    /** The Constant CURRENT_RATE_LIMIT_HEADER. */
+    public static final String CURRENT_RATE_LIMIT_HEADER = getProperty("com.google.code.stackoverflow.client.currentRateLimitHeader");
     
     /**
      * Instantiates a new application constants.
