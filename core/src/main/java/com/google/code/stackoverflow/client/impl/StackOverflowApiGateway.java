@@ -53,6 +53,10 @@ public abstract class StackOverflowApiGateway {
 	private ApiProvider apiProvider = new StackOverflowApiProvider();
 	/** Field description */
 	protected String apiVersion = ApplicationConstants.DEFAULT_API_VERSION;
+	/** Field description */
+	private int maxRateLimit = -1;
+	/** Field description */
+	private int currentRateLimit = -1;
 
 	public String getApiVersion() {
 		return apiVersion;
@@ -117,6 +121,26 @@ public abstract class StackOverflowApiGateway {
 	public void setApiProvider(ApiProvider apiProvider) {
 		this.apiProvider = apiProvider;
 	}
+	
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public int getMaxRateLimit() {
+    	return maxRateLimit;
+    }
+    
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public int getCurrentRateLimit() {
+    	return currentRateLimit;
+    }
 
 	/**
 	 * Stolen liberally from http://www.kodejava.org/examples/266.html
@@ -183,6 +207,10 @@ public abstract class StackOverflowApiGateway {
 	            request.setRequestProperty(headerName, requestHeaders.get(headerName));
 	        }
 	        
+	        request.connect();
+	        maxRateLimit = request.getHeaderFieldInt(ApplicationConstants.MAX_RATE_LIMIT_HEADER, -1);
+	        currentRateLimit = request.getHeaderFieldInt(ApplicationConstants.CURRENT_RATE_LIMIT_HEADER, -1);
+	        
 	        if (request.getResponseCode() != expected) {
 	            Error error = readResponse(Error.class,
 	                    getWrappedInputStream(request.getErrorStream(),
@@ -244,7 +272,10 @@ public abstract class StackOverflowApiGateway {
 			        }
 			
 			        request.connect();
-			
+			        
+			        maxRateLimit = request.getHeaderFieldInt(ApplicationConstants.MAX_RATE_LIMIT_HEADER, -1);
+			        currentRateLimit = request.getHeaderFieldInt(ApplicationConstants.CURRENT_RATE_LIMIT_HEADER, -1);
+			        
 			        if (request.getResponseCode() != expected) {
 			            Error error = readResponse(Error.class,
 			                    getWrappedInputStream(request.getErrorStream(),

@@ -944,4 +944,14 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
             }
         });
 	}
+
+	@Override
+	public int getCurrentRateLimit() {
+		return client.getCurrentRateLimit();
+	}
+
+	@Override
+	public int getMaxRateLimit() {
+		return client.getMaxRateLimit();
+	}
 }

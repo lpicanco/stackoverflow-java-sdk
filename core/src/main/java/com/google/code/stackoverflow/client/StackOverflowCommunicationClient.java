@@ -58,4 +58,20 @@ public interface StackOverflowCommunicationClient {
      * @return
      */
     public ApiProvider getApiProvider();
+    
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public int getMaxRateLimit();
+    
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public int getCurrentRateLimit();
 }
