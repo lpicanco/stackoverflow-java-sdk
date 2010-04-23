@@ -30,11 +30,11 @@ public final class TestConstants {
         testConstants.getProperty("com.google.code.stackoverflow.client.apiKey");
 
     /** Field description */
-    public static final String STACK_OVERFLOW_TEST_USER_ID =
-        testConstants.getProperty("com.google.code.stackoverflow.client.testUserId");
+    public static final String STACK_OVERFLOW_TEST_USER_IDS =
+        testConstants.getProperty("com.google.code.stackoverflow.client.testUserIds");
     /** Field description */
-    public static final String STACK_OVERFLOW_TEST_QUESTION_ID =
-        testConstants.getProperty("com.google.code.stackoverflow.client.testQuestionId");
+    public static final String STACK_OVERFLOW_TEST_QUESTION_IDS =
+        testConstants.getProperty("com.google.code.stackoverflow.client.testQuestionIds");
     /** Field description */
     public static final String STACK_OVERFLOW_TEST_ANSWER_ID =
         testConstants.getProperty("com.google.code.stackoverflow.client.testAnswerId");
