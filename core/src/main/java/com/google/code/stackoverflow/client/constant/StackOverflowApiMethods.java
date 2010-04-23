@@ -27,6 +27,7 @@ public final class StackOverflowApiMethods {
 	public static final String GET_TAGS = "com.google.code.stackoverflow.client.getTags";
 	public static final String GET_TAGS_FOR_USER = "com.google.code.stackoverflow.client.getTagsForUser";
 	public static final String GET_ANSWERS_BY_USER = "com.google.code.stackoverflow.client.getAnswersByUser";
+	public static final String GET_ANSWERS_BY_QUESTION = "com.google.code.stackoverflow.client.getAnswersByQuestion";
 	public static final String GET_ANSWER = "com.google.code.stackoverflow.client.getAnswer";
 	public static final String GET_STATISTICS = "com.google.code.stackoverflow.client.getStatistics";
 	public static final String GET_COMMENTS_BY_USER = "com.google.code.stackoverflow.client.getCommentsByUser";

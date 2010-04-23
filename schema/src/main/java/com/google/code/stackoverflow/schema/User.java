@@ -335,5 +335,94 @@ public interface User extends SchemaEntity {
 	 * @param acceptRate the acceptRate to set
 	 */
 	public void setAcceptRate(double acceptRate);
+	
+	/**
+	 * @return the userQuestionsUrl
+	 */
+	public String getUserQuestionsUrl();
 
+	/**
+	 * @param userQuestionsUrl the userQuestionsUrl to set
+	 */
+	public void setUserQuestionsUrl(String userQuestionsUrl);
+
+	/**
+	 * @return the userAnswersUrl
+	 */
+	public String getUserAnswersUrl();
+
+	/**
+	 * @param userAnswersUrl the userAnswersUrl to set
+	 */
+	public void setUserAnswersUrl(String userAnswersUrl);
+
+	/**
+	 * @return the userFavoritesUrl
+	 */
+	public String getUserFavoritesUrl();
+
+	/**
+	 * @param userFavoritesUrl the userFavoritesUrl to set
+	 */
+	public void setUserFavoritesUrl(String userFavoritesUrl);
+
+	/**
+	 * @return the userTagsUrl
+	 */
+	public String getUserTagsUrl();
+
+	/**
+	 * @param userTagsUrl the userTagsUrl to set
+	 */
+	public void setUserTagsUrl(String userTagsUrl);
+
+	/**
+	 * @return the userBadgesUrl
+	 */
+	public String getUserBadgesUrl();
+
+	/**
+	 * @param userBadgesUrl the userBadgesUrl to set
+	 */
+	public void setUserBadgesUrl(String userBadgesUrl);
+
+	/**
+	 * @return the userTimelineUrl
+	 */
+	public String getUserTimelineUrl();
+
+	/**
+	 * @param userTimelineUrl the userTimelineUrl to set
+	 */
+	public void setUserTimelineUrl(String userTimelineUrl);
+
+	/**
+	 * @return the userMentionedUrl
+	 */
+	public String getUserMentionedUrl();
+
+	/**
+	 * @param userMentionedUrl the userMentionedUrl to set
+	 */
+	public void setUserMentionedUrl(String userMentionedUrl);
+
+	/**
+	 * @return the userCommentsUrl
+	 */
+	public String getUserCommentsUrl();
+
+	/**
+	 * @param userCommentsUrl the userCommentsUrl to set
+	 */
+	public void setUserCommentsUrl(String userCommentsUrl);
+
+	/**
+	 * @return the userReputationUrl
+	 */
+	public String getUserReputationUrl();
+
+	/**
+	 * @param userReputationUrl the userReputationUrl to set
+	 */
+	public void setUserReputationUrl(String userReputationUrl);
 }

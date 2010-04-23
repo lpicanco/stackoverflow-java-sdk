@@ -299,4 +299,33 @@ public interface Question extends SchemaEntity {
 	 * @param ownerEmailHash the ownerEmailHash to set
 	 */
 	public void setOwnerEmailHash(String ownerEmailHash);
+	
+	/**
+	 * @return the questionTimelineUrl
+	 */
+	public String getQuestionTimelineUrl();
+	/**
+	 * @param questionTimelineUrl the questionTimelineUrl to set
+	 */
+	public void setQuestionTimelineUrl(String questionTimelineUrl);
+
+	/**
+	 * @return the questionCommentsUrl
+	 */
+	public String getQuestionCommentsUrl();
+
+	/**
+	 * @param questionCommentsUrl the questionCommentsUrl to set
+	 */
+	public void setQuestionCommentsUrl(String questionCommentsUrl);
+
+	/**
+	 * @return the questionAnswersUrl
+	 */
+	public String getQuestionAnswersUrl();
+
+	/**
+	 * @param questionAnswersUrl the questionAnswersUrl to set
+	 */
+	public void setQuestionAnswersUrl(String questionAnswersUrl);
 }

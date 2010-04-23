@@ -39,6 +39,15 @@ public class UserImpl extends BaseJsonAdapter implements User, Adaptable<User, J
 	private long upVoteCount;
 	private long downVoteCount;
 	private double acceptRate;
+	private String userQuestionsUrl;
+	private String userAnswersUrl;
+	private String userFavoritesUrl;
+	private String userTagsUrl;
+	private String userBadgesUrl;
+	private String userTimelineUrl;
+	private String userMentionedUrl;
+	private String userCommentsUrl;
+	private String userReputationUrl;
 	
 	public long getUserId() {
 		return userId;
@@ -174,6 +183,132 @@ public class UserImpl extends BaseJsonAdapter implements User, Adaptable<User, J
 
 	public void setAcceptRate(double acceptRate) {
 		this.acceptRate = acceptRate;
+	}
+	
+	/**
+	 * @return the userQuestionsUrl
+	 */
+	public String getUserQuestionsUrl() {
+		return userQuestionsUrl;
+	}
+
+	/**
+	 * @param userQuestionsUrl the userQuestionsUrl to set
+	 */
+	public void setUserQuestionsUrl(String userQuestionsUrl) {
+		this.userQuestionsUrl = userQuestionsUrl;
+	}
+
+	/**
+	 * @return the userAnswersUrl
+	 */
+	public String getUserAnswersUrl() {
+		return userAnswersUrl;
+	}
+
+	/**
+	 * @param userAnswersUrl the userAnswersUrl to set
+	 */
+	public void setUserAnswersUrl(String userAnswersUrl) {
+		this.userAnswersUrl = userAnswersUrl;
+	}
+
+	/**
+	 * @return the userFavoritesUrl
+	 */
+	public String getUserFavoritesUrl() {
+		return userFavoritesUrl;
+	}
+
+	/**
+	 * @param userFavoritesUrl the userFavoritesUrl to set
+	 */
+	public void setUserFavoritesUrl(String userFavoritesUrl) {
+		this.userFavoritesUrl = userFavoritesUrl;
+	}
+
+	/**
+	 * @return the userTagsUrl
+	 */
+	public String getUserTagsUrl() {
+		return userTagsUrl;
+	}
+
+	/**
+	 * @param userTagsUrl the userTagsUrl to set
+	 */
+	public void setUserTagsUrl(String userTagsUrl) {
+		this.userTagsUrl = userTagsUrl;
+	}
+
+	/**
+	 * @return the userBadgesUrl
+	 */
+	public String getUserBadgesUrl() {
+		return userBadgesUrl;
+	}
+
+	/**
+	 * @param userBadgesUrl the userBadgesUrl to set
+	 */
+	public void setUserBadgesUrl(String userBadgesUrl) {
+		this.userBadgesUrl = userBadgesUrl;
+	}
+
+	/**
+	 * @return the userTimelineUrl
+	 */
+	public String getUserTimelineUrl() {
+		return userTimelineUrl;
+	}
+
+	/**
+	 * @param userTimelineUrl the userTimelineUrl to set
+	 */
+	public void setUserTimelineUrl(String userTimelineUrl) {
+		this.userTimelineUrl = userTimelineUrl;
+	}
+
+	/**
+	 * @return the userMentionedUrl
+	 */
+	public String getUserMentionedUrl() {
+		return userMentionedUrl;
+	}
+
+	/**
+	 * @param userMentionedUrl the userMentionedUrl to set
+	 */
+	public void setUserMentionedUrl(String userMentionedUrl) {
+		this.userMentionedUrl = userMentionedUrl;
+	}
+
+	/**
+	 * @return the userCommentsUrl
+	 */
+	public String getUserCommentsUrl() {
+		return userCommentsUrl;
+	}
+
+	/**
+	 * @param userCommentsUrl the userCommentsUrl to set
+	 */
+	public void setUserCommentsUrl(String userCommentsUrl) {
+		this.userCommentsUrl = userCommentsUrl;
+	}
+
+	/**
+	 * @return the userReputationUrl
+	 */
+	public String getUserReputationUrl() {
+		return userReputationUrl;
+	}
+
+	/**
+	 * @param userReputationUrl the userReputationUrl to set
+	 */
+	public void setUserReputationUrl(String userReputationUrl) {
+		this.userReputationUrl = userReputationUrl;
 	}
 
 	@Override

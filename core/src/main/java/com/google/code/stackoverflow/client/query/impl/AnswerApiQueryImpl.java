@@ -50,10 +50,21 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	}
 
 	@Override
+	public AnswerApiQuery withQuestionIds(long... questionIds) {
+		apiUrlBuilder.withIds(questionIds);
+		return this;
+	}
+	
+	@Override
 	public AnswerApiQuery withClassification(Classification classification) {
 		switch (classification) {
 		case BY_USER:
 			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
+			
+			break;
+
+		case BY_QUESTION:
+			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
 			
 			break;
 

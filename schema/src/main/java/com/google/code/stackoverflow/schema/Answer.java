@@ -240,4 +240,14 @@ public interface Answer extends SchemaEntity {
 	 * @param ownerEmailHash the ownerEmailHash to set
 	 */
 	public void setOwnerEmailHash(String ownerEmailHash);
+	
+	/**
+	 * @return the answerCommentsUrl
+	 */
+	public String getAnswerCommentsUrl();
+
+	/**
+	 * @param answerCommentsUrl the answerCommentsUrl to set
+	 */
+	public void setAnswerCommentsUrl(String answerCommentsUrl);
 }

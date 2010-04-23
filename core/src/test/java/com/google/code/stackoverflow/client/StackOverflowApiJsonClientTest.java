@@ -347,6 +347,16 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
+	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswersByQuestion(long)}.
+	 */
+	@Test
+	public void testGetAnswersByQuestionLong() {
+    	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Question Id."), TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID);
+		List<Answer> answers = client.getAnswersByQuestion(Long.valueOf(TestConstants.STACK_OVERFLOW_TEST_QUESTION_ID));
+		assertNotNullOrEmpty("Answers should never be null.", answers);
+	}
+	
+	/**
 	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswersByUser(long, com.google.code.stackoverflow.schema.SortOrder)}.
 	 */
 	@Test
