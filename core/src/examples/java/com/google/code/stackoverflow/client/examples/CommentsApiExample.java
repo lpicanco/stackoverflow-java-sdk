@@ -67,7 +67,7 @@ public class CommentsApiExample {
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
-    			List<Comment> userComments = client.getUserComments(Long.valueOf(idValue));
+    			List<Comment> userComments = client.getUsersComments(Long.valueOf(idValue));
     			for (Comment comment : userComments) {
     				printResult(comment);
     			}

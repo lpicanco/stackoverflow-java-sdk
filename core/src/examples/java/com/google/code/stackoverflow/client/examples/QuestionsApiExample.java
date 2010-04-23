@@ -70,15 +70,15 @@ public class QuestionsApiExample {
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
-    			Question question = client.getQuestion(Long.valueOf(idValue));
-    			printResult(question);
+    			List<Question> question = client.getQuestions(Long.valueOf(idValue));
+    			printResult(question.get(0));
     		} else {
     			List<Question> questions = client.getQuestions(EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS));
     			for (Question question : questions) {
     				printResult(question);
     			}
     			
-    			List<PostTimeline> questionTimeline = client.getQuestionTimeline(2420689L);
+    			List<PostTimeline> questionTimeline = client.getQuestionsTimeline(2420689L);
     			for (PostTimeline timeline : questionTimeline) {
 					printResult(timeline);
 				}

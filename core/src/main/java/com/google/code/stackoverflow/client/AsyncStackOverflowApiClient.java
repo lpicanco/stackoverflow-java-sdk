@@ -57,10 +57,10 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, TimePeriod timePeriod);
 	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, Set<FilterOption> filterOptions);
 	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
-	public Future<Question> getQuestion(long questionId);
-	public Future<Question> getQuestion(long questionId, Paging paging);
-	public Future<Question> getQuestion(long questionId, Set<FilterOption> filterOptions);
-	public Future<Question> getQuestion(long questionId, Paging paging, Set<FilterOption> filterOptions);
+	public Future<List<Question>> getQuestion(long questionId);
+	public Future<List<Question>> getQuestion(long questionId, Paging paging);
+	public Future<List<Question>> getQuestion(long questionId, Set<FilterOption> filterOptions);
+	public Future<List<Question>> getQuestion(long questionId, Paging paging, Set<FilterOption> filterOptions);
 	public Future<List<PostTimeline>> getQuestionTimeline(long questionId);
 	public Future<List<PostTimeline>> getQuestionTimeline(long questionId, TimePeriod timePeriod);
 	
@@ -78,7 +78,7 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<Reputation>> getUserReputations(long userId, TimePeriod timePeriod);
 	public Future<List<Reputation>> getUserReputations(long userId, Paging paging);
 	public Future<List<Reputation>> getUserReputations(long userId, Paging paging, TimePeriod timePeriod);
-	public Future<User> getUser(long userId);
+	public Future<List<User>> getUser(long userId);
 	
 	// Badge Methods
 	public Future<List<Badge>> getBadges();
@@ -99,8 +99,8 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<Answer>> getAnswersByUser(long userId, Set<FilterOption> filterOptions); 
 	public Future<List<Answer>> getAnswersByUser(long userId, Answer.SortOrder sort);
 	public Future<List<Answer>> getAnswersByUser(long userId, Answer.SortOrder sort, Set<FilterOption> filterOptions);
-	public Future<Answer> getAnswer(long answerId);
-	public Future<Answer> getAnswer(long answerId, Set<FilterOption> filterOptions);
+	public Future<List<Answer>> getAnswer(long answerId);
+	public Future<List<Answer>> getAnswer(long answerId, Set<FilterOption> filterOptions);
 	
 	// Comment Methods
 	public Future<List<Comment>> getUserComments(long userId);
@@ -114,7 +114,7 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<Comment>> getUserComments(long userId, long toUserId, TimePeriod timePeriod);
 	public Future<List<Comment>> getUserComments(long userId, long toUserId, Paging paging);
 	public Future<List<Comment>> getUserComments(long userId, long toUserId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod);
-	public Future<Comment> getComment(long commentId);
+	public Future<List<Comment>> getComment(long commentId);
 	
 	// Statistics Method
 	public Future<Statistics> getStatistics();
