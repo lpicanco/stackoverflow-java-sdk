@@ -136,65 +136,65 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Answer>> getAnswer(final long answerId) {
+	public Future<List<Answer>> getAnswers(final long... answerIds) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswers(answerId);
+                return client.getAnswers(answerIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Answer>> getAnswer(final long answerId,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Answer>> getAnswers(final Set<FilterOption> filterOptions,
+			final long... answerIds) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswers(filterOptions, answerId);
+                return client.getAnswers(filterOptions, answerIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Answer>> getAnswersByUser(final long userId) {
+	public Future<List<Answer>> getAnswersByUsers(final long... userIds) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUsers(userId);
+                return client.getAnswersByUsers(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Answer>> getAnswersByUser(final long userId,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Answer>> getAnswersByUsers(final Set<FilterOption> filterOptions,
+			final long... userIds) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUsers(filterOptions, userId);
+                return client.getAnswersByUsers(filterOptions, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Answer>> getAnswersByUser(final long userId,
-			final Answer.SortOrder sort) {
+	public Future<List<Answer>> getAnswersByUsers(final Answer.SortOrder sort,
+			final long... userIds) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUsers(sort, userId);
+                return client.getAnswersByUsers(sort, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Answer>> getAnswersByUser(final long userId,
-			final Answer.SortOrder sort, final Set<FilterOption> filterOptions) {
+	public Future<List<Answer>> getAnswersByUsers(final Answer.SortOrder sort,
+			final Set<FilterOption> filterOptions, final long... userIds) {
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUsers(sort, filterOptions, userId);
+                return client.getAnswersByUsers(sort, filterOptions, userIds);
             }
         });
 	}
@@ -230,150 +230,150 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 	
 	@Override
-	public Future<List<Badge>> getBadgesForUser(final long userId) {
+	public Future<List<Badge>> getBadgesForUsers(final long... userIds) {
 		return execute(new Callable<List<Badge>>() {
             @Override
             public List<Badge> call() throws Exception {
-                return client.getBadgesForUsers(userId);
+                return client.getBadgesForUsers(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getComment(final long commentId) {
+	public Future<List<Comment>> getComments(final long... commentIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getComments(commentId);
+                return client.getComments(commentIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId) {
+	public Future<List<Question>> getFavoriteQuestionsByUsers(final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUsers(userId);
+                return client.getFavoriteQuestionsByUsers(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId,
-			final User.FavoriteSortOrder sort) {
+	public Future<List<Question>> getFavoriteQuestionsByUsers(final User.FavoriteSortOrder sort,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUsers(sort, userId);
+                return client.getFavoriteQuestionsByUsers(sort, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId,
-			final Paging paging) {
+	public Future<List<Question>> getFavoriteQuestionsByUsers(final Paging paging,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUsers(paging, userId);
+                return client.getFavoriteQuestionsByUsers(paging, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId,
-			final TimePeriod timePeriod) {
+	public Future<List<Question>> getFavoriteQuestionsByUsers(final TimePeriod timePeriod,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUsers(timePeriod, userId);
+                return client.getFavoriteQuestionsByUsers(timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Question>> getFavoriteQuestionsByUsers(final Set<FilterOption> filterOptions,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUsers(filterOptions, userId);
+                return client.getFavoriteQuestionsByUsers(filterOptions, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getFavoriteQuestionsByUser(final long userId,
-			final User.FavoriteSortOrder sort, final Paging paging, final TimePeriod timePeriod,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Question>> getFavoriteQuestionsByUsers(final User.FavoriteSortOrder sort,
+			final Paging paging, final TimePeriod timePeriod, final Set<FilterOption> filterOptions,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUsers(sort, paging, timePeriod, filterOptions, userId);
+                return client.getFavoriteQuestionsByUsers(sort, paging, timePeriod, filterOptions, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestion(final long questionId) {
+	public Future<List<Question>> getQuestions(final long... questionIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestions(questionId);
+                return client.getQuestions(questionIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestion(final long questionId, final Paging paging) {
+	public Future<List<Question>> getQuestions(final Paging paging, final long... questionIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestions(paging, questionId);
+                return client.getQuestions(paging, questionIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestion(final long questionId,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Question>> getQuestions(final Set<FilterOption> filterOptions,
+			final long... questionIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestions(filterOptions, questionId);
+                return client.getQuestions(filterOptions, questionIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestion(final long questionId, final Paging paging,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Question>> getQuestions(final Paging paging, final Set<FilterOption> filterOptions,
+			final long... questionIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestions(paging, filterOptions, questionId);
+                return client.getQuestions(paging, filterOptions, questionIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<PostTimeline>> getQuestionTimeline(final long questionId) {
+	public Future<List<PostTimeline>> getQuestionsTimeline(final long... questionIds) {
 		return execute(new Callable<List<PostTimeline>>() {
             @Override
             public List<PostTimeline> call() throws Exception {
-                return client.getQuestionsTimeline(questionId);
+                return client.getQuestionsTimeline(questionIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<PostTimeline>> getQuestionTimeline(final long questionId,
-			final TimePeriod timePeriod) {
+	public Future<List<PostTimeline>> getQuestionsTimeline(final TimePeriod timePeriod,
+			final long... questionIds) {
 		return execute(new Callable<List<PostTimeline>>() {
             @Override
             public List<PostTimeline> call() throws Exception {
-                return client.getQuestionsTimeline(timePeriod, questionId);
+                return client.getQuestionsTimeline(timePeriod, questionIds);
             }
         });
 	}
@@ -441,66 +441,66 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Question>> getQuestionsByUser(final long userId) {
+	public Future<List<Question>> getQuestionsByUsers(final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUsers(userId);
+                return client.getQuestionsByUsers(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestionsByUser(final long userId,
-			final User.QuestionSortOrder sort) {
+	public Future<List<Question>> getQuestionsByUsers(final User.QuestionSortOrder sort,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUsers(sort, userId);
+                return client.getQuestionsByUsers(sort, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestionsByUser(final long userId, final Paging paging) {
+	public Future<List<Question>> getQuestionsByUsers(final Paging paging, final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUsers(paging, userId);
+                return client.getQuestionsByUsers(paging, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestionsByUser(final long userId,
-			final TimePeriod timePeriod) {
+	public Future<List<Question>> getQuestionsByUsers(final TimePeriod timePeriod,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUsers(timePeriod, userId);
+                return client.getQuestionsByUsers(timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestionsByUser(final long userId,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Question>> getQuestionsByUsers(final Set<FilterOption> filterOptions,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUsers(filterOptions, userId);
+                return client.getQuestionsByUsers(filterOptions, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Question>> getQuestionsByUser(final long userId,
-			final User.QuestionSortOrder sort, final Paging paging, final TimePeriod timePeriod,
-			final Set<FilterOption> filterOptions) {
+	public Future<List<Question>> getQuestionsByUsers(final User.QuestionSortOrder sort,
+			final Paging paging, final TimePeriod timePeriod, final Set<FilterOption> filterOptions,
+			final long... userIds) {
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUsers(sort, paging, timePeriod, filterOptions, userId);
+                return client.getQuestionsByUsers(sort, paging, timePeriod, filterOptions, userIds);
             }
         });
 	}
@@ -578,21 +578,21 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Tag>> getTagsForUser(final long userId) {
+	public Future<List<Tag>> getTagsForUsers(final long... userIds) {
 		return execute(new Callable<List<Tag>>() {
             @Override
             public List<Tag> call() throws Exception {
-                return client.getTagsForUsers(userId);
+                return client.getTagsForUsers(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Tag>> getTagsForUser(final long userId, final Paging paging) {
+	public Future<List<Tag>> getTagsForUsers(final Paging paging, final long... userIds) {
 		return execute(new Callable<List<Tag>>() {
             @Override
             public List<Tag> call() throws Exception {
-                return client.getTagsForUsers(paging, userId);
+                return client.getTagsForUsers(paging, userIds);
             }
         });
 	}
@@ -662,203 +662,203 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<User>> getUser(final long userId) {
+	public Future<List<User>> getUsers(final long... userIds) {
 		return execute(new Callable<List<User>>() {
             @Override
             public List<User> call() throws Exception {
-                return client.getUsers(userId);
+                return client.getUsers(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId) {
+	public Future<List<Comment>> getUsersComments(final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersComments(userId);
+                return client.getUsersComments(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId,
-			final Comment.SortOrder sort) {
+	public Future<List<Comment>> getUsersComments(final Comment.SortOrder sort,
+			final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersComments(sort, userId);
+                return client.getUsersComments(sort, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId,
-			final TimePeriod timePeriod) {
+	public Future<List<Comment>> getUsersComments(final TimePeriod timePeriod,
+			final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersComments(timePeriod, userId);
+                return client.getUsersComments(timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId, final Paging paging) {
+	public Future<List<Comment>> getUsersComments(final Paging paging, final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersComments(paging, userId);
+                return client.getUsersComments(paging, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId,
-			final Comment.SortOrder sort, final Paging paging, final TimePeriod timePeriod) {
+	public Future<List<Comment>> getUsersComments(final Comment.SortOrder sort,
+			final Paging paging, final TimePeriod timePeriod, final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersComments(sort, paging, timePeriod, userId);
+                return client.getUsersComments(sort, paging, timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId, final long toUserId) {
+	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersCommentsToUser(toUserId, userId);
+                return client.getUsersCommentsToUser(toUserId, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId, final long toUserId,
-			final Comment.SortOrder sort) {
+	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final Comment.SortOrder sort,
+			final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersCommentsToUser(toUserId, sort, userId);
+                return client.getUsersCommentsToUser(toUserId, sort, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId, final long toUserId,
-			final TimePeriod timePeriod) {
+	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final TimePeriod timePeriod,
+			final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersCommentsToUser(toUserId, timePeriod, userId);
+                return client.getUsersCommentsToUser(toUserId, timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId, final long toUserId,
-			final Paging paging) {
+	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final Paging paging,
+			final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersCommentsToUser(toUserId, paging, userId);
+                return client.getUsersCommentsToUser(toUserId, paging, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserComments(final long userId, final long toUserId,
-			final Comment.SortOrder sort, final Paging paging, final TimePeriod timePeriod) {
+	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final Comment.SortOrder sort,
+			final Paging paging, final TimePeriod timePeriod, final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersCommentsToUser(toUserId, sort, paging, timePeriod, userId);
+                return client.getUsersCommentsToUser(toUserId, sort, paging, timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserMentions(final long userId) {
+	public Future<List<Comment>> getUsersMentions(final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersMentions(userId);
+                return client.getUsersMentions(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Comment>> getUserMentions(final long userId,
-			final TimePeriod timePeriod) {
+	public Future<List<Comment>> getUsersMentions(final TimePeriod timePeriod,
+			final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUsersMentions(timePeriod, userId);
+                return client.getUsersMentions(timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Reputation>> getUserReputations(final long userId) {
+	public Future<List<Reputation>> getUsersReputations(final long... userIds) {
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUsersReputations(userId);
+                return client.getUsersReputations(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Reputation>> getUserReputations(final long userId,
-			final TimePeriod timePeriod) {
+	public Future<List<Reputation>> getUsersReputations(final TimePeriod timePeriod,
+			final long... userIds) {
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUsersReputations(timePeriod, userId);
+                return client.getUsersReputations(timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Reputation>> getUserReputations(final long userId,
-			final Paging paging) {
+	public Future<List<Reputation>> getUsersReputations(final Paging paging,
+			final long... userIds) {
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUsersReputations(paging, userId);
+                return client.getUsersReputations(paging, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Reputation>> getUserReputations(final long userId,
-			final Paging paging, final TimePeriod timePeriod) {
+	public Future<List<Reputation>> getUsersReputations(final Paging paging,
+			final TimePeriod timePeriod, final long... userIds) {
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUsersReputations(paging, timePeriod, userId);
+                return client.getUsersReputations(paging, timePeriod, userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<UserTimeline>> getUserTimeline(final long userId) {
+	public Future<List<UserTimeline>> getUsersTimeline(final long... userIds) {
 		return execute(new Callable<List<UserTimeline>>() {
             @Override
             public List<UserTimeline> call() throws Exception {
-                return client.getUsersTimeline(userId);
+                return client.getUsersTimeline(userIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<UserTimeline>> getUserTimeline(final long userId,
-			final TimePeriod timePeriod) {
+	public Future<List<UserTimeline>> getUsersTimeline(final TimePeriod timePeriod,
+			final long... userIds) {
 		return execute(new Callable<List<UserTimeline>>() {
             @Override
             public List<UserTimeline> call() throws Exception {
-                return client.getUsersTimeline(timePeriod, userId);
+                return client.getUsersTimeline(timePeriod, userIds);
             }
         });
 	}
@@ -925,22 +925,22 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<List<Revision>> getRevisionsForPost(final long postId) {
+	public Future<List<Revision>> getRevisionsForPosts(final long... postIds) {
 		return execute(new Callable<List<Revision>>() {
             @Override
             public List<Revision> call() throws Exception {
-                return client.getRevisionsForPosts(postId);
+                return client.getRevisionsForPosts(postIds);
             }
         });
 	}
 
 	@Override
-	public Future<List<Revision>> getRevisionsForPost(final long postId,
-			final TimePeriod timePeriod) {
+	public Future<List<Revision>> getRevisionsForPosts(final TimePeriod timePeriod,
+			final long... postIds) {
 		return execute(new Callable<List<Revision>>() {
             @Override
             public List<Revision> call() throws Exception {
-                return client.getRevisionsForPosts(timePeriod, postId);
+                return client.getRevisionsForPosts(timePeriod, postIds);
             }
         });
 	}

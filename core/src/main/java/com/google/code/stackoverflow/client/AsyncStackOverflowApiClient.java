@@ -45,24 +45,24 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<Question>> getUnansweredQuestions(Question.UnansweredSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
 	public Future<List<Question>> getTaggedQuestions(List<String> tags);
 	public Future<List<Question>> getTaggedQuestions(List<String> tags, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
-	public Future<List<Question>> getQuestionsByUser(long userId);
-	public Future<List<Question>> getQuestionsByUser(long userId, User.QuestionSortOrder sort);
-	public Future<List<Question>> getQuestionsByUser(long userId, Paging paging);
-	public Future<List<Question>> getQuestionsByUser(long userId, TimePeriod timePeriod);
-	public Future<List<Question>> getQuestionsByUser(long userId, Set<FilterOption> filterOptions);
-	public Future<List<Question>> getQuestionsByUser(long userId, User.QuestionSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
-	public Future<List<Question>> getFavoriteQuestionsByUser(long userId);
-	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, User.FavoriteSortOrder sort);
-	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, Paging paging);
-	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, TimePeriod timePeriod);
-	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, Set<FilterOption> filterOptions);
-	public Future<List<Question>> getFavoriteQuestionsByUser(long userId, User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
-	public Future<List<Question>> getQuestion(long questionId);
-	public Future<List<Question>> getQuestion(long questionId, Paging paging);
-	public Future<List<Question>> getQuestion(long questionId, Set<FilterOption> filterOptions);
-	public Future<List<Question>> getQuestion(long questionId, Paging paging, Set<FilterOption> filterOptions);
-	public Future<List<PostTimeline>> getQuestionTimeline(long questionId);
-	public Future<List<PostTimeline>> getQuestionTimeline(long questionId, TimePeriod timePeriod);
+	public Future<List<Question>> getQuestionsByUsers(long... userIds);
+	public Future<List<Question>> getQuestionsByUsers(User.QuestionSortOrder sort, long... userIds);
+	public Future<List<Question>> getQuestionsByUsers(Paging paging, long... userIds);
+	public Future<List<Question>> getQuestionsByUsers(TimePeriod timePeriod, long... userIds);
+	public Future<List<Question>> getQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
+	public Future<List<Question>> getQuestionsByUsers(User.QuestionSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
+	public Future<List<Question>> getFavoriteQuestionsByUsers(long... userIds);
+	public Future<List<Question>> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, long... userIds);
+	public Future<List<Question>> getFavoriteQuestionsByUsers(Paging paging, long... userIds);
+	public Future<List<Question>> getFavoriteQuestionsByUsers(TimePeriod timePeriod, long... userIds);
+	public Future<List<Question>> getFavoriteQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
+	public Future<List<Question>> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
+	public Future<List<Question>> getQuestions(long... questionIds);
+	public Future<List<Question>> getQuestions(Paging paging, long... questionIds);
+	public Future<List<Question>> getQuestions(Set<FilterOption> filterOptions, long... questionIds);
+	public Future<List<Question>> getQuestions(Paging paging, Set<FilterOption> filterOptions, long... questionIds);
+	public Future<List<PostTimeline>> getQuestionsTimeline(long... questionIds);
+	public Future<List<PostTimeline>> getQuestionsTimeline(TimePeriod timePeriod, long... questionIds);
 	
 	// User Methods
 	public Future<List<User>> getUsers();
@@ -70,57 +70,57 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<User>> getUsers(String filter);
 	public Future<List<User>> getUsers(User.SortOrder sort);
 	public Future<List<User>> getUsers(String filter, User.SortOrder sort, Paging paging);
-	public Future<List<UserTimeline>> getUserTimeline(long userId);
-	public Future<List<UserTimeline>> getUserTimeline(long userId, TimePeriod timePeriod);
-	public Future<List<Comment>> getUserMentions(long userId);
-	public Future<List<Comment>> getUserMentions(long userId, TimePeriod timePeriod);
-	public Future<List<Reputation>> getUserReputations(long userId);
-	public Future<List<Reputation>> getUserReputations(long userId, TimePeriod timePeriod);
-	public Future<List<Reputation>> getUserReputations(long userId, Paging paging);
-	public Future<List<Reputation>> getUserReputations(long userId, Paging paging, TimePeriod timePeriod);
-	public Future<List<User>> getUser(long userId);
+	public Future<List<UserTimeline>> getUsersTimeline(long... userIds);
+	public Future<List<UserTimeline>> getUsersTimeline(TimePeriod timePeriod, long... userIds);
+	public Future<List<Comment>> getUsersMentions(long... userIds);
+	public Future<List<Comment>> getUsersMentions(TimePeriod timePeriod, long... userIds);
+	public Future<List<Reputation>> getUsersReputations(long... userIds);
+	public Future<List<Reputation>> getUsersReputations(TimePeriod timePeriod, long... userIds);
+	public Future<List<Reputation>> getUsersReputations(Paging paging, long... userIds);
+	public Future<List<Reputation>> getUsersReputations(Paging paging, TimePeriod timePeriod, long... userIds);
+	public Future<List<User>> getUsers(long... userIds);
 	
 	// Badge Methods
 	public Future<List<Badge>> getBadges();
 	public Future<List<Badge>> getBadgesByName();
 	public Future<List<Badge>> getBadgesByTags();
-	public Future<List<Badge>> getBadgesForUser(long userId);
+	public Future<List<Badge>> getBadgesForUsers(long... userIds);
 
 	// Tag Methods
 	public Future<List<Tag>> getTags();
 	public Future<List<Tag>> getTags(Tag.SortOrder sort);
 	public Future<List<Tag>> getTags(Paging paging);
 	public Future<List<Tag>> getTags(Tag.SortOrder sort, Paging paging);
-	public Future<List<Tag>> getTagsForUser(long userId);
-	public Future<List<Tag>> getTagsForUser(long userId, Paging paging);
+	public Future<List<Tag>> getTagsForUsers(long... userIds);
+	public Future<List<Tag>> getTagsForUsers(Paging paging, long... userIds);
 	
 	// Answer Methods
-	public Future<List<Answer>> getAnswersByUser(long userId); 
-	public Future<List<Answer>> getAnswersByUser(long userId, Set<FilterOption> filterOptions); 
-	public Future<List<Answer>> getAnswersByUser(long userId, Answer.SortOrder sort);
-	public Future<List<Answer>> getAnswersByUser(long userId, Answer.SortOrder sort, Set<FilterOption> filterOptions);
-	public Future<List<Answer>> getAnswer(long answerId);
-	public Future<List<Answer>> getAnswer(long answerId, Set<FilterOption> filterOptions);
+	public Future<List<Answer>> getAnswersByUsers(long... userIds); 
+	public Future<List<Answer>> getAnswersByUsers(Set<FilterOption> filterOptions, long... userIds); 
+	public Future<List<Answer>> getAnswersByUsers(Answer.SortOrder sort, long... userIds);
+	public Future<List<Answer>> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... userIds);
+	public Future<List<Answer>> getAnswers(long... answerIds);
+	public Future<List<Answer>> getAnswers(Set<FilterOption> filterOptions, long... answerIds);
 	
 	// Comment Methods
-	public Future<List<Comment>> getUserComments(long userId);
-	public Future<List<Comment>> getUserComments(long userId, Comment.SortOrder sort);
-	public Future<List<Comment>> getUserComments(long userId, TimePeriod timePeriod);
-	public Future<List<Comment>> getUserComments(long userId, Paging paging);
-	public Future<List<Comment>> getUserComments(long userId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod);
+	public Future<List<Comment>> getUsersComments(long... userIds);
+	public Future<List<Comment>> getUsersComments(Comment.SortOrder sort, long... userIds);
+	public Future<List<Comment>> getUsersComments(TimePeriod timePeriod, long... userIds);
+	public Future<List<Comment>> getUsersComments(Paging paging, long... userIds);
+	public Future<List<Comment>> getUsersComments(Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
 
-	public Future<List<Comment>> getUserComments(long userId, long toUserId);
-	public Future<List<Comment>> getUserComments(long userId, long toUserId, Comment.SortOrder sort);
-	public Future<List<Comment>> getUserComments(long userId, long toUserId, TimePeriod timePeriod);
-	public Future<List<Comment>> getUserComments(long userId, long toUserId, Paging paging);
-	public Future<List<Comment>> getUserComments(long userId, long toUserId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod);
-	public Future<List<Comment>> getComment(long commentId);
+	public Future<List<Comment>> getUsersCommentsToUser(long toUserId, long... userIds);
+	public Future<List<Comment>> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, long... userIds);
+	public Future<List<Comment>> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod, long... userIds);
+	public Future<List<Comment>> getUsersCommentsToUser(long toUserId, Paging paging, long... userIds);
+	public Future<List<Comment>> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
+	public Future<List<Comment>> getComments(long... commentIds);
 	
 	// Statistics Method
 	public Future<Statistics> getStatistics();
 	
 	// Revision Methods
-	public Future<List<Revision>> getRevisionsForPost(long postId);
-	public Future<List<Revision>> getRevisionsForPost(long postId, TimePeriod timePeriod);
+	public Future<List<Revision>> getRevisionsForPosts(long... postIds);
+	public Future<List<Revision>> getRevisionsForPosts(TimePeriod timePeriod, long... postIds);
 	public Future<Revision> getRevisionForPost(long postId, String revisionGuid);
 }
