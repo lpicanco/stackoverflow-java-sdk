@@ -39,5 +39,5 @@ X. 5. Remove BadgeSortOrder.
 X. 6. Add a provider.. StackOverflow, MathOverflow, SuperUser, ServerFault. Look at signpost...opensocial...
 X. 7. Convert error codes to exceptions.
 X. 8. User Timeline and Post Timeline are different. Change them
-9. Implement vectorized requests. http://dev.meta.stackoverflow.com/questions/34940/vectorized-requests
+X. 9. Implement vectorized requests. http://dev.meta.stackoverflow.com/questions/34940/vectorized-requests
 7. Modify the client facade to use query API.
