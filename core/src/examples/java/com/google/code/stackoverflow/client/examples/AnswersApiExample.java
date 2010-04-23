@@ -67,7 +67,7 @@ public class AnswersApiExample {
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
-    			List<Answer> answersByUser = client.getAnswersByUser(Long.valueOf(idValue));
+    			List<Answer> answersByUser = client.getAnswersByUsers(Long.valueOf(idValue));
     			for (Answer answer : answersByUser) {
 					printResult(answer);
 				}

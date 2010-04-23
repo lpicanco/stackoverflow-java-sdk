@@ -136,22 +136,22 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<Answer> getAnswer(final long answerId) {
-		return execute(new Callable<Answer>() {
+	public Future<List<Answer>> getAnswer(final long answerId) {
+		return execute(new Callable<List<Answer>>() {
             @Override
-            public Answer call() throws Exception {
-                return client.getAnswer(answerId);
+            public List<Answer> call() throws Exception {
+                return client.getAnswers(answerId);
             }
         });
 	}
 
 	@Override
-	public Future<Answer> getAnswer(final long answerId,
+	public Future<List<Answer>> getAnswer(final long answerId,
 			final Set<FilterOption> filterOptions) {
-		return execute(new Callable<Answer>() {
+		return execute(new Callable<List<Answer>>() {
             @Override
-            public Answer call() throws Exception {
-                return client.getAnswer(answerId, filterOptions);
+            public List<Answer> call() throws Exception {
+                return client.getAnswers(filterOptions, answerId);
             }
         });
 	}
@@ -161,7 +161,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUser(userId);
+                return client.getAnswersByUsers(userId);
             }
         });
 	}
@@ -172,7 +172,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUser(userId, filterOptions);
+                return client.getAnswersByUsers(filterOptions, userId);
             }
         });
 	}
@@ -183,7 +183,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUser(userId, sort);
+                return client.getAnswersByUsers(sort, userId);
             }
         });
 	}
@@ -194,7 +194,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Answer>>() {
             @Override
             public List<Answer> call() throws Exception {
-                return client.getAnswersByUser(userId, sort, filterOptions);
+                return client.getAnswersByUsers(sort, filterOptions, userId);
             }
         });
 	}
@@ -234,17 +234,17 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Badge>>() {
             @Override
             public List<Badge> call() throws Exception {
-                return client.getBadgesForUser(userId);
+                return client.getBadgesForUsers(userId);
             }
         });
 	}
 
 	@Override
-	public Future<Comment> getComment(final long commentId) {
-		return execute(new Callable<Comment>() {
+	public Future<List<Comment>> getComment(final long commentId) {
+		return execute(new Callable<List<Comment>>() {
             @Override
-            public Comment call() throws Exception {
-                return client.getComment(commentId);
+            public List<Comment> call() throws Exception {
+                return client.getComments(commentId);
             }
         });
 	}
@@ -254,7 +254,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUser(userId);
+                return client.getFavoriteQuestionsByUsers(userId);
             }
         });
 	}
@@ -265,7 +265,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUser(userId, sort);
+                return client.getFavoriteQuestionsByUsers(sort, userId);
             }
         });
 	}
@@ -276,7 +276,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUser(userId, paging);
+                return client.getFavoriteQuestionsByUsers(paging, userId);
             }
         });
 	}
@@ -287,7 +287,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUser(userId, timePeriod);
+                return client.getFavoriteQuestionsByUsers(timePeriod, userId);
             }
         });
 	}
@@ -298,7 +298,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUser(userId, filterOptions);
+                return client.getFavoriteQuestionsByUsers(filterOptions, userId);
             }
         });
 	}
@@ -310,49 +310,49 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getFavoriteQuestionsByUser(userId, sort, paging, timePeriod, filterOptions);
+                return client.getFavoriteQuestionsByUsers(sort, paging, timePeriod, filterOptions, userId);
             }
         });
 	}
 
 	@Override
-	public Future<Question> getQuestion(final long questionId) {
-		return execute(new Callable<Question>() {
+	public Future<List<Question>> getQuestion(final long questionId) {
+		return execute(new Callable<List<Question>>() {
             @Override
-            public Question call() throws Exception {
-                return client.getQuestion(questionId);
+            public List<Question> call() throws Exception {
+                return client.getQuestions(questionId);
             }
         });
 	}
 
 	@Override
-	public Future<Question> getQuestion(final long questionId, final Paging paging) {
-		return execute(new Callable<Question>() {
+	public Future<List<Question>> getQuestion(final long questionId, final Paging paging) {
+		return execute(new Callable<List<Question>>() {
             @Override
-            public Question call() throws Exception {
-                return client.getQuestion(questionId, paging);
+            public List<Question> call() throws Exception {
+                return client.getQuestions(paging, questionId);
             }
         });
 	}
 
 	@Override
-	public Future<Question> getQuestion(final long questionId,
+	public Future<List<Question>> getQuestion(final long questionId,
 			final Set<FilterOption> filterOptions) {
-		return execute(new Callable<Question>() {
+		return execute(new Callable<List<Question>>() {
             @Override
-            public Question call() throws Exception {
-                return client.getQuestion(questionId, filterOptions);
+            public List<Question> call() throws Exception {
+                return client.getQuestions(filterOptions, questionId);
             }
         });
 	}
 
 	@Override
-	public Future<Question> getQuestion(final long questionId, final Paging paging,
+	public Future<List<Question>> getQuestion(final long questionId, final Paging paging,
 			final Set<FilterOption> filterOptions) {
-		return execute(new Callable<Question>() {
+		return execute(new Callable<List<Question>>() {
             @Override
-            public Question call() throws Exception {
-                return client.getQuestion(questionId, paging, filterOptions);
+            public List<Question> call() throws Exception {
+                return client.getQuestions(paging, filterOptions, questionId);
             }
         });
 	}
@@ -362,7 +362,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<PostTimeline>>() {
             @Override
             public List<PostTimeline> call() throws Exception {
-                return client.getQuestionTimeline(questionId);
+                return client.getQuestionsTimeline(questionId);
             }
         });
 	}
@@ -373,7 +373,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<PostTimeline>>() {
             @Override
             public List<PostTimeline> call() throws Exception {
-                return client.getQuestionTimeline(questionId, timePeriod);
+                return client.getQuestionsTimeline(timePeriod, questionId);
             }
         });
 	}
@@ -445,7 +445,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUser(userId);
+                return client.getQuestionsByUsers(userId);
             }
         });
 	}
@@ -456,7 +456,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUser(userId, sort);
+                return client.getQuestionsByUsers(sort, userId);
             }
         });
 	}
@@ -466,7 +466,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUser(userId, paging);
+                return client.getQuestionsByUsers(paging, userId);
             }
         });
 	}
@@ -477,7 +477,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUser(userId, timePeriod);
+                return client.getQuestionsByUsers(timePeriod, userId);
             }
         });
 	}
@@ -488,7 +488,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUser(userId, filterOptions);
+                return client.getQuestionsByUsers(filterOptions, userId);
             }
         });
 	}
@@ -500,7 +500,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Question>>() {
             @Override
             public List<Question> call() throws Exception {
-                return client.getQuestionsByUser(userId, sort, paging, timePeriod, filterOptions);
+                return client.getQuestionsByUsers(sort, paging, timePeriod, filterOptions, userId);
             }
         });
 	}
@@ -582,7 +582,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Tag>>() {
             @Override
             public List<Tag> call() throws Exception {
-                return client.getTagsForUser(userId);
+                return client.getTagsForUsers(userId);
             }
         });
 	}
@@ -592,7 +592,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Tag>>() {
             @Override
             public List<Tag> call() throws Exception {
-                return client.getTagsForUser(userId, paging);
+                return client.getTagsForUsers(paging, userId);
             }
         });
 	}
@@ -662,11 +662,11 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	}
 
 	@Override
-	public Future<User> getUser(final long userId) {
-		return execute(new Callable<User>() {
+	public Future<List<User>> getUser(final long userId) {
+		return execute(new Callable<List<User>>() {
             @Override
-            public User call() throws Exception {
-                return client.getUser(userId);
+            public List<User> call() throws Exception {
+                return client.getUsers(userId);
             }
         });
 	}
@@ -676,7 +676,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId);
+                return client.getUsersComments(userId);
             }
         });
 	}
@@ -687,7 +687,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, sort);
+                return client.getUsersComments(sort, userId);
             }
         });
 	}
@@ -698,7 +698,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, timePeriod);
+                return client.getUsersComments(timePeriod, userId);
             }
         });
 	}
@@ -708,7 +708,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, paging);
+                return client.getUsersComments(paging, userId);
             }
         });
 	}
@@ -719,7 +719,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, sort, paging, timePeriod);
+                return client.getUsersComments(sort, paging, timePeriod, userId);
             }
         });
 	}
@@ -729,7 +729,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, toUserId);
+                return client.getUsersCommentsToUser(toUserId, userId);
             }
         });
 	}
@@ -740,7 +740,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, toUserId, sort);
+                return client.getUsersCommentsToUser(toUserId, sort, userId);
             }
         });
 	}
@@ -751,7 +751,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, toUserId, timePeriod);
+                return client.getUsersCommentsToUser(toUserId, timePeriod, userId);
             }
         });
 	}
@@ -762,7 +762,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, toUserId, paging);
+                return client.getUsersCommentsToUser(toUserId, paging, userId);
             }
         });
 	}
@@ -773,7 +773,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserComments(userId, toUserId, sort, paging, timePeriod);
+                return client.getUsersCommentsToUser(toUserId, sort, paging, timePeriod, userId);
             }
         });
 	}
@@ -783,7 +783,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserMentions(userId);
+                return client.getUsersMentions(userId);
             }
         });
 	}
@@ -794,7 +794,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                return client.getUserMentions(userId, timePeriod);
+                return client.getUsersMentions(timePeriod, userId);
             }
         });
 	}
@@ -804,7 +804,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUserReputations(userId);
+                return client.getUsersReputations(userId);
             }
         });
 	}
@@ -815,7 +815,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUserReputations(userId, timePeriod);
+                return client.getUsersReputations(timePeriod, userId);
             }
         });
 	}
@@ -826,7 +826,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUserReputations(userId, paging);
+                return client.getUsersReputations(paging, userId);
             }
         });
 	}
@@ -837,7 +837,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Reputation>>() {
             @Override
             public List<Reputation> call() throws Exception {
-                return client.getUserReputations(userId, paging, timePeriod);
+                return client.getUsersReputations(paging, timePeriod, userId);
             }
         });
 	}
@@ -847,7 +847,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<UserTimeline>>() {
             @Override
             public List<UserTimeline> call() throws Exception {
-                return client.getUserTimeline(userId);
+                return client.getUsersTimeline(userId);
             }
         });
 	}
@@ -858,7 +858,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<UserTimeline>>() {
             @Override
             public List<UserTimeline> call() throws Exception {
-                return client.getUserTimeline(userId, timePeriod);
+                return client.getUsersTimeline(timePeriod, userId);
             }
         });
 	}
@@ -929,7 +929,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Revision>>() {
             @Override
             public List<Revision> call() throws Exception {
-                return client.getRevisionsForPost(postId);
+                return client.getRevisionsForPosts(postId);
             }
         });
 	}
@@ -940,7 +940,7 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 		return execute(new Callable<List<Revision>>() {
             @Override
             public List<Revision> call() throws Exception {
-                return client.getRevisionsForPost(postId, timePeriod);
+                return client.getRevisionsForPosts(timePeriod, postId);
             }
         });
 	}

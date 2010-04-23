@@ -67,8 +67,8 @@ public class UsersApiExample {
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
-    			User user = client.getUser(Long.valueOf(idValue));
-    			printResult(user);
+    			List<User> users = client.getUsers(Long.valueOf(idValue));
+    			printResult(users.get(0));
     		} else {
     			List<User> users = client.getUsers();
     			for (User user : users) {

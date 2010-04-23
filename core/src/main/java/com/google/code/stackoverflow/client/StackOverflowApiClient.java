@@ -44,24 +44,24 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
 	public List<Question> getTaggedQuestions(List<String> tags);
 	public List<Question> getTaggedQuestions(List<String> tags, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
-	public List<Question> getQuestionsByUser(long userId);
-	public List<Question> getQuestionsByUser(long userId, User.QuestionSortOrder sort);
-	public List<Question> getQuestionsByUser(long userId, Paging paging);
-	public List<Question> getQuestionsByUser(long userId, TimePeriod timePeriod);
-	public List<Question> getQuestionsByUser(long userId, Set<FilterOption> filterOptions);
-	public List<Question> getQuestionsByUser(long userId, User.QuestionSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
-	public List<Question> getFavoriteQuestionsByUser(long userId);
-	public List<Question> getFavoriteQuestionsByUser(long userId, User.FavoriteSortOrder sort);
-	public List<Question> getFavoriteQuestionsByUser(long userId, Paging paging);
-	public List<Question> getFavoriteQuestionsByUser(long userId, TimePeriod timePeriod);
-	public List<Question> getFavoriteQuestionsByUser(long userId, Set<FilterOption> filterOptions);
-	public List<Question> getFavoriteQuestionsByUser(long userId, User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
-	public Question getQuestion(long questionId);
-	public Question getQuestion(long questionId, Paging paging);
-	public Question getQuestion(long questionId, Set<FilterOption> filterOptions);
-	public Question getQuestion(long questionId, Paging paging, Set<FilterOption> filterOptions);
-	public List<PostTimeline> getQuestionTimeline(long questionId);
-	public List<PostTimeline> getQuestionTimeline(long questionId, TimePeriod timePeriod);
+	public List<Question> getQuestionsByUsers(long... userIds);
+	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, long... userIds);
+	public List<Question> getQuestionsByUsers(Paging paging, long... userIds);
+	public List<Question> getQuestionsByUsers(TimePeriod timePeriod, long... userIds);
+	public List<Question> getQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
+	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
+	public List<Question> getFavoriteQuestionsByUsers(long... userIds);
+	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, long... userIds);
+	public List<Question> getFavoriteQuestionsByUsers(Paging paging, long... userIds);
+	public List<Question> getFavoriteQuestionsByUsers(TimePeriod timePeriod, long... userIds);
+	public List<Question> getFavoriteQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
+	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
+	public List<Question> getQuestions(long... questionIds);
+	public List<Question> getQuestions(Paging paging, long... questionIds);
+	public List<Question> getQuestions(Set<FilterOption> filterOptions, long... questionIds);
+	public List<Question> getQuestions(Paging paging, Set<FilterOption> filterOptions, long... questionIds);
+	public List<PostTimeline> getQuestionsTimeline(long... questionIds);
+	public List<PostTimeline> getQuestionsTimeline(TimePeriod timePeriod, long... questionIds);
 	
 	// User Methods
 	public List<User> getUsers();
@@ -69,59 +69,59 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public List<User> getUsers(String filter);
 	public List<User> getUsers(User.SortOrder sort);
 	public List<User> getUsers(String filter, User.SortOrder sort, Paging paging);
-	public List<UserTimeline> getUserTimeline(long userId);
-	public List<UserTimeline> getUserTimeline(long userId, TimePeriod timePeriod);
-	public List<Comment> getUserMentions(long userId);
-	public List<Comment> getUserMentions(long userId, TimePeriod timePeriod);
-	public List<Reputation> getUserReputations(long userId);
-	public List<Reputation> getUserReputations(long userId, TimePeriod timePeriod);
-	public List<Reputation> getUserReputations(long userId, Paging paging);
-	public List<Reputation> getUserReputations(long userId, Paging paging, TimePeriod timePeriod);
-	public User getUser(long userId);
+	public List<UserTimeline> getUsersTimeline(long... userIds);
+	public List<UserTimeline> getUsersTimeline(TimePeriod timePeriod, long... userIds);
+	public List<Comment> getUsersMentions(long... userIds);
+	public List<Comment> getUsersMentions(TimePeriod timePeriod, long... userIds);
+	public List<Reputation> getUsersReputations(long... userIds);
+	public List<Reputation> getUsersReputations(TimePeriod timePeriod, long... userIds);
+	public List<Reputation> getUsersReputations(Paging paging, long... userIds);
+	public List<Reputation> getUsersReputations(Paging paging, TimePeriod timePeriod, long... userIds);
+	public List<User> getUsers(long... userIds);
 	
 	// Badge Methods
 	public List<Badge> getBadges();
 	public List<Badge> getBadgesByName();
 	public List<Badge> getBadgesByTags();
-	public List<Badge> getBadgesForUser(long userId);
+	public List<Badge> getBadgesForUsers(long... userIds);
 
 	// Tag Methods
 	public List<Tag> getTags();
 	public List<Tag> getTags(Tag.SortOrder sort);
 	public List<Tag> getTags(Paging paging);
 	public List<Tag> getTags(Tag.SortOrder sort, Paging paging);
-	public List<Tag> getTagsForUser(long userId);
-	public List<Tag> getTagsForUser(long userId, Paging paging);
+	public List<Tag> getTagsForUsers(long... userIds);
+	public List<Tag> getTagsForUsers(Paging paging, long... userIds);
 	
 	// Answer Methods
-	public List<Answer> getAnswersByQuestion(long questionId); 
-	public List<Answer> getAnswersByQuestion(long questionId, Set<FilterOption> filterOptions); 
-	public List<Answer> getAnswersByUser(long userId); 
-	public List<Answer> getAnswersByUser(long userId, Set<FilterOption> filterOptions); 
-	public List<Answer> getAnswersByUser(long userId, Answer.SortOrder sort);
-	public List<Answer> getAnswersByUser(long userId, Answer.SortOrder sort, Set<FilterOption> filterOptions);
-	public Answer getAnswer(long answerId);
-	public Answer getAnswer(long answerId, Set<FilterOption> filterOptions);
+	public List<Answer> getAnswersByQuestions(long... questionIds); 
+	public List<Answer> getAnswersByQuestions(Set<FilterOption> filterOptions, long... questionIds); 
+	public List<Answer> getAnswersByUsers(long... userIds); 
+	public List<Answer> getAnswersByUsers(Set<FilterOption> filterOptions, long... userIds); 
+	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds);
+	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... userIds);
+	public List<Answer> getAnswers(long... answerIds);
+	public List<Answer> getAnswers(Set<FilterOption> filterOptions, long... answerIds);
 	
 	// Comment Methods
-	public List<Comment> getUserComments(long userId);
-	public List<Comment> getUserComments(long userId, Comment.SortOrder sort);
-	public List<Comment> getUserComments(long userId, TimePeriod timePeriod);
-	public List<Comment> getUserComments(long userId, Paging paging);
-	public List<Comment> getUserComments(long userId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod);
+	public List<Comment> getUsersComments(long... userIds);
+	public List<Comment> getUsersComments(Comment.SortOrder sort, long... userIds);
+	public List<Comment> getUsersComments(TimePeriod timePeriod, long... userIds);
+	public List<Comment> getUsersComments(Paging paging, long... userIds);
+	public List<Comment> getUsersComments(Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
 
-	public List<Comment> getUserComments(long userId, long toUserId);
-	public List<Comment> getUserComments(long userId, long toUserId, Comment.SortOrder sort);
-	public List<Comment> getUserComments(long userId, long toUserId, TimePeriod timePeriod);
-	public List<Comment> getUserComments(long userId, long toUserId, Paging paging);
-	public List<Comment> getUserComments(long userId, long toUserId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod);
-	public Comment getComment(long commentId);
+	public List<Comment> getUsersCommentsToUser(long toUserId, long... userIds);
+	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, long... userIds);
+	public List<Comment> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod, long... userIds);
+	public List<Comment> getUsersCommentsToUser(long toUserId, Paging paging, long... userIds);
+	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
+	public List<Comment> getComments(long... commentIds);
 	
 	// Statistics Method
 	public Statistics getStatistics();
 	
 	// Revision Methods
-	public List<Revision> getRevisionsForPost(long postId);
-	public List<Revision> getRevisionsForPost(long postId, TimePeriod timePeriod);
+	public List<Revision> getRevisionsForPosts(long... postIds);
+	public List<Revision> getRevisionsForPosts(TimePeriod timePeriod, long... postIds);
 	public Revision getRevisionForPost(long postId, String revisionGuid);
 }
