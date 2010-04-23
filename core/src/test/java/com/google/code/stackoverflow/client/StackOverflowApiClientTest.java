@@ -100,6 +100,15 @@ public abstract class StackOverflowApiClientTest extends TestCase {
 		return new TimePeriod(getLastWeekDate(), new Date());
 	}
 	
+	protected long[] getIds(String idString) {
+		String[] tokens = idString.split(",");
+		long[] ids = new long[tokens.length];
+		for (int i = 0; i < tokens.length; i++) {
+			ids[i] = Long.valueOf(tokens[i]);
+		}
+		return ids;
+	}
+	
 	/**
 	 *
 	 */
