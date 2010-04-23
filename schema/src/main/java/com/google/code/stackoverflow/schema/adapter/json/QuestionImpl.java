@@ -51,6 +51,9 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	private Date bountyClosesDate;
 	private long bountyAmount;
 	private String ownerEmailHash;
+	private String questionTimelineUrl;
+	private String questionCommentsUrl;
+	private String questionAnswersUrl;
 	
 	public List<Answer> getAnswers() {
 		return answers;
@@ -312,6 +315,36 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 		this.ownerEmailHash = ownerEmailHash;
 	}
 	
+	@Override
+	public String getQuestionTimelineUrl() {
+		return questionTimelineUrl;
+	}
+
+	@Override
+	public void setQuestionTimelineUrl(String questionTimelineUrl) {
+		this.questionTimelineUrl = questionTimelineUrl;
+	}
+
+	@Override
+	public String getQuestionCommentsUrl() {
+		return questionCommentsUrl;
+	}
+
+	@Override
+	public void setQuestionCommentsUrl(String questionCommentsUrl) {
+		this.questionCommentsUrl = questionCommentsUrl;
+	}
+
+	@Override
+	public String getQuestionAnswersUrl() {
+		return questionAnswersUrl;
+	}
+
+	@Override
+	public void setQuestionAnswersUrl(String questionAnswersUrl) {
+		this.questionAnswersUrl = questionAnswersUrl;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void adaptFrom(JSONObject adaptee) {

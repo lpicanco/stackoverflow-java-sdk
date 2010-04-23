@@ -94,6 +94,8 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public List<Tag> getTagsForUser(long userId, Paging paging);
 	
 	// Answer Methods
+	public List<Answer> getAnswersByQuestion(long questionId); 
+	public List<Answer> getAnswersByQuestion(long questionId, Set<FilterOption> filterOptions); 
 	public List<Answer> getAnswersByUser(long userId); 
 	public List<Answer> getAnswersByUser(long userId, Set<FilterOption> filterOptions); 
 	public List<Answer> getAnswersByUser(long userId, Answer.SortOrder sort);

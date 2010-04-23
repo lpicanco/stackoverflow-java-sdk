@@ -15,7 +15,7 @@ import com.google.code.stackoverflow.schema.FilterOption;
 public interface AnswerApiQuery extends StackOverflowApiQuery<Answer> {
 	
 	public enum Classification {
-		NONE, BY_USER;
+		NONE, BY_USER, BY_QUESTION;
 	}
 	
 	/**
@@ -27,6 +27,11 @@ public interface AnswerApiQuery extends StackOverflowApiQuery<Answer> {
 	 * 
 	 */
 	public AnswerApiQuery withUserIds(long... userIds);
+	
+	/**
+	 * 
+	 */
+	public AnswerApiQuery withQuestionIds(long... questionIds);
 	
 	/**
 	 * 

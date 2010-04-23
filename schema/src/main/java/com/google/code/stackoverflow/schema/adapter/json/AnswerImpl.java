@@ -43,6 +43,7 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	private String body;
 	private List<Comment> comments = new ArrayList<Comment>();
 	private String ownerEmailHash;
+	private String answerCommentsUrl;
 	
 	
 	@Override
@@ -224,6 +225,16 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	@Override
 	public void setOwnerEmailHash(String ownerEmailHash) {
 		this.ownerEmailHash = ownerEmailHash;
+	}
+
+	@Override
+	public String getAnswerCommentsUrl() {
+		return answerCommentsUrl;
+	}
+
+	@Override
+	public void setAnswerCommentsUrl(String answerCommentsUrl) {
+		this.answerCommentsUrl = answerCommentsUrl;
 	}
 
 	@Override
