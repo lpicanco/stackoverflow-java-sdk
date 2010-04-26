@@ -4,9 +4,13 @@
 package com.google.code.stackoverflow.schema.adapter.json;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.schema.BadgeRank;
 import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.UserType;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -48,6 +52,7 @@ public class UserImpl extends BaseJsonAdapter implements User, Adaptable<User, J
 	private String userMentionedUrl;
 	private String userCommentsUrl;
 	private String userReputationUrl;
+	private Map<BadgeRank, Long> badgeCounts = new HashMap<BadgeRank, Long>();
 	
 	public long getUserId() {
 		return userId;
@@ -311,9 +316,30 @@ public class UserImpl extends BaseJsonAdapter implements User, Adaptable<User, J
 		this.userReputationUrl = userReputationUrl;
 	}
 
+	/**
+	 * @return the badgeCounts
+	 */
+	public Map<BadgeRank, Long> getBadgeCounts() {
+		return badgeCounts;
+	}
+
+	/**
+	 * @param badgeCounts the badgeCounts to set
+	 */
+	public void setBadgeCounts(Map<BadgeRank, Long> badgeCounts) {
+		this.badgeCounts = badgeCounts;
+	}
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
+		JSONObject map = (JSONObject) adaptee.get("badge_counts");
+		if (map != null) {
+			for (Map.Entry entry : (Set<Map.Entry>) map.entrySet()) {
+				badgeCounts.put(BadgeRank.fromValue(entry.getKey().toString()), Long.valueOf(entry.getValue().toString()));
+			}
+		}
 	}
 
 	@Override
