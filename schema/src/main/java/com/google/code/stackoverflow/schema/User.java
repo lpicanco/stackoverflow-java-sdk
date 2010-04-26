@@ -425,4 +425,14 @@ public interface User extends SchemaEntity {
 	 * @param userReputationUrl the userReputationUrl to set
 	 */
 	public void setUserReputationUrl(String userReputationUrl);
+	
+	/**
+	 * @return the badgeCounts
+	 */
+	public Map<BadgeRank, Long> getBadgeCounts();
+
+	/**
+	 * @param badgeCounts the badgeCounts to set
+	 */
+	public void setBadgeCounts(Map<BadgeRank, Long> badgeCounts);
 }
