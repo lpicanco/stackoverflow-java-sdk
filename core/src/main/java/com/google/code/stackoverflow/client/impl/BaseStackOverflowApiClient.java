@@ -482,6 +482,16 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
+	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, long... questionIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
+        String                apiUrl  = builder.withIds(questionIds).withSort(sort).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+	
+	@Override
 	public List<Badge> getBadges() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES);
         String                apiUrl  = builder.buildUrl();
@@ -914,6 +924,17 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withFetchOptions(filterOptions).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+	
+	@Override
+	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Set<FilterOption> filterOptions,
+			long... questionIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
+        String                apiUrl  = builder.withIds(questionIds).withSort(sort).withFetchOptions(filterOptions).buildUrl();
 
         Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
         

@@ -96,6 +96,8 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	// Answer Methods
 	public List<Answer> getAnswersByQuestions(long... questionIds); 
 	public List<Answer> getAnswersByQuestions(Set<FilterOption> filterOptions, long... questionIds); 
+	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, long... questionIds);
+	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... questionIds);
 	public List<Answer> getAnswersByUsers(long... userIds); 
 	public List<Answer> getAnswersByUsers(Set<FilterOption> filterOptions, long... userIds); 
 	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds);
