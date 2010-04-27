@@ -85,6 +85,8 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<Badge>> getBadgesByName();
 	public Future<List<Badge>> getBadgesByTags();
 	public Future<List<Badge>> getBadgesForUsers(long... userIds);
+	public Future<List<User>> getBadgesRecipients(final long... badgeIds);
+	public Future<List<User>> getBadgesRecipients(final Paging paging, final long... badgeIds);
 
 	// Tag Methods
 	public Future<List<Tag>> getTags();
@@ -101,7 +103,11 @@ public interface AsyncStackOverflowApiClient extends StackOverflowAuthentication
 	public Future<List<Answer>> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... userIds);
 	public Future<List<Answer>> getAnswers(long... answerIds);
 	public Future<List<Answer>> getAnswers(Set<FilterOption> filterOptions, long... answerIds);
-	
+	public Future<List<Answer>> getAnswersByQuestions(final long... questionIds); 
+	public Future<List<Answer>> getAnswersByQuestions(final Set<FilterOption> filterOptions, final long... questionIds); 
+	public Future<List<Answer>> getAnswersByQuestions(final Answer.SortOrder sort, final long... questionIds);
+	public Future<List<Answer>> getAnswersByQuestions(final Answer.SortOrder sort, final Set<FilterOption> filterOptions, final long... questionIds);
+		
 	// Comment Methods
 	public Future<List<Comment>> getUsersComments(long... userIds);
 	public Future<List<Comment>> getUsersComments(Comment.SortOrder sort, long... userIds);

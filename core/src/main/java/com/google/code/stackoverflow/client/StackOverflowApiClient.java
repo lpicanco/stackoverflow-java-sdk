@@ -84,6 +84,8 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public List<Badge> getBadgesByName();
 	public List<Badge> getBadgesByTags();
 	public List<Badge> getBadgesForUsers(long... userIds);
+	public List<User> getBadgesRecipients(long... badgeIds);
+	public List<User> getBadgesRecipients(Paging paging, long... badgeIds);
 
 	// Tag Methods
 	public List<Tag> getTags();

@@ -72,4 +72,14 @@ public interface Badge extends SchemaEntity {
 	 * @param userId the userId to set
 	 */
 	public void setUserId(long userId);
+	
+	/**
+	 * @return the badgesRecipientsUrl
+	 */
+	public String getBadgesRecipientsUrl();
+
+	/**
+	 * @param badgesRecipientsUrl the badgesRecipientsUrl to set
+	 */
+	public void setBadgesRecipientsUrl(String badgesRecipientsUrl);
 }
