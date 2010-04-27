@@ -12,10 +12,19 @@ import com.google.code.stackoverflow.schema.User;
  */
 public interface UserApiQuery extends StackOverflowApiQuery<User> {
 	
+	public enum Classification {
+		NONE, BY_BADGE;
+	}
+	
 	/**
 	 * 
 	 */
 	public UserApiQuery withUserIds(long... userIds);
+	
+	/**
+	 * 
+	 */
+	public UserApiQuery withBadgeIds(long... badgeIds);
 	
 	/**
 	 * 
@@ -31,4 +40,9 @@ public interface UserApiQuery extends StackOverflowApiQuery<User> {
 	 * 
 	 */
 	public UserApiQuery withSort(User.SortOrder sort);
+	
+	/**
+	 * 
+	 */
+	public UserApiQuery withClassification(Classification classification);
 }

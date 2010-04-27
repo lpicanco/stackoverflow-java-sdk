@@ -8,6 +8,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
+import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.UserApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.User;
@@ -57,5 +58,27 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_USERS, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public UserApiQuery withBadgeIds(long... badgeIds) {
+		apiUrlBuilder.withIds(badgeIds);
+		return this;
+	}
+
+	@Override
+	public UserApiQuery withClassification(Classification classification) {
+		switch (classification) {
+		case BY_BADGE:
+			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
+			
+			break;
+
+		default:
+			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_USERS);
+		
+			break;
+		}
+		return this;
 	}
 }

@@ -27,6 +27,7 @@ import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.UserTimeline;
+import com.google.code.stackoverflow.schema.Answer.SortOrder;
 
 /**
  * @author Nabeel Mukhtar
@@ -953,5 +954,69 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
 	@Override
 	public int getMaxRateLimit() {
 		return client.getMaxRateLimit();
+	}
+
+	@Override
+	public Future<List<Answer>> getAnswersByQuestions(final long... questionIds) {
+		return execute(new Callable<List<Answer>>() {
+            @Override
+            public List<Answer> call() throws Exception {
+                return client.getAnswersByQuestions(questionIds);
+            }
+        });
+	}
+
+	@Override
+	public Future<List<Answer>> getAnswersByQuestions(
+			final Set<FilterOption> filterOptions, final long... questionIds) {
+		return execute(new Callable<List<Answer>>() {
+            @Override
+            public List<Answer> call() throws Exception {
+                return client.getAnswersByQuestions(filterOptions, questionIds);
+            }
+        });
+	}
+
+	@Override
+	public Future<List<Answer>> getAnswersByQuestions(final SortOrder sort,
+			final long... questionIds) {
+		return execute(new Callable<List<Answer>>() {
+            @Override
+            public List<Answer> call() throws Exception {
+                return client.getAnswersByQuestions(sort, questionIds);
+            }
+        });
+	}
+
+	@Override
+	public Future<List<Answer>> getAnswersByQuestions(final SortOrder sort,
+			final Set<FilterOption> filterOptions, final long... questionIds) {
+		return execute(new Callable<List<Answer>>() {
+            @Override
+            public List<Answer> call() throws Exception {
+                return client.getAnswersByQuestions(sort, filterOptions, questionIds);
+            }
+        });
+	}
+
+	@Override
+	public Future<List<User>> getBadgesRecipients(final long... badgeIds) {
+		return execute(new Callable<List<User>>() {
+            @Override
+            public List<User> call() throws Exception {
+                return client.getBadgesRecipients(badgeIds);
+            }
+        });
+	}
+
+	@Override
+	public Future<List<User>> getBadgesRecipients(final Paging paging,
+			final long... badgeIds) {
+		return execute(new Callable<List<User>>() {
+            @Override
+            public List<User> call() throws Exception {
+                return client.getBadgesRecipients(paging, badgeIds);
+            }
+        });
 	}
 }

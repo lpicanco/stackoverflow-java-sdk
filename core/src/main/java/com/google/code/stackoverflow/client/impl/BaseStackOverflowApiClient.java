@@ -20,8 +20,8 @@ import com.google.code.stackoverflow.schema.Comments;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.PostTimeline;
-import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.PostTimelines;
+import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Questions;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Reputations;
@@ -976,5 +976,25 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 			return null;
 		}
 		return list.get(0);
+	}
+
+	@Override
+	public List<User> getBadgesRecipients(long... badgeIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
+        String                apiUrl  = builder.withIds(badgeIds).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
+	}
+
+	@Override
+	public List<User> getBadgesRecipients(Paging paging, long... badgeIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
+        String                apiUrl  = builder.withIds(badgeIds).withPaging(paging).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
 	}
 }
