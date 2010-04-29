@@ -213,6 +213,12 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
+	@Test
+	public void testSearchQuestionsString() {
+		List<Question> questions = client.searchQuestions(getTags().get(0));
+		assertNotNullOrEmpty("Questions should never be null.", questions);
+	}
+	
 	/**
 	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
 	 */

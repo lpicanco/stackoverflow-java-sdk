@@ -35,6 +35,7 @@ import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.UserTimeline;
 import com.google.code.stackoverflow.schema.UserTimelines;
 import com.google.code.stackoverflow.schema.Users;
+import com.google.code.stackoverflow.schema.User.QuestionSortOrder;
 
 /**
  * @author Nabeel Mukhtar
@@ -996,5 +997,60 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         Users users = readResponse(Users.class, callApiMethod(apiUrl));
         
         return users.getUsers();
+	}
+	
+	@Override
+	public List<Question> searchQuestions(String query) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
+        String                apiUrl  = builder.withParameter("intitle", query).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> searchQuestions(String query, QuestionSortOrder sort,
+			Paging paging) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
+        String                apiUrl  = builder.withParameter("intitle", query).withSort(sort).withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> searchQuestions(List<String> includeTags,
+			List<String> excludeTags) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
+        String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> searchQuestions(List<String> includeTags,
+			List<String> excludeTags, QuestionSortOrder sort, Paging paging) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
+        String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+
+	@Override
+	public List<Question> searchQuestions(String query,
+			List<String> includeTags, List<String> excludeTags,
+			QuestionSortOrder sort, Paging paging) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
+        String                apiUrl  = builder.withParameter("intitle", query).withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
 	}
 }

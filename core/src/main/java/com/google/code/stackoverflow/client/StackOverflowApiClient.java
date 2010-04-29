@@ -62,6 +62,11 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	public List<Question> getQuestions(Paging paging, Set<FilterOption> filterOptions, long... questionIds);
 	public List<PostTimeline> getQuestionsTimeline(long... questionIds);
 	public List<PostTimeline> getQuestionsTimeline(TimePeriod timePeriod, long... questionIds);
+	public List<Question> searchQuestions(String query);
+	public List<Question> searchQuestions(String query, User.QuestionSortOrder sort, Paging paging);
+	public List<Question> searchQuestions(List<String> includeTags, List<String> excludeTags);
+	public List<Question> searchQuestions(List<String> includeTags, List<String> excludeTags, User.QuestionSortOrder sort, Paging paging);
+	public List<Question> searchQuestions(String query, List<String> includeTags, List<String> excludeTags, User.QuestionSortOrder sort, Paging paging);
 	
 	// User Methods
 	public List<User> getUsers();
