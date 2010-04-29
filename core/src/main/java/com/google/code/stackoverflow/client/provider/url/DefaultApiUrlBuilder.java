@@ -140,14 +140,16 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	 */
 	public ApiUrlBuilder withParameters(String name,
 			Collection<String> values) {
-		StringBuilder builder = new StringBuilder();
-		for (Iterator<String> iterator = values.iterator(); iterator.hasNext();) {
-			builder.append(iterator.next());
-			if (iterator.hasNext()) {
-				builder.append(" ");
+		if (values != null && !values.isEmpty()) {
+			StringBuilder builder = new StringBuilder();
+			for (Iterator<String> iterator = values.iterator(); iterator.hasNext();) {
+				builder.append(iterator.next());
+				if (iterator.hasNext()) {
+					builder.append(" ");
+				}
 			}
+			parametersMap.put(name, encodeUrl(builder.toString()));
 		}
-		parametersMap.put(name, encodeUrl(builder.toString()));
 
 		return this;
 	}

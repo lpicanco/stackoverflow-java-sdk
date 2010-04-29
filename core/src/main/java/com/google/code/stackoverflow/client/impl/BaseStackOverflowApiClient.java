@@ -1023,7 +1023,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	@Override
 	public List<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).buildUrl();
 
         Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
@@ -1034,7 +1034,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	@Override
 	public List<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags, QuestionSortOrder sort, Paging paging) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
 
         Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
@@ -1046,7 +1046,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	public List<Question> searchQuestions(String query,
 			List<String> includeTags, List<String> excludeTags,
 			QuestionSortOrder sort, Paging paging) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
 
         Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
