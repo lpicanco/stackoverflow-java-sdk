@@ -36,6 +36,7 @@ public final class StackOverflowApiMethods {
 	public static final String GET_REVISIONS_FOR_POST = "com.google.code.stackoverflow.client.getRevisionsForPost";
 	public static final String GET_REVISION_FOR_POST = "com.google.code.stackoverflow.client.getRevisionForPost";
 	public static final String GET_BADGE_RECIPIENTS = "com.google.code.stackoverflow.client.getBadgesRecipients";
+	public static final String SEARCH_QUESTIONS = "com.google.code.stackoverflow.client.searchQuestions";;
 
 	/**
 	 * Instantiates a new stackoverflow in api urls.
