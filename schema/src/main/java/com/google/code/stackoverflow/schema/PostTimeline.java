@@ -3,85 +3,120 @@ package com.google.code.stackoverflow.schema;
 import java.util.Date;
 
 
+/**
+ * The Interface PostTimeline.
+ */
 public interface PostTimeline extends SchemaEntity {
 
 	/**
-	 * @return the timeline_type
+	 * Gets the timeline type.
+	 * 
+	 * @return the timeline type
 	 */
 	public PostTimelineType getTimelineType();
 
 	/**
-	 * @param timeline_type the timeline_type to set
+	 * Sets the timeline type.
+	 * 
+	 * @param timelineType the new timeline type
 	 */
 	public void setTimelineType(PostTimelineType timelineType);
 
 	/**
-	 * @return the post_id
+	 * Gets the post id.
+	 * 
+	 * @return the post id
 	 */
 	public long getPostId();
 
 	/**
-	 * @param post_id the post_id to set
+	 * Sets the post id.
+	 * 
+	 * @param postId the new post id
 	 */
 	public void setPostId(long postId);
 
 	/**
+	 * Gets the action.
+	 * 
 	 * @return the action
 	 */
 	public String getAction();
 
 	/**
-	 * @param action the action to set
+	 * Sets the action.
+	 * 
+	 * @param action the new action
 	 */
 	public void setAction(String action);
 
 	/**
-	 * @return the creation_date
+	 * Gets the creation date.
+	 * 
+	 * @return the creation date
 	 */
 	public Date getCreationDate();
 
 	/**
-	 * @param creation_date the creation_date to set
+	 * Sets the creation date.
+	 * 
+	 * @param creationDate the new creation date
 	 */
 	public void setCreationDate(Date creationDate);
 
 	/**
-	 * @return the userId
+	 * Gets the user id.
+	 * 
+	 * @return the user id
 	 */
 	public long getUserId();
 
 	/**
-	 * @param userId the userId to set
+	 * Sets the user id.
+	 * 
+	 * @param userId the new user id
 	 */
 	public void setUserId(long userId);
 
 	/**
-	 * @return the ownerUserId
+	 * Gets the owner user id.
+	 * 
+	 * @return the owner user id
 	 */
 	public long getOwnerUserId();
 
 	/**
-	 * @param ownerUserId the ownerUserId to set
+	 * Sets the owner user id.
+	 * 
+	 * @param ownerUserId the new owner user id
 	 */
 	public void setOwnerUserId(long ownerUserId);
 	
 	/**
-	 * @return the revisionGuid
+	 * Gets the revision guid.
+	 * 
+	 * @return the revision guid
 	 */
 	public String getRevisionGuid();
 	
 	/**
-	 * @param revisionGuid the revisionGuid to set
+	 * Sets the revision guid.
+	 * 
+	 * @param revisionGuid the new revision guid
 	 */
 	public void setRevisionGuid(String revisionGuid);
 	
 	/**
-	 * @return the commentId
+	 * Gets the comment id.
+	 * 
+	 * @return the comment id
 	 */
 	public long getCommentId();
 	
 	/**
-	 * @param commentId the commentId to set
+	 * Sets the comment id.
+	 * 
+	 * @param commentId the new comment id
 	 */
 	public void setCommentId(long commentId);
 }

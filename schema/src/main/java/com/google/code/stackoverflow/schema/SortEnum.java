@@ -1,22 +1,35 @@
 package com.google.code.stackoverflow.schema;
 
+/**
+ * The Interface SortEnum.
+ */
 public interface SortEnum extends ValueEnum {
+	
+	/**
+	 * The Enum Order.
+	 */
 	public enum Order implements ValueEnum {
-		ASCENDING("asc"), DESCENDING("desc");
+		
+		/** The ASCENDING. */
+		ASCENDING("asc"), 
+ /** The DESCENDING. */
+ DESCENDING("desc");
 
-		/** Field description */
+		/** The value. */
 		private final String value;
 
 		/**
-		 * Constructs ...
+		 * Instantiates a new order.
 		 * 
-		 * 
-		 * @param name
+		 * @param value the value
 		 */
 		Order(String value) {
 			this.value = value;
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+		 */
 		@Override
 		public String value() {
 			return value;
@@ -24,7 +37,9 @@ public interface SortEnum extends ValueEnum {
 	}
 
 	/**
-	 * @return the order of the field
+	 * Order.
+	 * 
+	 * @return the order
 	 */
 	public Order order();
 }

@@ -19,15 +19,22 @@ import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.QuestionsImpl;
 
 /**
- * @author nmukhtar
- *
+ * The Class QuestionApiQueryImpl.
  */
 public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> implements QuestionApiQuery {
 
+	/**
+	 * Instantiates a new question api query impl.
+	 * 
+	 * @param applicationId the application id
+	 */
 	public QuestionApiQueryImpl(String applicationId) {
 		super(applicationId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withClassification(com.google.code.stackoverflow.client.query.QuestionApiQuery.Classification)
+	 */
 	@Override
 	public QuestionApiQuery withClassification(Classification classification) {
 		switch (classification) {
@@ -54,54 +61,81 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withFetchOptions(java.util.Set)
+	 */
 	@Override
 	public QuestionApiQuery withFetchOptions(Set<FilterOption> fetchOptions) {
 		apiUrlBuilder.withFetchOptions(fetchOptions);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withPaging(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public QuestionApiQuery withPaging(Paging paging) {
 		apiUrlBuilder.withPaging(paging);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withQuestionIds(long[])
+	 */
 	@Override
 	public QuestionApiQuery withQuestionIds(long... questionIds) {
 		apiUrlBuilder.withIds(questionIds);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withSort(com.google.code.stackoverflow.schema.Question.SortOrder)
+	 */
 	@Override
 	public QuestionApiQuery withSort(Question.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withSort(com.google.code.stackoverflow.schema.Question.UnansweredSortOrder)
+	 */
 	@Override
 	public QuestionApiQuery withSort(Question.UnansweredSortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withTags(java.lang.String[])
+	 */
 	@Override
 	public QuestionApiQuery withTags(String... tag) {
 		apiUrlBuilder.withParameters("tagged", Arrays.asList(tag));
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withTimePeriod(com.google.code.stackoverflow.schema.TimePeriod)
+	 */
 	@Override
 	public QuestionApiQuery withTimePeriod(TimePeriod timePeriod) {
 		apiUrlBuilder.withTimePeriod(timePeriod);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withUserIds(long[])
+	 */
 	@Override
 	public QuestionApiQuery withUserIds(long... userIds) {
 		apiUrlBuilder.withIds(userIds);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
+	 */
 	@Override
 	protected List<Question> unmarshall(JSONObject json) {
 		QuestionsImpl adapter = new QuestionsImpl();
@@ -109,6 +143,9 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 		return adapter.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.StackOverflowApiQuery#reset()
+	 */
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS, getApplicationKey(), getApiVersion());

@@ -5,24 +5,21 @@ package com.google.code.stackoverflow.client;
 
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Interface StackOverflowAuthenticationClient.
  */
 public interface StackOverflowAuthenticationClient extends StackOverflowCommunicationClient {
 
     /**
-     * Method description
-     *
-     *
-     * @param applicationKey
+     * Sets the application key.
+     * 
+     * @param applicationKey the new application key
      */
     public void setApplicationKey(String applicationKey);
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * Gets the application key.
+     * 
+     * @return the application key
      */
     public String getApplicationKey();
 }

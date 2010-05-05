@@ -3,75 +3,106 @@ package com.google.code.stackoverflow.schema;
 import java.util.Date;
 
 
+/**
+ * The Interface Reputation.
+ */
 public interface Reputation extends SchemaEntity {
 
 	/**
-	 * @return the onDate
+	 * Gets the on date.
+	 * 
+	 * @return the on date
 	 */
 	public Date getOnDate();
 
 	/**
-	 * @param onDate the creationDate to set
+	 * Sets the on date.
+	 * 
+	 * @param onDate the new on date
 	 */
 	public void setOnDate(Date onDate);
 
 	/**
-	 * @return the postId
+	 * Gets the post id.
+	 * 
+	 * @return the post id
 	 */
 	public long getPostId();
 
 	/**
-	 * @param postId the postId to set
+	 * Sets the post id.
+	 * 
+	 * @param postId the new post id
 	 */
 	public void setPostId(long postId);
 
 	/**
-	 * @return the postType
+	 * Gets the post type.
+	 * 
+	 * @return the post type
 	 */
 	public PostType getPostType();
 
 	/**
-	 * @param postType the postType to set
+	 * Sets the post type.
+	 * 
+	 * @param postType the new post type
 	 */
 	public void setPostType(PostType postType);
 
 	/**
-	 * @return the body
+	 * Gets the title.
+	 * 
+	 * @return the title
 	 */
 	public String getTitle();
 
 	/**
-	 * @param title the body to set
+	 * Sets the title.
+	 * 
+	 * @param title the new title
 	 */
 	public void setTitle(String title);
 
 	/**
-	 * @return the positiveRep
+	 * Gets the positive rep.
+	 * 
+	 * @return the positive rep
 	 */
 	public long getPositiveRep();
 
 	/**
-	 * @param positiveRep the score to set
+	 * Sets the positive rep.
+	 * 
+	 * @param positiveRep the new positive rep
 	 */
 	public void setPositiveRep(long positiveRep);
 
 	/**
-	 * @return the negativeRep
+	 * Gets the negative rep.
+	 * 
+	 * @return the negative rep
 	 */
 	public long getNegativeRep();
 
 	/**
-	 * @param negativeRep the negativeRep to set
+	 * Sets the negative rep.
+	 * 
+	 * @param negativeRep the new negative rep
 	 */
 	public void setNegativeRep(long negativeRep);
 
 	/**
-	 * @return the userId
+	 * Gets the user id.
+	 * 
+	 * @return the user id
 	 */
 	public long getUserId();
 
 	/**
-	 * @param userId the userId to set
+	 * Sets the user id.
+	 * 
+	 * @param userId the new user id
 	 */
 	public void setUserId(long userId);
 }

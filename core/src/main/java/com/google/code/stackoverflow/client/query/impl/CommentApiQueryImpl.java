@@ -16,15 +16,22 @@ import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.CommentsImpl;
 
 /**
- * @author nmukhtar
- *
+ * The Class CommentApiQueryImpl.
  */
 public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> implements CommentApiQuery {
 
+	/**
+	 * Instantiates a new comment api query impl.
+	 * 
+	 * @param applicationId the application id
+	 */
 	public CommentApiQueryImpl(String applicationId) {
 		super(applicationId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withClassification(com.google.code.stackoverflow.client.query.CommentApiQuery.Classification)
+	 */
 	@Override
 	public CommentApiQuery withClassification(Classification classification) {
 		switch (classification) {
@@ -51,42 +58,63 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withCommentIds(long[])
+	 */
 	@Override
 	public CommentApiQuery withCommentIds(long... commentIds) {
 		apiUrlBuilder.withIds(commentIds);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withPaging(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public CommentApiQuery withPaging(Paging paging) {
 		apiUrlBuilder.withPaging(paging);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withSort(com.google.code.stackoverflow.schema.Comment.SortOrder)
+	 */
 	@Override
 	public CommentApiQuery withSort(Comment.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withTimePeriod(com.google.code.stackoverflow.schema.TimePeriod)
+	 */
 	@Override
 	public CommentApiQuery withTimePeriod(TimePeriod timePeriod) {
 		apiUrlBuilder.withTimePeriod(timePeriod);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withToUserId(long)
+	 */
 	@Override
 	public CommentApiQuery withToUserId(long toUserId) {
 		apiUrlBuilder.withField("toid", String.valueOf(toUserId));
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withUserIds(long[])
+	 */
 	@Override
 	public CommentApiQuery withUserIds(long... userIds) {
 		apiUrlBuilder.withIds(userIds);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
+	 */
 	@Override
 	protected List<Comment> unmarshall(JSONObject json) {
 		CommentsImpl adapter = new CommentsImpl();
@@ -94,6 +122,9 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 		return adapter.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.StackOverflowApiQuery#reset()
+	 */
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_COMMENT, getApplicationKey(), getApiVersion());

@@ -26,29 +26,20 @@ import com.google.code.stackoverflow.schema.UserType;
 import com.google.code.stackoverflow.schema.adapter.Converter;
 
 /**
- * @author nmukhtar
- * 
+ * The Class BaseJsonAdapter.
  */
 public abstract class BaseJsonAdapter implements Serializable {
 
-	/**
-	 * 
-	 */
+	/** The descriptors cache. */
 	private static Map<Class<?>, PropertyDescriptor[]> descriptorsCache = new HashMap<Class<?>, PropertyDescriptor[]>();
 	
-	/**
-	 * 
-	 */
+	/** The logger. */
     protected final Logger logger = Logger.getLogger(getClass().getCanonicalName());
 	
-	/**
-	 * 
-	 */
+	/** The converters. */
 	protected Map<Class<?>, Converter<?, ?>> converters = new HashMap<Class<?>, Converter<? , ?>>();
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 250056223059654638L;
 	
 	{
@@ -96,6 +87,12 @@ public abstract class BaseJsonAdapter implements Serializable {
 		});
 	}
 
+	/**
+	 * Copy properties.
+	 * 
+	 * @param dest the dest
+	 * @param src the src
+	 */
 	@SuppressWarnings("unchecked")
 	protected void copyProperties(Object dest, JSONObject src) {
 		try {
@@ -121,6 +118,12 @@ public abstract class BaseJsonAdapter implements Serializable {
 		}
 	}
 
+	/**
+	 * Copy properties.
+	 * 
+	 * @param dest the dest
+	 * @param src the src
+	 */
 	@SuppressWarnings("unchecked")
 	protected void copyProperties(JSONObject dest, Object src) {
 		try {
@@ -138,6 +141,13 @@ public abstract class BaseJsonAdapter implements Serializable {
 		}
 	}
 
+	/**
+	 * Convert to camel case.
+	 * 
+	 * @param original the original
+	 * 
+	 * @return the string
+	 */
 	protected String convertToCamelCase(String original) {
 		if (original.startsWith("is_")) {
 			original = original.substring(3);			
@@ -160,6 +170,13 @@ public abstract class BaseJsonAdapter implements Serializable {
 		return builder.toString();
 	}
 
+	/**
+	 * Convert to underscores.
+	 * 
+	 * @param original the original
+	 * 
+	 * @return the string
+	 */
 	protected String convertToUnderscores(String original) {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < original.length(); i++) {
@@ -176,6 +193,13 @@ public abstract class BaseJsonAdapter implements Serializable {
 
 	/*
 	 * Stolen liberally from commons-beanutils.
+	 */
+	/**
+	 * Gets the property descriptors.
+	 * 
+	 * @param beanClass the bean class
+	 * 
+	 * @return the property descriptors
 	 */
 	public PropertyDescriptor[] getPropertyDescriptors(Class<?> beanClass) {
 
@@ -209,6 +233,18 @@ public abstract class BaseJsonAdapter implements Serializable {
 	/*
 	 * Stolen liberally from commons-beanutils.
 	 */
+	/**
+	 * Gets the property descriptor.
+	 * 
+	 * @param bean the bean
+	 * @param name the name
+	 * 
+	 * @return the property descriptor
+	 * 
+	 * @throws IllegalAccessException the illegal access exception
+	 * @throws InvocationTargetException the invocation target exception
+	 * @throws NoSuchMethodException the no such method exception
+	 */
 	public PropertyDescriptor getPropertyDescriptor(Object bean, String name)
 			throws IllegalAccessException, InvocationTargetException,
 			NoSuchMethodException {
@@ -236,6 +272,14 @@ public abstract class BaseJsonAdapter implements Serializable {
 		return null;
 	}
 	
+	/**
+	 * Include property.
+	 * 
+	 * @param name the name
+	 * @param value the value
+	 * 
+	 * @return true, if successful
+	 */
 	protected boolean includeProperty(String name, Object value) {
 		if (value != null) {
 			return value.getClass().equals(String.class)

@@ -1,9 +1,14 @@
 package com.google.code.stackoverflow.schema;
 
+/**
+ * The Interface ValueEnum.
+ */
 public interface ValueEnum {
 
 	/**
-	 * @return the name of the field
+	 * Value.
+	 * 
+	 * @return the string
 	 */
 	public abstract String value();
 }

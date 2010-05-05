@@ -4,8 +4,7 @@
 package com.google.code.stackoverflow.schema;
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Interface SchemaEntity.
  */
 public interface SchemaEntity {
 

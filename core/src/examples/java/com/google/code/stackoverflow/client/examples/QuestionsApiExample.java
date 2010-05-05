@@ -22,29 +22,24 @@ import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.PostTimeline;
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Class QuestionsApiExample.
  */
 public class QuestionsApiExample {
 
-    /**
-     * Consumer Key
-     */
+    /** The Constant APPLICATION_KEY_OPTION. */
     private static final String APPLICATION_KEY_OPTION = "key";
 	
-    /**
-     * ID
-     */
+    /** The Constant ID_OPTION. */
     private static final String ID_OPTION = "id";
     
-    /**
-     * Name of the help command line option.
-     */
+    /** The Constant HELP_OPTION. */
     private static final String HELP_OPTION = "help";
     
     /**
-	 * @param args
-	 */
+     * The main method.
+     * 
+     * @param args the arguments
+     */
 	public static void main(String[] args) {
 		Options options = buildOptions();
         try {
@@ -57,7 +52,10 @@ public class QuestionsApiExample {
 	}
 	
     /**
-     * Process command line options and call the service. 
+     * Process command line.
+     * 
+     * @param line the line
+     * @param options the options
      */
     private static void processCommandLine(CommandLine line, Options options) {
         if(line.hasOption(HELP_OPTION)) {
@@ -88,17 +86,29 @@ public class QuestionsApiExample {
         }
     }
 	
+	/**
+	 * Prints the result.
+	 * 
+	 * @param timeline the timeline
+	 */
 	private static void printResult(PostTimeline timeline) {
 		System.out.println(timeline.getAction() + ":" + timeline.getTimelineType());
 	}
 
+	/**
+	 * Prints the result.
+	 * 
+	 * @param question the question
+	 */
 	private static void printResult(Question question) {
 		System.out.println(question.getTitle() + ":" + question.getAnswerCount());
 	}
 
 	/**
-     * Build command line options object.
-     */
+	 * Builds the options.
+	 * 
+	 * @return the options
+	 */
     private static Options buildOptions() {
        
         Options opts = new Options();
@@ -125,7 +135,9 @@ public class QuestionsApiExample {
     }
     
     /**
-     * Print help and usage.
+     * Prints the help.
+     * 
+     * @param options the options
      */
     private static void printHelp(Options options) {
         int width = 80;

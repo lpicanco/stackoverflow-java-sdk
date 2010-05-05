@@ -8,50 +8,55 @@ import java.util.Date;
 import com.google.code.stackoverflow.client.constant.ErrorCodes;
 
 /**
- * @author nmukhtar
- *
+ * The Class InternalServerException.
  */
 public class InternalServerException extends StackOverflowApiClientException {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4116844039359929855L;
 
 	/**
-	 * 
+	 * Instantiates a new internal server exception.
 	 */
 	public InternalServerException() {
 		super();
 	}
 
 	/**
-	 * @param message
+	 * Instantiates a new internal server exception.
+	 * 
+	 * @param message the message
 	 */
 	public InternalServerException(String message) {
 		super(message);
 	}
 
 	/**
-	 * @param cause
+	 * Instantiates a new internal server exception.
+	 * 
+	 * @param cause the cause
 	 */
 	public InternalServerException(Throwable cause) {
 		super(cause);
 	}
 
 	/**
-	 * @param message
-	 * @param cause
+	 * Instantiates a new internal server exception.
+	 * 
+	 * @param message the message
+	 * @param cause the cause
 	 */
 	public InternalServerException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
-	 * @param message
-	 * @param statusCode
-	 * @param errorCode
-	 * @param timestamp
+	 * Instantiates a new internal server exception.
+	 * 
+	 * @param message the message
+	 * @param statusCode the status code
+	 * @param errorCode the error code
+	 * @param timestamp the timestamp
 	 */
 	public InternalServerException(String message, int statusCode, int errorCode,
 			Date timestamp) {
@@ -59,10 +64,10 @@ public class InternalServerException extends StackOverflowApiClientException {
 	}
 	
 	/**
-	 * @param message
-	 * @param statusCode
-	 * @param errorCode
-	 * @param timestamp
+	 * Instantiates a new internal server exception.
+	 * 
+	 * @param message the message
+	 * @param timestamp the timestamp
 	 */
 	public InternalServerException(String message, Date timestamp) {
 		super(message, 500, ErrorCodes.INTERNAL_SERVER_ERROR, timestamp);

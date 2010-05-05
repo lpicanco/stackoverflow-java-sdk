@@ -9,28 +9,26 @@ import com.google.code.stackoverflow.schema.SchemaEntity;
 
 
 /**
- * The Abstract class AsyncResponseHandler.
- *
- * @author nmukhtar
- *
- * @param <T>
+ * The Class AsyncResponseHandler.
  */
 public abstract class AsyncResponseHandler<T extends SchemaEntity> {
 	
+	/** The future. */
 	private Future<T> future;
 	
     /**
-     * Set future
-     *
-     * @param future the future
+     * Sets the future.
+     * 
+     * @param future the new future
      */
 	public void setFuture(Future<T> future) {
 		this.future = future;
 	}
 	
     /**
-     * Get a reference to the future.
-     *
+     * Gets the future.
+     * 
+     * @return the future
      */
 	public Future<T> getFuture() {
 		return future;
@@ -38,7 +36,7 @@ public abstract class AsyncResponseHandler<T extends SchemaEntity> {
 
     /**
      * Handle response.
-     *
+     * 
      * @param response the response
      */
     public abstract void handleResponse(T response);

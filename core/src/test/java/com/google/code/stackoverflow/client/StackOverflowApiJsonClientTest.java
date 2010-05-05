@@ -24,14 +24,15 @@ import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.UserTimeline;
 
 /**
- * @author nmukhtar
- *
+ * The Class StackOverflowApiJsonClientTest.
  */
 public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
+	
+	/** The client. */
 	private StackOverflowApiClient client;
 	
-	/**
-	 * @throws java.lang.Exception
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClientTest#setUp()
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -39,8 +40,8 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 		client = factory.createStackOverflowApiClient();
 	}
 
-	/**
-	 * @throws java.lang.Exception
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClientTest#tearDown()
 	 */
 	@After
 	public void tearDown() throws Exception {
@@ -49,7 +50,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, long...)}.
+	 * Test get favorite questions by user long paging.
 	 */
 	@Test
 	public void testGetFavoriteQuestionsByUserLongPaging() {
@@ -59,7 +60,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get favorite questions by user long time period.
 	 */
 	@Test
 	public void testGetFavoriteQuestionsByUserLongTimePeriod() {
@@ -69,7 +70,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getFavoriteQuestionsByUsers(java.util.Set, long...)}.
+	 * Test get favorite questions by user long set of filter option.
 	 */
 	@Test
 	public void testGetFavoriteQuestionsByUserLongSetOfFilterOption() {
@@ -79,7 +80,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.UserFavoriteSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, java.util.Set, long...)}.
+	 * Test get favorite questions by user long user favorite sort order paging time period set of filter option.
 	 */
 	@Test
 	public void testGetFavoriteQuestionsByUserLongUserFavoriteSortOrderPagingTimePeriodSetOfFilterOption() {
@@ -89,7 +90,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, long...)}.
+	 * Test get question long paging.
 	 */
 	@Test
 	public void testGetQuestionLongPaging() {
@@ -99,7 +100,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(java.util.Set, long...)}.
+	 * Test get question long set of filter option.
 	 */
 	@Test
 	public void testGetQuestionLongSetOfFilterOption() {
@@ -109,7 +110,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, java.util.Set, long...)}.
+	 * Test get question long paging set of filter option.
 	 */
 	@Test
 	public void testGetQuestionLongPagingSetOfFilterOption() {
@@ -119,7 +120,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsTimeline(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get question timeline long time period.
 	 */
 	@Test
 	public void testGetQuestionTimelineLongTimePeriod() {
@@ -129,7 +130,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test get questions paging.
 	 */
 	@Test
 	public void testGetQuestionsPaging() {
@@ -138,7 +139,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod)}.
+	 * Test get questions time period.
 	 */
 	@Test
 	public void testGetQuestionsTimePeriod() {
@@ -147,7 +148,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(java.util.Set)}.
+	 * Test get questions set of filter option.
 	 */
 	@Test
 	public void testGetQuestionsSetOfFilterOption() {
@@ -156,7 +157,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.QuestionSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, java.util.Set)}.
+	 * Test get questions question sort order paging time period set of filter option.
 	 */
 	@Test
 	public void testGetQuestionsQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
@@ -165,7 +166,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, long...)}.
+	 * Test get questions by user long paging.
 	 */
 	@Test
 	public void testGetQuestionsByUserLongPaging() {
@@ -175,7 +176,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get questions by user long time period.
 	 */
 	@Test
 	public void testGetQuestionsByUserLongTimePeriod() {
@@ -185,7 +186,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsByUsers(java.util.Set, long...)}.
+	 * Test get questions by user long set of filter option.
 	 */
 	@Test
 	public void testGetQuestionsByUserLongSetOfFilterOption() {
@@ -195,7 +196,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.UserQuestionSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, java.util.Set, long...)}.
+	 * Test get questions by user long user question sort order paging time period set of filter option.
 	 */
 	@Test
 	public void testGetQuestionsByUserLongUserQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
@@ -205,7 +206,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTaggedQuestions(java.util.List, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, java.util.Set)}.
+	 * Test get tagged questions list of string paging time period set of filter option.
 	 */
 	@Test
 	public void testGetTaggedQuestionsListOfStringPagingTimePeriodSetOfFilterOption() {
@@ -213,6 +214,9 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
+	/**
+	 * Test search questions string.
+	 */
 	@Test
 	public void testSearchQuestionsString() {
 		List<Question> questions = client.searchQuestions(getTags().get(0));
@@ -220,7 +224,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test get tags paging.
 	 */
 	@Test
 	public void testGetTagsPaging() {
@@ -229,7 +233,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test get tags tag sort order paging.
 	 */
 	@Test
 	public void testGetTagsTagSortOrderPaging() {
@@ -238,7 +242,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTagsForUsers(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, long...)}.
+	 * Test get tags for user long paging.
 	 */
 	@Test
 	public void testGetTagsForUserLongPaging() {
@@ -248,7 +252,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test get unanswered questions paging.
 	 */
 	@Test
 	public void testGetUnansweredQuestionsPaging() {
@@ -257,7 +261,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod)}.
+	 * Test get unanswered questions time period.
 	 */
 	@Test
 	public void testGetUnansweredQuestionsTimePeriod() {
@@ -266,7 +270,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(java.util.Set)}.
+	 * Test get unanswered questions set of filter option.
 	 */
 	@Test
 	public void testGetUnansweredQuestionsSetOfFilterOption() {
@@ -275,7 +279,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.UnansweredSortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, java.util.Set)}.
+	 * Test get unanswered questions unanswered question sort order paging time period set of filter option.
 	 */
 	@Test
 	public void testGetUnansweredQuestionsUnansweredQuestionSortOrderPagingTimePeriodSetOfFilterOption() {
@@ -284,7 +288,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersMentions(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user mentions long time period.
 	 */
 	@Test
 	public void testGetUserMentionsLongTimePeriod() {
@@ -294,7 +298,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersTimeline(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user timeline long time period.
 	 */
 	@Test
 	public void testGetUserTimelineLongTimePeriod() {
@@ -304,7 +308,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test get users paging.
 	 */
 	@Test
 	public void testGetUsersPaging() {
@@ -313,7 +317,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(java.lang.String)}.
+	 * Test get users string.
 	 */
 	@Test
 	public void testGetUsersString() {
@@ -323,7 +327,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(java.lang.String, com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging)}.
+	 * Test get users string user sort order paging.
 	 */
 	@Test
 	public void testGetUsersStringUserSortOrderPaging() {
@@ -333,7 +337,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswers(long...)}.
+	 * Test get answer.
 	 */
 	@Test
 	public void testGetAnswer() {
@@ -343,7 +347,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswersByUsers(long...)}.
+	 * Test get answers by user long.
 	 */
 	@Test
 	public void testGetAnswersByUserLong() {
@@ -353,7 +357,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswersByQuestions(long...)}.
+	 * Test get answers by question long.
 	 */
 	@Test
 	public void testGetAnswersByQuestionLong() {
@@ -363,7 +367,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getAnswersByUsers(com.google.code.stackoverflow.schema.SortOrder, long...)}.
+	 * Test get answers by user long answer sort order.
 	 */
 	@Test
 	public void testGetAnswersByUserLongAnswerSortOrder() {
@@ -373,7 +377,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadges()}.
+	 * Test get badges.
 	 */
 	@Test
 	public void testGetBadges() {
@@ -382,7 +386,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadgesByName(com.google.code.stackoverflow.schema.BadgeSortOrder)}.
+	 * Test get badges by name.
 	 */
 	@Test
 	public void testGetBadgesByName() {
@@ -391,7 +395,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadgesByTags(com.google.code.stackoverflow.schema.BadgeSortOrder)}.
+	 * Test get badges by tags.
 	 */
 	@Test
 	public void testGetBadgesByTags() {
@@ -400,7 +404,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getBadgesForUsers(long...)}.
+	 * Test get badges for user.
 	 */
 	@Test
 	public void testGetBadgesForUser() {
@@ -410,7 +414,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getFavoriteQuestionsByUsers(long...)}.
+	 * Test get favorite questions by user long.
 	 */
 	@Test
 	public void testGetFavoriteQuestionsByUserLong() {
@@ -420,7 +424,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.UserFavoriteSortOrder, long...)}.
+	 * Test get favorite questions by user long user favorite sort order.
 	 */
 	@Test
 	public void testGetFavoriteQuestionsByUserLongUserFavoriteSortOrder() {
@@ -430,7 +434,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(long...)}.
+	 * Test get question long.
 	 */
 	@Test
 	public void testGetQuestionLong() {
@@ -440,7 +444,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsTimeline(long...)}.
+	 * Test get question timeline long.
 	 */
 	@Test
 	public void testGetQuestionTimelineLong() {
@@ -450,7 +454,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions()}.
+	 * Test get questions.
 	 */
 	@Test
 	public void testGetQuestions() {
@@ -459,7 +463,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.QuestionSortOrder)}.
+	 * Test get questions question sort order.
 	 */
 	@Test
 	public void testGetQuestionsQuestionSortOrder() {
@@ -468,7 +472,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsByUsers(long...)}.
+	 * Test get questions by user long.
 	 */
 	@Test
 	public void testGetQuestionsByUserLong() {
@@ -478,7 +482,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.UserQuestionSortOrder, long...)}.
+	 * Test get questions by user long user question sort order.
 	 */
 	@Test
 	public void testGetQuestionsByUserLongUserQuestionSortOrder() {
@@ -488,7 +492,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTaggedQuestions(java.util.List)}.
+	 * Test get tagged questions list of string.
 	 */
 	@Test
 	public void testGetTaggedQuestionsListOfString() {
@@ -498,7 +502,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags()}.
+	 * Test get tags.
 	 */
 	@Test
 	public void testGetTags() {
@@ -507,7 +511,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.SortOrder)}.
+	 * Test get tags tag sort order.
 	 */
 	@Test
 	public void testGetTagsTagSortOrder() {
@@ -516,7 +520,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getTagsForUsers(long...)}.
+	 * Test get tags for user long.
 	 */
 	@Test
 	public void testGetTagsForUserLong() {
@@ -526,7 +530,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions()}.
+	 * Test get unanswered questions.
 	 */
 	@Test
 	public void testGetUnansweredQuestions() {
@@ -535,7 +539,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.UnansweredSortOrder)}.
+	 * Test get unanswered questions unanswered question sort order.
 	 */
 	@Test
 	public void testGetUnansweredQuestionsUnansweredQuestionSortOrder() {
@@ -544,7 +548,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(long...)}.
+	 * Test get user.
 	 */
 	@Test
 	public void testGetUser() {
@@ -554,7 +558,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersMentions(long...)}.
+	 * Test get user mentions long.
 	 */
 	@Test
 	public void testGetUserMentionsLong() {
@@ -564,7 +568,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersTimeline(long...)}.
+	 * Test get user timeline long.
 	 */
 	@Test
 	public void testGetUserTimelineLong() {
@@ -574,7 +578,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers()}.
+	 * Test get users.
 	 */
 	@Test
 	public void testGetUsers() {
@@ -583,7 +587,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.SortOrder)}.
+	 * Test get users user sort order.
 	 */
 	@Test
 	public void testGetUsersUserSortOrder() {
@@ -592,7 +596,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersReputations(long...)}.
+	 * Test get user reputations long.
 	 */
 	@Test
 	public void testGetUserReputationsLong() {
@@ -602,7 +606,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user reputations long time period.
 	 */
 	@Test
 	public void testGetUserReputationsLongTimePeriod() {
@@ -612,7 +616,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, long...)}.
+	 * Test get user reputations long paging.
 	 */
 	@Test
 	public void testGetUserReputationsLongPaging() {
@@ -622,7 +626,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user reputations long paging time period.
 	 */
 	@Test
 	public void testGetUserReputationsLongPagingTimePeriod() {
@@ -632,7 +636,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersComments(long...)}.
+	 * Test get user comments long.
 	 */
 	@Test
 	public void testGetUserCommentsLong() {
@@ -642,7 +646,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(com.google.code.stackoverflow.schema.SortOrder, long...)}.
+	 * Test get user comments long comment sort order.
 	 */
 	@Test
 	public void testGetUserCommentsLongCommentSortOrder() {
@@ -652,7 +656,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user comments long time period.
 	 */
 	@Test
 	public void testGetUserCommentsLongTimePeriod() {
@@ -662,7 +666,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, long...)}.
+	 * Test get user comments long paging.
 	 */
 	@Test
 	public void testGetUserCommentsLongPaging() {
@@ -672,7 +676,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user comments long comment sort order paging time period.
 	 */
 	@Test
 	public void testGetUserCommentsLongCommentSortOrderPagingTimePeriod() {
@@ -682,7 +686,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(long, long...)}.
+	 * Test get user comments long long.
 	 */
 	@Test
 	public void testGetUserCommentsLongLong() {
@@ -692,7 +696,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.SortOrder, long...)}.
+	 * Test get user comments long long comment sort order.
 	 */
 	@Test
 	public void testGetUserCommentsLongLongCommentSortOrder() {
@@ -702,7 +706,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user comments long long time period.
 	 */
 	@Test
 	public void testGetUserCommentsLongLongTimePeriod() {
@@ -712,7 +716,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, long...)}.
+	 * Test get user comments long long paging.
 	 */
 	@Test
 	public void testGetUserCommentsLongLongPaging() {
@@ -722,7 +726,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.SortOrder, com.google.code.stackoverflow.client.StackOverflowApiClient.Paging, com.google.code.stackoverflow.client.StackOverflowApiClient.TimePeriod, long...)}.
+	 * Test get user comments long long comment sort order paging time period.
 	 */
 	@Test
 	public void testGetUserCommentsLongLongCommentSortOrderPagingTimePeriod() {
@@ -732,7 +736,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#getRevisionsForPosts(long...)}.
+	 * Test get revisions for post long.
 	 */
 	@Test
 	public void testGetRevisionsForPostLong() {

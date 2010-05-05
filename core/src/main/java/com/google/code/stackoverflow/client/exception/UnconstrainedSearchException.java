@@ -8,50 +8,55 @@ import java.util.Date;
 import com.google.code.stackoverflow.client.constant.ErrorCodes;
 
 /**
- * @author nmukhtar
- *
+ * The Class UnconstrainedSearchException.
  */
 public class UnconstrainedSearchException extends StackOverflowApiClientException {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4116844039359929855L;
 
 	/**
-	 * 
+	 * Instantiates a new unconstrained search exception.
 	 */
 	public UnconstrainedSearchException() {
 		super();
 	}
 
 	/**
-	 * @param message
+	 * Instantiates a new unconstrained search exception.
+	 * 
+	 * @param message the message
 	 */
 	public UnconstrainedSearchException(String message) {
 		super(message);
 	}
 
 	/**
-	 * @param cause
+	 * Instantiates a new unconstrained search exception.
+	 * 
+	 * @param cause the cause
 	 */
 	public UnconstrainedSearchException(Throwable cause) {
 		super(cause);
 	}
 
 	/**
-	 * @param message
-	 * @param cause
+	 * Instantiates a new unconstrained search exception.
+	 * 
+	 * @param message the message
+	 * @param cause the cause
 	 */
 	public UnconstrainedSearchException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
-	 * @param message
-	 * @param statusCode
-	 * @param errorCode
-	 * @param timestamp
+	 * Instantiates a new unconstrained search exception.
+	 * 
+	 * @param message the message
+	 * @param statusCode the status code
+	 * @param errorCode the error code
+	 * @param timestamp the timestamp
 	 */
 	public UnconstrainedSearchException(String message, int statusCode, int errorCode,
 			Date timestamp) {
@@ -59,10 +64,10 @@ public class UnconstrainedSearchException extends StackOverflowApiClientExceptio
 	}
 	
 	/**
-	 * @param message
-	 * @param statusCode
-	 * @param errorCode
-	 * @param timestamp
+	 * Instantiates a new unconstrained search exception.
+	 * 
+	 * @param message the message
+	 * @param timestamp the timestamp
 	 */
 	public UnconstrainedSearchException(String message, Date timestamp) {
 		super(message, 400, ErrorCodes.UNCONSTRAINED_SEARCH, timestamp);

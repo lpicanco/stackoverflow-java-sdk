@@ -14,26 +14,33 @@ import com.google.code.stackoverflow.schema.Badges;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class BadgesImpl.
  */
 public class BadgesImpl extends BaseJsonAdapter implements Badges, Adaptable<Badges, JSONObject> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
+	/** The badges. */
 	private List<Badge> badges = new ArrayList<Badge>();
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Badges#getBadges()
+	 */
 	public List<Badge> getBadges() {
 		return badges;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Badges#setBadges(java.util.List)
+	 */
 	public void setBadges(List<Badge> badges) {
 		this.badges = badges;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
@@ -47,6 +54,9 @@ public class BadgesImpl extends BaseJsonAdapter implements Badges, Adaptable<Bad
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject adaptTo() {

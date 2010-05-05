@@ -16,320 +16,475 @@ import com.google.code.stackoverflow.schema.UserType;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class UserImpl.
  */
 public class UserImpl extends BaseJsonAdapter implements User, Adaptable<User, JSONObject> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5517600617397335450L;
 	
+	/** The user id. */
 	private long userId;
+	
+	/** The user type. */
 	private UserType userType;
+	
+	/** The creation date. */
 	private Date creationDate;
+	
+	/** The display name. */
 	private String displayName;
+	
+	/** The reputation. */
 	private long reputation;
+	
+	/** The email hash. */
 	private String emailHash;
+	
+	/** The age. */
 	private long age;
+	
+	/** The last access date. */
 	private Date lastAccessDate;
+	
+	/** The website url. */
 	private String websiteUrl;
+	
+	/** The location. */
 	private String location;
+	
+	/** The about me. */
 	private String aboutMe;
+	
+	/** The question count. */
 	private long questionCount;
+	
+	/** The answer count. */
 	private long answerCount;
+	
+	/** The view count. */
 	private long viewCount;
+	
+	/** The up vote count. */
 	private long upVoteCount;
+	
+	/** The down vote count. */
 	private long downVoteCount;
+	
+	/** The accept rate. */
 	private double acceptRate;
+	
+	/** The user questions url. */
 	private String userQuestionsUrl;
+	
+	/** The user answers url. */
 	private String userAnswersUrl;
+	
+	/** The user favorites url. */
 	private String userFavoritesUrl;
+	
+	/** The user tags url. */
 	private String userTagsUrl;
+	
+	/** The user badges url. */
 	private String userBadgesUrl;
+	
+	/** The user timeline url. */
 	private String userTimelineUrl;
+	
+	/** The user mentioned url. */
 	private String userMentionedUrl;
+	
+	/** The user comments url. */
 	private String userCommentsUrl;
+	
+	/** The user reputation url. */
 	private String userReputationUrl;
+	
+	/** The badge counts. */
 	private Map<BadgeRank, Long> badgeCounts = new HashMap<BadgeRank, Long>();
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserId()
+	 */
 	public long getUserId() {
 		return userId;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserId(long)
+	 */
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserType()
+	 */
 	public UserType getUserType() {
 		return userType;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserType(com.google.code.stackoverflow.schema.UserType)
+	 */
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getCreationDate()
+	 */
 	public Date getCreationDate() {
 		return creationDate;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setCreationDate(java.util.Date)
+	 */
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getDisplayName()
+	 */
 	public String getDisplayName() {
 		return displayName;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setDisplayName(java.lang.String)
+	 */
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getReputation()
+	 */
 	public long getReputation() {
 		return reputation;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setReputation(long)
+	 */
 	public void setReputation(long reputation) {
 		this.reputation = reputation;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getEmailHash()
+	 */
 	public String getEmailHash() {
 		return emailHash;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setEmailHash(java.lang.String)
+	 */
 	public void setEmailHash(String emailHash) {
 		this.emailHash = emailHash;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getAge()
+	 */
 	public long getAge() {
 		return age;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setAge(long)
+	 */
 	public void setAge(long age) {
 		this.age = age;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getLastAccessDate()
+	 */
 	public Date getLastAccessDate() {
 		return lastAccessDate;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setLastAccessDate(java.util.Date)
+	 */
 	public void setLastAccessDate(Date lastAccessDate) {
 		this.lastAccessDate = lastAccessDate;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getWebsiteUrl()
+	 */
 	public String getWebsiteUrl() {
 		return websiteUrl;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setWebsiteUrl(java.lang.String)
+	 */
 	public void setWebsiteUrl(String websiteUrl) {
 		this.websiteUrl = websiteUrl;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getLocation()
+	 */
 	public String getLocation() {
 		return location;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setLocation(java.lang.String)
+	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getAboutMe()
+	 */
 	public String getAboutMe() {
 		return aboutMe;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setAboutMe(java.lang.String)
+	 */
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getQuestionCount()
+	 */
 	public long getQuestionCount() {
 		return questionCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setQuestionCount(long)
+	 */
 	public void setQuestionCount(long questionCount) {
 		this.questionCount = questionCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getAnswerCount()
+	 */
 	public long getAnswerCount() {
 		return answerCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setAnswerCount(long)
+	 */
 	public void setAnswerCount(long answerCount) {
 		this.answerCount = answerCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getViewCount()
+	 */
 	public long getViewCount() {
 		return viewCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setViewCount(long)
+	 */
 	public void setViewCount(long viewCount) {
 		this.viewCount = viewCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUpVoteCount()
+	 */
 	public long getUpVoteCount() {
 		return upVoteCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUpVoteCount(long)
+	 */
 	public void setUpVoteCount(long upVoteCount) {
 		this.upVoteCount = upVoteCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getDownVoteCount()
+	 */
 	public long getDownVoteCount() {
 		return downVoteCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setDownVoteCount(long)
+	 */
 	public void setDownVoteCount(long downVoteCount) {
 		this.downVoteCount = downVoteCount;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getAcceptRate()
+	 */
 	public double getAcceptRate() {
 		return acceptRate;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setAcceptRate(double)
+	 */
 	public void setAcceptRate(double acceptRate) {
 		this.acceptRate = acceptRate;
 	}
 	
-	/**
-	 * @return the userQuestionsUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserQuestionsUrl()
 	 */
 	public String getUserQuestionsUrl() {
 		return userQuestionsUrl;
 	}
 
-	/**
-	 * @param userQuestionsUrl the userQuestionsUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserQuestionsUrl(java.lang.String)
 	 */
 	public void setUserQuestionsUrl(String userQuestionsUrl) {
 		this.userQuestionsUrl = userQuestionsUrl;
 	}
 
-	/**
-	 * @return the userAnswersUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserAnswersUrl()
 	 */
 	public String getUserAnswersUrl() {
 		return userAnswersUrl;
 	}
 
-	/**
-	 * @param userAnswersUrl the userAnswersUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserAnswersUrl(java.lang.String)
 	 */
 	public void setUserAnswersUrl(String userAnswersUrl) {
 		this.userAnswersUrl = userAnswersUrl;
 	}
 
-	/**
-	 * @return the userFavoritesUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserFavoritesUrl()
 	 */
 	public String getUserFavoritesUrl() {
 		return userFavoritesUrl;
 	}
 
-	/**
-	 * @param userFavoritesUrl the userFavoritesUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserFavoritesUrl(java.lang.String)
 	 */
 	public void setUserFavoritesUrl(String userFavoritesUrl) {
 		this.userFavoritesUrl = userFavoritesUrl;
 	}
 
-	/**
-	 * @return the userTagsUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserTagsUrl()
 	 */
 	public String getUserTagsUrl() {
 		return userTagsUrl;
 	}
 
-	/**
-	 * @param userTagsUrl the userTagsUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserTagsUrl(java.lang.String)
 	 */
 	public void setUserTagsUrl(String userTagsUrl) {
 		this.userTagsUrl = userTagsUrl;
 	}
 
-	/**
-	 * @return the userBadgesUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserBadgesUrl()
 	 */
 	public String getUserBadgesUrl() {
 		return userBadgesUrl;
 	}
 
-	/**
-	 * @param userBadgesUrl the userBadgesUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserBadgesUrl(java.lang.String)
 	 */
 	public void setUserBadgesUrl(String userBadgesUrl) {
 		this.userBadgesUrl = userBadgesUrl;
 	}
 
-	/**
-	 * @return the userTimelineUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserTimelineUrl()
 	 */
 	public String getUserTimelineUrl() {
 		return userTimelineUrl;
 	}
 
-	/**
-	 * @param userTimelineUrl the userTimelineUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserTimelineUrl(java.lang.String)
 	 */
 	public void setUserTimelineUrl(String userTimelineUrl) {
 		this.userTimelineUrl = userTimelineUrl;
 	}
 
-	/**
-	 * @return the userMentionedUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserMentionedUrl()
 	 */
 	public String getUserMentionedUrl() {
 		return userMentionedUrl;
 	}
 
-	/**
-	 * @param userMentionedUrl the userMentionedUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserMentionedUrl(java.lang.String)
 	 */
 	public void setUserMentionedUrl(String userMentionedUrl) {
 		this.userMentionedUrl = userMentionedUrl;
 	}
 
-	/**
-	 * @return the userCommentsUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserCommentsUrl()
 	 */
 	public String getUserCommentsUrl() {
 		return userCommentsUrl;
 	}
 
-	/**
-	 * @param userCommentsUrl the userCommentsUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserCommentsUrl(java.lang.String)
 	 */
 	public void setUserCommentsUrl(String userCommentsUrl) {
 		this.userCommentsUrl = userCommentsUrl;
 	}
 
-	/**
-	 * @return the userReputationUrl
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getUserReputationUrl()
 	 */
 	public String getUserReputationUrl() {
 		return userReputationUrl;
 	}
 
-	/**
-	 * @param userReputationUrl the userReputationUrl to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setUserReputationUrl(java.lang.String)
 	 */
 	public void setUserReputationUrl(String userReputationUrl) {
 		this.userReputationUrl = userReputationUrl;
 	}
 
-	/**
-	 * @return the badgeCounts
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#getBadgeCounts()
 	 */
 	public Map<BadgeRank, Long> getBadgeCounts() {
 		return badgeCounts;
 	}
 
-	/**
-	 * @param badgeCounts the badgeCounts to set
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.User#setBadgeCounts(java.util.Map)
 	 */
 	public void setBadgeCounts(Map<BadgeRank, Long> badgeCounts) {
 		this.badgeCounts = badgeCounts;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
@@ -342,6 +497,9 @@ public class UserImpl extends BaseJsonAdapter implements User, Adaptable<User, J
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@Override
 	public JSONObject adaptTo() {
 		JSONObject adapter = new JSONObject();

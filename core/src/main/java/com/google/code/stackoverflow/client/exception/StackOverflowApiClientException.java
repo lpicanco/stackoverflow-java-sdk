@@ -6,65 +6,64 @@ package com.google.code.stackoverflow.client.exception;
 import java.util.Date;
 
 /**
- * Class description
- *
- *
+ * The Class StackOverflowApiClientException.
  */
 public class StackOverflowApiClientException extends RuntimeException {
+	
+	/** The status code. */
 	private int statusCode;
+	
+	/** The error code. */
 	private int errorCode;
+	
+	/** The timestamp. */
 	private Date timestamp;
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -4345556572105572685L;
 
 	/**
-     * Constructs ...
-     *
-     */
+	 * Instantiates a new stack overflow api client exception.
+	 */
     public StackOverflowApiClientException() {
         super();
     }
 
     /**
-     * Constructs ...
-     *
-     *
-     * @param message
+     * Instantiates a new stack overflow api client exception.
+     * 
+     * @param message the message
      */
     public StackOverflowApiClientException(String message) {
         super(message);
     }
 
     /**
-     * Constructs ...
-     *
-     *
-     * @param cause
+     * Instantiates a new stack overflow api client exception.
+     * 
+     * @param cause the cause
      */
     public StackOverflowApiClientException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Constructs ...
-     *
-     *
-     * @param message
-     * @param cause
+     * Instantiates a new stack overflow api client exception.
+     * 
+     * @param message the message
+     * @param cause the cause
      */
     public StackOverflowApiClientException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Constructs ...
-     *
-     *
-     * @param message
-     * @param cause
+     * Instantiates a new stack overflow api client exception.
+     * 
+     * @param message the message
+     * @param statusCode the status code
+     * @param errorCode the error code
+     * @param timestamp the timestamp
      */
     public StackOverflowApiClientException(String message, int statusCode , int errorCode, Date timestamp) {
         super(message);
@@ -74,34 +73,44 @@ public class StackOverflowApiClientException extends RuntimeException {
     }
     
 	/**
-	 * @return the statusCode
+	 * Gets the status code.
+	 * 
+	 * @return the status code
 	 */
 	public int getStatusCode() {
 		return statusCode;
 	}
 
 	/**
-	 * @param statusCode the statusCode to set
+	 * Sets the status code.
+	 * 
+	 * @param statusCode the new status code
 	 */
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
 	}
 
 	/**
-	 * @return the errorCode
+	 * Gets the error code.
+	 * 
+	 * @return the error code
 	 */
 	public int getErrorCode() {
 		return errorCode;
 	}
 
 	/**
-	 * @param errorCode the errorCode to set
+	 * Sets the error code.
+	 * 
+	 * @param errorCode the new error code
 	 */
 	public void setErrorCode(int errorCode) {
 		this.errorCode = errorCode;
 	}
 
 	/**
+	 * Gets the timestamp.
+	 * 
 	 * @return the timestamp
 	 */
 	public Date getTimestamp() {
@@ -109,7 +118,9 @@ public class StackOverflowApiClientException extends RuntimeException {
 	}
 
 	/**
-	 * @param timestamp the timestamp to set
+	 * Sets the timestamp.
+	 * 
+	 * @param timestamp the new timestamp
 	 */
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;

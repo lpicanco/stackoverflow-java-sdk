@@ -14,26 +14,33 @@ import com.google.code.stackoverflow.schema.Comments;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class CommentsImpl.
  */
 public class CommentsImpl extends BaseJsonAdapter implements Comments, Adaptable<Comments, JSONObject> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
+	/** The comments. */
 	private List<Comment> comments = new ArrayList<Comment>();
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Comments#getComments()
+	 */
 	public List<Comment> getComments() {
 		return comments;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Comments#setComments(java.util.List)
+	 */
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		JSONArray comments = (JSONArray) adaptee.get("comments");
@@ -46,6 +53,9 @@ public class CommentsImpl extends BaseJsonAdapter implements Comments, Adaptable
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject adaptTo() {

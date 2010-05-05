@@ -1,24 +1,35 @@
 package com.google.code.stackoverflow.schema;
 
+/**
+ * The Interface ApiVersion.
+ */
 public interface ApiVersion {
 
 	/**
+	 * Gets the version.
+	 * 
 	 * @return the version
 	 */
 	public String getVersion();
 
 	/**
-	 * @param version the version to set
+	 * Sets the version.
+	 * 
+	 * @param version the new version
 	 */
 	public void setVersion(String version);
 
 	/**
+	 * Gets the revision.
+	 * 
 	 * @return the revision
 	 */
 	public String getRevision();
 
 	/**
-	 * @param revision the revision to set
+	 * Sets the revision.
+	 * 
+	 * @param revision the new revision
 	 */
 	public void setRevision(String revision);
 

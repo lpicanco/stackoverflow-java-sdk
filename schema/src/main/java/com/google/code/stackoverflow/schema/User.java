@@ -5,19 +5,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * The Interface User.
+ */
 public interface User extends SchemaEntity {
 	
+	/**
+	 * The Enum SortOrder.
+	 */
 	public enum SortOrder implements SortEnum {
+		
+		/** The MOS t_ reputed. */
 		MOST_REPUTED("reputation", Order.ASCENDING),
+		
+		/** The LEAS t_ reputed. */
 		LEAST_REPUTED("reputation", Order.DESCENDING),
+		
+		/** The MOS t_ recentl y_ created. */
 		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ created. */
 		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		
+		/** The NAM e_ ascending. */
 		NAME_ASCENDING("name", Order.ASCENDING),
+		
+		/** The NAM e_ descending. */
 		NAME_DESCENDING("name", Order.DESCENDING);
 		
-	    /**
-	     * Field Description.
-	     */
+	    /** The Constant stringToEnum. */
 		private static final Map<String, SortOrder> stringToEnum = new HashMap<String, SortOrder>();
 
 		static { // Initialize map from constant name to enum constant
@@ -26,53 +42,87 @@ public interface User extends SchemaEntity {
 			}
 		}
 		
-	    /** Field description */
+	    /** The value. */
 	    private final String value;
 	    
-	    /** Field description */
+	    /** The order. */
 	    private final Order order;
 	    
 	    /**
-	     * Constructs ...
-	     *
-	     *
-	     * @param name
-	     */
+    	 * Instantiates a new sort order.
+    	 * 
+    	 * @param value the value
+    	 * @param order the order
+    	 */
 	    SortOrder(String value, Order order) {
 	        this.value = value;
 	        this.order = order;
 	    }
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+		 */
 		@Override
 		public String value() {
 			return value;
 		}
 		
+		/**
+		 * From value.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the sort order
+		 */
 		public static SortOrder fromValue(String value) {
 			return stringToEnum.get(value);
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.SortEnum#order()
+		 */
 		@Override
 		public Order order() {
 			return order;
 		}
 	}
 	
+	/**
+	 * The Enum FavoriteSortOrder.
+	 */
 	public enum FavoriteSortOrder implements SortEnum {
+		
+		/** The MOS t_ recentl y_ updated. */
 		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ updated. */
 		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		
+		/** The MOS t_ viewed. */
 		MOST_VIEWED("views", Order.ASCENDING),
+		
+		/** The LEAS t_ viewed. */
 		LEAST_VIEWED("views", Order.DESCENDING),
+		
+		/** The MOS t_ recentl y_ created. */
 		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ created. */
 		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		
+		/** The MOS t_ recentl y_ added. */
 		MOST_RECENTLY_ADDED("added", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ added. */
 		LEAST_RECENTLY_ADDED("added", Order.DESCENDING),
+		
+		/** The MOS t_ voted. */
 		MOST_VOTED("votes", Order.ASCENDING),
+		
+		/** The LEAS t_ voted. */
 		LEAST_VOTED("votes", Order.DESCENDING);
 		
-	    /**
-	     * Field Description.
-	     */
+	    /** The Constant stringToEnum. */
 		private static final Map<String, FavoriteSortOrder> stringToEnum = new HashMap<String, FavoriteSortOrder>();
 
 		static { // Initialize map from constant name to enum constant
@@ -81,51 +131,81 @@ public interface User extends SchemaEntity {
 			}
 		}
 		
-	    /** Field description */
+	    /** The value. */
 	    private final String value;
 
-	    /** Field description */
+	    /** The order. */
 	    private final Order order;
 	    
 	    /**
-	     * Constructs ...
-	     *
-	     *
-	     * @param name
-	     */
+    	 * Instantiates a new favorite sort order.
+    	 * 
+    	 * @param value the value
+    	 * @param order the order
+    	 */
 	    FavoriteSortOrder(String value, Order order) {
 	        this.value = value;
 	        this.order = order;
 	    }
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+		 */
 		@Override
 		public String value() {
 			return value;
 		}
 		
+		/**
+		 * From value.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the favorite sort order
+		 */
 		public static FavoriteSortOrder fromValue(String value) {
 			return stringToEnum.get(value);
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.SortEnum#order()
+		 */
 		@Override
 		public Order order() {
 			return order;
 		}
 	}
 	
+	/**
+	 * The Enum QuestionSortOrder.
+	 */
 	public enum QuestionSortOrder implements SortEnum {
+		
+		/** The MOS t_ recentl y_ updated. */
 		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ updated. */
 		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		
+		/** The MOS t_ viewed. */
 		MOST_VIEWED("views", Order.ASCENDING),
+		
+		/** The LEAS t_ viewed. */
 		LEAST_VIEWED("views", Order.DESCENDING),
+		
+		/** The MOS t_ recentl y_ created. */
 		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ created. */
 		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		
+		/** The MOS t_ voted. */
 		MOST_VOTED("votes", Order.ASCENDING),
+		
+		/** The LEAS t_ voted. */
 		LEAST_VOTED("votes", Order.DESCENDING);
 		
-	    /**
-	     * Field Description.
-	     */
+	    /** The Constant stringToEnum. */
 		private static final Map<String, QuestionSortOrder> stringToEnum = new HashMap<String, QuestionSortOrder>();
 
 		static { // Initialize map from constant name to enum constant
@@ -134,32 +214,45 @@ public interface User extends SchemaEntity {
 			}
 		}
 		
-	    /** Field description */
+	    /** The value. */
 	    private final String value;
 	    
-	    /** Field description */
+	    /** The order. */
 	    private final Order order;
 	    
 	    /**
-	     * Constructs ...
-	     *
-	     *
-	     * @param name
-	     */
+    	 * Instantiates a new question sort order.
+    	 * 
+    	 * @param value the value
+    	 * @param order the order
+    	 */
 	    QuestionSortOrder(String value, Order order) {
 	        this.value = value;
 	        this.order = order;
 	    }
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+		 */
 		@Override
 		public String value() {
 			return value;
 		}
 		
+		/**
+		 * From value.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the question sort order
+		 */
 		public static QuestionSortOrder fromValue(String value) {
 			return stringToEnum.get(value);
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.SortEnum#order()
+		 */
 		@Override
 		public Order order() {
 			return order;
@@ -167,272 +260,380 @@ public interface User extends SchemaEntity {
 	}
 	
 	/**
-	 * @return the userId
+	 * Gets the user id.
+	 * 
+	 * @return the user id
 	 */
 	public long getUserId();
 
 	/**
-	 * @param userId the userId to set
+	 * Sets the user id.
+	 * 
+	 * @param userId the new user id
 	 */
 	public void setUserId(long userId);
 
 	/**
-	 * @return the userType
+	 * Gets the user type.
+	 * 
+	 * @return the user type
 	 */
 	public UserType getUserType();
 
 	/**
-	 * @param userType the userType to set
+	 * Sets the user type.
+	 * 
+	 * @param userType the new user type
 	 */
 	public void setUserType(UserType userType);
 
 	/**
-	 * @return the creationDate
+	 * Gets the creation date.
+	 * 
+	 * @return the creation date
 	 */
 	public Date getCreationDate();
 
 	/**
-	 * @param creationDate the creationDate to set
+	 * Sets the creation date.
+	 * 
+	 * @param creationDate the new creation date
 	 */
 	public void setCreationDate(Date creationDate);
 
 	/**
-	 * @return the displayName
+	 * Gets the display name.
+	 * 
+	 * @return the display name
 	 */
 	public String getDisplayName();
 
 	/**
-	 * @param displayName the displayName to set
+	 * Sets the display name.
+	 * 
+	 * @param displayName the new display name
 	 */
 	public void setDisplayName(String displayName);
 
 	/**
+	 * Gets the reputation.
+	 * 
 	 * @return the reputation
 	 */
 	public long getReputation();
 
 	/**
-	 * @param reputation the reputation to set
+	 * Sets the reputation.
+	 * 
+	 * @param reputation the new reputation
 	 */
 	public void setReputation(long reputation);
 
 	/**
-	 * @return the emailHash
+	 * Gets the email hash.
+	 * 
+	 * @return the email hash
 	 */
 	public String getEmailHash();
 
 	/**
-	 * @param emailHash the emailHash to set
+	 * Sets the email hash.
+	 * 
+	 * @param emailHash the new email hash
 	 */
 	public void setEmailHash(String emailHash);
 
 	/**
+	 * Gets the age.
+	 * 
 	 * @return the age
 	 */
 	public long getAge();
 
 	/**
-	 * @param age the age to set
+	 * Sets the age.
+	 * 
+	 * @param age the new age
 	 */
 	public void setAge(long age);
 
 	/**
-	 * @return the lastAccessDate
+	 * Gets the last access date.
+	 * 
+	 * @return the last access date
 	 */
 	public Date getLastAccessDate();
 
 	/**
-	 * @param lastAccessDate the lastAccessDate to set
+	 * Sets the last access date.
+	 * 
+	 * @param lastAccessDate the new last access date
 	 */
 	public void setLastAccessDate(Date lastAccessDate);
 
 	/**
-	 * @return the websiteUrl
+	 * Gets the website url.
+	 * 
+	 * @return the website url
 	 */
 	public String getWebsiteUrl();
 
 	/**
-	 * @param websiteUrl the websiteUrl to set
+	 * Sets the website url.
+	 * 
+	 * @param websiteUrl the new website url
 	 */
 	public void setWebsiteUrl(String websiteUrl);
 
 	/**
+	 * Gets the location.
+	 * 
 	 * @return the location
 	 */
 	public String getLocation();
 
 	/**
-	 * @param location the location to set
+	 * Sets the location.
+	 * 
+	 * @param location the new location
 	 */
 	public void setLocation(String location);
 
 	/**
-	 * @return the aboutMe
+	 * Gets the about me.
+	 * 
+	 * @return the about me
 	 */
 	public String getAboutMe();
 
 	/**
-	 * @param aboutMe the aboutMe to set
+	 * Sets the about me.
+	 * 
+	 * @param aboutMe the new about me
 	 */
 	public void setAboutMe(String aboutMe);
 
 	/**
-	 * @return the questionCount
+	 * Gets the question count.
+	 * 
+	 * @return the question count
 	 */
 	public long getQuestionCount();
 
 	/**
-	 * @param questionCount the questionCount to set
+	 * Sets the question count.
+	 * 
+	 * @param questionCount the new question count
 	 */
 	public void setQuestionCount(long questionCount);
 
 	/**
-	 * @return the answerCount
+	 * Gets the answer count.
+	 * 
+	 * @return the answer count
 	 */
 	public long getAnswerCount();
 
 	/**
-	 * @param answerCount the answerCount to set
+	 * Sets the answer count.
+	 * 
+	 * @param answerCount the new answer count
 	 */
 	public void setAnswerCount(long answerCount);
 
 	/**
-	 * @return the viewCount
+	 * Gets the view count.
+	 * 
+	 * @return the view count
 	 */
 	public long getViewCount();
 
 	/**
-	 * @param viewCount the viewCount to set
+	 * Sets the view count.
+	 * 
+	 * @param viewCount the new view count
 	 */
 	public void setViewCount(long viewCount);
 
 	/**
-	 * @return the upVoteCount
+	 * Gets the up vote count.
+	 * 
+	 * @return the up vote count
 	 */
 	public long getUpVoteCount();
 
 	/**
-	 * @param upVoteCount the upVoteCount to set
+	 * Sets the up vote count.
+	 * 
+	 * @param upVoteCount the new up vote count
 	 */
 	public void setUpVoteCount(long upVoteCount);
 
 	/**
-	 * @return the downVoteCount
+	 * Gets the down vote count.
+	 * 
+	 * @return the down vote count
 	 */
 	public long getDownVoteCount();
 
 	/**
-	 * @param downVoteCount the downVoteCount to set
+	 * Sets the down vote count.
+	 * 
+	 * @param downVoteCount the new down vote count
 	 */
 	public void setDownVoteCount(long downVoteCount);
 
 	/**
-	 * @return the acceptRate
+	 * Gets the accept rate.
+	 * 
+	 * @return the accept rate
 	 */
 	public double getAcceptRate();
 
 	/**
-	 * @param acceptRate the acceptRate to set
+	 * Sets the accept rate.
+	 * 
+	 * @param acceptRate the new accept rate
 	 */
 	public void setAcceptRate(double acceptRate);
 	
 	/**
-	 * @return the userQuestionsUrl
+	 * Gets the user questions url.
+	 * 
+	 * @return the user questions url
 	 */
 	public String getUserQuestionsUrl();
 
 	/**
-	 * @param userQuestionsUrl the userQuestionsUrl to set
+	 * Sets the user questions url.
+	 * 
+	 * @param userQuestionsUrl the new user questions url
 	 */
 	public void setUserQuestionsUrl(String userQuestionsUrl);
 
 	/**
-	 * @return the userAnswersUrl
+	 * Gets the user answers url.
+	 * 
+	 * @return the user answers url
 	 */
 	public String getUserAnswersUrl();
 
 	/**
-	 * @param userAnswersUrl the userAnswersUrl to set
+	 * Sets the user answers url.
+	 * 
+	 * @param userAnswersUrl the new user answers url
 	 */
 	public void setUserAnswersUrl(String userAnswersUrl);
 
 	/**
-	 * @return the userFavoritesUrl
+	 * Gets the user favorites url.
+	 * 
+	 * @return the user favorites url
 	 */
 	public String getUserFavoritesUrl();
 
 	/**
-	 * @param userFavoritesUrl the userFavoritesUrl to set
+	 * Sets the user favorites url.
+	 * 
+	 * @param userFavoritesUrl the new user favorites url
 	 */
 	public void setUserFavoritesUrl(String userFavoritesUrl);
 
 	/**
-	 * @return the userTagsUrl
+	 * Gets the user tags url.
+	 * 
+	 * @return the user tags url
 	 */
 	public String getUserTagsUrl();
 
 	/**
-	 * @param userTagsUrl the userTagsUrl to set
+	 * Sets the user tags url.
+	 * 
+	 * @param userTagsUrl the new user tags url
 	 */
 	public void setUserTagsUrl(String userTagsUrl);
 
 	/**
-	 * @return the userBadgesUrl
+	 * Gets the user badges url.
+	 * 
+	 * @return the user badges url
 	 */
 	public String getUserBadgesUrl();
 
 	/**
-	 * @param userBadgesUrl the userBadgesUrl to set
+	 * Sets the user badges url.
+	 * 
+	 * @param userBadgesUrl the new user badges url
 	 */
 	public void setUserBadgesUrl(String userBadgesUrl);
 
 	/**
-	 * @return the userTimelineUrl
+	 * Gets the user timeline url.
+	 * 
+	 * @return the user timeline url
 	 */
 	public String getUserTimelineUrl();
 
 	/**
-	 * @param userTimelineUrl the userTimelineUrl to set
+	 * Sets the user timeline url.
+	 * 
+	 * @param userTimelineUrl the new user timeline url
 	 */
 	public void setUserTimelineUrl(String userTimelineUrl);
 
 	/**
-	 * @return the userMentionedUrl
+	 * Gets the user mentioned url.
+	 * 
+	 * @return the user mentioned url
 	 */
 	public String getUserMentionedUrl();
 
 	/**
-	 * @param userMentionedUrl the userMentionedUrl to set
+	 * Sets the user mentioned url.
+	 * 
+	 * @param userMentionedUrl the new user mentioned url
 	 */
 	public void setUserMentionedUrl(String userMentionedUrl);
 
 	/**
-	 * @return the userCommentsUrl
+	 * Gets the user comments url.
+	 * 
+	 * @return the user comments url
 	 */
 	public String getUserCommentsUrl();
 
 	/**
-	 * @param userCommentsUrl the userCommentsUrl to set
+	 * Sets the user comments url.
+	 * 
+	 * @param userCommentsUrl the new user comments url
 	 */
 	public void setUserCommentsUrl(String userCommentsUrl);
 
 	/**
-	 * @return the userReputationUrl
+	 * Gets the user reputation url.
+	 * 
+	 * @return the user reputation url
 	 */
 	public String getUserReputationUrl();
 
 	/**
-	 * @param userReputationUrl the userReputationUrl to set
+	 * Sets the user reputation url.
+	 * 
+	 * @param userReputationUrl the new user reputation url
 	 */
 	public void setUserReputationUrl(String userReputationUrl);
 	
 	/**
-	 * @return the badgeCounts
+	 * Gets the badge counts.
+	 * 
+	 * @return the badge counts
 	 */
 	public Map<BadgeRank, Long> getBadgeCounts();
 
 	/**
-	 * @param badgeCounts the badgeCounts to set
+	 * Sets the badge counts.
+	 * 
+	 * @param badgeCounts the badge counts
 	 */
 	public void setBadgeCounts(Map<BadgeRank, Long> badgeCounts);
 }

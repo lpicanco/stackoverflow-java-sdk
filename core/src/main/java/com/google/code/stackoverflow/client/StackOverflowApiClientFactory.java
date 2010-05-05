@@ -12,30 +12,28 @@ import com.google.code.stackoverflow.client.impl.StackOverflowApiJsonClient;
 
 /**
  * A factory for creating StackOverflowApiClient objects.
- * 
- * @author Nabeel Mukhtar
  */
 public class StackOverflowApiClientFactory {
 
     /** The task executor. */
     private ExecutorService taskExecutor = Executors.newCachedThreadPool();
 
-    /** The api consumer. */
+    /** The application key. */
     private String applicationKey;
 
     /**
      * Instantiates a new stack overflow api client factory.
      * 
-     * @param apiConsumer the api consumer
+     * @param applicationKey the application key
      */
 	private StackOverflowApiClientFactory(String applicationKey) {
         this.applicationKey = applicationKey;
     }
 	
     /**
-     * Sets the task executor to be used for asynchronous API calls. 
+     * Sets the task executor.
      * 
-     * @param taskExecutor the task executor
+     * @param taskExecutor the new task executor
      */
 	public void setTaskExecutor(ExecutorService taskExecutor) {
         this.taskExecutor = taskExecutor;
@@ -44,8 +42,7 @@ public class StackOverflowApiClientFactory {
     /**
      * New instance.
      * 
-     * @param consumerKey the consumer key
-     * @param consumerSecret the consumer secret
+     * @param applicationKey the application key
      * 
      * @return the stack overflow api client factory
      */
@@ -57,12 +54,10 @@ public class StackOverflowApiClientFactory {
     }
 
 	/**
-     * Creates a new StackOverflowApiClient object.
-     * 
-     * @param accessToken the access token
-     * 
-     * @return the stack overflow api client
-     */
+	 * Creates a new StackOverflowApiClient object.
+	 * 
+	 * @return the stack overflow api client
+	 */
 	public StackOverflowApiClient createStackOverflowApiClient() {
 		final StackOverflowApiClient client = new StackOverflowApiJsonClient(applicationKey);
 
@@ -70,12 +65,12 @@ public class StackOverflowApiClientFactory {
     }
 
 	/**
-     * Creates a new StackOverflowApiClient object.
-     * 
-     * @param accessToken the access token
-     * 
-     * @return the stack overflow api client
-     */
+	 * Creates a new StackOverflowApiClient object.
+	 * 
+	 * @param apiVersion the api version
+	 * 
+	 * @return the stack overflow api client
+	 */
 	public StackOverflowApiClient createStackOverflowApiClient(String apiVersion) {
 		final StackOverflowApiClient client = new StackOverflowApiJsonClient(applicationKey, apiVersion);
 
@@ -85,7 +80,7 @@ public class StackOverflowApiClientFactory {
     /**
      * Creates a new StackOverflowApiClient object.
      * 
-     * @param accessToken the access token
+     * @param implClass the impl class
      * 
      * @return the stack overflow api client
      */
@@ -101,8 +96,6 @@ public class StackOverflowApiClientFactory {
     
     /**
      * Creates a new StackOverflowApiClient object.
-     * 
-     * @param accessToken the access token
      * 
      * @return the async stack overflow api client
      */

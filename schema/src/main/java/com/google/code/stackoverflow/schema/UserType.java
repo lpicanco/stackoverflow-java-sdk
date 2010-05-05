@@ -3,13 +3,18 @@ package com.google.code.stackoverflow.schema;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The Enum UserType.
+ */
 public enum UserType implements ValueEnum {
+	
+	/** The MODERATOR. */
 	MODERATOR("moderator"),
+	
+	/** The REGISTERED. */
 	REGISTERED("registered");
 	
-    /**
-     * Field Description.
-     */
+    /** The Constant stringToEnum. */
 	private static final Map<String, UserType> stringToEnum = new HashMap<String, UserType>();
 
 	static { // Initialize map from constant name to enum constant
@@ -18,24 +23,33 @@ public enum UserType implements ValueEnum {
 		}
 	}
 	
-    /** Field description */
+    /** The value. */
     private final String value;
     
     /**
-     * Constructs ...
-     *
-     *
-     * @param name
+     * Instantiates a new user type.
+     * 
+     * @param value the value
      */
     UserType(String value) {
         this.value = value;
     }
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+	 */
 	@Override
 	public String value() {
 		return value;
 	}
 	
+	/**
+	 * From value.
+	 * 
+	 * @param value the value
+	 * 
+	 * @return the user type
+	 */
 	public static UserType fromValue(String value) {
 		return stringToEnum.get(value);
 	}

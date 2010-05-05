@@ -14,26 +14,33 @@ import com.google.code.stackoverflow.schema.Reputations;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class ReputationsImpl.
  */
 public class ReputationsImpl extends BaseJsonAdapter implements Reputations, Adaptable<Reputations, JSONObject> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
+	/** The reputations. */
 	private List<Reputation> reputations = new ArrayList<Reputation>();
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Reputations#getReputations()
+	 */
 	public List<Reputation> getReputations() {
 		return reputations;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Reputations#setReputations(java.util.List)
+	 */
 	public void setReputations(List<Reputation> reputations) {
 		this.reputations = reputations;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		JSONArray reputations = (JSONArray) adaptee.get("repchanges");
@@ -46,6 +53,9 @@ public class ReputationsImpl extends BaseJsonAdapter implements Reputations, Ada
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject adaptTo() {

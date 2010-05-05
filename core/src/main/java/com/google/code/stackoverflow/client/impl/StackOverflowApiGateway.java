@@ -36,115 +36,149 @@ import com.google.code.stackoverflow.client.provider.StackOverflowApiProvider;
 import com.google.code.stackoverflow.schema.Error;
 
 /**
- * @author nmukhtar
- *
+ * The Class StackOverflowApiGateway.
  */
 public abstract class StackOverflowApiGateway {
 	
-    /** The static logger. */
+    /** The LOG. */
     protected final Logger LOG = Logger.getLogger(getClass().getCanonicalName());
 	
-	/** Field description */
+	/** The Constant GZIP_ENCODING. */
 	private static final String GZIP_ENCODING = "gzip";
-	/** Field description */
+	
+	/** The request headers. */
 	protected Map<String, String> requestHeaders;
-	/** Field description */
+	
+	/** The application key. */
 	protected String applicationKey;
-	/** Field description */
+	
+	/** The api provider. */
 	private ApiProvider apiProvider = new StackOverflowApiProvider();
-	/** Field description */
+	
+	/** The api version. */
 	protected String apiVersion = ApplicationConstants.DEFAULT_API_VERSION;
-	/** Field description */
+	
+	/** The max rate limit. */
 	private int maxRateLimit = -1;
-	/** Field description */
+	
+	/** The current rate limit. */
 	private int currentRateLimit = -1;
 
+	/**
+	 * Gets the api version.
+	 * 
+	 * @return the api version
+	 */
 	public String getApiVersion() {
 		return apiVersion;
 	}
 
+	/**
+	 * Sets the api version.
+	 * 
+	 * @param apiVersion the new api version
+	 */
 	public void setApiVersion(String apiVersion) {
 		this.apiVersion = apiVersion;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Sets the request headers.
+	 * 
+	 * @param requestHeaders the request headers
 	 */
 	public void setRequestHeaders(Map<String, String> requestHeaders) {
 	    this.requestHeaders = requestHeaders;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Gets the request headers.
+	 * 
+	 * @return the request headers
 	 */
 	public Map<String, String> getRequestHeaders() {
 	    return requestHeaders;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Adds the request header.
+	 * 
+	 * @param headerName the header name
+	 * @param headerValue the header value
 	 */
 	public void addRequestHeader(String headerName, String headerValue) {
 	    requestHeaders.put(headerName, headerValue);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Removes the request header.
+	 * 
+	 * @param headerName the header name
 	 */
 	public void removeRequestHeader(String headerName) {
 	    requestHeaders.remove(headerName);
 	}
 
 	/**
-	 * @return the applicationKey
+	 * Gets the application key.
+	 * 
+	 * @return the application key
 	 */
 	public String getApplicationKey() {
 		return applicationKey;
 	}
 
 	/**
-	 * @param applicationKey the applicationKey to set
+	 * Sets the application key.
+	 * 
+	 * @param applicationKey the new application key
 	 */
 	public void setApplicationKey(String applicationKey) {
 		this.applicationKey = applicationKey;
 	}
 
 	/**
-	 * @return the apiProvider
+	 * Gets the api provider.
+	 * 
+	 * @return the api provider
 	 */
 	public ApiProvider getApiProvider() {
 		return apiProvider;
 	}
 
 	/**
-	 * @param apiProvider the apiProvider to set
+	 * Sets the api provider.
+	 * 
+	 * @param apiProvider the new api provider
 	 */
 	public void setApiProvider(ApiProvider apiProvider) {
 		this.apiProvider = apiProvider;
 	}
 	
     /**
-     * Method description
-     *
-     *
-     * @return
+     * Gets the max rate limit.
+     * 
+     * @return the max rate limit
      */
     public int getMaxRateLimit() {
     	return maxRateLimit;
     }
     
     /**
-     * Method description
-     *
-     *
-     * @return
+     * Gets the current rate limit.
+     * 
+     * @return the current rate limit
      */
     public int getCurrentRateLimit() {
     	return currentRateLimit;
     }
 
 	/**
-	 * Stolen liberally from http://www.kodejava.org/examples/266.html
+	 * Convert stream to string.
+	 * 
+	 * @param is the is
+	 * 
+	 * @return the string
 	 */
 	protected static String convertStreamToString(InputStream is) {
 	    /*
@@ -175,21 +209,23 @@ public abstract class StackOverflowApiGateway {
 	}
 
 	/**
-	*
-	*
-	*/
+	 * Call api method.
+	 * 
+	 * @param apiUrl the api url
+	 * 
+	 * @return the input stream
+	 */
 	protected InputStream callApiMethod(String apiUrl) {
 		return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK);
 	}
 
 	/**
-	 *
-	 *
-	 * @param apiUrl
-	 * @param expected
-	 * @param httpHeaders
-	 *
-	 * @return
+	 * Call api method.
+	 * 
+	 * @param apiUrl the api url
+	 * @param expected the expected
+	 * 
+	 * @return the input stream
 	 */
 	protected InputStream callApiMethod(String apiUrl, int expected) {
 	    try {
@@ -229,15 +265,15 @@ public abstract class StackOverflowApiGateway {
 	}
 
 	/**
-	 *
-	 *
-	 * @param apiUrl
-	 * @param xmlContent
-	 * @param contentType
-	 * @param method
-	 * @param expected
-	 *
-	 * @return
+	 * Call api method.
+	 * 
+	 * @param apiUrl the api url
+	 * @param xmlContent the xml content
+	 * @param contentType the content type
+	 * @param method the method
+	 * @param expected the expected
+	 * 
+	 * @return the input stream
 	 */
 	protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType,
 			String method, int expected) {
@@ -294,11 +330,9 @@ public abstract class StackOverflowApiGateway {
 			}
 
 	/**
-	 * Method description
-	 *
-	 *
-	 * @param is
-	 *
+	 * Close stream.
+	 * 
+	 * @param is the is
 	 */
 	protected void closeStream(InputStream is) {
 	    try {
@@ -309,11 +343,9 @@ public abstract class StackOverflowApiGateway {
 	}
 
 	/**
-	 * Method description
-	 *
-	 *
-	 * @param connection
-	 *
+	 * Close connection.
+	 * 
+	 * @param connection the connection
 	 */
 	protected void closeConnection(HttpURLConnection connection) {
 	    try {
@@ -326,11 +358,11 @@ public abstract class StackOverflowApiGateway {
 	}
 
 	/**
-	 * Method description
-	 *
-	 *
-	 * @param error
-	 * @return
+	 * Creates the stack overflow api client exception.
+	 * 
+	 * @param error the error
+	 * 
+	 * @return the stack overflow api client exception
 	 */
 	protected StackOverflowApiClientException createStackOverflowApiClientException(Error error) {
 		switch (error.getErrorCode()) {
@@ -370,13 +402,14 @@ public abstract class StackOverflowApiGateway {
 	}
 
 	/**
-	 * Method description
-	 *
-	 *
-	 * @param is
-	 * @param gzip
-	 * @return
-	 * @throws IOException
+	 * Gets the wrapped input stream.
+	 * 
+	 * @param is the is
+	 * @param gzip the gzip
+	 * 
+	 * @return the wrapped input stream
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	protected InputStream getWrappedInputStream(InputStream is, boolean gzip)
 			throws IOException {
@@ -388,16 +421,12 @@ public abstract class StackOverflowApiGateway {
 			}
 
 	/**
-	 * Method description
-	 *
-	 *
-	 *
-	 *
-	 * @param clazz
-	 * @param is
-	 * @param <T>
-	 *
-	 * @return
+	 * Read response.
+	 * 
+	 * @param clazz the clazz
+	 * @param is the is
+	 * 
+	 * @return the t
 	 */
 	protected <T> T readResponse(Class<T> clazz, InputStream is) {
 	    try {
@@ -409,25 +438,21 @@ public abstract class StackOverflowApiGateway {
 	
 
     /**
-     * Method description
-     *
-     *
-     *
-     * @param clazz
-     * @param xmlContent
-     * @param <T>
-     *
-     * @return
+     * Unmarshall object.
+     * 
+     * @param clazz the clazz
+     * @param xmlContent the xml content
+     * 
+     * @return the t
      */
     protected abstract <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent);
 
     /**
-     * Method description
-     *
-     *
-     * @param element
-     *
-     * @return
+     * Marshall object.
+     * 
+     * @param element the element
+     * 
+     * @return the string
      */
     protected abstract String marshallObject(Object element);
 }
