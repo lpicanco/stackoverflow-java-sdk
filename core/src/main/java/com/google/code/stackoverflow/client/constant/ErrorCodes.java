@@ -13,4 +13,5 @@ public interface ErrorCodes {
 	public int REQUEST_LIMIT_EXCEEDED = 4004;
 	public int INVALID_VECTOR_FORMAT = 4005;
 	public int TOO_MANY_IDS = 4006;
+	public int UNCONSTRAINED_SEARCH = 4007;
 }
