@@ -6,89 +6,65 @@ import java.util.Date;
 
 
 /**
- * 
- * 
+ * The Interface Error.
  */
 public interface Error
     extends SchemaEntity
 {
+	
 	/**
-     * Gets the value of the timestamp property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
+	 * Gets the timestamp.
+	 * 
+	 * @return the timestamp
+	 */
     Date getTimestamp();
 
     /**
-     * Sets the value of the timestamp property.
+     * Sets the timestamp.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value the new timestamp
      */
     void setTimestamp(Date value);
 
     /**
-     * Gets the value of the errorCode property.
+     * Gets the error code.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return the error code
      */
     int getErrorCode();
 
     /**
-     * Sets the value of the errorCode property.
+     * Sets the error code.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value the new error code
      */
     void setErrorCode(int value);
 
     /**
-     * Gets the value of the errorCode property.
+     * Gets the status code.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return the status code
      */
     int getStatusCode();
 
     /**
-     * Sets the value of the errorCode property.
+     * Sets the status code.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value the new status code
      */
     void setStatusCode(int value);
     
     /**
-     * Gets the value of the message property.
+     * Gets the message.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return the message
      */
     String getMessage();
 
     /**
-     * Sets the value of the message property.
+     * Sets the message.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * @param value the new message
      */
     void setMessage(String value);
 }

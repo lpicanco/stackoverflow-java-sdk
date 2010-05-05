@@ -21,32 +21,35 @@ import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.TimePeriod;
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Class StackOverflowApiClientTest.
  */
 public abstract class StackOverflowApiClientTest extends TestCase {
 
-    /** Field description */
+    /** The factory. */
     protected StackOverflowApiClientFactory factory;
 
-    /** Field description */
+    /** The Constant RESOURCE_MISSING_MESSAGE. */
 	protected static final String RESOURCE_MISSING_MESSAGE = "Please define a test %s in TestConstants.properties file.";
 
 
     /**
-     * @throws java.lang.Exception
+     * Sets the up before class.
+     * 
+     * @throws Exception the exception
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {}
 
     /**
-     * @throws java.lang.Exception
+     * Tear down after class.
+     * 
+     * @throws Exception the exception
      */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {}
 
-    /**
-     * @throws java.lang.Exception
+    /* (non-Javadoc)
+     * @see junit.framework.TestCase#setUp()
      */
     @Before
     public void setUp() throws Exception {
@@ -55,8 +58,8 @@ public abstract class StackOverflowApiClientTest extends TestCase {
             StackOverflowApiClientFactory.newInstance(TestConstants.STACK_OVERFLOW_TEST_API_KEY);
     }
 
-    /**
-     * @throws java.lang.Exception
+    /* (non-Javadoc)
+     * @see junit.framework.TestCase#tearDown()
      */
     @After
     public void tearDown() throws Exception {
@@ -64,14 +67,18 @@ public abstract class StackOverflowApiClientTest extends TestCase {
     }
 
 	/**
-	 *
+	 * Gets the current date.
+	 * 
+	 * @return the current date
 	 */
 	protected Date getCurrentDate() {
 		return new Date();
 	}
 
 	/**
-	 *
+	 * Gets the last week date.
+	 * 
+	 * @return the last week date
 	 */
 	protected Date getLastWeekDate() {
 		Calendar calendar = Calendar.getInstance();
@@ -80,7 +87,9 @@ public abstract class StackOverflowApiClientTest extends TestCase {
 	}
 
 	/**
-	 *
+	 * Gets the paging.
+	 * 
+	 * @return the paging
 	 */
 	protected Paging getPaging() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Page No."), TestConstants.STACK_OVERFLOW_TEST_PAGE_NO);
@@ -88,18 +97,32 @@ public abstract class StackOverflowApiClientTest extends TestCase {
     	return new Paging(Integer.parseInt(TestConstants.STACK_OVERFLOW_TEST_PAGE_NO), Integer.parseInt(TestConstants.STACK_OVERFLOW_TEST_PAGE_SIZE));    	
 	}
 	
+	/**
+	 * Gets the tags.
+	 * 
+	 * @return the tags
+	 */
 	protected List<String> getTags() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Tags."), TestConstants.STACK_OVERFLOW_TEST_TAGS);
     	return Arrays.asList(TestConstants.STACK_OVERFLOW_TEST_TAGS.split(","));
 	}
 	
 	/**
-	 *
+	 * Gets the time period.
+	 * 
+	 * @return the time period
 	 */
 	protected TimePeriod getTimePeriod() {
 		return new TimePeriod(getLastWeekDate(), new Date());
 	}
 	
+	/**
+	 * Gets the ids.
+	 * 
+	 * @param idString the id string
+	 * 
+	 * @return the ids
+	 */
 	protected long[] getIds(String idString) {
 		String[] tokens = idString.split(",");
 		long[] ids = new long[tokens.length];
@@ -110,7 +133,10 @@ public abstract class StackOverflowApiClientTest extends TestCase {
 	}
 	
 	/**
-	 *
+	 * Assert not null or empty.
+	 * 
+	 * @param message the message
+	 * @param value the value
 	 */
 	protected static void assertNotNullOrEmpty(String message, String value) {
 		assertNotNull(message, value);
@@ -118,7 +144,10 @@ public abstract class StackOverflowApiClientTest extends TestCase {
 	}
 	
 	/**
-	 *
+	 * Assert not null or empty.
+	 * 
+	 * @param message the message
+	 * @param value the value
 	 */
 	protected static void assertNotNullOrEmpty(String message, Collection<?> value) {
 		assertNotNull(message, value);

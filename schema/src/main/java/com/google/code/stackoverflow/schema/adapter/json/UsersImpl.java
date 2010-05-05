@@ -14,26 +14,33 @@ import com.google.code.stackoverflow.schema.Users;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class UsersImpl.
  */
 public class UsersImpl extends BaseJsonAdapter implements Users, Adaptable<Users, JSONObject> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
+	/** The users. */
 	private List<User> users = new ArrayList<User>();
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Users#getUsers()
+	 */
 	public List<User> getUsers() {
 		return users;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Users#setUsers(java.util.List)
+	 */
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		JSONArray users = (JSONArray) adaptee.get("users");
@@ -46,6 +53,9 @@ public class UsersImpl extends BaseJsonAdapter implements Users, Adaptable<Users
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject adaptTo() {

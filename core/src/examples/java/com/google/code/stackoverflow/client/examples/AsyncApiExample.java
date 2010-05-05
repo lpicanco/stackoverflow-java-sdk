@@ -21,24 +21,23 @@ import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.Tag;
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Class AsyncApiExample.
  */
 public class AsyncApiExample {
 
-    /**
-     * Consumer Key
-     */
+    /** The Constant APPLICATION_KEY_OPTION. */
     private static final String APPLICATION_KEY_OPTION = "key";
 	
-    /**
-     * Name of the help command line option.
-     */
+    /** The Constant HELP_OPTION. */
     private static final String HELP_OPTION = "help";
     
     /**
-	 * @param args
-	 */
+     * The main method.
+     * 
+     * @param args the arguments
+     * 
+     * @throws Exception the exception
+     */
 	public static void main(String[] args) throws Exception {
 		Options options = buildOptions();
         try {
@@ -51,7 +50,12 @@ public class AsyncApiExample {
 	}
 	
     /**
-     * Process command line options and call the service. 
+     * Process command line.
+     * 
+     * @param line the line
+     * @param options the options
+     * 
+     * @throws Exception the exception
      */
     private static void processCommandLine(CommandLine line, Options options) throws Exception {
         if(line.hasOption(HELP_OPTION)) {
@@ -81,17 +85,29 @@ public class AsyncApiExample {
         }
     }
 	
+	/**
+	 * Prints the result.
+	 * 
+	 * @param tag the tag
+	 */
 	private static void printResult(Tag tag) {
 		System.out.println(tag.getName() + ":" + tag.getCount());
 	}
 
+	/**
+	 * Prints the result.
+	 * 
+	 * @param badge the badge
+	 */
 	private static void printResult(Badge badge) {
 		System.out.println(badge.getName() + ":" + badge.getRank() + ":" + badge.getAwardCount());
 	}
 
 	/**
-     * Build command line options object.
-     */
+	 * Builds the options.
+	 * 
+	 * @return the options
+	 */
     private static Options buildOptions() {
        
         Options opts = new Options();
@@ -111,7 +127,9 @@ public class AsyncApiExample {
     }
     
     /**
-     * Print help and usage.
+     * Prints the help.
+     * 
+     * @param options the options
      */
     private static void printHelp(Options options) {
         int width = 80;

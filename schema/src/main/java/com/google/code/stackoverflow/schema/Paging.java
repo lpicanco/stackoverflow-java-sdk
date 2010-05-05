@@ -3,23 +3,41 @@
  */
 package com.google.code.stackoverflow.schema;
 
+/**
+ * The Class Paging.
+ */
 public final class Paging {
+	
+	/** The page number. */
 	private int pageNumber;
+	
+	/** The page size. */
 	private int pageSize;
 	
+	/**
+	 * Instantiates a new paging.
+	 * 
+	 * @param pageNumber the page number
+	 * @param pageSize the page size
+	 */
 	public Paging(int pageNumber, int pageSize) {
 		this.pageNumber = pageNumber;
 		this.pageSize = pageSize;
 	}
 	
 	/**
-	 * @return the pageNumber
+	 * Gets the page number.
+	 * 
+	 * @return the page number
 	 */
 	public int getPageNumber() {
 		return pageNumber;
 	}
+	
 	/**
-	 * @return the pageSize
+	 * Gets the page size.
+	 * 
+	 * @return the page size
 	 */
 	public int getPageSize() {
 		return pageSize;

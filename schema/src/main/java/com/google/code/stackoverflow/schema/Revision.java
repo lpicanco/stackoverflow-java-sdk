@@ -4,165 +4,232 @@ import java.util.Date;
 import java.util.List;
 
 
+/**
+ * The Interface Revision.
+ */
 public interface Revision extends SchemaEntity {
 
 	/**
+	 * Gets the comment.
+	 * 
 	 * @return the comment
 	 */
 	public String getComment();
 
 	/**
-	 * @param comment the comment to set
+	 * Sets the comment.
+	 * 
+	 * @param comment the new comment
 	 */
 	public void setComment(String comment);
 
 	/**
-	 * @return the creationDate
+	 * Gets the creation date.
+	 * 
+	 * @return the creation date
 	 */
 	public Date getCreationDate();
 
 	/**
-	 * @param creationDate the creationDate to set
+	 * Sets the creation date.
+	 * 
+	 * @param creationDate the new creation date
 	 */
 	public void setCreationDate(Date creationDate);
 
 	/**
-	 * @return the isQuestion
+	 * Checks if is question.
+	 * 
+	 * @return true, if is question
 	 */
 	public boolean isQuestion();
 
 	/**
-	 * @param isQuestion the isQuestion to set
+	 * Sets the question.
+	 * 
+	 * @param isQuestion the new question
 	 */
 	public void setQuestion(boolean isQuestion);
 
 	/**
-	 * @return the isRollback
+	 * Checks if is rollback.
+	 * 
+	 * @return true, if is rollback
 	 */
 	public boolean isRollback();
 
 	/**
-	 * @param isRollback the isRollback to set
+	 * Sets the rollback.
+	 * 
+	 * @param isRollback the new rollback
 	 */
 	public void setRollback(boolean isRollback);
 
 	/**
-	 * @return the lastTags
+	 * Gets the last tags.
+	 * 
+	 * @return the last tags
 	 */
 	public List<String> getLastTags();
 
 	/**
-	 * @param lastTags the lastTags to set
+	 * Sets the last tags.
+	 * 
+	 * @param lastTags the new last tags
 	 */
 	public void setLastTags(List<String> lastTags);
 
 	/**
-	 * @return the revisionGuid
+	 * Gets the revision guid.
+	 * 
+	 * @return the revision guid
 	 */
 	public String getRevisionGuid();
 
 	/**
-	 * @param revisionGuid the revisionGuid to set
+	 * Sets the revision guid.
+	 * 
+	 * @param revisionGuid the new revision guid
 	 */
 	public void setRevisionGuid(String revisionGuid);
 
 	/**
-	 * @return the revisionNumber
+	 * Gets the revision number.
+	 * 
+	 * @return the revision number
 	 */
 	public long getRevisionNumber();
 
 	/**
-	 * @param revisionNumber the revisionNumber to set
+	 * Sets the revision number.
+	 * 
+	 * @param revisionNumber the new revision number
 	 */
 	public void setRevisionNumber(long revisionNumber);
 
 	/**
+	 * Gets the tags.
+	 * 
 	 * @return the tags
 	 */
 	public List<String> getTags();
 
 	/**
-	 * @param tags the tags to set
+	 * Sets the tags.
+	 * 
+	 * @param tags the new tags
 	 */
 	public void setTags(List<String> tags);
 
 	/**
-	 * @return the revisionType
+	 * Gets the revision type.
+	 * 
+	 * @return the revision type
 	 */
 	public RevisionType getRevisionType();
 
 	/**
-	 * @param revisionType the revisionType to set
+	 * Sets the revision type.
+	 * 
+	 * @param revisionType the new revision type
 	 */
 	public void setRevisionType(RevisionType revisionType);
 
 	/**
-	 * @return the setCommunityWiki
+	 * Checks if is sets the community wiki.
+	 * 
+	 * @return true, if is sets the community wiki
 	 */
 	public boolean isSetCommunityWiki();
 
 	/**
-	 * @param setCommunityWiki the setCommunityWiki to set
+	 * Sets the sets the community wiki.
+	 * 
+	 * @param setCommunityWiki the new sets the community wiki
 	 */
 	public void setSetCommunityWiki(boolean setCommunityWiki);
 
 	/**
-	 * @return the userId
+	 * Gets the user id.
+	 * 
+	 * @return the user id
 	 */
 	public long getUserId();
 
 	/**
-	 * @param userId the userId to set
+	 * Sets the user id.
+	 * 
+	 * @param userId the new user id
 	 */
 	public void setUserId(long userId);
 
 	/**
+	 * Gets the title.
+	 * 
 	 * @return the title
 	 */
 	public String getTitle();
 	
 	/**
-	 * @param title the title to set
+	 * Sets the title.
+	 * 
+	 * @param title the new title
 	 */
 	public void setTitle(String title);
 	
 	/**
+	 * Gets the body.
+	 * 
 	 * @return the body
 	 */
 	public String getBody();
 
 	/**
-	 * @param body the body to set
+	 * Sets the body.
+	 * 
+	 * @param body the new body
 	 */
 	public void setBody(String body);
 
 	/**
-	 * @return the lastBody
+	 * Gets the last body.
+	 * 
+	 * @return the last body
 	 */
 	public String getLastBody();
 
 	/**
-	 * @param lastBody the lastBody to set
+	 * Sets the last body.
+	 * 
+	 * @param lastBody the new last body
 	 */
 	public void setLastBody(String lastBody);
 
 	/**
-	 * @return the lastTitle
+	 * Gets the last title.
+	 * 
+	 * @return the last title
 	 */
 	public String getLastTitle();
 
 	/**
-	 * @param lastTitle the lastTitle to set
+	 * Sets the last title.
+	 * 
+	 * @param lastTitle the new last title
 	 */
 	public void setLastTitle(String lastTitle);
 
 	/**
-	 * @return the postId
+	 * Gets the post id.
+	 * 
+	 * @return the post id
 	 */
 	public long getPostId();
 	
 	/**
-	 * @param postId the postId to set
+	 * Sets the post id.
+	 * 
+	 * @param postId the new post id
 	 */
 	public void setPostId(long postId);
 }

@@ -19,29 +19,24 @@ import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
 import com.google.code.stackoverflow.schema.Answer;
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Class AnswersApiExample.
  */
 public class AnswersApiExample {
 
-    /**
-     * Consumer Key
-     */
+    /** The Constant APPLICATION_KEY_OPTION. */
     private static final String APPLICATION_KEY_OPTION = "key";
 	
-    /**
-     * ID
-     */
+    /** The Constant ID_OPTION. */
     private static final String ID_OPTION = "id";
     
-    /**
-     * Name of the help command line option.
-     */
+    /** The Constant HELP_OPTION. */
     private static final String HELP_OPTION = "help";
 
     /**
-	 * @param args
-	 */
+     * The main method.
+     * 
+     * @param args the arguments
+     */
 	public static void main(String[] args) {
 		Options options = buildOptions();
         try {
@@ -54,7 +49,10 @@ public class AnswersApiExample {
 	}
 
     /**
-     * Process command line options and call the service.
+     * Process command line.
+     * 
+     * @param line the line
+     * @param options the options
      */
     private static void processCommandLine(CommandLine line, Options options) {
         if(line.hasOption(HELP_OPTION)) {
@@ -77,13 +75,20 @@ public class AnswersApiExample {
         }
     }
 
+	/**
+	 * Prints the result.
+	 * 
+	 * @param answer the answer
+	 */
 	private static void printResult(Answer answer) {
 		System.out.println(answer.getOwnerDisplayName() + ":" + answer.getTitle());
 	}
 
 	/**
-     * Build command line options object.
-     */
+	 * Builds the options.
+	 * 
+	 * @return the options
+	 */
     private static Options buildOptions() {
 
         Options opts = new Options();
@@ -110,7 +115,9 @@ public class AnswersApiExample {
     }
 
     /**
-     * Print help and usage.
+     * Prints the help.
+     * 
+     * @param options the options
      */
     private static void printHelp(Options options) {
         int width = 80;

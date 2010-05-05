@@ -1,85 +1,120 @@
 package com.google.code.stackoverflow.schema;
 
 
+/**
+ * The Interface Badge.
+ */
 public interface Badge extends SchemaEntity {
 
 	/**
-	 * @return the badgeId
+	 * Gets the badge id.
+	 * 
+	 * @return the badge id
 	 */
 	public long getBadgeId();
 
 	/**
-	 * @param badgeId the badgeId to set
+	 * Sets the badge id.
+	 * 
+	 * @param badgeId the new badge id
 	 */
 	public void setBadgeId(long badgeId);
 
 	/**
-	 * @return the badgeClass
+	 * Gets the rank.
+	 * 
+	 * @return the rank
 	 */
 	public BadgeRank getRank();
 
 	/**
-	 * @param badgeClass the badgeClass to set
+	 * Sets the rank.
+	 * 
+	 * @param badgeClass the new rank
 	 */
 	public void setRank(BadgeRank badgeClass);
 
 	/**
+	 * Gets the name.
+	 * 
 	 * @return the name
 	 */
 	public String getName();
 
 	/**
-	 * @param name the name to set
+	 * Sets the name.
+	 * 
+	 * @param name the new name
 	 */
 	public void setName(String name);
 
 	/**
+	 * Gets the description.
+	 * 
 	 * @return the description
 	 */
 	public String getDescription();
 
 	/**
-	 * @param description the description to set
+	 * Sets the description.
+	 * 
+	 * @param description the new description
 	 */
 	public void setDescription(String description);
 
 	/**
-	 * @return the awardCount
+	 * Gets the award count.
+	 * 
+	 * @return the award count
 	 */
 	public long getAwardCount();
 
 	/**
-	 * @param awardCount the awardCount to set
+	 * Sets the award count.
+	 * 
+	 * @param awardCount the new award count
 	 */
 	public void setAwardCount(long awardCount);
 	
 	/**
-	 * @return the tagBased
+	 * Checks if is tag based.
+	 * 
+	 * @return true, if is tag based
 	 */
 	public boolean isTagBased();
 
 	/**
-	 * @param tagBased the tagBased to set
+	 * Sets the tag based.
+	 * 
+	 * @param tagBased the new tag based
 	 */
 	public void setTagBased(boolean tagBased);
 
 	/**
-	 * @return the userId
+	 * Gets the user id.
+	 * 
+	 * @return the user id
 	 */
 	public long getUserId();
 
 	/**
-	 * @param userId the userId to set
+	 * Sets the user id.
+	 * 
+	 * @param userId the new user id
 	 */
 	public void setUserId(long userId);
 	
 	/**
-	 * @return the badgesRecipientsUrl
+	 * Gets the badges recipients url.
+	 * 
+	 * @return the badges recipients url
 	 */
 	public String getBadgesRecipientsUrl();
 
 	/**
-	 * @param badgesRecipientsUrl the badgesRecipientsUrl to set
+	 * Sets the badges recipients url.
+	 * 
+	 * @param badgesRecipientsUrl the new badges recipients url
 	 */
 	public void setBadgesRecipientsUrl(String badgesRecipientsUrl);
 }

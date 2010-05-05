@@ -5,21 +5,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The Interface Answer.
+ */
 public interface Answer extends SchemaEntity {
 	
+	/**
+	 * The Enum SortOrder.
+	 */
 	public enum SortOrder implements SortEnum {
+		
+		/** The MOS t_ recentl y_ updated. */
 		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ updated. */
 		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		
+		/** The MOS t_ viewed. */
 		MOST_VIEWED("views", Order.ASCENDING),
+		
+		/** The LEAS t_ viewed. */
 		LEAST_VIEWED("views", Order.DESCENDING),
+		
+		/** The MOS t_ recentl y_ created. */
 		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		
+		/** The LEAS t_ recentl y_ created. */
 		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		
+		/** The MOS t_ voted. */
 		MOST_VOTED("votes", Order.ASCENDING),
+		
+		/** The LEAS t_ voted. */
 		LEAST_VOTED("votes", Order.DESCENDING);
 		
-	    /**
-	     * Field Description.
-	     */
+	    /** The Constant stringToEnum. */
 		private static final Map<String, SortOrder> stringToEnum = new HashMap<String, SortOrder>();
 
 		static { // Initialize map from constant name to enum constant
@@ -28,32 +48,45 @@ public interface Answer extends SchemaEntity {
 			}
 		}
 		
-	    /** Field description */
+	    /** The value. */
 	    private final String value;
 	    
-	    /** Field description */
+	    /** The order. */
 	    private final Order order;
 	    
 	    /**
-	     * Constructs ...
-	     *
-	     *
-	     * @param name
-	     */
+    	 * Instantiates a new sort order.
+    	 * 
+    	 * @param value the value
+    	 * @param order the order
+    	 */
 	    SortOrder(String value, Order order) {
 	        this.value = value;
 	        this.order = order;
 	    }
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+		 */
 		@Override
 		public String value() {
 			return value;
 		}
 		
+		/**
+		 * From value.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the sort order
+		 */
 		public static SortOrder fromValue(String value) {
 			return stringToEnum.get(value);
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.code.stackoverflow.schema.SortEnum#order()
+		 */
 		@Override
 		public Order order() {
 			return order;
@@ -62,192 +95,268 @@ public interface Answer extends SchemaEntity {
 	
 
 	/**
-	 * @return the answerId
+	 * Gets the answer id.
+	 * 
+	 * @return the answer id
 	 */
 	public long getAnswerId();
 
 	/**
-	 * @param answerId the answerId to set
+	 * Sets the answer id.
+	 * 
+	 * @param answerId the new answer id
 	 */
 	public void setAnswerId(long answerId);
 
 	/**
-	 * @return the accepted
+	 * Checks if is accepted.
+	 * 
+	 * @return true, if is accepted
 	 */
 	public boolean isAccepted();
 
 	/**
-	 * @param accepted the accepted to set
+	 * Sets the accepted.
+	 * 
+	 * @param accepted the new accepted
 	 */
 	public void setAccepted(boolean accepted);
 
 	/**
-	 * @return the questionId
+	 * Gets the question id.
+	 * 
+	 * @return the question id
 	 */
 	public long getQuestionId();
 
 	/**
-	 * @param questionId the questionId to set
+	 * Sets the question id.
+	 * 
+	 * @param questionId the new question id
 	 */
 	public void setQuestionId(long questionId);
 
 	/**
-	 * @return the ownerUserId
+	 * Gets the owner user id.
+	 * 
+	 * @return the owner user id
 	 */
 	public long getOwnerUserId();
 
 	/**
-	 * @param ownerUserId the ownerUserId to set
+	 * Sets the owner user id.
+	 * 
+	 * @param ownerUserId the new owner user id
 	 */
 	public void setOwnerUserId(long ownerUserId);
 
 	/**
-	 * @return the ownerDisplayName
+	 * Gets the owner display name.
+	 * 
+	 * @return the owner display name
 	 */
 	public String getOwnerDisplayName();
 
 	/**
-	 * @param ownerDisplayName the ownerDisplayName to set
+	 * Sets the owner display name.
+	 * 
+	 * @param ownerDisplayName the new owner display name
 	 */
 	public void setOwnerDisplayName(String ownerDisplayName);
 
 	/**
-	 * @return the creationDate
+	 * Gets the creation date.
+	 * 
+	 * @return the creation date
 	 */
 	public Date getCreationDate();
 
 	/**
-	 * @param creationDate the creationDate to set
+	 * Sets the creation date.
+	 * 
+	 * @param creationDate the new creation date
 	 */
 	public void setCreationDate(Date creationDate);
 
 	/**
-	 * @return the upVoteCount
+	 * Gets the up vote count.
+	 * 
+	 * @return the up vote count
 	 */
 	public long getUpVoteCount();
 
 	/**
-	 * @param upVoteCount the upVoteCount to set
+	 * Sets the up vote count.
+	 * 
+	 * @param upVoteCount the new up vote count
 	 */
 	public void setUpVoteCount(long upVoteCount);
 
 	/**
-	 * @return the downVoteCount
+	 * Gets the down vote count.
+	 * 
+	 * @return the down vote count
 	 */
 	public long getDownVoteCount();
 
 	/**
-	 * @param downVoteCount the downVoteCount to set
+	 * Sets the down vote count.
+	 * 
+	 * @param downVoteCount the new down vote count
 	 */
 	public void setDownVoteCount(long downVoteCount);
 
 	/**
-	 * @return the favoriteCount
+	 * Gets the favorite count.
+	 * 
+	 * @return the favorite count
 	 */
 	public long getFavoriteCount();
 
 	/**
-	 * @param favoriteCount the favoriteCount to set
+	 * Sets the favorite count.
+	 * 
+	 * @param favoriteCount the new favorite count
 	 */
 	public void setFavoriteCount(long favoriteCount);
 
 	/**
-	 * @return the viewCount
+	 * Gets the view count.
+	 * 
+	 * @return the view count
 	 */
 	public long getViewCount();
 
 	/**
-	 * @param viewCount the viewCount to set
+	 * Sets the view count.
+	 * 
+	 * @param viewCount the new view count
 	 */
 	public void setViewCount(long viewCount);
 
 	/**
+	 * Gets the score.
+	 * 
 	 * @return the score
 	 */
 	public long getScore();
 
 	/**
-	 * @param score the score to set
+	 * Sets the score.
+	 * 
+	 * @param score the new score
 	 */
 	public void setScore(long score);
 
 	/**
-	 * @return the communityOwned
+	 * Checks if is community owned.
+	 * 
+	 * @return true, if is community owned
 	 */
 	public boolean isCommunityOwned();
 
 	/**
-	 * @param communityOwned the communityOwned to set
+	 * Sets the community owned.
+	 * 
+	 * @param communityOwned the new community owned
 	 */
 	public void setCommunityOwned(boolean communityOwned);
 
 	/**
+	 * Gets the title.
+	 * 
 	 * @return the title
 	 */
 	public String getTitle();
 
 	/**
-	 * @param title the title to set
+	 * Sets the title.
+	 * 
+	 * @param title the new title
 	 */
 	public void setTitle(String title);
 	
 	/**
+	 * Gets the body.
+	 * 
 	 * @return the body
 	 */
 	public String getBody();
 
 	/**
-	 * @param body the body to set
+	 * Sets the body.
+	 * 
+	 * @param body the new body
 	 */
 	public void setBody(String body);
 	
 	/**
+	 * Gets the comments.
+	 * 
 	 * @return the comments
 	 */
 	public List<Comment> getComments();
 
 	/**
-	 * @param comments the comments to set
+	 * Sets the comments.
+	 * 
+	 * @param comments the new comments
 	 */
 	public void setComments(List<Comment> comments);
 
 	/**
-	 * @return the lastEditDate
+	 * Gets the last edit date.
+	 * 
+	 * @return the last edit date
 	 */
 	public Date getLastEditDate();
 
 	/**
-	 * @param lastEditDate the lastEditDate to set
+	 * Sets the last edit date.
+	 * 
+	 * @param lastEditDate the new last edit date
 	 */
 	public void setLastEditDate(Date lastEditDate);
 
 	/**
-	 * @return the lastActivityDate
+	 * Gets the last activity date.
+	 * 
+	 * @return the last activity date
 	 */
 	public Date getLastActivityDate();
 
 	/**
-	 * @param lastEditDate the lastActivityDate to set
+	 * Sets the last activity date.
+	 * 
+	 * @param lastActivityDate the new last activity date
 	 */
 	public void setLastActivityDate(Date lastActivityDate);
 	
 	/**
-	 * @return the ownerEmailHash
+	 * Gets the owner email hash.
+	 * 
+	 * @return the owner email hash
 	 */
 	public String getOwnerEmailHash();
 
 	/**
-	 * @param ownerEmailHash the ownerEmailHash to set
+	 * Sets the owner email hash.
+	 * 
+	 * @param ownerEmailHash the new owner email hash
 	 */
 	public void setOwnerEmailHash(String ownerEmailHash);
 	
 	/**
-	 * @return the answerCommentsUrl
+	 * Gets the answer comments url.
+	 * 
+	 * @return the answer comments url
 	 */
 	public String getAnswerCommentsUrl();
 
 	/**
-	 * @param answerCommentsUrl the answerCommentsUrl to set
+	 * Sets the answer comments url.
+	 * 
+	 * @param answerCommentsUrl the new answer comments url
 	 */
 	public void setAnswerCommentsUrl(String answerCommentsUrl);
 }

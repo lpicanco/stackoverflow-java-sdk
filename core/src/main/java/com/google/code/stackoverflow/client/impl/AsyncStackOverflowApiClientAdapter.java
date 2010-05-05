@@ -30,18 +30,22 @@ import com.google.code.stackoverflow.schema.UserTimeline;
 import com.google.code.stackoverflow.schema.Answer.SortOrder;
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Class AsyncStackOverflowApiClientAdapter.
  */
 public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApiClient {
 
-    /** Field description */
+    /** The client. */
     private StackOverflowApiClient client;
     
-    /** Field description */
+    /** The task executor. */
     private ExecutorService taskExecutor;
 
-    /** Field description */
+    /**
+     * Instantiates a new async stack overflow api client adapter.
+     * 
+     * @param client the client
+     * @param taskExecutor the task executor
+     */
 
     /**
      * Constructs ...
@@ -55,87 +59,90 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param task
-     *
-     * @return
+     * Execute.
+     * 
+     * @param task the task
+     * 
+     * @return the future<?>
      */
     protected Future<?> execute(Runnable task) {
         return taskExecutor.submit(task);
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param task
-     * @param <T>
-     *
-     * @return
+     * Execute.
+     * 
+     * @param task the task
+     * 
+     * @return the future< t>
      */
     protected <T> Future<T> execute(Callable<T> task) {
         return taskExecutor.submit(task);
     }
     
-    /**
-     * Sets the request headers.
-     *
-     * @param requestHeaders the request headers
+    /* (non-Javadoc)
+     * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#setRequestHeaders(java.util.Map)
      */
     public void setRequestHeaders(Map<String, String> requestHeaders) {
     	client.setRequestHeaders(requestHeaders);
     }
 
-    /**
-     * Gets the request headers.
-     *
-     * @return the request headers
+    /* (non-Javadoc)
+     * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#getRequestHeaders()
      */
     public Map<String, String> getRequestHeaders() {
         return client.getRequestHeaders();
     }
 
-    /**
-     * Adds the request header.
-     *
-     * @param headerName the header name
-     * @param headerValue the header value
+    /* (non-Javadoc)
+     * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#addRequestHeader(java.lang.String, java.lang.String)
      */
     public void addRequestHeader(String headerName, String headerValue) {
         client.addRequestHeader(headerName, headerValue);
     }
 
-    /**
-     * Removes the request header.
-     *
-     * @param headerName the header name
+    /* (non-Javadoc)
+     * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#removeRequestHeader(java.lang.String)
      */
     public void removeRequestHeader(String headerName) {
         client.removeRequestHeader(headerName);
     }
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowAuthenticationClient#getApplicationKey()
+	 */
 	@Override
 	public String getApplicationKey() {
 		return client.getApplicationKey();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowAuthenticationClient#setApplicationKey(java.lang.String)
+	 */
 	@Override
 	public void setApplicationKey(String applicationKey) {
 		client.setApplicationKey(applicationKey);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#getApiProvider()
+	 */
 	@Override
 	public ApiProvider getApiProvider() {
 		return client.getApiProvider();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#setApiProvider(com.google.code.stackoverflow.client.provider.ApiProvider)
+	 */
 	@Override
 	public void setApiProvider(ApiProvider apiProvider) {
 		client.setApiProvider(apiProvider);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswers(long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswers(final long... answerIds) {
 		return execute(new Callable<List<Answer>>() {
@@ -146,6 +153,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswers(java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswers(final Set<FilterOption> filterOptions,
 			final long... answerIds) {
@@ -157,6 +167,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByUsers(long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByUsers(final long... userIds) {
 		return execute(new Callable<List<Answer>>() {
@@ -167,6 +180,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByUsers(java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByUsers(final Set<FilterOption> filterOptions,
 			final long... userIds) {
@@ -178,6 +194,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByUsers(com.google.code.stackoverflow.schema.Answer.SortOrder, long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByUsers(final Answer.SortOrder sort,
 			final long... userIds) {
@@ -189,6 +208,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByUsers(com.google.code.stackoverflow.schema.Answer.SortOrder, java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByUsers(final Answer.SortOrder sort,
 			final Set<FilterOption> filterOptions, final long... userIds) {
@@ -200,6 +222,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getBadges()
+	 */
 	@Override
 	public Future<List<Badge>> getBadges() {
 		return execute(new Callable<List<Badge>>() {
@@ -210,6 +235,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getBadgesByName()
+	 */
 	@Override
 	public Future<List<Badge>> getBadgesByName() {
 		return execute(new Callable<List<Badge>>() {
@@ -220,6 +248,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getBadgesByTags()
+	 */
 	@Override
 	public Future<List<Badge>> getBadgesByTags() {
 		return execute(new Callable<List<Badge>>() {
@@ -230,6 +261,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getBadgesForUsers(long[])
+	 */
 	@Override
 	public Future<List<Badge>> getBadgesForUsers(final long... userIds) {
 		return execute(new Callable<List<Badge>>() {
@@ -240,6 +274,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getComments(long[])
+	 */
 	@Override
 	public Future<List<Comment>> getComments(final long... commentIds) {
 		return execute(new Callable<List<Comment>>() {
@@ -250,6 +287,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getFavoriteQuestionsByUsers(long[])
+	 */
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUsers(final long... userIds) {
 		return execute(new Callable<List<Question>>() {
@@ -260,6 +300,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.User.FavoriteSortOrder, long[])
+	 */
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUsers(final User.FavoriteSortOrder sort,
 			final long... userIds) {
@@ -271,6 +314,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUsers(final Paging paging,
 			final long... userIds) {
@@ -282,6 +328,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUsers(final TimePeriod timePeriod,
 			final long... userIds) {
@@ -293,6 +342,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getFavoriteQuestionsByUsers(java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUsers(final Set<FilterOption> filterOptions,
 			final long... userIds) {
@@ -304,6 +356,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.User.FavoriteSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Question>> getFavoriteQuestionsByUsers(final User.FavoriteSortOrder sort,
 			final Paging paging, final TimePeriod timePeriod, final Set<FilterOption> filterOptions,
@@ -316,6 +371,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final long... questionIds) {
 		return execute(new Callable<List<Question>>() {
@@ -326,6 +384,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final Paging paging, final long... questionIds) {
 		return execute(new Callable<List<Question>>() {
@@ -336,6 +397,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final Set<FilterOption> filterOptions,
 			final long... questionIds) {
@@ -347,6 +411,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging, java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final Paging paging, final Set<FilterOption> filterOptions,
 			final long... questionIds) {
@@ -358,6 +425,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsTimeline(long[])
+	 */
 	@Override
 	public Future<List<PostTimeline>> getQuestionsTimeline(final long... questionIds) {
 		return execute(new Callable<List<PostTimeline>>() {
@@ -368,6 +438,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsTimeline(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<PostTimeline>> getQuestionsTimeline(final TimePeriod timePeriod,
 			final long... questionIds) {
@@ -379,6 +452,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions()
+	 */
 	@Override
 	public Future<List<Question>> getQuestions() {
 		return execute(new Callable<List<Question>>() {
@@ -389,6 +465,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final Paging paging) {
 		return execute(new Callable<List<Question>>() {
@@ -399,6 +478,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.TimePeriod)
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final TimePeriod timePeriod) {
 		return execute(new Callable<List<Question>>() {
@@ -409,6 +491,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Question.SortOrder)
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final Question.SortOrder sort) {
 		return execute(new Callable<List<Question>>() {
@@ -419,6 +504,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(java.util.Set)
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final Set<FilterOption> filterOptions) {
 		return execute(new Callable<List<Question>>() {
@@ -429,6 +517,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Question.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
+	 */
 	@Override
 	public Future<List<Question>> getQuestions(final Question.SortOrder sort,
 			final Paging paging, final TimePeriod timePeriod,
@@ -441,6 +532,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsByUsers(long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestionsByUsers(final long... userIds) {
 		return execute(new Callable<List<Question>>() {
@@ -451,6 +545,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.User.QuestionSortOrder, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestionsByUsers(final User.QuestionSortOrder sort,
 			final long... userIds) {
@@ -462,6 +559,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestionsByUsers(final Paging paging, final long... userIds) {
 		return execute(new Callable<List<Question>>() {
@@ -472,6 +572,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestionsByUsers(final TimePeriod timePeriod,
 			final long... userIds) {
@@ -483,6 +586,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsByUsers(java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestionsByUsers(final Set<FilterOption> filterOptions,
 			final long... userIds) {
@@ -494,6 +600,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Question>> getQuestionsByUsers(final User.QuestionSortOrder sort,
 			final Paging paging, final TimePeriod timePeriod, final Set<FilterOption> filterOptions,
@@ -506,6 +615,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getStatistics()
+	 */
 	@Override
 	public Future<Statistics> getStatistics() {
 		return execute(new Callable<Statistics>() {
@@ -516,6 +628,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTaggedQuestions(java.util.List)
+	 */
 	@Override
 	public Future<List<Question>> getTaggedQuestions(final List<String> tags) {
 		return execute(new Callable<List<Question>>() {
@@ -526,6 +641,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTaggedQuestions(java.util.List, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
+	 */
 	@Override
 	public Future<List<Question>> getTaggedQuestions(final List<String> tags,
 			final Paging paging, final TimePeriod timePeriod,
@@ -538,6 +656,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTags()
+	 */
 	@Override
 	public Future<List<Tag>> getTags() {
 		return execute(new Callable<List<Tag>>() {
@@ -548,6 +669,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Tag.SortOrder)
+	 */
 	@Override
 	public Future<List<Tag>> getTags(final Tag.SortOrder sort) {
 		return execute(new Callable<List<Tag>>() {
@@ -558,6 +682,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public Future<List<Tag>> getTags(final Paging paging) {
 		return execute(new Callable<List<Tag>>() {
@@ -568,6 +695,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Tag.SortOrder, com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public Future<List<Tag>> getTags(final Tag.SortOrder sort, final Paging paging) {
 		return execute(new Callable<List<Tag>>() {
@@ -578,6 +708,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTagsForUsers(long[])
+	 */
 	@Override
 	public Future<List<Tag>> getTagsForUsers(final long... userIds) {
 		return execute(new Callable<List<Tag>>() {
@@ -588,6 +721,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getTagsForUsers(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<Tag>> getTagsForUsers(final Paging paging, final long... userIds) {
 		return execute(new Callable<List<Tag>>() {
@@ -598,6 +734,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUnansweredQuestions()
+	 */
 	@Override
 	public Future<List<Question>> getUnansweredQuestions() {
 		return execute(new Callable<List<Question>>() {
@@ -608,6 +747,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Question.UnansweredSortOrder)
+	 */
 	@Override
 	public Future<List<Question>> getUnansweredQuestions(
 			final Question.UnansweredSortOrder sort) {
@@ -619,6 +761,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public Future<List<Question>> getUnansweredQuestions(final Paging paging) {
 		return execute(new Callable<List<Question>>() {
@@ -629,6 +774,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.TimePeriod)
+	 */
 	@Override
 	public Future<List<Question>> getUnansweredQuestions(final TimePeriod timePeriod) {
 		return execute(new Callable<List<Question>>() {
@@ -639,6 +787,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUnansweredQuestions(java.util.Set)
+	 */
 	@Override
 	public Future<List<Question>> getUnansweredQuestions(
 			final Set<FilterOption> filterOptions) {
@@ -650,6 +801,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Question.UnansweredSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
+	 */
 	@Override
 	public Future<List<Question>> getUnansweredQuestions(
 			final Question.UnansweredSortOrder sort, final Paging paging,
@@ -662,6 +816,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsers(long[])
+	 */
 	@Override
 	public Future<List<User>> getUsers(final long... userIds) {
 		return execute(new Callable<List<User>>() {
@@ -672,6 +829,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersComments(long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersComments(final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
@@ -682,6 +842,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Comment.SortOrder, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersComments(final Comment.SortOrder sort,
 			final long... userIds) {
@@ -693,6 +856,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersComments(final TimePeriod timePeriod,
 			final long... userIds) {
@@ -704,6 +870,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersComments(final Paging paging, final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
@@ -714,6 +883,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Comment.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersComments(final Comment.SortOrder sort,
 			final Paging paging, final TimePeriod timePeriod, final long... userIds) {
@@ -725,6 +897,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersCommentsToUser(long, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
@@ -735,6 +910,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Comment.SortOrder, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final Comment.SortOrder sort,
 			final long... userIds) {
@@ -746,6 +924,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final TimePeriod timePeriod,
 			final long... userIds) {
@@ -757,6 +938,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final Paging paging,
 			final long... userIds) {
@@ -768,6 +952,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Comment.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersCommentsToUser(final long toUserId, final Comment.SortOrder sort,
 			final Paging paging, final TimePeriod timePeriod, final long... userIds) {
@@ -779,6 +966,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersMentions(long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersMentions(final long... userIds) {
 		return execute(new Callable<List<Comment>>() {
@@ -789,6 +979,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersMentions(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Comment>> getUsersMentions(final TimePeriod timePeriod,
 			final long... userIds) {
@@ -800,6 +993,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersReputations(long[])
+	 */
 	@Override
 	public Future<List<Reputation>> getUsersReputations(final long... userIds) {
 		return execute(new Callable<List<Reputation>>() {
@@ -810,6 +1006,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Reputation>> getUsersReputations(final TimePeriod timePeriod,
 			final long... userIds) {
@@ -821,6 +1020,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<Reputation>> getUsersReputations(final Paging paging,
 			final long... userIds) {
@@ -832,6 +1034,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Reputation>> getUsersReputations(final Paging paging,
 			final TimePeriod timePeriod, final long... userIds) {
@@ -843,6 +1048,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersTimeline(long[])
+	 */
 	@Override
 	public Future<List<UserTimeline>> getUsersTimeline(final long... userIds) {
 		return execute(new Callable<List<UserTimeline>>() {
@@ -853,6 +1061,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsersTimeline(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<UserTimeline>> getUsersTimeline(final TimePeriod timePeriod,
 			final long... userIds) {
@@ -864,6 +1075,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsers()
+	 */
 	@Override
 	public Future<List<User>> getUsers() {
 		return execute(new Callable<List<User>>() {
@@ -874,6 +1088,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public Future<List<User>> getUsers(final Paging paging) {
 		return execute(new Callable<List<User>>() {
@@ -884,6 +1101,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsers(java.lang.String)
+	 */
 	@Override
 	public Future<List<User>> getUsers(final String filter) {
 		return execute(new Callable<List<User>>() {
@@ -894,6 +1114,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.User.SortOrder)
+	 */
 	@Override
 	public Future<List<User>> getUsers(final User.SortOrder sort) {
 		return execute(new Callable<List<User>>() {
@@ -904,6 +1127,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getUsers(java.lang.String, com.google.code.stackoverflow.schema.User.SortOrder, com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public Future<List<User>> getUsers(final String filter, final User.SortOrder sort,
 			final Paging paging) {
@@ -915,6 +1141,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getRevisionForPost(long, java.lang.String)
+	 */
 	@Override
 	public Future<Revision> getRevisionForPost(final long postId, final String revisionGuid) {
 		return execute(new Callable<Revision>() {
@@ -925,6 +1154,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getRevisionsForPosts(long[])
+	 */
 	@Override
 	public Future<List<Revision>> getRevisionsForPosts(final long... postIds) {
 		return execute(new Callable<List<Revision>>() {
@@ -935,6 +1167,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getRevisionsForPosts(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public Future<List<Revision>> getRevisionsForPosts(final TimePeriod timePeriod,
 			final long... postIds) {
@@ -946,16 +1181,25 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#getCurrentRateLimit()
+	 */
 	@Override
 	public int getCurrentRateLimit() {
 		return client.getCurrentRateLimit();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowCommunicationClient#getMaxRateLimit()
+	 */
 	@Override
 	public int getMaxRateLimit() {
 		return client.getMaxRateLimit();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByQuestions(long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByQuestions(final long... questionIds) {
 		return execute(new Callable<List<Answer>>() {
@@ -966,6 +1210,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByQuestions(java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByQuestions(
 			final Set<FilterOption> filterOptions, final long... questionIds) {
@@ -977,6 +1224,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByQuestions(com.google.code.stackoverflow.schema.Answer.SortOrder, long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByQuestions(final SortOrder sort,
 			final long... questionIds) {
@@ -988,6 +1238,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getAnswersByQuestions(com.google.code.stackoverflow.schema.Answer.SortOrder, java.util.Set, long[])
+	 */
 	@Override
 	public Future<List<Answer>> getAnswersByQuestions(final SortOrder sort,
 			final Set<FilterOption> filterOptions, final long... questionIds) {
@@ -999,6 +1252,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getBadgesRecipients(long[])
+	 */
 	@Override
 	public Future<List<User>> getBadgesRecipients(final long... badgeIds) {
 		return execute(new Callable<List<User>>() {
@@ -1009,6 +1265,9 @@ public class AsyncStackOverflowApiClientAdapter implements AsyncStackOverflowApi
         });
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.AsyncStackOverflowApiClient#getBadgesRecipients(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public Future<List<User>> getBadgesRecipients(final Paging paging,
 			final long... badgeIds) {

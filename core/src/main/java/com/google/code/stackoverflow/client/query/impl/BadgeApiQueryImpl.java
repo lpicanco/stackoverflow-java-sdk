@@ -14,15 +14,22 @@ import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.adapter.json.BadgesImpl;
 
 /**
- * @author nmukhtar
- *
+ * The Class BadgeApiQueryImpl.
  */
 public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implements BadgeApiQuery {
 
+	/**
+	 * Instantiates a new badge api query impl.
+	 * 
+	 * @param applicationId the application id
+	 */
 	public BadgeApiQueryImpl(String applicationId) {
 		super(applicationId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.BadgeApiQuery#withClassification(com.google.code.stackoverflow.client.query.BadgeApiQuery.Classification)
+	 */
 	@Override
 	public BadgeApiQuery withClassification(Classification classification) {
 		switch (classification) {
@@ -44,12 +51,18 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.BadgeApiQuery#withUserIds(long[])
+	 */
 	@Override
 	public BadgeApiQuery withUserIds(long... userIds) {
 		apiUrlBuilder.withIds(userIds);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
+	 */
 	@Override
 	protected List<Badge> unmarshall(JSONObject json) {
 		BadgesImpl adapter = new BadgesImpl();
@@ -57,6 +70,9 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 		return adapter.getBadges();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.StackOverflowApiQuery#reset()
+	 */
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_BADGES, getApplicationKey(), getApiVersion());

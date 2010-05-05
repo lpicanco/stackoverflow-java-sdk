@@ -7,20 +7,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author nmukhtar
- *
+ * The Enum UserTimelineType.
  */
 public enum UserTimelineType implements ValueEnum {
 
+	/** The BADGE. */
 	BADGE("badge"),
+	
+	/** The COMMENT. */
 	COMMENT("comment"),
+	
+	/** The AS k_ o r_ answered. */
 	ASK_OR_ANSWERED("askoranswered"),
+	
+	/** The ACCEPTED. */
 	ACCEPTED("accepted"),
+	
+	/** The REVISION. */
 	REVISION("revision");
 	
-    /**
-     * Field Description.
-     */
+    /** The Constant stringToEnum. */
 	private static final Map<String, UserTimelineType> stringToEnum = new HashMap<String, UserTimelineType>();
 
 	static { // Initialize map from constant name to enum constant
@@ -29,24 +35,33 @@ public enum UserTimelineType implements ValueEnum {
 		}
 	}
 	
-    /** Field description */
+    /** The value. */
     private final String value;
     
     /**
-     * Constructs ...
-     *
-     *
-     * @param name
+     * Instantiates a new user timeline type.
+     * 
+     * @param value the value
      */
     UserTimelineType(String value) {
         this.value = value;
     }
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+	 */
 	@Override
 	public String value() {
 		return value;
 	}
 	
+	/**
+	 * From value.
+	 * 
+	 * @param value the value
+	 * 
+	 * @return the user timeline type
+	 */
 	public static UserTimelineType fromValue(String value) {
 		return stringToEnum.get(value);
 	}

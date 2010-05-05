@@ -7,20 +7,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author nmukhtar
- *
+ * The Enum PostTimelineType.
  */
 public enum PostTimelineType implements ValueEnum {
 
+	/** The VOTES. */
 	VOTES("votes"),
+	
+	/** The COMMENT. */
 	COMMENT("comment"),
+	
+	/** The ANSWER. */
 	ANSWER("answer"),
+	
+	/** The QUESTION. */
 	QUESTION("question"),
+	
+	/** The REVISION. */
 	REVISION("revision");
 	
-    /**
-     * Field Description.
-     */
+    /** The Constant stringToEnum. */
 	private static final Map<String, PostTimelineType> stringToEnum = new HashMap<String, PostTimelineType>();
 
 	static { // Initialize map from constant name to enum constant
@@ -29,24 +35,33 @@ public enum PostTimelineType implements ValueEnum {
 		}
 	}
 	
-    /** Field description */
+    /** The value. */
     private final String value;
     
     /**
-     * Constructs ...
-     *
-     *
-     * @param name
+     * Instantiates a new post timeline type.
+     * 
+     * @param value the value
      */
     PostTimelineType(String value) {
         this.value = value;
     }
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.ValueEnum#value()
+	 */
 	@Override
 	public String value() {
 		return value;
 	}
 	
+	/**
+	 * From value.
+	 * 
+	 * @param value the value
+	 * 
+	 * @return the post timeline type
+	 */
 	public static PostTimelineType fromValue(String value) {
 		return stringToEnum.get(value);
 	}

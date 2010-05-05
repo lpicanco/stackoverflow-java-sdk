@@ -3,95 +3,134 @@ package com.google.code.stackoverflow.schema;
 import java.util.Date;
 
 
+/**
+ * The Interface UserTimeline.
+ */
 public interface UserTimeline extends SchemaEntity {
 
 	/**
-	 * @return the timeline_type
+	 * Gets the timeline type.
+	 * 
+	 * @return the timeline type
 	 */
 	public UserTimelineType getTimelineType();
 
 	/**
-	 * @param timeline_type the timeline_type to set
+	 * Sets the timeline type.
+	 * 
+	 * @param timelineType the new timeline type
 	 */
 	public void setTimelineType(UserTimelineType timelineType);
 
 	/**
-	 * @return the post_id
+	 * Gets the post id.
+	 * 
+	 * @return the post id
 	 */
 	public long getPostId();
 
 	/**
-	 * @param post_id the post_id to set
+	 * Sets the post id.
+	 * 
+	 * @param postId the new post id
 	 */
 	public void setPostId(long postId);
 
 	/**
+	 * Gets the action.
+	 * 
 	 * @return the action
 	 */
 	public String getAction();
 
 	/**
-	 * @param action the action to set
+	 * Sets the action.
+	 * 
+	 * @param action the new action
 	 */
 	public void setAction(String action);
 
 	/**
-	 * @return the creation_date
+	 * Gets the creation date.
+	 * 
+	 * @return the creation date
 	 */
 	public Date getCreationDate();
 
 	/**
-	 * @param creation_date the creation_date to set
+	 * Sets the creation date.
+	 * 
+	 * @param creationDate the new creation date
 	 */
 	public void setCreationDate(Date creationDate);
 
 	/**
+	 * Gets the description.
+	 * 
 	 * @return the description
 	 */
 	public String getDescription();
 
 	/**
-	 * @param description the description to set
+	 * Sets the description.
+	 * 
+	 * @param description the new description
 	 */
 	public void setDescription(String description);
 
 	/**
+	 * Gets the detail.
+	 * 
 	 * @return the detail
 	 */
 	public String getDetail();
 
 	/**
-	 * @param detail the detail to set
+	 * Sets the detail.
+	 * 
+	 * @param detail the new detail
 	 */
 	public void setDetail(String detail);
 
 	/**
-	 * @return the userId
+	 * Gets the user id.
+	 * 
+	 * @return the user id
 	 */
 	public long getUserId();
 
 	/**
-	 * @param userId the userId to set
+	 * Sets the user id.
+	 * 
+	 * @param userId the new user id
 	 */
 	public void setUserId(long userId);
 
 	/**
-	 * @return the commentId
+	 * Gets the comment id.
+	 * 
+	 * @return the comment id
 	 */
 	public long getCommentId();
 	
 	/**
-	 * @param commentId the commentId to set
+	 * Sets the comment id.
+	 * 
+	 * @param commentId the new comment id
 	 */
 	public void setCommentId(long commentId);
 
 	/**
-	 * @return the postType
+	 * Gets the post type.
+	 * 
+	 * @return the post type
 	 */
 	public PostType getPostType();
 	
 	/**
-	 * @param postType the postType to set
+	 * Sets the post type.
+	 * 
+	 * @param postType the new post type
 	 */
 	public void setPostType(PostType postType);
 }

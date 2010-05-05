@@ -11,159 +11,203 @@ import com.google.code.stackoverflow.schema.Statistics;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class StatisticsImpl.
  */
 public class StatisticsImpl extends BaseJsonAdapter implements Statistics, Adaptable<Statistics, JSONObject> {
-	/**
-	 * 
-	 */
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -3816093709987797926L;
+	
+	/** The total questions. */
 	private long totalQuestions;
+	
+	/** The total unanswered. */
 	private long totalUnanswered;
+	
+	/** The total answers. */
 	private long totalAnswers;
+	
+	/** The total comments. */
 	private long totalComments;
+	
+	/** The total votes. */
 	private long totalVotes;
+	
+	/** The total badges. */
 	private long totalBadges;
+	
+	/** The total users. */
 	private long totalUsers;
+	
+	/** The questions per minute. */
 	private double questionsPerMinute;
+	
+	/** The answers per minute. */
 	private double answersPerMinute;
+	
+	/** The badges per minute. */
 	private double badgesPerMinute;
+	
+	/** The api version. */
 	private ApiVersion apiVersion;
 	
-	/**
-	 * @return the totalQuestions
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getTotalQuestions()
 	 */
 	public long getTotalQuestions() {
 		return totalQuestions;
 	}
-	/**
-	 * @param totalQuestions the totalQuestions to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setTotalQuestions(long)
 	 */
 	public void setTotalQuestions(long totalQuestions) {
 		this.totalQuestions = totalQuestions;
 	}
-	/**
-	 * @return the totalUnanswered
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getTotalUnanswered()
 	 */
 	public long getTotalUnanswered() {
 		return totalUnanswered;
 	}
-	/**
-	 * @param totalUnanswered the totalUnanswered to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setTotalUnanswered(long)
 	 */
 	public void setTotalUnanswered(long totalUnanswered) {
 		this.totalUnanswered = totalUnanswered;
 	}
-	/**
-	 * @return the totalAnswers
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getTotalAnswers()
 	 */
 	public long getTotalAnswers() {
 		return totalAnswers;
 	}
-	/**
-	 * @param totalAnswers the totalAnswers to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setTotalAnswers(long)
 	 */
 	public void setTotalAnswers(long totalAnswers) {
 		this.totalAnswers = totalAnswers;
 	}
-	/**
-	 * @return the totalComments
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getTotalComments()
 	 */
 	public long getTotalComments() {
 		return totalComments;
 	}
-	/**
-	 * @param totalComments the totalComments to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setTotalComments(long)
 	 */
 	public void setTotalComments(long totalComments) {
 		this.totalComments = totalComments;
 	}
-	/**
-	 * @return the totalVotes
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getTotalVotes()
 	 */
 	public long getTotalVotes() {
 		return totalVotes;
 	}
-	/**
-	 * @param totalVotes the totalVotes to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setTotalVotes(long)
 	 */
 	public void setTotalVotes(long totalVotes) {
 		this.totalVotes = totalVotes;
 	}
-	/**
-	 * @return the totalBadges
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getTotalBadges()
 	 */
 	public long getTotalBadges() {
 		return totalBadges;
 	}
-	/**
-	 * @param totalBadges the totalBadges to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setTotalBadges(long)
 	 */
 	public void setTotalBadges(long totalBadges) {
 		this.totalBadges = totalBadges;
 	}
-	/**
-	 * @return the totalUsers
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getTotalUsers()
 	 */
 	public long getTotalUsers() {
 		return totalUsers;
 	}
-	/**
-	 * @param totalUsers the totalUsers to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setTotalUsers(long)
 	 */
 	public void setTotalUsers(long totalUsers) {
 		this.totalUsers = totalUsers;
 	}
-	/**
-	 * @return the questionsPerMinute
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getQuestionsPerMinute()
 	 */
 	public double getQuestionsPerMinute() {
 		return questionsPerMinute;
 	}
-	/**
-	 * @param questionsPerMinute the questionsPerMinute to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setQuestionsPerMinute(double)
 	 */
 	public void setQuestionsPerMinute(double questionsPerMinute) {
 		this.questionsPerMinute = questionsPerMinute;
 	}
-	/**
-	 * @return the answersPerMinute
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getAnswersPerMinute()
 	 */
 	public double getAnswersPerMinute() {
 		return answersPerMinute;
 	}
-	/**
-	 * @param answersPerMinute the answersPerMinute to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setAnswersPerMinute(double)
 	 */
 	public void setAnswersPerMinute(double answersPerMinute) {
 		this.answersPerMinute = answersPerMinute;
 	}
-	/**
-	 * @return the badgesPerMinute
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getBadgesPerMinute()
 	 */
 	public double getBadgesPerMinute() {
 		return badgesPerMinute;
 	}
-	/**
-	 * @param badgesPerMinute the badgesPerMinute to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setBadgesPerMinute(double)
 	 */
 	public void setBadgesPerMinute(double badgesPerMinute) {
 		this.badgesPerMinute = badgesPerMinute;
 	}
-	/**
-	 * @return the apiVersion
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#getApiVersion()
 	 */
 	public ApiVersion getApiVersion() {
 		return apiVersion;
 	}
-	/**
-	 * @param apiVersion the apiVersion to set
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Statistics#setApiVersion(com.google.code.stackoverflow.schema.ApiVersion)
 	 */
 	public void setApiVersion(ApiVersion apiVersion) {
 		this.apiVersion = apiVersion;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		JSONArray stats = (JSONArray) adaptee.get("statistics");
@@ -179,6 +223,9 @@ public class StatisticsImpl extends BaseJsonAdapter implements Statistics, Adapt
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject adaptTo() {

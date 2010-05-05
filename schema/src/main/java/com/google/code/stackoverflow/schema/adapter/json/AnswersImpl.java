@@ -14,26 +14,33 @@ import com.google.code.stackoverflow.schema.Answers;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class AnswersImpl.
  */
 public class AnswersImpl extends BaseJsonAdapter implements Answers, Adaptable<Answers, JSONObject> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
+	/** The answers. */
 	private List<Answer> answers = new ArrayList<Answer>();
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Answers#getAnswers()
+	 */
 	public List<Answer> getAnswers() {
 		return answers;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.Answers#setAnswers(java.util.List)
+	 */
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		JSONArray answers = (JSONArray) adaptee.get("answers");
@@ -46,6 +53,9 @@ public class AnswersImpl extends BaseJsonAdapter implements Answers, Adaptable<A
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject adaptTo() {

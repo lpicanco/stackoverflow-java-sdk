@@ -7,18 +7,25 @@ import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.TimePeriod;
 
 /**
- * @author nmukhtar
- *
+ * The Interface QuestionTimelineApiQuery.
  */
 public interface QuestionTimelineApiQuery extends StackOverflowApiQuery<PostTimeline> {
 	
 	/**
+	 * With question ids.
 	 * 
+	 * @param questionIds the question ids
+	 * 
+	 * @return the question timeline api query
 	 */
 	public QuestionTimelineApiQuery withQuestionIds(long... questionIds);
 	
 	/**
+	 * With time period.
 	 * 
+	 * @param timePeriod the time period
+	 * 
+	 * @return the question timeline api query
 	 */
 	public QuestionTimelineApiQuery withTimePeriod(TimePeriod timePeriod);
 }

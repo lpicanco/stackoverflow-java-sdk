@@ -14,26 +14,33 @@ import com.google.code.stackoverflow.schema.UserTimelines;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
- * @author nmukhtar
- *
+ * The Class UserTimelinesImpl.
  */
 public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines, Adaptable<UserTimelines, JSONObject> {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
+	/** The timelines. */
 	private List<UserTimeline> timelines = new ArrayList<UserTimeline>();
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.UserTimelines#getTimelines()
+	 */
 	public List<UserTimeline> getTimelines() {
 		return timelines;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.UserTimelines#setTimelines(java.util.List)
+	 */
 	public void setTimelines(List<UserTimeline> timelines) {
 		this.timelines = timelines;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
+	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		JSONArray timelines = (JSONArray) adaptee.get("usertimelines");
@@ -46,6 +53,9 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.schema.adapter.Adaptable#adaptTo()
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject adaptTo() {

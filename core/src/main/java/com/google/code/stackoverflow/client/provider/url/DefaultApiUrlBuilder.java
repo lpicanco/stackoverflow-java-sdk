@@ -20,14 +20,14 @@ import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.ValueEnum;
 
 /**
- * The Class StackOverflowApiUrlBuilder.
+ * The Class DefaultApiUrlBuilder.
  */
 public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 
 	/** The Constant API_URLS_FILE. */
 	public static final String API_URLS_FILE = "StackOverflowApiUrls.properties";
 	
-    /** The static logger. */
+    /** The Constant logger. */
     private static final Logger logger = Logger.getLogger(DefaultApiUrlBuilder.class.getCanonicalName());
 	
 	/** The Constant API_URLS_PLACEHOLDER_START. */
@@ -36,7 +36,7 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	/** The Constant API_URLS_PLACEHOLDER_END. */
 	private static final char API_URLS_PLACEHOLDER_END = '}';
 
-	/** The Constant API_URLS_PLACEHOLDER_END. */
+	/** The Constant DEFAULT_VERSION. */
 	private static final String DEFAULT_VERSION = ApplicationConstants.DEFAULT_API_VERSION;
 
 	/** The url format. */
@@ -60,12 +60,11 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
     }
 
 	/**
-	 * Instantiates a new stack overflow api url builder.
+	 * Instantiates a new default api url builder.
 	 * 
-	 * @param urlFormat
-	 *            the url format
-	 * @param urlType
-	 *            the url type
+	 * @param methodName the method name
+	 * @param applicationId the application id
+	 * @param providerHost the provider host
 	 */
 	public DefaultApiUrlBuilder(String methodName, String applicationId, String providerHost) {
 		if (stackOverflowApiUrls.containsKey(methodName)) {
@@ -79,10 +78,12 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	}
 
 	/**
-	 * Instantiates a new stack overflow api url builder.
+	 * Instantiates a new default api url builder.
 	 * 
-	 * @param urlFormat
-	 *            the url format
+	 * @param methodName the method name
+	 * @param applicationId the application id
+	 * @param providerHost the provider host
+	 * @param apiVersion the api version
 	 */
 	public DefaultApiUrlBuilder(String methodName, String applicationId, String providerHost,
 			String apiVersion) {
@@ -97,7 +98,11 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	}
 	
 	/**
+	 * With method.
 	 * 
+	 * @param methodName the method name
+	 * 
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withMethod(String methodName) {
 		if (stackOverflowApiUrls.containsKey(methodName)) {
@@ -110,15 +115,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	}
 	
 
-	/**
-	 * With parameter.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withParameter(java.lang.String, java.lang.String)
 	 */
 	public ApiUrlBuilder withParameter(String name, String value) {
 		if (value != null && value.length() > 0) {
@@ -128,15 +126,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With parameters.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param values
-	 *            the values
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withParameters(java.lang.String, java.util.Collection)
 	 */
 	public ApiUrlBuilder withParameters(String name,
 			Collection<String> values) {
@@ -154,15 +145,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With parameter enum.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withParameterEnum(java.lang.String, com.google.code.stackoverflow.schema.ValueEnum)
 	 */
 	public ApiUrlBuilder withParameterEnum(String name,
 			ValueEnum value) {
@@ -171,15 +155,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With parameter enum.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withPaging(com.google.code.stackoverflow.schema.Paging)
 	 */
 	public ApiUrlBuilder withPaging(Paging paging) {
 		if (paging != null) {
@@ -194,15 +171,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With parameter enum.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withTimePeriod(com.google.code.stackoverflow.schema.TimePeriod)
 	 */
 	public ApiUrlBuilder withTimePeriod(TimePeriod timePeriod) {
 		if (timePeriod != null) {
@@ -219,12 +189,18 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withId(long)
+	 */
 	@Override
 	public ApiUrlBuilder withId(long id) {
 		withField("id", String.valueOf(id), false);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withIds(long[])
+	 */
 	@Override
 	public ApiUrlBuilder withIds(long... ids) {
 		StringBuilder builder = new StringBuilder();
@@ -238,15 +214,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 	
-	/**
-	 * With parameter enum.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withSort(com.google.code.stackoverflow.schema.SortEnum)
 	 */
 	public ApiUrlBuilder withSort(SortEnum sort) {
 		if (sort != null) {
@@ -259,6 +228,9 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withFetchOptions(java.util.Set)
+	 */
 	public ApiUrlBuilder withFetchOptions(
 			Set<FilterOption> fetchOptions) {
 		if (fetchOptions != null) {
@@ -270,13 +242,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With parameter enum map.
-	 * 
-	 * @param enumMap
-	 *            the enum map
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withParameterEnumMap(java.util.Map)
 	 */
 	public ApiUrlBuilder withParameterEnumMap(
 			Map<? extends ValueEnum, String> enumMap) {
@@ -287,13 +254,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With empty field.
-	 * 
-	 * @param name
-	 *            the name
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withEmptyField(java.lang.String)
 	 */
 	public ApiUrlBuilder withEmptyField(String name) {
 		fieldsMap.put(name, "");
@@ -301,15 +263,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With field.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withField(java.lang.String, java.lang.String)
 	 */
 	public ApiUrlBuilder withField(String name, String value) {
 		withField(name, value, false);
@@ -317,15 +272,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With field.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withField(java.lang.String, java.lang.String, boolean)
 	 */
 	public ApiUrlBuilder withField(String name, String value,
 			boolean escape) {
@@ -338,15 +286,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With field enum.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withFieldEnum(java.lang.String, com.google.code.stackoverflow.schema.ValueEnum)
 	 */
 	public ApiUrlBuilder withFieldEnum(String name, ValueEnum value) {
 		if (value.value() == null || value.value().length() == 0) {
@@ -358,15 +299,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * With field enum set.
-	 * 
-	 * @param name
-	 *            the name
-	 * @param enumSet
-	 *            the enum set
-	 * 
-	 * @return the stack overflow api url builder
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withFieldEnumSet(java.lang.String, java.util.Set)
 	 */
 	public ApiUrlBuilder withFieldEnumSet(String name,
 			Set<? extends ValueEnum> enumSet) {
@@ -390,10 +324,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
-	/**
-	 * Builds the url.
-	 * 
-	 * @return the string
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#buildUrl()
 	 */
 	public String buildUrl() {
 		StringBuilder urlBuilder = new StringBuilder();
@@ -441,10 +373,7 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	/**
 	 * Encode url.
 	 * 
-	 * @param original
-	 *            the original
-	 * @param encoding
-	 *            the encoding
+	 * @param original the original
 	 * 
 	 * @return the string
 	 */

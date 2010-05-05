@@ -10,29 +10,28 @@ import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.ValueEnum;
 
+/**
+ * The Interface ApiUrlBuilder.
+ */
 public interface ApiUrlBuilder {
 
 	/**
 	 * With parameter.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param name the name
+	 * @param value the value
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withParameter(String name, String value);
 
 	/**
 	 * With parameters.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param values
-	 *            the values
+	 * @param name the name
+	 * @param values the values
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withParameters(String name,
 			Collection<String> values);
@@ -40,12 +39,10 @@ public interface ApiUrlBuilder {
 	/**
 	 * With parameter enum.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param name the name
+	 * @param value the value
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withParameterEnum(String name,
 			ValueEnum value);
@@ -53,69 +50,64 @@ public interface ApiUrlBuilder {
 	/**
 	 * With id.
 	 * 
-	 * @param id
-	 *            the id
+	 * @param id the id
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withId(long id);
 	
 	/**
 	 * With ids.
 	 * 
-	 * @param ids
-	 *            the ids
+	 * @param ids the ids
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withIds(long... ids);
 	
 	/**
-	 * With parameter enum.
+	 * With paging.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param paging the paging
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withPaging(Paging paging);
 
 	/**
-	 * With parameter enum.
+	 * With time period.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param timePeriod the time period
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withTimePeriod(TimePeriod timePeriod);
 
 	/**
-	 * With parameter enum.
+	 * With sort.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param sort the sort
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withSort(SortEnum sort);
 
+	/**
+	 * With fetch options.
+	 * 
+	 * @param fetchOptions the fetch options
+	 * 
+	 * @return the api url builder
+	 */
 	public ApiUrlBuilder withFetchOptions(
 			Set<FilterOption> fetchOptions);
 
 	/**
 	 * With parameter enum map.
 	 * 
-	 * @param enumMap
-	 *            the enum map
+	 * @param enumMap the enum map
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withParameterEnumMap(
 			Map<? extends ValueEnum, String> enumMap);
@@ -123,34 +115,30 @@ public interface ApiUrlBuilder {
 	/**
 	 * With empty field.
 	 * 
-	 * @param name
-	 *            the name
+	 * @param name the name
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withEmptyField(String name);
 
 	/**
 	 * With field.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param name the name
+	 * @param value the value
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withField(String name, String value);
 
 	/**
 	 * With field.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param name the name
+	 * @param value the value
+	 * @param escape the escape
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withField(String name, String value,
 			boolean escape);
@@ -158,24 +146,20 @@ public interface ApiUrlBuilder {
 	/**
 	 * With field enum.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param value
-	 *            the value
+	 * @param name the name
+	 * @param value the value
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withFieldEnum(String name, ValueEnum value);
 
 	/**
 	 * With field enum set.
 	 * 
-	 * @param name
-	 *            the name
-	 * @param enumSet
-	 *            the enum set
+	 * @param name the name
+	 * @param enumSet the enum set
 	 * 
-	 * @return the stack overflow api url builder
+	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withFieldEnumSet(String name,
 			Set<? extends ValueEnum> enumSet);

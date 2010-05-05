@@ -1,115 +1,162 @@
 package com.google.code.stackoverflow.schema;
 
 
+/**
+ * The Interface Statistics.
+ */
 public interface Statistics extends SchemaEntity {
 
 	/**
-	 * @return the totalQuestions
+	 * Gets the total questions.
+	 * 
+	 * @return the total questions
 	 */
 	public long getTotalQuestions();
 
 	/**
-	 * @param totalQuestions the totalQuestions to set
+	 * Sets the total questions.
+	 * 
+	 * @param totalQuestions the new total questions
 	 */
 	public void setTotalQuestions(long totalQuestions);
 
 	/**
-	 * @return the totalUnanswered
+	 * Gets the total unanswered.
+	 * 
+	 * @return the total unanswered
 	 */
 	public long getTotalUnanswered();
 
 	/**
-	 * @param totalUnanswered the totalUnanswered to set
+	 * Sets the total unanswered.
+	 * 
+	 * @param totalUnanswered the new total unanswered
 	 */
 	public void setTotalUnanswered(long totalUnanswered);
 
 	/**
-	 * @return the totalAnswers
+	 * Gets the total answers.
+	 * 
+	 * @return the total answers
 	 */
 	public long getTotalAnswers();
 
 	/**
-	 * @param totalAnswers the totalAnswers to set
+	 * Sets the total answers.
+	 * 
+	 * @param totalAnswers the new total answers
 	 */
 	public void setTotalAnswers(long totalAnswers);
 
 	/**
-	 * @return the totalComments
+	 * Gets the total comments.
+	 * 
+	 * @return the total comments
 	 */
 	public long getTotalComments();
 
 	/**
-	 * @param totalComments the totalComments to set
+	 * Sets the total comments.
+	 * 
+	 * @param totalComments the new total comments
 	 */
 	public void setTotalComments(long totalComments);
 
 	/**
-	 * @return the totalVotes
+	 * Gets the total votes.
+	 * 
+	 * @return the total votes
 	 */
 	public long getTotalVotes();
 
 	/**
-	 * @param totalVotes the totalVotes to set
+	 * Sets the total votes.
+	 * 
+	 * @param totalVotes the new total votes
 	 */
 	public void setTotalVotes(long totalVotes);
 
 	/**
-	 * @return the totalBadges
+	 * Gets the total badges.
+	 * 
+	 * @return the total badges
 	 */
 	public long getTotalBadges();
 
 	/**
-	 * @param totalBadges the totalBadges to set
+	 * Sets the total badges.
+	 * 
+	 * @param totalBadges the new total badges
 	 */
 	public void setTotalBadges(long totalBadges);
 
 	/**
-	 * @return the totalUsers
+	 * Gets the total users.
+	 * 
+	 * @return the total users
 	 */
 	public long getTotalUsers();
 
 	/**
-	 * @param totalUsers the totalUsers to set
+	 * Sets the total users.
+	 * 
+	 * @param totalUsers the new total users
 	 */
 	public void setTotalUsers(long totalUsers);
 
 	/**
-	 * @return the questionsPerMinute
+	 * Gets the questions per minute.
+	 * 
+	 * @return the questions per minute
 	 */
 	public double getQuestionsPerMinute();
 
 	/**
-	 * @param questionsPerMinute the questionsPerMinute to set
+	 * Sets the questions per minute.
+	 * 
+	 * @param questionsPerMinute the new questions per minute
 	 */
 	public void setQuestionsPerMinute(double questionsPerMinute);
 
 	/**
-	 * @return the answersPerMinute
+	 * Gets the answers per minute.
+	 * 
+	 * @return the answers per minute
 	 */
 	public double getAnswersPerMinute();
 
 	/**
-	 * @param answersPerMinute the answersPerMinute to set
+	 * Sets the answers per minute.
+	 * 
+	 * @param answersPerMinute the new answers per minute
 	 */
 	public void setAnswersPerMinute(double answersPerMinute);
 
 	/**
-	 * @return the badgesPerMinute
+	 * Gets the badges per minute.
+	 * 
+	 * @return the badges per minute
 	 */
 	public double getBadgesPerMinute();
 
 	/**
-	 * @param badgesPerMinute the badgesPerMinute to set
+	 * Sets the badges per minute.
+	 * 
+	 * @param badgesPerMinute the new badges per minute
 	 */
 	public void setBadgesPerMinute(double badgesPerMinute);
 
 	/**
-	 * @return the apiVersion
+	 * Gets the api version.
+	 * 
+	 * @return the api version
 	 */
 	public ApiVersion getApiVersion();
 
 	/**
-	 * @param apiVersion the apiVersion to set
+	 * Sets the api version.
+	 * 
+	 * @param apiVersion the new api version
 	 */
 	public void setApiVersion(ApiVersion apiVersion);
 

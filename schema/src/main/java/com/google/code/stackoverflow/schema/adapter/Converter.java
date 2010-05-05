@@ -4,19 +4,16 @@
 package com.google.code.stackoverflow.schema.adapter;
 
 /**
- * @author nmukhtar
- *
- *
- * @param <Adapter>
- * @param <Adaptee>
+ * The Interface Converter.
  */
 public interface Converter<Source, Destination> {
 
     /**
-     * Method description
-     *
-     *
-     * @param source
+     * Convert.
+     * 
+     * @param source the source
+     * 
+     * @return the destination
      */
     public Destination convert(Source source);
 }

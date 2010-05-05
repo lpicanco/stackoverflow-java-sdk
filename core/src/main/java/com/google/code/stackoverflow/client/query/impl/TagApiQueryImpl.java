@@ -15,33 +15,49 @@ import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.adapter.json.TagsImpl;
 
 /**
- * @author nmukhtar
- *
+ * The Class TagApiQueryImpl.
  */
 public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements TagApiQuery {
 
+	/**
+	 * Instantiates a new tag api query impl.
+	 * 
+	 * @param applicationId the application id
+	 */
 	public TagApiQueryImpl(String applicationId) {
 		super(applicationId);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.TagApiQuery#withPaging(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public TagApiQuery withPaging(Paging paging) {
 		apiUrlBuilder.withPaging(paging);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.TagApiQuery#withSort(com.google.code.stackoverflow.schema.Tag.SortOrder)
+	 */
 	@Override
 	public TagApiQuery withSort(Tag.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.TagApiQuery#withUserIds(long[])
+	 */
 	@Override
 	public TagApiQuery withUserIds(long... userIds) {
 		apiUrlBuilder.withIds(userIds);
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.TagApiQuery#withClassification(com.google.code.stackoverflow.client.query.TagApiQuery.Classification)
+	 */
 	@Override
 	public TagApiQuery withClassification(Classification classification) {
 		switch (classification) {
@@ -58,6 +74,9 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
+	 */
 	@Override
 	protected List<Tag> unmarshall(JSONObject json) {
 		TagsImpl adapter = new TagsImpl();
@@ -65,6 +84,9 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 		return adapter.getTags();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.query.StackOverflowApiQuery#reset()
+	 */
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_TAGS, getApplicationKey(), getApiVersion());

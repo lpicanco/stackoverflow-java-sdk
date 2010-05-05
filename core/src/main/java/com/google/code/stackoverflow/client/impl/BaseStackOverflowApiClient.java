@@ -38,17 +38,14 @@ import com.google.code.stackoverflow.schema.Users;
 import com.google.code.stackoverflow.schema.User.QuestionSortOrder;
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Class BaseStackOverflowApiClient.
  */
 public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway implements StackOverflowApiClient {
 
     /**
-     * Constructs ...
-     *
-     *
-     * @param consumerKey
-     * @param consumerSecret
+     * Instantiates a new base stack overflow api client.
+     * 
+     * @param applicationKey the application key
      */
     protected BaseStackOverflowApiClient(String applicationKey) {
         requestHeaders = new HashMap<String, String>();
@@ -59,11 +56,10 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
     }
     
     /**
-     * Constructs ...
-     *
-     *
-     * @param consumerKey
-     * @param consumerSecret
+     * Instantiates a new base stack overflow api client.
+     * 
+     * @param applicationKey the application key
+     * @param apiVersion the api version
      */
     protected BaseStackOverflowApiClient(String applicationKey, String apiVersion) {
     	this(applicationKey);
@@ -71,31 +67,30 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
     }
     
     /**
-     * Method description
-     * @param applicationId TODO
-     * @param urlFormat
-     *
-     *
-     * @return
+     * Creates the stack overflow api url builder.
+     * 
+     * @param methodName the method name
+     * 
+     * @return the api url builder
      */
     protected abstract ApiUrlBuilder createStackOverflowApiUrlBuilder(String methodName);
 
     /**
-     * Get property as long.
-     *
-     * @param s
-     *
-     * @return
+     * Checks if is null or empty.
+     * 
+     * @param s the s
+     * 
+     * @return true, if is null or empty
      */
     protected boolean isNullOrEmpty(String s) {
         return ((s == null) || (s.length() == 0));
     }
 
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert not null or empty.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertNotNullOrEmpty(String name, String value) {
         if (isNullOrEmpty(value)) {
@@ -104,10 +99,10 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
     }
 
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert not null or empty.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertNotNullOrEmpty(String name, Collection<?> value) {
         if ((value == null) || value.isEmpty()) {
@@ -116,10 +111,10 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
     }
 
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert positive number.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertPositiveNumber(String name, int value) {
         if (value < 0) {
@@ -128,10 +123,10 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
     }
 
     /**
-     *
-     *
-     * @param name
-     * @param value
+     * Assert not null.
+     * 
+     * @param name the name
+     * @param value the value
      */
     protected void assertNotNull(String name, Object value) {
         if (value == null) {
@@ -139,6 +134,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         }
     }
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<Question> getFavoriteQuestionsByUsers(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
@@ -149,6 +147,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Question> getFavoriteQuestionsByUsers(TimePeriod timePeriod,
 			long... userIds) {
@@ -160,6 +161,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(java.util.Set, long[])
+	 */
 	@Override
 	public List<Question> getFavoriteQuestionsByUsers(Set<FilterOption> filterOptions,
 			long... userIds) {
@@ -171,6 +175,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.User.FavoriteSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set, long[])
+	 */
 	@Override
 	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort,
 			Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions,
@@ -183,6 +190,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<Question> getQuestions(Paging paging, long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION);
@@ -193,6 +203,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(java.util.Set, long[])
+	 */
 	@Override
 	public List<Question> getQuestions(Set<FilterOption> filterOptions, long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION);
@@ -203,6 +216,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging, java.util.Set, long[])
+	 */
 	@Override
 	public List<Question> getQuestions(Paging paging, Set<FilterOption> filterOptions,
 			long... questionIds) {
@@ -214,6 +230,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsTimeline(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<PostTimeline> getQuestionsTimeline(TimePeriod timePeriod,
 			long... questionIds) {
@@ -224,6 +243,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return timelines.getTimelines();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<Question> getQuestions(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
@@ -234,6 +256,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.TimePeriod)
+	 */
 	@Override
 	public List<Question> getQuestions(TimePeriod timePeriod) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
@@ -244,6 +269,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(java.util.Set)
+	 */
 	@Override
 	public List<Question> getQuestions(Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
@@ -254,6 +282,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Question.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
+	 */
 	@Override
 	public List<Question> getQuestions(Question.SortOrder sort, Paging paging,
 			TimePeriod timePeriod, Set<FilterOption> filterOptions) {
@@ -265,6 +296,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<Question> getQuestionsByUsers(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
@@ -275,6 +309,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Question> getQuestionsByUsers(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
@@ -285,6 +322,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(java.util.Set, long[])
+	 */
 	@Override
 	public List<Question> getQuestionsByUsers(Set<FilterOption> filterOptions,
 			long... userIds) {
@@ -296,6 +336,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set, long[])
+	 */
 	@Override
 	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort,
 			Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions,
@@ -308,6 +351,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTaggedQuestions(java.util.List, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
+	 */
 	@Override
 	public List<Question> getTaggedQuestions(List<String> tags,
 			Paging paging, TimePeriod timePeriod,
@@ -320,6 +366,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<Tag> getTags(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
@@ -330,6 +379,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return tags.getTags();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Tag.SortOrder, com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<Tag> getTags(Tag.SortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
@@ -340,6 +392,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return tags.getTags();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTagsForUsers(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<Tag> getTagsForUsers(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS_FOR_USER);
@@ -350,6 +405,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return tags.getTags();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<Question> getUnansweredQuestions(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
@@ -360,6 +418,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.TimePeriod)
+	 */
 	@Override
 	public List<Question> getUnansweredQuestions(TimePeriod timePeriod) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
@@ -370,6 +431,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(java.util.Set)
+	 */
 	@Override
 	public List<Question> getUnansweredQuestions(Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
@@ -380,6 +444,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Question.UnansweredSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
+	 */
 	@Override
 	public List<Question> getUnansweredQuestions(
 			Question.UnansweredSortOrder sort, Paging paging,
@@ -392,6 +459,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersMentions(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Comment> getUsersMentions(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_MENTIONS);
@@ -402,6 +472,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return mentions.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersTimeline(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<UserTimeline> getUsersTimeline(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
@@ -412,6 +485,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return timelines.getTimelines();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<User> getUsers(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
@@ -422,6 +498,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(java.lang.String)
+	 */
 	@Override
 	public List<User> getUsers(String filter) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
@@ -432,6 +511,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(java.lang.String, com.google.code.stackoverflow.schema.User.SortOrder, com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<User> getUsers(String filter, User.SortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
@@ -442,6 +524,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswers(long[])
+	 */
 	@Override
 	public List<Answer> getAnswers(long... answerIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWER);
@@ -452,6 +537,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
@@ -462,6 +550,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByQuestions(long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
@@ -472,6 +563,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(com.google.code.stackoverflow.schema.Answer.SortOrder, long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
@@ -482,6 +576,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(com.google.code.stackoverflow.schema.Answer.SortOrder, long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
@@ -492,6 +589,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadges()
+	 */
 	@Override
 	public List<Badge> getBadges() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES);
@@ -502,6 +602,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return badges.getBadges();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesByName()
+	 */
 	@Override
 	public List<Badge> getBadgesByName() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES_BY_NAME);
@@ -512,6 +615,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return badges.getBadges();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesByTags()
+	 */
 	@Override
 	public List<Badge> getBadgesByTags() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES_BY_TAGS);
@@ -522,6 +628,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return badges.getBadges();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesForUsers(long[])
+	 */
 	@Override
 	public List<Badge> getBadgesForUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES_FOR_USER);
@@ -532,6 +641,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return badges.getBadges();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(long[])
+	 */
 	@Override
 	public List<Question> getFavoriteQuestionsByUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
@@ -542,6 +654,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.User.FavoriteSortOrder, long[])
+	 */
 	@Override
 	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort,
 			long... userIds) {
@@ -553,6 +668,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(long[])
+	 */
 	@Override
 	public List<Question> getQuestions(long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION);
@@ -563,6 +681,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsTimeline(long[])
+	 */
 	@Override
 	public List<PostTimeline> getQuestionsTimeline(long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE);
@@ -572,6 +693,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return timelines.getTimelines();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions()
+	 */
 	@Override
 	public List<Question> getQuestions() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
@@ -582,6 +706,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Question.SortOrder)
+	 */
 	@Override
 	public List<Question> getQuestions(Question.SortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
@@ -592,6 +719,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(long[])
+	 */
 	@Override
 	public List<Question> getQuestionsByUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
@@ -602,6 +732,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.User.QuestionSortOrder, long[])
+	 */
 	@Override
 	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort,
 			long... userIds) {
@@ -613,6 +746,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTaggedQuestions(java.util.List)
+	 */
 	@Override
 	public List<Question> getTaggedQuestions(List<String> tags) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
@@ -623,6 +759,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags()
+	 */
 	@Override
 	public List<Tag> getTags() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
@@ -633,6 +772,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return tags.getTags();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Tag.SortOrder)
+	 */
 	@Override
 	public List<Tag> getTags(Tag.SortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
@@ -643,6 +785,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return tags.getTags();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTagsForUsers(long[])
+	 */
 	@Override
 	public List<Tag> getTagsForUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS_FOR_USER);
@@ -653,6 +798,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return tags.getTags();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions()
+	 */
 	@Override
 	public List<Question> getUnansweredQuestions() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
@@ -663,6 +811,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Question.UnansweredSortOrder)
+	 */
 	@Override
 	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
@@ -673,6 +824,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(long[])
+	 */
 	@Override
 	public List<User> getUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER);
@@ -683,6 +837,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersMentions(long[])
+	 */
 	@Override
 	public List<Comment> getUsersMentions(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_MENTIONS);
@@ -693,6 +850,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return mentions.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersTimeline(long[])
+	 */
 	@Override
 	public List<UserTimeline> getUsersTimeline(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
@@ -703,6 +863,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return timelines.getTimelines();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers()
+	 */
 	@Override
 	public List<User> getUsers() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
@@ -713,6 +876,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.User.SortOrder)
+	 */
 	@Override
 	public List<User> getUsers(User.SortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
@@ -723,6 +889,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(long[])
+	 */
 	@Override
 	public List<Reputation> getUsersReputations(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS);
@@ -733,6 +902,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return reputations.getReputations();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Reputation> getUsersReputations(TimePeriod timePeriod,
 			long... userIds) {
@@ -744,6 +916,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return reputations.getReputations();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<Reputation> getUsersReputations(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS);
@@ -754,6 +929,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return reputations.getReputations();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Reputation> getUsersReputations(Paging paging,
 			TimePeriod timePeriod, long... userIds) {
@@ -765,6 +943,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return reputations.getReputations();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(long[])
+	 */
 	@Override
 	public List<Comment> getUsersComments(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
@@ -775,6 +956,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Comment.SortOrder, long[])
+	 */
 	@Override
 	public List<Comment> getUsersComments(Comment.SortOrder sort, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
@@ -785,6 +969,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Comment> getUsersComments(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
@@ -795,6 +982,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<Comment> getUsersComments(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
@@ -805,6 +995,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Comment.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Comment> getUsersComments(Comment.SortOrder sort, Paging paging,
 			TimePeriod timePeriod, long... userIds) {
@@ -816,6 +1009,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, long[])
+	 */
 	@Override
 	public List<Comment> getUsersCommentsToUser(long toUserId, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
@@ -826,6 +1022,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Comment.SortOrder, long[])
+	 */
 	@Override
 	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
 			long... userIds) {
@@ -837,6 +1036,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Comment> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod,
 			long... userIds) {
@@ -848,6 +1050,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<Comment> getUsersCommentsToUser(long toUserId, Paging paging,
 			long... userIds) {
@@ -859,6 +1064,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Comment.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
 			Paging paging, TimePeriod timePeriod, long... userIds) {
@@ -870,6 +1078,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getComments(long[])
+	 */
 	@Override
 	public List<Comment> getComments(long... commentIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENT);
@@ -880,6 +1091,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getStatistics()
+	 */
 	@Override
 	public Statistics getStatistics() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_STATISTICS);
@@ -888,6 +1102,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return readResponse(Statistics.class, callApiMethod(apiUrl));
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswers(java.util.Set, long[])
+	 */
 	@Override
 	public List<Answer> getAnswers(Set<FilterOption> filterOptions, long... answerIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWER);
@@ -898,6 +1115,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(java.util.Set, long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByUsers(Set<FilterOption> filterOptions,
 			long... userIds) {
@@ -909,6 +1129,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(java.util.Set, long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByQuestions(Set<FilterOption> filterOptions,
 			long... questionIds) {
@@ -920,6 +1143,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(com.google.code.stackoverflow.schema.Answer.SortOrder, java.util.Set, long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions,
 			long... userIds) {
@@ -931,6 +1157,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(com.google.code.stackoverflow.schema.Answer.SortOrder, java.util.Set, long[])
+	 */
 	@Override
 	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Set<FilterOption> filterOptions,
 			long... questionIds) {
@@ -942,6 +1171,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getRevisionForPost(long, java.lang.String)
+	 */
 	@Override
 	public Revision getRevisionForPost(long postId, String revisionGuid) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
@@ -952,6 +1184,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return getFirstElement(revisions.getRevisions());
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getRevisionsForPosts(long[])
+	 */
 	@Override
 	public List<Revision> getRevisionsForPosts(long... postIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
@@ -962,6 +1197,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return revisions.getRevisions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getRevisionsForPosts(com.google.code.stackoverflow.schema.TimePeriod, long[])
+	 */
 	@Override
 	public List<Revision> getRevisionsForPosts(TimePeriod timePeriod, long... postIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
@@ -972,6 +1210,13 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return revisions.getRevisions();
 	}
 	
+	/**
+	 * Gets the first element.
+	 * 
+	 * @param list the list
+	 * 
+	 * @return the first element
+	 */
 	private <T> T getFirstElement(List<T> list) {
 		if (list.isEmpty()) {
 			return null;
@@ -979,6 +1224,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 		return list.get(0);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesRecipients(long[])
+	 */
 	@Override
 	public List<User> getBadgesRecipients(long... badgeIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
@@ -989,6 +1237,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesRecipients(com.google.code.stackoverflow.schema.Paging, long[])
+	 */
 	@Override
 	public List<User> getBadgesRecipients(Paging paging, long... badgeIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
@@ -999,6 +1250,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return users.getUsers();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.lang.String)
+	 */
 	@Override
 	public List<Question> searchQuestions(String query) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
@@ -1009,6 +1263,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.lang.String, com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<Question> searchQuestions(String query, QuestionSortOrder sort,
 			Paging paging) {
@@ -1020,6 +1277,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.util.List, java.util.List)
+	 */
 	@Override
 	public List<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags) {
@@ -1031,6 +1291,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.util.List, java.util.List, com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags, QuestionSortOrder sort, Paging paging) {
@@ -1042,6 +1305,9 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.lang.String, java.util.List, java.util.List, com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging)
+	 */
 	@Override
 	public List<Question> searchQuestions(String query,
 			List<String> includeTags, List<String> excludeTags,

@@ -42,14 +42,14 @@ import com.google.code.stackoverflow.schema.adapter.json.UsersImpl;
 
 
 /**
- * @author Nabeel Mukhtar
- *
+ * The Class StackOverflowApiJsonClient.
  */
 public class StackOverflowApiJsonClient extends BaseStackOverflowApiClient {
 	
+    /** The parser. */
     private final JSONParser parser = new JSONParser();
     
-    /** Field description */
+    /** The Constant ADAPTER_CLASSES_MAP. */
 	private static final Map<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, ?>>> ADAPTER_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, ?>>>();
 	
 	static {
@@ -69,34 +69,26 @@ public class StackOverflowApiJsonClient extends BaseStackOverflowApiClient {
 	
 
     /**
-     * Constructs ...
-     *
-     *
-     * @param applicationKey
+     * Instantiates a new stack overflow api json client.
+     * 
+     * @param applicationKey the application key
      */
     public StackOverflowApiJsonClient(String applicationKey) {
         super(applicationKey);
     }
 
     /**
-     * Constructs ...
-     *
-     *
-     * @param applicationKey
-     * @param apiVersion
+     * Instantiates a new stack overflow api json client.
+     * 
+     * @param applicationKey the application key
+     * @param apiVersion the api version
      */
     public StackOverflowApiJsonClient(String applicationKey, String apiVersion) {
         super(applicationKey, apiVersion);
     }
     
-    /**
-     * Method description
-     *
-     *
-     * @param jsonContent
-     * @param <T>
-     *
-     * @return
+    /* (non-Javadoc)
+     * @see com.google.code.stackoverflow.client.impl.StackOverflowApiGateway#unmarshallObject(java.lang.Class, java.io.InputStream)
      */
     @SuppressWarnings("unchecked")
     protected <T> T unmarshallObject(Class<T> clazz, InputStream jsonContent) {
@@ -113,13 +105,8 @@ public class StackOverflowApiJsonClient extends BaseStackOverflowApiClient {
         }
     }
 
-    /**
-     * Method description
-     *
-     *
-     * @param element
-     *
-     * @return
+    /* (non-Javadoc)
+     * @see com.google.code.stackoverflow.client.impl.StackOverflowApiGateway#marshallObject(java.lang.Object)
      */
     protected String marshallObject(Object element) {
         try {
@@ -131,13 +118,8 @@ public class StackOverflowApiJsonClient extends BaseStackOverflowApiClient {
         }
     }
 
-    /**
-     * Method description
-     *
-     *
-     * @param urlFormat
-     *
-     * @return
+    /* (non-Javadoc)
+     * @see com.google.code.stackoverflow.client.impl.BaseStackOverflowApiClient#createStackOverflowApiUrlBuilder(java.lang.String)
      */
     protected ApiUrlBuilder createStackOverflowApiUrlBuilder(String methodName) {
         return getApiProvider().createApiUrlBuilder(methodName, getApplicationKey(), getApiVersion());
