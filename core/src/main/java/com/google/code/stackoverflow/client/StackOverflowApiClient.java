@@ -12,6 +12,7 @@ import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.Statistics;
@@ -65,6 +66,15 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	/**
 	 * Gets the questions.
 	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the questions
+	 */
+	public List<Question> getQuestions(Question.SortOrder sort, Range range);
+	
+	/**
+	 * Gets the questions.
+	 * 
 	 * @param filterOptions the filter options
 	 * 
 	 * @return the questions
@@ -98,6 +108,15 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * @return the unanswered questions
 	 */
 	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort);
+	
+	/**
+	 * Gets the unanswered questions.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the unanswered questions
+	 */
+	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Range range);
 	
 	/**
 	 * Gets the unanswered questions.
@@ -181,6 +200,16 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	/**
 	 * Gets the questions by users.
 	 * 
+	 * @param sort the sort
+	 * @param userIds the user ids
+	 * 
+	 * @return the questions by users
+	 */
+	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Range range, long... userIds);
+	
+	/**
+	 * Gets the questions by users.
+	 * 
 	 * @param paging the paging
 	 * @param userIds the user ids
 	 * 
@@ -239,6 +268,16 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * @return the favorite questions by users
 	 */
 	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, long... userIds);
+	
+	/**
+	 * Gets the favorite questions by users.
+	 * 
+	 * @param sort the sort
+	 * @param userIds the user ids
+	 * 
+	 * @return the favorite questions by users
+	 */
+	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Range range, long... userIds);
 	
 	/**
 	 * Gets the favorite questions by users.
@@ -365,6 +404,17 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	/**
 	 * Search questions.
 	 * 
+	 * @param query the query
+	 * @param sort the sort
+	 * @param paging the paging
+	 * 
+	 * @return the list< question>
+	 */
+	public List<Question> searchQuestions(String query, User.QuestionSortOrder sort, Range range);
+	
+	/**
+	 * Search questions.
+	 * 
 	 * @param includeTags the include tags
 	 * @param excludeTags the exclude tags
 	 * 
@@ -431,6 +481,15 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * @return the users
 	 */
 	public List<User> getUsers(User.SortOrder sort);
+	
+	/**
+	 * Gets the users.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the users
+	 */
+	public List<User> getUsers(User.SortOrder sort, Range range);
 	
 	/**
 	 * Gets the users.
@@ -669,6 +728,16 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * Gets the answers by questions.
 	 * 
 	 * @param sort the sort
+	 * @param questionIds the question ids
+	 * 
+	 * @return the answers by questions
+	 */
+	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Range range, long... questionIds);
+	
+	/**
+	 * Gets the answers by questions.
+	 * 
+	 * @param sort the sort
 	 * @param filterOptions the filter options
 	 * @param questionIds the question ids
 	 * 
@@ -704,6 +773,16 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * @return the answers by users
 	 */
 	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds);
+	
+	/**
+	 * Gets the answers by users.
+	 * 
+	 * @param sort the sort
+	 * @param userIds the user ids
+	 * 
+	 * @return the answers by users
+	 */
+	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Range range, long... userIds);
 	
 	/**
 	 * Gets the answers by users.
@@ -754,6 +833,16 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * @return the users comments
 	 */
 	public List<Comment> getUsersComments(Comment.SortOrder sort, long... userIds);
+	
+	/**
+	 * Gets the users comments.
+	 * 
+	 * @param sort the sort
+	 * @param userIds the user ids
+	 * 
+	 * @return the users comments
+	 */
+	public List<Comment> getUsersComments(Comment.SortOrder sort, Range range, long... userIds);
 	
 	/**
 	 * Gets the users comments.

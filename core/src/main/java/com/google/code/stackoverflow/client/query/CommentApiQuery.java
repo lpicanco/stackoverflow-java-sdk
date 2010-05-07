@@ -5,6 +5,7 @@ package com.google.code.stackoverflow.client.query;
 
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.TimePeriod;
 
 /**
@@ -81,6 +82,15 @@ public interface CommentApiQuery extends StackOverflowApiQuery<Comment> {
 	 */
 	public CommentApiQuery withSort(Comment.SortOrder sort);
 
+	/**
+	 * With sort.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the comment api query
+	 */
+	public CommentApiQuery withRange(Range range);
+	
 	/**
 	 * With classification.
 	 * 

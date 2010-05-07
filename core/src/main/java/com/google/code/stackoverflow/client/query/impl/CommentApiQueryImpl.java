@@ -12,6 +12,7 @@ import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.CommentApiQuery;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.CommentsImpl;
 
@@ -128,5 +129,11 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_COMMENT, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public CommentApiQuery withRange(Range range) {
+		apiUrlBuilder.withRange(range);
+		return this;
 	}
 }

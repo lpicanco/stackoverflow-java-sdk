@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.Range;
 
 /**
  * The Interface AnswerApiQuery.
@@ -61,6 +62,15 @@ public interface AnswerApiQuery extends StackOverflowApiQuery<Answer> {
 	 * @return the answer api query
 	 */
 	public AnswerApiQuery withSort(Answer.SortOrder sort);
+	
+	/**
+	 * With sort.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the answer api query
+	 */
+	public AnswerApiQuery withRange(Range range);
 	
 	/**
 	 * With fetch options.

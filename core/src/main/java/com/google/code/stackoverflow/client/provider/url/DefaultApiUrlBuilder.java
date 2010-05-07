@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import com.google.code.stackoverflow.client.constant.ApplicationConstants;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.ValueEnum;
@@ -171,6 +172,22 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withPaging(com.google.code.stackoverflow.schema.Paging)
+	 */
+	public ApiUrlBuilder withRange(Range range) {
+		if (range != null) {
+			if (range.getMin() > 0) {
+				withParameter("min", String.valueOf(range.getMin()));
+			}
+			if (range.getMax() > 0) {
+				withParameter("max", String.valueOf(range.getMax()));
+			}
+		}
+
+		return this;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withTimePeriod(com.google.code.stackoverflow.schema.TimePeriod)
 	 */

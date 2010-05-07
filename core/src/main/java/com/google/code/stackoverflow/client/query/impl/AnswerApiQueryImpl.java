@@ -13,6 +13,7 @@ import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.AnswerApiQuery;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.FilterOption;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.adapter.json.AnswersImpl;
 
 /**
@@ -114,5 +115,11 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_ANSWER, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public AnswerApiQuery withRange(Range range) {
+		apiUrlBuilder.withRange(range);
+		return this;
 	}
 }
