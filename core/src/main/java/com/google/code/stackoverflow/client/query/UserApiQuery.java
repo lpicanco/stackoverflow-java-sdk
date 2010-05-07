@@ -4,6 +4,7 @@
 package com.google.code.stackoverflow.client.query;
 
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.User;
 
 /**
@@ -66,6 +67,15 @@ public interface UserApiQuery extends StackOverflowApiQuery<User> {
 	 * @return the user api query
 	 */
 	public UserApiQuery withSort(User.SortOrder sort);
+	
+	/**
+	 * With sort.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the user api query
+	 */
+	public UserApiQuery withRange(Range range);
 	
 	/**
 	 * With classification.

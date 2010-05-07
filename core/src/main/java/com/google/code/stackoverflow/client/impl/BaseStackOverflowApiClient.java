@@ -23,6 +23,7 @@ import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.PostTimelines;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Questions;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Reputations;
 import com.google.code.stackoverflow.schema.Revision;
@@ -576,6 +577,16 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 
+	@Override
+	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Range range, long... userIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
+        String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(com.google.code.stackoverflow.schema.Answer.SortOrder, long[])
 	 */
@@ -589,6 +600,15 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return answers.getAnswers();
 	}
 	
+	@Override
+	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Range range, long... questionIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
+        String                apiUrl  = builder.withIds(questionIds).withSort(sort).withRange(range).buildUrl();
+
+        Answers answers = readResponse(Answers.class, callApiMethod(apiUrl));
+        
+        return answers.getAnswers();
+	}
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadges()
 	 */
@@ -668,6 +688,17 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	@Override
+	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Range range,
+			long... userIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
+        String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(long[])
 	 */
@@ -719,6 +750,16 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	@Override
+	public List<Question> getQuestions(Question.SortOrder sort, Range range) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
+        String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
+        
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(long[])
 	 */
@@ -746,6 +787,16 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	@Override
+	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Range range,
+			long... userIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
+        String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTaggedQuestions(java.util.List)
 	 */
@@ -824,6 +875,16 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	@Override
+	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Range range) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
+        String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(long[])
 	 */
@@ -883,6 +944,16 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	public List<User> getUsers(User.SortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
+
+        Users users = readResponse(Users.class, callApiMethod(apiUrl));
+        
+        return users.getUsers();
+	}
+	
+	@Override
+	public List<User> getUsers(User.SortOrder sort, Range range) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
+        String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
 
         Users users = readResponse(Users.class, callApiMethod(apiUrl));
         
@@ -969,6 +1040,16 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return comments.getComments();
 	}
 
+	@Override
+	public List<Comment> getUsersComments(Comment.SortOrder sort, Range range, long... userIds) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+        String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
+
+        Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
+        
+        return comments.getComments();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
@@ -1277,6 +1358,17 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
         return questions.getQuestions();
 	}
 
+	@Override
+	public List<Question> searchQuestions(String query, QuestionSortOrder sort,
+			Range range) {
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
+        String                apiUrl  = builder.withParameter("intitle", query).withSort(sort).withRange(range).buildUrl();
+
+        Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
+        
+        return questions.getQuestions();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.util.List, java.util.List)
 	 */

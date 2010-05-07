@@ -11,6 +11,7 @@ import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.UserApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.json.UsersImpl;
 
@@ -107,6 +108,12 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 		
 			break;
 		}
+		return this;
+	}
+
+	@Override
+	public UserApiQuery withRange(Range range) {
+		apiUrlBuilder.withRange(range);
 		return this;
 	}
 }

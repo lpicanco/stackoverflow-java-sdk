@@ -11,6 +11,7 @@ import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.TagApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.adapter.json.TagsImpl;
 
@@ -90,5 +91,11 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_TAGS, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public TagApiQuery withRange(Range range) {
+		apiUrlBuilder.withRange(range);
+		return this;
 	}
 }

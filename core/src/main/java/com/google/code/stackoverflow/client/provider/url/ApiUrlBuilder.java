@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.SortEnum;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.ValueEnum;
@@ -74,6 +75,15 @@ public interface ApiUrlBuilder {
 	 */
 	public ApiUrlBuilder withPaging(Paging paging);
 
+	/**
+	 * With paging.
+	 * 
+	 * @param paging the paging
+	 * 
+	 * @return the api url builder
+	 */
+	public ApiUrlBuilder withRange(Range range);
+	
 	/**
 	 * With time period.
 	 * 

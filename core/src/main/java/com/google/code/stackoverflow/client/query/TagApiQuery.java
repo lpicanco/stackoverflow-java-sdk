@@ -4,6 +4,7 @@
 package com.google.code.stackoverflow.client.query;
 
 import com.google.code.stackoverflow.schema.Paging;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.Tag;
 
 /**
@@ -48,6 +49,15 @@ public interface TagApiQuery extends StackOverflowApiQuery<Tag> {
 	 * @return the tag api query
 	 */
 	public TagApiQuery withSort(Tag.SortOrder sort);
+	
+	/**
+	 * With sort.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the tag api query
+	 */
+	public TagApiQuery withRange(Range range);
 	
 	/**
 	 * With classification.

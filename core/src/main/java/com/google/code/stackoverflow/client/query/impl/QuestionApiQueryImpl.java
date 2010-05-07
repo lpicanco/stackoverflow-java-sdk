@@ -15,6 +15,7 @@ import com.google.code.stackoverflow.client.query.QuestionApiQuery;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
+import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.adapter.json.QuestionsImpl;
 
@@ -149,5 +150,11 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public QuestionApiQuery withRange(Range range) {
+		apiUrlBuilder.withRange(range);
+		return this;
 	}
 }
