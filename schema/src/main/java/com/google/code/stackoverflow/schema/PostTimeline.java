@@ -119,4 +119,75 @@ public interface PostTimeline extends SchemaEntity {
 	 * @param commentId the new comment id
 	 */
 	public void setCommentId(long commentId);
+	
+	/**
+	 * @return the ownerDisplayName
+	 */
+	public String getOwnerDisplayName();
+	
+	/**
+	 * @param ownerDisplayName the ownerDisplayName to set
+	 */
+	public void setOwnerDisplayName(String ownerDisplayName);
+
+	/**
+	 * @return the ownerEmailHash
+	 */
+	public String getOwnerEmailHash();
+
+	/**
+	 * @param ownerEmailHash the ownerEmailHash to set
+	 */
+	public void setOwnerEmailHash(String ownerEmailHash);
+
+	/**
+	 * @return the displayName
+	 */
+	public String getDisplayName();
+	
+	/**
+	 * @param displayName the displayName to set
+	 */
+	public void setDisplayName(String displayName);
+
+	/**
+	 * @return the postCommentUrl
+	 */
+	public String getPostCommentUrl();
+
+	/**
+	 * @param postCommentUrl the postCommentUrl to set
+	 */
+	public void setPostCommentUrl(String postCommentUrl);
+
+	/**
+	 * @return the emailHash
+	 */
+	public String getEmailHash();
+
+	/**
+	 * @param emailHash the emailHash to set
+	 */
+	public void setEmailHash(String emailHash);
+
+	/**
+	 * @return the postUrl
+	 */
+	public String getPostUrl();
+
+	/**
+	 * @param postUrl the postUrl to set
+	 */
+	public void setPostUrl(String postUrl);
+	
+	/**
+	 * @return the postRevisionUrl
+	 */
+	public String getPostRevisionUrl();
+
+	/**
+	 * @param postRevisionUrl the postRevisionUrl to set
+	 */
+	public void setPostRevisionUrl(String postRevisionUrl);
+	
 }
