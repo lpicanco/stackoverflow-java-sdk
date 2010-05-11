@@ -43,6 +43,14 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	/** The comment id. */
 	private long commentId;
 	
+	private String ownerDisplayName;
+	private String ownerEmailHash;
+	private String displayName;
+	private String postCommentUrl;
+	private String emailHash;
+	private String postUrl;
+	private String postRevisionUrl;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.PostTimeline#getTimelineType()
 	 */
@@ -177,5 +185,103 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	@Override
 	public void setCommentId(long commentId) {
 		this.commentId = commentId;
+	}
+
+	/**
+	 * @return the ownerDisplayName
+	 */
+	public String getOwnerDisplayName() {
+		return ownerDisplayName;
+	}
+
+	/**
+	 * @param ownerDisplayName the ownerDisplayName to set
+	 */
+	public void setOwnerDisplayName(String ownerDisplayName) {
+		this.ownerDisplayName = ownerDisplayName;
+	}
+
+	/**
+	 * @return the ownerEmailHash
+	 */
+	public String getOwnerEmailHash() {
+		return ownerEmailHash;
+	}
+
+	/**
+	 * @param ownerEmailHash the ownerEmailHash to set
+	 */
+	public void setOwnerEmailHash(String ownerEmailHash) {
+		this.ownerEmailHash = ownerEmailHash;
+	}
+
+	/**
+	 * @return the displayName
+	 */
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	/**
+	 * @param displayName the displayName to set
+	 */
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	/**
+	 * @return the postCommentUrl
+	 */
+	public String getPostCommentUrl() {
+		return postCommentUrl;
+	}
+
+	/**
+	 * @param postCommentUrl the postCommentUrl to set
+	 */
+	public void setPostCommentUrl(String postCommentUrl) {
+		this.postCommentUrl = postCommentUrl;
+	}
+
+	/**
+	 * @return the emailHash
+	 */
+	public String getEmailHash() {
+		return emailHash;
+	}
+
+	/**
+	 * @param emailHash the emailHash to set
+	 */
+	public void setEmailHash(String emailHash) {
+		this.emailHash = emailHash;
+	}
+
+	/**
+	 * @return the postUrl
+	 */
+	public String getPostUrl() {
+		return postUrl;
+	}
+
+	/**
+	 * @param postUrl the postUrl to set
+	 */
+	public void setPostUrl(String postUrl) {
+		this.postUrl = postUrl;
+	}
+
+	/**
+	 * @return the postRevisionUrl
+	 */
+	public String getPostRevisionUrl() {
+		return postRevisionUrl;
+	}
+
+	/**
+	 * @param postRevisionUrl the postRevisionUrl to set
+	 */
+	public void setPostRevisionUrl(String postRevisionUrl) {
+		this.postRevisionUrl = postRevisionUrl;
 	}
 }
