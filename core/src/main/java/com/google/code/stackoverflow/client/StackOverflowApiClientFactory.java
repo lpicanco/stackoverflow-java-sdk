@@ -47,9 +47,6 @@ public class StackOverflowApiClientFactory {
      * @return the stack overflow api client factory
      */
     public static StackOverflowApiClientFactory newInstance(String applicationKey) {
-    	if (applicationKey == null || applicationKey.length() == 0) {
-    		throw new IllegalArgumentException("Please provide valid application key.");
-    	}
         return new StackOverflowApiClientFactory(applicationKey);
     }
 
