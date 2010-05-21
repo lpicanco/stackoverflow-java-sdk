@@ -3,12 +3,11 @@
  */
 package com.google.code.stackoverflow.schema.adapter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedArrayList;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Answers;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -22,19 +21,19 @@ public class AnswersImpl extends BaseJsonAdapter implements Answers, Adaptable<A
 	private static final long serialVersionUID = -5190225278764284533L;
 	
 	/** The answers. */
-	private List<Answer> answers = new ArrayList<Answer>();
+	private PagedList<Answer> answers = new PagedArrayList<Answer>();
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Answers#getAnswers()
 	 */
-	public List<Answer> getAnswers() {
+	public PagedList<Answer> getAnswers() {
 		return answers;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Answers#setAnswers(java.util.List)
 	 */
-	public void setAnswers(List<Answer> answers) {
+	public void setAnswers(PagedList<Answer> answers) {
 		this.answers = answers;
 	}
 
@@ -43,6 +42,9 @@ public class AnswersImpl extends BaseJsonAdapter implements Answers, Adaptable<A
 	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
+		getAnswers().setTotal(getLongProperty(adaptee, "total"));
+		getAnswers().setPage(getIntProperty(adaptee, "page"));
+		getAnswers().setPageSize(getIntProperty(adaptee, "pagesize"));
 		JSONArray answers = (JSONArray) adaptee.get("answers");
 		if (answers != null) {
 			for (Object o : answers) {			

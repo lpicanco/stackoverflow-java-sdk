@@ -3,10 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.ReputationApiQuery;
 import com.google.code.stackoverflow.schema.Paging;
@@ -59,7 +59,7 @@ public class ReputationApiQueryImpl extends BaseStackOverflowApiQuery<Reputation
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Reputation> unmarshall(JSONObject json) {
+	protected PagedList<Reputation> unmarshall(JSONObject json) {
 		ReputationsImpl adapter = new ReputationsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getReputations();

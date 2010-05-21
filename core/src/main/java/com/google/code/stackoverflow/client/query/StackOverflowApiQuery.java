@@ -3,9 +3,9 @@
  */
 package com.google.code.stackoverflow.client.query;
 
-import java.util.List;
 
 import com.google.code.stackoverflow.client.StackOverflowAuthenticationClient;
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface StackOverflowApiQuery.
@@ -24,7 +24,7 @@ public interface StackOverflowApiQuery<T> extends StackOverflowAuthenticationCli
 	 * 
 	 * @return the list< t>
 	 */
-	public List<T> list();
+	public PagedList<T> list();
 	
 	/**
 	 * Reset.

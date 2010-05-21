@@ -290,4 +290,18 @@ public abstract class BaseJsonAdapter implements Serializable {
 		}
 		return true;
 	}
+	
+	protected long getLongProperty(JSONObject src, String name) {
+		if (src.get(name) != null) {
+			return ((Long) src.get(name)).longValue();
+		}
+		return 0L;
+	}
+	
+	protected int getIntProperty(JSONObject src, String name) {
+		if (src.get(name) != null) {
+			return ((Long) src.get(name)).intValue();
+		}
+		return 0;
+	}
 }

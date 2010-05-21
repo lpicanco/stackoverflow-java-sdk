@@ -3,12 +3,11 @@
  */
 package com.google.code.stackoverflow.schema.adapter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedArrayList;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Reputation;
 import com.google.code.stackoverflow.schema.Reputations;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -22,19 +21,19 @@ public class ReputationsImpl extends BaseJsonAdapter implements Reputations, Ada
 	private static final long serialVersionUID = -5190225278764284533L;
 	
 	/** The reputations. */
-	private List<Reputation> reputations = new ArrayList<Reputation>();
+	private PagedList<Reputation> reputations = new PagedArrayList<Reputation>();
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Reputations#getReputations()
 	 */
-	public List<Reputation> getReputations() {
+	public PagedList<Reputation> getReputations() {
 		return reputations;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Reputations#setReputations(java.util.List)
 	 */
-	public void setReputations(List<Reputation> reputations) {
+	public void setReputations(PagedList<Reputation> reputations) {
 		this.reputations = reputations;
 	}
 
@@ -43,6 +42,9 @@ public class ReputationsImpl extends BaseJsonAdapter implements Reputations, Ada
 	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
+		getReputations().setTotal(getLongProperty(adaptee, "total"));
+		getReputations().setPage(getIntProperty(adaptee, "page"));
+		getReputations().setPageSize(getIntProperty(adaptee, "pagesize"));
 		JSONArray reputations = (JSONArray) adaptee.get("repchanges");
 		if (reputations != null) {
 			for (Object o : reputations) {			

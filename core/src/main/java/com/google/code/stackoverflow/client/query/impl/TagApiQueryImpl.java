@@ -3,10 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.TagApiQuery;
@@ -79,7 +79,7 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Tag> unmarshall(JSONObject json) {
+	protected PagedList<Tag> unmarshall(JSONObject json) {
 		TagsImpl adapter = new TagsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getTags();

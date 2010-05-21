@@ -1,6 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
-import java.util.List;
+
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface Badges.
@@ -12,13 +13,13 @@ public interface Badges extends SchemaEntity {
 	 * 
 	 * @return the badges
 	 */
-	public List<Badge> getBadges();
+	public PagedList<Badge> getBadges();
 
 	/**
 	 * Sets the badges.
 	 * 
 	 * @param badges the new badges
 	 */
-	public void setBadges(List<Badge> badges);
+	public void setBadges(PagedList<Badge> badges);
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackoverflow.schema.Answer;
@@ -139,7 +140,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<Question> getFavoriteQuestionsByUsers(Paging paging, long... userIds) {
+	public PagedList<Question> getFavoriteQuestionsByUsers(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
@@ -152,7 +153,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Question> getFavoriteQuestionsByUsers(TimePeriod timePeriod,
+	public PagedList<Question> getFavoriteQuestionsByUsers(TimePeriod timePeriod,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
@@ -166,7 +167,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(java.util.Set, long[])
 	 */
 	@Override
-	public List<Question> getFavoriteQuestionsByUsers(Set<FilterOption> filterOptions,
+	public PagedList<Question> getFavoriteQuestionsByUsers(Set<FilterOption> filterOptions,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withFetchOptions(filterOptions).buildUrl();
@@ -180,7 +181,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.User.FavoriteSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set, long[])
 	 */
 	@Override
-	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort,
+	public PagedList<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort,
 			Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
@@ -195,7 +196,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<Question> getQuestions(Paging paging, long... questionIds) {
+	public PagedList<Question> getQuestions(Paging paging, long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withPaging(paging).buildUrl();
 
@@ -208,7 +209,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(java.util.Set, long[])
 	 */
 	@Override
-	public List<Question> getQuestions(Set<FilterOption> filterOptions, long... questionIds) {
+	public PagedList<Question> getQuestions(Set<FilterOption> filterOptions, long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withFetchOptions(filterOptions).buildUrl();
 
@@ -221,7 +222,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging, java.util.Set, long[])
 	 */
 	@Override
-	public List<Question> getQuestions(Paging paging, Set<FilterOption> filterOptions,
+	public PagedList<Question> getQuestions(Paging paging, Set<FilterOption> filterOptions,
 			long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withPaging(paging).withFetchOptions(filterOptions).buildUrl();
@@ -235,7 +236,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsTimeline(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<PostTimeline> getQuestionsTimeline(TimePeriod timePeriod,
+	public PagedList<PostTimeline> getQuestionsTimeline(TimePeriod timePeriod,
 			long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withIds(questionIds).withTimePeriod(timePeriod).buildUrl();
@@ -248,7 +249,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<Question> getQuestions(Paging paging) {
+	public PagedList<Question> getQuestions(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
@@ -261,7 +262,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.TimePeriod)
 	 */
 	@Override
-	public List<Question> getQuestions(TimePeriod timePeriod) {
+	public PagedList<Question> getQuestions(TimePeriod timePeriod) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withTimePeriod(timePeriod).buildUrl();
 
@@ -274,7 +275,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(java.util.Set)
 	 */
 	@Override
-	public List<Question> getQuestions(Set<FilterOption> filterOptions) {
+	public PagedList<Question> getQuestions(Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withFetchOptions(filterOptions).buildUrl();
 
@@ -287,7 +288,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Question.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
 	 */
 	@Override
-	public List<Question> getQuestions(Question.SortOrder sort, Paging paging,
+	public PagedList<Question> getQuestions(Question.SortOrder sort, Paging paging,
 			TimePeriod timePeriod, Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
@@ -301,7 +302,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<Question> getQuestionsByUsers(Paging paging, long... userIds) {
+	public PagedList<Question> getQuestionsByUsers(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
@@ -314,7 +315,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Question> getQuestionsByUsers(TimePeriod timePeriod, long... userIds) {
+	public PagedList<Question> getQuestionsByUsers(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
@@ -327,7 +328,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(java.util.Set, long[])
 	 */
 	@Override
-	public List<Question> getQuestionsByUsers(Set<FilterOption> filterOptions,
+	public PagedList<Question> getQuestionsByUsers(Set<FilterOption> filterOptions,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withFetchOptions(filterOptions).buildUrl();
@@ -341,7 +342,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set, long[])
 	 */
 	@Override
-	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort,
+	public PagedList<Question> getQuestionsByUsers(User.QuestionSortOrder sort,
 			Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
@@ -356,7 +357,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTaggedQuestions(java.util.List, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
 	 */
 	@Override
-	public List<Question> getTaggedQuestions(List<String> tags,
+	public PagedList<Question> getTaggedQuestions(List<String> tags,
 			Paging paging, TimePeriod timePeriod,
 			Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
@@ -371,7 +372,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<Tag> getTags(Paging paging) {
+	public PagedList<Tag> getTags(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
@@ -384,7 +385,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Tag.SortOrder, com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<Tag> getTags(Tag.SortOrder sort, Paging paging) {
+	public PagedList<Tag> getTags(Tag.SortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
         String                apiUrl  = builder.withSort(sort).withPaging(paging).buildUrl();
 
@@ -397,7 +398,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTagsForUsers(com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<Tag> getTagsForUsers(Paging paging, long... userIds) {
+	public PagedList<Tag> getTagsForUsers(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS_FOR_USER);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
@@ -410,7 +411,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<Question> getUnansweredQuestions(Paging paging) {
+	public PagedList<Question> getUnansweredQuestions(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
@@ -423,7 +424,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.TimePeriod)
 	 */
 	@Override
-	public List<Question> getUnansweredQuestions(TimePeriod timePeriod) {
+	public PagedList<Question> getUnansweredQuestions(TimePeriod timePeriod) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withTimePeriod(timePeriod).buildUrl();
 
@@ -436,7 +437,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(java.util.Set)
 	 */
 	@Override
-	public List<Question> getUnansweredQuestions(Set<FilterOption> filterOptions) {
+	public PagedList<Question> getUnansweredQuestions(Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withFetchOptions(filterOptions).buildUrl();
 
@@ -449,7 +450,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Question.UnansweredSortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, java.util.Set)
 	 */
 	@Override
-	public List<Question> getUnansweredQuestions(
+	public PagedList<Question> getUnansweredQuestions(
 			Question.UnansweredSortOrder sort, Paging paging,
 			TimePeriod timePeriod, Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
@@ -464,7 +465,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersMentions(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Comment> getUsersMentions(TimePeriod timePeriod, long... userIds) {
+	public PagedList<Comment> getUsersMentions(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_MENTIONS);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
@@ -477,7 +478,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersTimeline(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<UserTimeline> getUsersTimeline(TimePeriod timePeriod, long... userIds) {
+	public PagedList<UserTimeline> getUsersTimeline(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
@@ -490,7 +491,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<User> getUsers(Paging paging) {
+	public PagedList<User> getUsers(Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
@@ -503,7 +504,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(java.lang.String)
 	 */
 	@Override
-	public List<User> getUsers(String filter) {
+	public PagedList<User> getUsers(String filter) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
         String                apiUrl  = builder.withParameter("filter", filter).buildUrl();
 
@@ -516,7 +517,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(java.lang.String, com.google.code.stackoverflow.schema.User.SortOrder, com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<User> getUsers(String filter, User.SortOrder sort, Paging paging) {
+	public PagedList<User> getUsers(String filter, User.SortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
         String                apiUrl  = builder.withParameter("filter", filter).withSort(sort).withPaging(paging).buildUrl();
 
@@ -529,7 +530,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswers(long[])
 	 */
 	@Override
-	public List<Answer> getAnswers(long... answerIds) {
+	public PagedList<Answer> getAnswers(long... answerIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWER);
         String                apiUrl  = builder.withIds(answerIds).buildUrl();
 
@@ -542,7 +543,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByUsers(long... userIds) {
+	public PagedList<Answer> getAnswersByUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -555,7 +556,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByQuestions(long... questionIds) {
+	public PagedList<Answer> getAnswersByQuestions(long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).buildUrl();
 
@@ -568,7 +569,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(com.google.code.stackoverflow.schema.Answer.SortOrder, long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds) {
+	public PagedList<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
 
@@ -578,7 +579,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Range range, long... userIds) {
+	public PagedList<Answer> getAnswersByUsers(Answer.SortOrder sort, Range range, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
 
@@ -591,7 +592,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(com.google.code.stackoverflow.schema.Answer.SortOrder, long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, long... questionIds) {
+	public PagedList<Answer> getAnswersByQuestions(Answer.SortOrder sort, long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withSort(sort).buildUrl();
 
@@ -601,7 +602,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 	
 	@Override
-	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Range range, long... questionIds) {
+	public PagedList<Answer> getAnswersByQuestions(Answer.SortOrder sort, Range range, long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withSort(sort).withRange(range).buildUrl();
 
@@ -613,7 +614,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadges()
 	 */
 	@Override
-	public List<Badge> getBadges() {
+	public PagedList<Badge> getBadges() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES);
         String                apiUrl  = builder.buildUrl();
 
@@ -626,7 +627,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesByName()
 	 */
 	@Override
-	public List<Badge> getBadgesByName() {
+	public PagedList<Badge> getBadgesByName() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES_BY_NAME);
         String                apiUrl  = builder.buildUrl();
 
@@ -639,7 +640,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesByTags()
 	 */
 	@Override
-	public List<Badge> getBadgesByTags() {
+	public PagedList<Badge> getBadgesByTags() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES_BY_TAGS);
         String                apiUrl  = builder.buildUrl();
 
@@ -652,7 +653,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesForUsers(long[])
 	 */
 	@Override
-	public List<Badge> getBadgesForUsers(long... userIds) {
+	public PagedList<Badge> getBadgesForUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGES_FOR_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -665,7 +666,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(long[])
 	 */
 	@Override
-	public List<Question> getFavoriteQuestionsByUsers(long... userIds) {
+	public PagedList<Question> getFavoriteQuestionsByUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -678,7 +679,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getFavoriteQuestionsByUsers(com.google.code.stackoverflow.schema.User.FavoriteSortOrder, long[])
 	 */
 	@Override
-	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort,
+	public PagedList<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
@@ -689,7 +690,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Range range,
+	public PagedList<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Range range,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
@@ -703,7 +704,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(long[])
 	 */
 	@Override
-	public List<Question> getQuestions(long... questionIds) {
+	public PagedList<Question> getQuestions(long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).buildUrl();
 
@@ -716,7 +717,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsTimeline(long[])
 	 */
 	@Override
-	public List<PostTimeline> getQuestionsTimeline(long... questionIds) {
+	public PagedList<PostTimeline> getQuestionsTimeline(long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withIds(questionIds).buildUrl();
 
@@ -728,7 +729,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions()
 	 */
 	@Override
-	public List<Question> getQuestions() {
+	public PagedList<Question> getQuestions() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.buildUrl();
 
@@ -741,7 +742,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestions(com.google.code.stackoverflow.schema.Question.SortOrder)
 	 */
 	@Override
-	public List<Question> getQuestions(Question.SortOrder sort) {
+	public PagedList<Question> getQuestions(Question.SortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
         
@@ -751,7 +752,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<Question> getQuestions(Question.SortOrder sort, Range range) {
+	public PagedList<Question> getQuestions(Question.SortOrder sort, Range range) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
         
@@ -764,7 +765,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(long[])
 	 */
 	@Override
-	public List<Question> getQuestionsByUsers(long... userIds) {
+	public PagedList<Question> getQuestionsByUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -777,7 +778,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getQuestionsByUsers(com.google.code.stackoverflow.schema.User.QuestionSortOrder, long[])
 	 */
 	@Override
-	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort,
+	public PagedList<Question> getQuestionsByUsers(User.QuestionSortOrder sort,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
@@ -788,7 +789,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Range range,
+	public PagedList<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Range range,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
@@ -801,7 +802,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTaggedQuestions(java.util.List)
 	 */
 	@Override
-	public List<Question> getTaggedQuestions(List<String> tags) {
+	public PagedList<Question> getTaggedQuestions(List<String> tags) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
         String                apiUrl  = builder.withParameters("tags", tags).buildUrl();
 
@@ -814,7 +815,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags()
 	 */
 	@Override
-	public List<Tag> getTags() {
+	public PagedList<Tag> getTags() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
         String                apiUrl  = builder.buildUrl();
 
@@ -827,7 +828,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTags(com.google.code.stackoverflow.schema.Tag.SortOrder)
 	 */
 	@Override
-	public List<Tag> getTags(Tag.SortOrder sort) {
+	public PagedList<Tag> getTags(Tag.SortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
 
@@ -840,7 +841,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getTagsForUsers(long[])
 	 */
 	@Override
-	public List<Tag> getTagsForUsers(long... userIds) {
+	public PagedList<Tag> getTagsForUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGS_FOR_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -853,7 +854,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions()
 	 */
 	@Override
-	public List<Question> getUnansweredQuestions() {
+	public PagedList<Question> getUnansweredQuestions() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.buildUrl();
 
@@ -866,7 +867,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUnansweredQuestions(com.google.code.stackoverflow.schema.Question.UnansweredSortOrder)
 	 */
 	@Override
-	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort) {
+	public PagedList<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
 
@@ -876,7 +877,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Range range) {
+	public PagedList<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Range range) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
 
@@ -889,7 +890,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(long[])
 	 */
 	@Override
-	public List<User> getUsers(long... userIds) {
+	public PagedList<User> getUsers(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -902,7 +903,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersMentions(long[])
 	 */
 	@Override
-	public List<Comment> getUsersMentions(long... userIds) {
+	public PagedList<Comment> getUsersMentions(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_MENTIONS);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -915,7 +916,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersTimeline(long[])
 	 */
 	@Override
-	public List<UserTimeline> getUsersTimeline(long... userIds) {
+	public PagedList<UserTimeline> getUsersTimeline(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -928,7 +929,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers()
 	 */
 	@Override
-	public List<User> getUsers() {
+	public PagedList<User> getUsers() {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
         String                apiUrl  = builder.buildUrl();
 
@@ -941,7 +942,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsers(com.google.code.stackoverflow.schema.User.SortOrder)
 	 */
 	@Override
-	public List<User> getUsers(User.SortOrder sort) {
+	public PagedList<User> getUsers(User.SortOrder sort) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
 
@@ -951,7 +952,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 	
 	@Override
-	public List<User> getUsers(User.SortOrder sort, Range range) {
+	public PagedList<User> getUsers(User.SortOrder sort, Range range) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USERS);
         String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
 
@@ -964,7 +965,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(long[])
 	 */
 	@Override
-	public List<Reputation> getUsersReputations(long... userIds) {
+	public PagedList<Reputation> getUsersReputations(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -977,7 +978,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Reputation> getUsersReputations(TimePeriod timePeriod,
+	public PagedList<Reputation> getUsersReputations(TimePeriod timePeriod,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
@@ -991,7 +992,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<Reputation> getUsersReputations(Paging paging, long... userIds) {
+	public PagedList<Reputation> getUsersReputations(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
@@ -1004,7 +1005,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersReputations(com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Reputation> getUsersReputations(Paging paging,
+	public PagedList<Reputation> getUsersReputations(Paging paging,
 			TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
@@ -1018,7 +1019,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(long[])
 	 */
 	@Override
-	public List<Comment> getUsersComments(long... userIds) {
+	public PagedList<Comment> getUsersComments(long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
@@ -1031,7 +1032,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Comment.SortOrder, long[])
 	 */
 	@Override
-	public List<Comment> getUsersComments(Comment.SortOrder sort, long... userIds) {
+	public PagedList<Comment> getUsersComments(Comment.SortOrder sort, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
 
@@ -1041,7 +1042,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<Comment> getUsersComments(Comment.SortOrder sort, Range range, long... userIds) {
+	public PagedList<Comment> getUsersComments(Comment.SortOrder sort, Range range, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
 
@@ -1054,7 +1055,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Comment> getUsersComments(TimePeriod timePeriod, long... userIds) {
+	public PagedList<Comment> getUsersComments(TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
@@ -1067,7 +1068,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<Comment> getUsersComments(Paging paging, long... userIds) {
+	public PagedList<Comment> getUsersComments(Paging paging, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
@@ -1080,7 +1081,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersComments(com.google.code.stackoverflow.schema.Comment.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Comment> getUsersComments(Comment.SortOrder sort, Paging paging,
+	public PagedList<Comment> getUsersComments(Comment.SortOrder sort, Paging paging,
 			TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
@@ -1094,7 +1095,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, long[])
 	 */
 	@Override
-	public List<Comment> getUsersCommentsToUser(long toUserId, long... userIds) {
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).buildUrl();
 
@@ -1107,7 +1108,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Comment.SortOrder, long[])
 	 */
 	@Override
-	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withSort(sort).buildUrl();
@@ -1121,7 +1122,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Comment> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod,
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withTimePeriod(timePeriod).buildUrl();
@@ -1135,7 +1136,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<Comment> getUsersCommentsToUser(long toUserId, Paging paging,
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Paging paging,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withPaging(paging).buildUrl();
@@ -1149,7 +1150,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getUsersCommentsToUser(long, com.google.code.stackoverflow.schema.Comment.SortOrder, com.google.code.stackoverflow.schema.Paging, com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
 			Paging paging, TimePeriod timePeriod, long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withSort(sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
@@ -1163,7 +1164,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getComments(long[])
 	 */
 	@Override
-	public List<Comment> getComments(long... commentIds) {
+	public PagedList<Comment> getComments(long... commentIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENT);
         String                apiUrl  = builder.withIds(commentIds).buildUrl();
 
@@ -1187,7 +1188,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswers(java.util.Set, long[])
 	 */
 	@Override
-	public List<Answer> getAnswers(Set<FilterOption> filterOptions, long... answerIds) {
+	public PagedList<Answer> getAnswers(Set<FilterOption> filterOptions, long... answerIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWER);
         String                apiUrl  = builder.withIds(answerIds).withFetchOptions(filterOptions).buildUrl();
 
@@ -1200,7 +1201,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(java.util.Set, long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByUsers(Set<FilterOption> filterOptions,
+	public PagedList<Answer> getAnswersByUsers(Set<FilterOption> filterOptions,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withFetchOptions(filterOptions).buildUrl();
@@ -1214,7 +1215,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(java.util.Set, long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByQuestions(Set<FilterOption> filterOptions,
+	public PagedList<Answer> getAnswersByQuestions(Set<FilterOption> filterOptions,
 			long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withFetchOptions(filterOptions).buildUrl();
@@ -1228,7 +1229,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByUsers(com.google.code.stackoverflow.schema.Answer.SortOrder, java.util.Set, long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions,
+	public PagedList<Answer> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions,
 			long... userIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withFetchOptions(filterOptions).buildUrl();
@@ -1242,7 +1243,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getAnswersByQuestions(com.google.code.stackoverflow.schema.Answer.SortOrder, java.util.Set, long[])
 	 */
 	@Override
-	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Set<FilterOption> filterOptions,
+	public PagedList<Answer> getAnswersByQuestions(Answer.SortOrder sort, Set<FilterOption> filterOptions,
 			long... questionIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withSort(sort).withFetchOptions(filterOptions).buildUrl();
@@ -1269,7 +1270,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getRevisionsForPosts(long[])
 	 */
 	@Override
-	public List<Revision> getRevisionsForPosts(long... postIds) {
+	public PagedList<Revision> getRevisionsForPosts(long... postIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
         String                apiUrl  = builder.withIds(postIds).buildUrl();
 
@@ -1282,7 +1283,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getRevisionsForPosts(com.google.code.stackoverflow.schema.TimePeriod, long[])
 	 */
 	@Override
-	public List<Revision> getRevisionsForPosts(TimePeriod timePeriod, long... postIds) {
+	public PagedList<Revision> getRevisionsForPosts(TimePeriod timePeriod, long... postIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_REVISIONS_FOR_POST);
         String                apiUrl  = builder.withIds(postIds).withTimePeriod(timePeriod).buildUrl();
 
@@ -1309,7 +1310,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesRecipients(long[])
 	 */
 	@Override
-	public List<User> getBadgesRecipients(long... badgeIds) {
+	public PagedList<User> getBadgesRecipients(long... badgeIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
         String                apiUrl  = builder.withIds(badgeIds).buildUrl();
 
@@ -1322,7 +1323,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#getBadgesRecipients(com.google.code.stackoverflow.schema.Paging, long[])
 	 */
 	@Override
-	public List<User> getBadgesRecipients(Paging paging, long... badgeIds) {
+	public PagedList<User> getBadgesRecipients(Paging paging, long... badgeIds) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
         String                apiUrl  = builder.withIds(badgeIds).withPaging(paging).buildUrl();
 
@@ -1335,7 +1336,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.lang.String)
 	 */
 	@Override
-	public List<Question> searchQuestions(String query) {
+	public PagedList<Question> searchQuestions(String query) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).buildUrl();
 
@@ -1348,7 +1349,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.lang.String, com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<Question> searchQuestions(String query, QuestionSortOrder sort,
+	public PagedList<Question> searchQuestions(String query, QuestionSortOrder sort,
 			Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).withSort(sort).withPaging(paging).buildUrl();
@@ -1359,7 +1360,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	}
 
 	@Override
-	public List<Question> searchQuestions(String query, QuestionSortOrder sort,
+	public PagedList<Question> searchQuestions(String query, QuestionSortOrder sort,
 			Range range) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).withSort(sort).withRange(range).buildUrl();
@@ -1373,7 +1374,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.util.List, java.util.List)
 	 */
 	@Override
-	public List<Question> searchQuestions(List<String> includeTags,
+	public PagedList<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).buildUrl();
@@ -1387,7 +1388,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.util.List, java.util.List, com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<Question> searchQuestions(List<String> includeTags,
+	public PagedList<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags, QuestionSortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
@@ -1401,7 +1402,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 * @see com.google.code.stackoverflow.client.StackOverflowApiClient#searchQuestions(java.lang.String, java.util.List, java.util.List, com.google.code.stackoverflow.schema.User.QuestionSortOrder, com.google.code.stackoverflow.schema.Paging)
 	 */
 	@Override
-	public List<Question> searchQuestions(String query,
+	public PagedList<Question> searchQuestions(String query,
 			List<String> includeTags, List<String> excludeTags,
 			QuestionSortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.SEARCH_QUESTIONS);

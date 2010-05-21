@@ -4,11 +4,11 @@
 package com.google.code.stackoverflow.client.query.impl;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.QuestionApiQuery;
@@ -138,7 +138,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Question> unmarshall(JSONObject json) {
+	protected PagedList<Question> unmarshall(JSONObject json) {
 		QuestionsImpl adapter = new QuestionsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getQuestions();

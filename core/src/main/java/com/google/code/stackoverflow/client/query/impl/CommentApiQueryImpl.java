@@ -3,10 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.CommentApiQuery;
@@ -117,7 +117,7 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Comment> unmarshall(JSONObject json) {
+	protected PagedList<Comment> unmarshall(JSONObject json) {
 		CommentsImpl adapter = new CommentsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getComments();

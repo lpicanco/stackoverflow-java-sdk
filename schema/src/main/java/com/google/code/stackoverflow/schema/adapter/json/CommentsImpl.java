@@ -3,12 +3,11 @@
  */
 package com.google.code.stackoverflow.schema.adapter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedArrayList;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Comments;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -22,19 +21,19 @@ public class CommentsImpl extends BaseJsonAdapter implements Comments, Adaptable
 	private static final long serialVersionUID = -5190225278764284533L;
 	
 	/** The comments. */
-	private List<Comment> comments = new ArrayList<Comment>();
+	private PagedList<Comment> comments = new PagedArrayList<Comment>();
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Comments#getComments()
 	 */
-	public List<Comment> getComments() {
+	public PagedList<Comment> getComments() {
 		return comments;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Comments#setComments(java.util.List)
 	 */
-	public void setComments(List<Comment> comments) {
+	public void setComments(PagedList<Comment> comments) {
 		this.comments = comments;
 	}
 
@@ -43,6 +42,9 @@ public class CommentsImpl extends BaseJsonAdapter implements Comments, Adaptable
 	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
+		getComments().setTotal(getLongProperty(adaptee, "total"));
+		getComments().setPage(getIntProperty(adaptee, "page"));
+		getComments().setPageSize(getIntProperty(adaptee, "pagesize"));
 		JSONArray comments = (JSONArray) adaptee.get("comments");
 		if (comments != null) {
 			for (Object o : comments) {			

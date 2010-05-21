@@ -3,12 +3,11 @@
  */
 package com.google.code.stackoverflow.schema.adapter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedArrayList;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.Users;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -22,19 +21,19 @@ public class UsersImpl extends BaseJsonAdapter implements Users, Adaptable<Users
 	private static final long serialVersionUID = -5190225278764284533L;
 	
 	/** The users. */
-	private List<User> users = new ArrayList<User>();
+	private PagedList<User> users = new PagedArrayList<User>();
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Users#getUsers()
 	 */
-	public List<User> getUsers() {
+	public PagedList<User> getUsers() {
 		return users;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Users#setUsers(java.util.List)
 	 */
-	public void setUsers(List<User> users) {
+	public void setUsers(PagedList<User> users) {
 		this.users = users;
 	}
 
@@ -43,6 +42,9 @@ public class UsersImpl extends BaseJsonAdapter implements Users, Adaptable<Users
 	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
+		getUsers().setTotal(getLongProperty(adaptee, "total"));
+		getUsers().setPage(getIntProperty(adaptee, "page"));
+		getUsers().setPageSize(getIntProperty(adaptee, "pagesize"));
 		JSONArray users = (JSONArray) adaptee.get("users");
 		if (users != null) {
 			for (Object o : users) {			

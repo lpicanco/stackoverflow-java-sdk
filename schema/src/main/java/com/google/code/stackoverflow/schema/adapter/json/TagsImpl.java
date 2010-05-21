@@ -3,12 +3,11 @@
  */
 package com.google.code.stackoverflow.schema.adapter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedArrayList;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Tag;
 import com.google.code.stackoverflow.schema.Tags;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -22,19 +21,19 @@ public class TagsImpl extends BaseJsonAdapter implements Tags, Adaptable<Tags, J
 	private static final long serialVersionUID = -5190225278764284533L;
 	
 	/** The tags. */
-	private List<Tag> tags = new ArrayList<Tag>();
+	private PagedList<Tag> tags = new PagedArrayList<Tag>();
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Tags#getTags()
 	 */
-	public List<Tag> getTags() {
+	public PagedList<Tag> getTags() {
 		return tags;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Tags#setTags(java.util.List)
 	 */
-	public void setTags(List<Tag> tags) {
+	public void setTags(PagedList<Tag> tags) {
 		this.tags = tags;
 	}
 
@@ -43,6 +42,9 @@ public class TagsImpl extends BaseJsonAdapter implements Tags, Adaptable<Tags, J
 	 */
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
+		getTags().setTotal(getLongProperty(adaptee, "total"));
+		getTags().setPage(getIntProperty(adaptee, "page"));
+		getTags().setPageSize(getIntProperty(adaptee, "pagesize"));
 		JSONArray tags = (JSONArray) adaptee.get("tags");
 		if (tags != null) {
 			for (Object o : tags) {			
