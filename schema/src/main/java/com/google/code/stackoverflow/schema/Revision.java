@@ -154,14 +154,14 @@ public interface Revision extends SchemaEntity {
 	 * 
 	 * @return the user id
 	 */
-	public long getUserId();
+	public User getUser();
 
 	/**
 	 * Sets the user id.
 	 * 
 	 * @param userId the new user id
 	 */
-	public void setUserId(long userId);
+	public void setUser(User user);
 
 	/**
 	 * Gets the title.

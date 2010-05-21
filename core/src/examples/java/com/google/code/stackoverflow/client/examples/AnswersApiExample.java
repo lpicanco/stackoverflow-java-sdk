@@ -81,7 +81,7 @@ public class AnswersApiExample {
 	 * @param answer the answer
 	 */
 	private static void printResult(Answer answer) {
-		System.out.println(answer.getOwnerDisplayName() + ":" + answer.getTitle());
+		System.out.println(answer.getOwner().getDisplayName() + ":" + answer.getTitle());
 	}
 
 	/**

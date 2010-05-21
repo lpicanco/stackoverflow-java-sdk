@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Comment;
+import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
@@ -31,11 +32,8 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	/** The question id. */
 	private long questionId;
 	
-	/** The owner user id. */
-	private long ownerUserId;
-	
 	/** The owner display name. */
-	private String ownerDisplayName;
+	private UserImpl owner;
 	
 	/** The creation date. */
 	private Date creationDate;
@@ -72,9 +70,6 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	
 	/** The comments. */
 	private List<Comment> comments = new ArrayList<Comment>();
-	
-	/** The owner email hash. */
-	private String ownerEmailHash;
 	
 	/** The answer comments url. */
 	private String answerCommentsUrl;
@@ -132,32 +127,16 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	 * @see com.google.code.stackoverflow.schema.Answer#getOwnerUserId()
 	 */
 	@Override
-	public long getOwnerUserId() {
-		return ownerUserId;
+	public User getOwner() {
+		return owner;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Answer#setOwnerUserId(long)
 	 */
 	@Override
-	public void setOwnerUserId(long ownerUserId) {
-		this.ownerUserId = ownerUserId;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Answer#getOwnerDisplayName()
-	 */
-	@Override
-	public String getOwnerDisplayName() {
-		return ownerDisplayName;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Answer#setOwnerDisplayName(java.lang.String)
-	 */
-	@Override
-	public void setOwnerDisplayName(String ownerDisplayName) {
-		this.ownerDisplayName = ownerDisplayName;
+	public void setOwner(User owner) {
+		this.owner = (UserImpl) owner;
 	}
 
 	/* (non-Javadoc)
@@ -354,22 +333,6 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Answer#getOwnerEmailHash()
-	 */
-	@Override
-	public String getOwnerEmailHash() {
-		return ownerEmailHash;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Answer#setOwnerEmailHash(java.lang.String)
-	 */
-	@Override
-	public void setOwnerEmailHash(String ownerEmailHash) {
-		this.ownerEmailHash = ownerEmailHash;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Answer#getAnswerCommentsUrl()
 	 */
 	@Override
@@ -391,9 +354,14 @@ public class AnswerImpl extends BaseJsonAdapter implements Answer, Adaptable<Ans
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
-		JSONArray comments = (JSONArray) adaptee.get("comments");
-		if (comments != null) {
-			for (Object o : comments) {			
+		JSONObject ownerJson = (JSONObject) adaptee.get("owner");
+		if (ownerJson != null) {
+			this.owner = new UserImpl();
+			owner.adaptFrom(ownerJson);
+		}
+		JSONArray commentsJson = (JSONArray) adaptee.get("comments");
+		if (commentsJson != null) {
+			for (Object o : commentsJson) {			
 				CommentImpl comment = new CommentImpl();
 				comment.adaptFrom((JSONObject) o);
 				getComments().add(comment);

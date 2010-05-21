@@ -137,32 +137,18 @@ public interface Answer extends SchemaEntity {
 	public void setQuestionId(long questionId);
 
 	/**
-	 * Gets the owner user id.
-	 * 
-	 * @return the owner user id
-	 */
-	public long getOwnerUserId();
-
-	/**
-	 * Sets the owner user id.
-	 * 
-	 * @param ownerUserId the new owner user id
-	 */
-	public void setOwnerUserId(long ownerUserId);
-
-	/**
 	 * Gets the owner display name.
 	 * 
 	 * @return the owner display name
 	 */
-	public String getOwnerDisplayName();
+	public User getOwner();
 
 	/**
 	 * Sets the owner display name.
 	 * 
 	 * @param ownerDisplayName the new owner display name
 	 */
-	public void setOwnerDisplayName(String ownerDisplayName);
+	public void setOwner(User owner);
 
 	/**
 	 * Gets the creation date.
@@ -331,20 +317,6 @@ public interface Answer extends SchemaEntity {
 	 * @param lastActivityDate the new last activity date
 	 */
 	public void setLastActivityDate(Date lastActivityDate);
-	
-	/**
-	 * Gets the owner email hash.
-	 * 
-	 * @return the owner email hash
-	 */
-	public String getOwnerEmailHash();
-
-	/**
-	 * Sets the owner email hash.
-	 * 
-	 * @param ownerEmailHash the new owner email hash
-	 */
-	public void setOwnerEmailHash(String ownerEmailHash);
 	
 	/**
 	 * Gets the answer comments url.

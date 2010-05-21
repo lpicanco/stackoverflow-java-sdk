@@ -81,7 +81,7 @@ public class CommentsApiExample {
 	 * @param comment the comment
 	 */
 	private static void printResult(Comment comment) {
-		System.out.println(comment.getOwnerDisplayName() + ":" + comment.getBody());
+		System.out.println(comment.getOwner().getDisplayName() + ":" + comment.getBody());
 	}
 
 	/**

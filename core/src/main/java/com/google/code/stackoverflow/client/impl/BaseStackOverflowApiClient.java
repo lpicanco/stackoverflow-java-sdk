@@ -360,7 +360,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 			Paging paging, TimePeriod timePeriod,
 			Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
-        String                apiUrl  = builder.withParameters("tagged", tags).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
+        String                apiUrl  = builder.withParameters("tags", tags).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
 
         Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
         
@@ -803,7 +803,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	@Override
 	public List<Question> getTaggedQuestions(List<String> tags) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
-        String                apiUrl  = builder.withParameters("tagged", tags).buildUrl();
+        String                apiUrl  = builder.withParameters("tags", tags).buildUrl();
 
         Questions questions = readResponse(Questions.class, callApiMethod(apiUrl));
         

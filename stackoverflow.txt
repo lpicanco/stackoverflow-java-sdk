@@ -46,3 +46,12 @@ X. 9. Implement vectorized requests. http://dev.meta.stackoverflow.com/questions
 
 http://api.stackoverflow.com/0.8/help
 http://code.google.com/p/theworldsworststackoverflowclone/
+
+X. WARNING: Additional property 'owner' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.QuestionImpl
+X. WARNING: Additional property 'owner' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.CommentImpl
+X. WARNING: Additional property 'reply_to_user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.CommentImpl
+X. WARNING: Additional property 'owner' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.AnswerImpl
+X. WARNING: Additional property 'owner' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.PostTimelineImpl
+X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.BadgeImpl
+X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.PostTimelineImpl
+X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.RevisionImpl

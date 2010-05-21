@@ -12,7 +12,10 @@ public enum UserType implements ValueEnum {
 	MODERATOR("moderator"),
 	
 	/** The REGISTERED. */
-	REGISTERED("registered");
+	REGISTERED("registered"),
+	
+	/** The REGISTERED. */
+	UNREGISTERED("unregistered");
 	
     /** The Constant stringToEnum. */
 	private static final Map<String, UserType> stringToEnum = new HashMap<String, UserType>();
