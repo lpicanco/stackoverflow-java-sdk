@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Question;
+import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
@@ -30,10 +31,7 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	private long questionId;
 	
 	/** The owner user id. */
-	private long ownerUserId;
-	
-	/** The owner display name. */
-	private String ownerDisplayName;
+	private UserImpl owner;
 	
 	/** The creation date. */
 	private Date creationDate;
@@ -95,9 +93,6 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	/** The bounty amount. */
 	private long bountyAmount;
 	
-	/** The owner email hash. */
-	private String ownerEmailHash;
-	
 	/** The question timeline url. */
 	private String questionTimelineUrl;
 	
@@ -152,29 +147,15 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Question#getOwnerUserId()
 	 */
-	public long getOwnerUserId() {
-		return ownerUserId;
+	public User getOwner() {
+		return owner;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Question#setOwnerUserId(long)
 	 */
-	public void setOwnerUserId(long ownerUserId) {
-		this.ownerUserId = ownerUserId;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Question#getOwnerDisplayName()
-	 */
-	public String getOwnerDisplayName() {
-		return ownerDisplayName;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Question#setOwnerDisplayName(java.lang.String)
-	 */
-	public void setOwnerDisplayName(String ownerDisplayName) {
-		this.ownerDisplayName = ownerDisplayName;
+	public void setOwner(User owner) {
+		this.owner = (UserImpl) owner;
 	}
 
 	/* (non-Javadoc)
@@ -460,22 +441,6 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Question#getOwnerEmailHash()
-	 */
-	@Override
-	public String getOwnerEmailHash() {
-		return ownerEmailHash;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Question#setOwnerEmailHash(java.lang.String)
-	 */
-	@Override
-	public void setOwnerEmailHash(String ownerEmailHash) {
-		this.ownerEmailHash = ownerEmailHash;
-	}
-	
-	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Question#getQuestionTimelineUrl()
 	 */
 	@Override
@@ -530,23 +495,28 @@ public class QuestionImpl extends BaseJsonAdapter implements Question, Adaptable
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
-		JSONArray answers = (JSONArray) adaptee.get("answers");
-		if (answers != null) {
-			for (Object o : answers) {			
+		JSONObject ownerJson = (JSONObject) adaptee.get("owner");
+		if (ownerJson != null) {
+			this.owner = new UserImpl();
+			owner.adaptFrom(ownerJson);
+		}
+		JSONArray answersJson = (JSONArray) adaptee.get("answers");
+		if (answersJson != null) {
+			for (Object o : answersJson) {			
 				AnswerImpl answer = new AnswerImpl();
 				answer.adaptFrom((JSONObject) o);
 				getAnswers().add(answer);
 			}
 		}
-		JSONArray tags = (JSONArray) adaptee.get("tags");
-		if (tags != null) {
-			for (String tag : (Iterable<String>) tags) {
+		JSONArray tagsJson = (JSONArray) adaptee.get("tags");
+		if (tagsJson != null) {
+			for (String tag : (Iterable<String>) tagsJson) {
 				getTags().add(tag);
 			}
 		}
-		JSONArray comments = (JSONArray) adaptee.get("comments");
-		if (comments != null) {
-			for (Object o : comments) {			
+		JSONArray commentsJson = (JSONArray) adaptee.get("comments");
+		if (commentsJson != null) {
+			for (Object o : commentsJson) {			
 				CommentImpl comment = new CommentImpl();
 				comment.adaptFrom((JSONObject) o);
 				getComments().add(comment);

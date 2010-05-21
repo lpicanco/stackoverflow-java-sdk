@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.PostTimelineType;
+import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
@@ -26,10 +27,10 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	private long postId;
 	
 	/** The user id. */
-	private long userId;
+	private UserImpl user;
 	
 	/** The owner user id. */
-	private long ownerUserId;
+	private UserImpl owner;
 	
 	/** The action. */
 	private String action;
@@ -43,8 +44,6 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	/** The comment id. */
 	private long commentId;
 	
-	private String ownerDisplayName;
-	private String ownerEmailHash;
 	private String displayName;
 	private String postCommentUrl;
 	private String emailHash;
@@ -110,15 +109,15 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.PostTimeline#getUserId()
 	 */
-	public long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.PostTimeline#setUserId(long)
 	 */
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = (UserImpl) user;
 	}
 
 	/* (non-Javadoc)
@@ -127,6 +126,16 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
+		JSONObject ownerJson = (JSONObject) adaptee.get("owner");
+		if (ownerJson != null) {
+			this.owner = new UserImpl();
+			owner.adaptFrom(ownerJson);
+		}
+		JSONObject userJson = (JSONObject) adaptee.get("user");
+		if (userJson != null) {
+			this.user = new UserImpl();
+			user.adaptFrom(userJson);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -143,16 +152,16 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	 * @see com.google.code.stackoverflow.schema.PostTimeline#getOwnerUserId()
 	 */
 	@Override
-	public long getOwnerUserId() {
-		return ownerUserId;
+	public User getOwner() {
+		return owner;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.PostTimeline#setOwnerUserId(long)
 	 */
 	@Override
-	public void setOwnerUserId(long ownerUserId) {
-		this.ownerUserId = ownerUserId;
+	public void setOwner(User owner) {
+		this.owner = (UserImpl) owner;
 	}
 
 	/* (non-Javadoc)
@@ -185,34 +194,6 @@ public class PostTimelineImpl extends BaseJsonAdapter implements PostTimeline, A
 	@Override
 	public void setCommentId(long commentId) {
 		this.commentId = commentId;
-	}
-
-	/**
-	 * @return the ownerDisplayName
-	 */
-	public String getOwnerDisplayName() {
-		return ownerDisplayName;
-	}
-
-	/**
-	 * @param ownerDisplayName the ownerDisplayName to set
-	 */
-	public void setOwnerDisplayName(String ownerDisplayName) {
-		this.ownerDisplayName = ownerDisplayName;
-	}
-
-	/**
-	 * @return the ownerEmailHash
-	 */
-	public String getOwnerEmailHash() {
-		return ownerEmailHash;
-	}
-
-	/**
-	 * @param ownerEmailHash the ownerEmailHash to set
-	 */
-	public void setOwnerEmailHash(String ownerEmailHash) {
-		this.ownerEmailHash = ownerEmailHash;
 	}
 
 	/**

@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.Revision;
 import com.google.code.stackoverflow.schema.RevisionType;
+import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
@@ -53,7 +54,7 @@ public class RevisionImpl extends BaseJsonAdapter implements Revision, Adaptable
 	private boolean setCommunityWiki;
 	
 	/** The user id. */
-	private long userId;
+	private UserImpl user;
 	
 	/** The body. */
 	private String body;
@@ -227,15 +228,15 @@ public class RevisionImpl extends BaseJsonAdapter implements Revision, Adaptable
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Revision#getUserId()
 	 */
-	public long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Revision#setUserId(long)
 	 */
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = (UserImpl) user;
 	}
 	
 	/* (non-Javadoc)
@@ -301,6 +302,11 @@ public class RevisionImpl extends BaseJsonAdapter implements Revision, Adaptable
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
+		JSONObject userJson = (JSONObject) adaptee.get("user");
+		if (userJson != null) {
+			this.user = new UserImpl();
+			user.adaptFrom(userJson);
+		}
 		JSONArray tags = (JSONArray) adaptee.get("tags");
 		if (tags != null) {
 			for (String tag : (Iterable<String>) tags) {

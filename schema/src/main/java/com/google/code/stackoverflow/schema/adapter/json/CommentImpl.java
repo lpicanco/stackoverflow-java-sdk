@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.PostType;
+import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
@@ -25,11 +26,8 @@ public class CommentImpl extends BaseJsonAdapter implements Comment, Adaptable<C
 	/** The creation date. */
 	private Date creationDate;
 	
-	/** The owner user id. */
-	private long ownerUserId;
-	
 	/** The owner display name. */
-	private String ownerDisplayName;
+	private UserImpl owner;
 	
 	/** The post id. */
 	private long postId;
@@ -41,7 +39,7 @@ public class CommentImpl extends BaseJsonAdapter implements Comment, Adaptable<C
 	private String body;
 	
 	/** The reply to user id. */
-	private long replyToUserId;
+	private UserImpl replyToUser;
 	
 	/** The score. */
 	private long score;
@@ -80,29 +78,15 @@ public class CommentImpl extends BaseJsonAdapter implements Comment, Adaptable<C
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Comment#getOwnerUserId()
 	 */
-	public long getOwnerUserId() {
-		return ownerUserId;
+	public User getOwner() {
+		return owner;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Comment#setOwnerUserId(long)
 	 */
-	public void setOwnerUserId(long ownerUserId) {
-		this.ownerUserId = ownerUserId;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Comment#getOwnerDisplayName()
-	 */
-	public String getOwnerDisplayName() {
-		return ownerDisplayName;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.schema.Comment#setOwnerDisplayName(java.lang.String)
-	 */
-	public void setOwnerDisplayName(String ownerDisplayName) {
-		this.ownerDisplayName = ownerDisplayName;
+	public void setOwner(User owner) {
+		this.owner = (UserImpl) owner;
 	}
 
 	/* (non-Javadoc)
@@ -150,15 +134,15 @@ public class CommentImpl extends BaseJsonAdapter implements Comment, Adaptable<C
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Comment#getReplyToUserId()
 	 */
-	public long getReplyToUserId() {
-		return replyToUserId;
+	public User getReplyToUser() {
+		return replyToUser;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Comment#setReplyToUserId(long)
 	 */
-	public void setReplyToUserId(long replyToUserId) {
-		this.replyToUserId = replyToUserId;
+	public void setReplyToUser(User replyToUser) {
+		this.replyToUser = (UserImpl) replyToUser;
 	}
 
 	/* (non-Javadoc)
@@ -195,6 +179,16 @@ public class CommentImpl extends BaseJsonAdapter implements Comment, Adaptable<C
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
+		JSONObject ownerJson = (JSONObject) adaptee.get("owner");
+		if (ownerJson != null) {
+			this.owner = new UserImpl();
+			owner.adaptFrom(ownerJson);
+		}
+		JSONObject replyToUserJson = (JSONObject) adaptee.get("reply_to_user");
+		if (replyToUserJson != null) {
+			this.replyToUser = new UserImpl();
+			replyToUser.adaptFrom(replyToUserJson);
+		}
 	}
 
 	/* (non-Javadoc)

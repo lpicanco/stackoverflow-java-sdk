@@ -69,29 +69,29 @@ public interface PostTimeline extends SchemaEntity {
 	 * 
 	 * @return the user id
 	 */
-	public long getUserId();
+	public User getUser();
 
 	/**
 	 * Sets the user id.
 	 * 
 	 * @param userId the new user id
 	 */
-	public void setUserId(long userId);
+	public void setUser(User user);
 
 	/**
-	 * Gets the owner user id.
+	 * Gets the owner display name.
 	 * 
-	 * @return the owner user id
+	 * @return the owner display name
 	 */
-	public long getOwnerUserId();
+	public User getOwner();
 
 	/**
-	 * Sets the owner user id.
+	 * Sets the owner display name.
 	 * 
-	 * @param ownerUserId the new owner user id
+	 * @param ownerDisplayName the new owner display name
 	 */
-	public void setOwnerUserId(long ownerUserId);
-	
+	public void setOwner(User owner);
+
 	/**
 	 * Gets the revision guid.
 	 * 
@@ -121,36 +121,6 @@ public interface PostTimeline extends SchemaEntity {
 	public void setCommentId(long commentId);
 	
 	/**
-	 * @return the ownerDisplayName
-	 */
-	public String getOwnerDisplayName();
-	
-	/**
-	 * @param ownerDisplayName the ownerDisplayName to set
-	 */
-	public void setOwnerDisplayName(String ownerDisplayName);
-
-	/**
-	 * @return the ownerEmailHash
-	 */
-	public String getOwnerEmailHash();
-
-	/**
-	 * @param ownerEmailHash the ownerEmailHash to set
-	 */
-	public void setOwnerEmailHash(String ownerEmailHash);
-
-	/**
-	 * @return the displayName
-	 */
-	public String getDisplayName();
-	
-	/**
-	 * @param displayName the displayName to set
-	 */
-	public void setDisplayName(String displayName);
-
-	/**
 	 * @return the postCommentUrl
 	 */
 	public String getPostCommentUrl();
@@ -159,16 +129,6 @@ public interface PostTimeline extends SchemaEntity {
 	 * @param postCommentUrl the postCommentUrl to set
 	 */
 	public void setPostCommentUrl(String postCommentUrl);
-
-	/**
-	 * @return the emailHash
-	 */
-	public String getEmailHash();
-
-	/**
-	 * @param emailHash the emailHash to set
-	 */
-	public void setEmailHash(String emailHash);
 
 	/**
 	 * @return the postUrl

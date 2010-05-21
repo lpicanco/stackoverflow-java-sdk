@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.BadgeRank;
+import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
 
 /**
@@ -36,7 +37,7 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	private boolean tagBased;
 	
 	/** The user id. */
-	private long userId;
+	private UserImpl user;
 	
 	/** The badges recipients url. */
 	private String badgesRecipientsUrl;
@@ -45,16 +46,16 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	 * @see com.google.code.stackoverflow.schema.Badge#getUserId()
 	 */
 	@Override
-	public long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Badge#setUserId(long)
 	 */
 	@Override
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = (UserImpl) user;
 	}
 
 	/* (non-Javadoc)
@@ -147,6 +148,11 @@ public class BadgeImpl extends BaseJsonAdapter implements Badge, Adaptable<Badge
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
+		JSONObject userJson = (JSONObject) adaptee.get("user");
+		if (userJson != null) {
+			this.user = new UserImpl();
+			user.adaptFrom(userJson);
+		}
 	}
 
 	/* (non-Javadoc)

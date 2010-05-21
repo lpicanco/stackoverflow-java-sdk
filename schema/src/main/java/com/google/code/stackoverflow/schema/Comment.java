@@ -110,32 +110,18 @@ public interface Comment extends SchemaEntity {
 	public void setCreationDate(Date creationDate);
 
 	/**
-	 * Gets the owner user id.
-	 * 
-	 * @return the owner user id
-	 */
-	public long getOwnerUserId();
-
-	/**
-	 * Sets the owner user id.
-	 * 
-	 * @param ownerUserId the new owner user id
-	 */
-	public void setOwnerUserId(long ownerUserId);
-
-	/**
 	 * Gets the owner display name.
 	 * 
 	 * @return the owner display name
 	 */
-	public String getOwnerDisplayName();
+	public User getOwner();
 
 	/**
 	 * Sets the owner display name.
 	 * 
 	 * @param ownerDisplayName the new owner display name
 	 */
-	public void setOwnerDisplayName(String ownerDisplayName);
+	public void setOwner(User owner);
 
 	/**
 	 * Gets the post id.
@@ -184,14 +170,14 @@ public interface Comment extends SchemaEntity {
 	 * 
 	 * @return the reply to user id
 	 */
-	public long getReplyToUserId();
+	public User getReplyToUser();
 
 	/**
 	 * Sets the reply to user id.
 	 * 
 	 * @param replyToUserId the new reply to user id
 	 */
-	public void setReplyToUserId(long replyToUserId);
+	public void setReplyToUser(User replyToUser);
 
 	/**
 	 * Gets the score.
