@@ -6,6 +6,7 @@ package com.google.code.stackoverflow.client;
 import java.util.List;
 import java.util.Set;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.Comment;
@@ -34,7 +35,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions();
+	public PagedList<Question> getQuestions();
 	
 	/**
 	 * Gets the questions.
@@ -43,7 +44,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Paging paging);
+	public PagedList<Question> getQuestions(Paging paging);
 	
 	/**
 	 * Gets the questions.
@@ -52,7 +53,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(TimePeriod timePeriod);
+	public PagedList<Question> getQuestions(TimePeriod timePeriod);
 	
 	/**
 	 * Gets the questions.
@@ -61,7 +62,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Question.SortOrder sort);
+	public PagedList<Question> getQuestions(Question.SortOrder sort);
 	
 	/**
 	 * Gets the questions.
@@ -70,7 +71,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Question.SortOrder sort, Range range);
+	public PagedList<Question> getQuestions(Question.SortOrder sort, Range range);
 	
 	/**
 	 * Gets the questions.
@@ -79,7 +80,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Set<FilterOption> filterOptions);
+	public PagedList<Question> getQuestions(Set<FilterOption> filterOptions);
 	
 	/**
 	 * Gets the questions.
@@ -91,23 +92,14 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Question.SortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
+	public PagedList<Question> getQuestions(Question.SortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
 	
 	/**
 	 * Gets the unanswered questions.
 	 * 
 	 * @return the unanswered questions
 	 */
-	public List<Question> getUnansweredQuestions();
-	
-	/**
-	 * Gets the unanswered questions.
-	 * 
-	 * @param sort the sort
-	 * 
-	 * @return the unanswered questions
-	 */
-	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort);
+	public PagedList<Question> getUnansweredQuestions();
 	
 	/**
 	 * Gets the unanswered questions.
@@ -116,7 +108,16 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the unanswered questions
 	 */
-	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Range range);
+	public PagedList<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort);
+	
+	/**
+	 * Gets the unanswered questions.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the unanswered questions
+	 */
+	public PagedList<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Range range);
 	
 	/**
 	 * Gets the unanswered questions.
@@ -125,7 +126,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the unanswered questions
 	 */
-	public List<Question> getUnansweredQuestions(Paging paging);
+	public PagedList<Question> getUnansweredQuestions(Paging paging);
 	
 	/**
 	 * Gets the unanswered questions.
@@ -134,7 +135,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the unanswered questions
 	 */
-	public List<Question> getUnansweredQuestions(TimePeriod timePeriod);
+	public PagedList<Question> getUnansweredQuestions(TimePeriod timePeriod);
 	
 	/**
 	 * Gets the unanswered questions.
@@ -143,7 +144,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the unanswered questions
 	 */
-	public List<Question> getUnansweredQuestions(Set<FilterOption> filterOptions);
+	public PagedList<Question> getUnansweredQuestions(Set<FilterOption> filterOptions);
 	
 	/**
 	 * Gets the unanswered questions.
@@ -155,7 +156,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the unanswered questions
 	 */
-	public List<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
+	public PagedList<Question> getUnansweredQuestions(Question.UnansweredSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
 	
 	/**
 	 * Gets the tagged questions.
@@ -164,7 +165,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tagged questions
 	 */
-	public List<Question> getTaggedQuestions(List<String> tags);
+	public PagedList<Question> getTaggedQuestions(List<String> tags);
 	
 	/**
 	 * Gets the tagged questions.
@@ -176,7 +177,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tagged questions
 	 */
-	public List<Question> getTaggedQuestions(List<String> tags, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
+	public PagedList<Question> getTaggedQuestions(List<String> tags, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions);
 	
 	/**
 	 * Gets the questions by users.
@@ -185,17 +186,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions by users
 	 */
-	public List<Question> getQuestionsByUsers(long... userIds);
-	
-	/**
-	 * Gets the questions by users.
-	 * 
-	 * @param sort the sort
-	 * @param userIds the user ids
-	 * 
-	 * @return the questions by users
-	 */
-	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, long... userIds);
+	public PagedList<Question> getQuestionsByUsers(long... userIds);
 	
 	/**
 	 * Gets the questions by users.
@@ -205,7 +196,17 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions by users
 	 */
-	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Range range, long... userIds);
+	public PagedList<Question> getQuestionsByUsers(User.QuestionSortOrder sort, long... userIds);
+	
+	/**
+	 * Gets the questions by users.
+	 * 
+	 * @param sort the sort
+	 * @param userIds the user ids
+	 * 
+	 * @return the questions by users
+	 */
+	public PagedList<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Range range, long... userIds);
 	
 	/**
 	 * Gets the questions by users.
@@ -215,7 +216,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions by users
 	 */
-	public List<Question> getQuestionsByUsers(Paging paging, long... userIds);
+	public PagedList<Question> getQuestionsByUsers(Paging paging, long... userIds);
 	
 	/**
 	 * Gets the questions by users.
@@ -225,7 +226,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions by users
 	 */
-	public List<Question> getQuestionsByUsers(TimePeriod timePeriod, long... userIds);
+	public PagedList<Question> getQuestionsByUsers(TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the questions by users.
@@ -235,7 +236,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions by users
 	 */
-	public List<Question> getQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
+	public PagedList<Question> getQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
 	
 	/**
 	 * Gets the questions by users.
@@ -248,7 +249,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions by users
 	 */
-	public List<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
+	public PagedList<Question> getQuestionsByUsers(User.QuestionSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
 	
 	/**
 	 * Gets the favorite questions by users.
@@ -257,17 +258,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the favorite questions by users
 	 */
-	public List<Question> getFavoriteQuestionsByUsers(long... userIds);
-	
-	/**
-	 * Gets the favorite questions by users.
-	 * 
-	 * @param sort the sort
-	 * @param userIds the user ids
-	 * 
-	 * @return the favorite questions by users
-	 */
-	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, long... userIds);
+	public PagedList<Question> getFavoriteQuestionsByUsers(long... userIds);
 	
 	/**
 	 * Gets the favorite questions by users.
@@ -277,7 +268,17 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the favorite questions by users
 	 */
-	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Range range, long... userIds);
+	public PagedList<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, long... userIds);
+	
+	/**
+	 * Gets the favorite questions by users.
+	 * 
+	 * @param sort the sort
+	 * @param userIds the user ids
+	 * 
+	 * @return the favorite questions by users
+	 */
+	public PagedList<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Range range, long... userIds);
 	
 	/**
 	 * Gets the favorite questions by users.
@@ -287,7 +288,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the favorite questions by users
 	 */
-	public List<Question> getFavoriteQuestionsByUsers(Paging paging, long... userIds);
+	public PagedList<Question> getFavoriteQuestionsByUsers(Paging paging, long... userIds);
 	
 	/**
 	 * Gets the favorite questions by users.
@@ -297,7 +298,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the favorite questions by users
 	 */
-	public List<Question> getFavoriteQuestionsByUsers(TimePeriod timePeriod, long... userIds);
+	public PagedList<Question> getFavoriteQuestionsByUsers(TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the favorite questions by users.
@@ -307,7 +308,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the favorite questions by users
 	 */
-	public List<Question> getFavoriteQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
+	public PagedList<Question> getFavoriteQuestionsByUsers(Set<FilterOption> filterOptions, long... userIds);
 	
 	/**
 	 * Gets the favorite questions by users.
@@ -320,7 +321,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the favorite questions by users
 	 */
-	public List<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
+	public PagedList<Question> getFavoriteQuestionsByUsers(User.FavoriteSortOrder sort, Paging paging, TimePeriod timePeriod, Set<FilterOption> filterOptions, long... userIds);
 	
 	/**
 	 * Gets the questions.
@@ -329,7 +330,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(long... questionIds);
+	public PagedList<Question> getQuestions(long... questionIds);
 	
 	/**
 	 * Gets the questions.
@@ -339,7 +340,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Paging paging, long... questionIds);
+	public PagedList<Question> getQuestions(Paging paging, long... questionIds);
 	
 	/**
 	 * Gets the questions.
@@ -349,7 +350,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Set<FilterOption> filterOptions, long... questionIds);
+	public PagedList<Question> getQuestions(Set<FilterOption> filterOptions, long... questionIds);
 	
 	/**
 	 * Gets the questions.
@@ -360,7 +361,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions(Paging paging, Set<FilterOption> filterOptions, long... questionIds);
+	public PagedList<Question> getQuestions(Paging paging, Set<FilterOption> filterOptions, long... questionIds);
 	
 	/**
 	 * Gets the questions timeline.
@@ -369,7 +370,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions timeline
 	 */
-	public List<PostTimeline> getQuestionsTimeline(long... questionIds);
+	public PagedList<PostTimeline> getQuestionsTimeline(long... questionIds);
 	
 	/**
 	 * Gets the questions timeline.
@@ -379,7 +380,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the questions timeline
 	 */
-	public List<PostTimeline> getQuestionsTimeline(TimePeriod timePeriod, long... questionIds);
+	public PagedList<PostTimeline> getQuestionsTimeline(TimePeriod timePeriod, long... questionIds);
 	
 	/**
 	 * Search questions.
@@ -388,18 +389,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the list< question>
 	 */
-	public List<Question> searchQuestions(String query);
-	
-	/**
-	 * Search questions.
-	 * 
-	 * @param query the query
-	 * @param sort the sort
-	 * @param paging the paging
-	 * 
-	 * @return the list< question>
-	 */
-	public List<Question> searchQuestions(String query, User.QuestionSortOrder sort, Paging paging);
+	public PagedList<Question> searchQuestions(String query);
 	
 	/**
 	 * Search questions.
@@ -410,7 +400,18 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the list< question>
 	 */
-	public List<Question> searchQuestions(String query, User.QuestionSortOrder sort, Range range);
+	public PagedList<Question> searchQuestions(String query, User.QuestionSortOrder sort, Paging paging);
+	
+	/**
+	 * Search questions.
+	 * 
+	 * @param query the query
+	 * @param sort the sort
+	 * @param paging the paging
+	 * 
+	 * @return the list< question>
+	 */
+	public PagedList<Question> searchQuestions(String query, User.QuestionSortOrder sort, Range range);
 	
 	/**
 	 * Search questions.
@@ -420,7 +421,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the list< question>
 	 */
-	public List<Question> searchQuestions(List<String> includeTags, List<String> excludeTags);
+	public PagedList<Question> searchQuestions(List<String> includeTags, List<String> excludeTags);
 	
 	/**
 	 * Search questions.
@@ -432,7 +433,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the list< question>
 	 */
-	public List<Question> searchQuestions(List<String> includeTags, List<String> excludeTags, User.QuestionSortOrder sort, Paging paging);
+	public PagedList<Question> searchQuestions(List<String> includeTags, List<String> excludeTags, User.QuestionSortOrder sort, Paging paging);
 	
 	/**
 	 * Search questions.
@@ -445,7 +446,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the list< question>
 	 */
-	public List<Question> searchQuestions(String query, List<String> includeTags, List<String> excludeTags, User.QuestionSortOrder sort, Paging paging);
+	public PagedList<Question> searchQuestions(String query, List<String> includeTags, List<String> excludeTags, User.QuestionSortOrder sort, Paging paging);
 	
 	// User Methods
 	/**
@@ -453,7 +454,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers();
+	public PagedList<User> getUsers();
 	
 	/**
 	 * Gets the users.
@@ -462,7 +463,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers(Paging paging);
+	public PagedList<User> getUsers(Paging paging);
 	
 	/**
 	 * Gets the users.
@@ -471,7 +472,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers(String filter);
+	public PagedList<User> getUsers(String filter);
 	
 	/**
 	 * Gets the users.
@@ -480,7 +481,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers(User.SortOrder sort);
+	public PagedList<User> getUsers(User.SortOrder sort);
 	
 	/**
 	 * Gets the users.
@@ -489,7 +490,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers(User.SortOrder sort, Range range);
+	public PagedList<User> getUsers(User.SortOrder sort, Range range);
 	
 	/**
 	 * Gets the users.
@@ -500,7 +501,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers(String filter, User.SortOrder sort, Paging paging);
+	public PagedList<User> getUsers(String filter, User.SortOrder sort, Paging paging);
 	
 	/**
 	 * Gets the users timeline.
@@ -509,7 +510,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users timeline
 	 */
-	public List<UserTimeline> getUsersTimeline(long... userIds);
+	public PagedList<UserTimeline> getUsersTimeline(long... userIds);
 	
 	/**
 	 * Gets the users timeline.
@@ -519,7 +520,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users timeline
 	 */
-	public List<UserTimeline> getUsersTimeline(TimePeriod timePeriod, long... userIds);
+	public PagedList<UserTimeline> getUsersTimeline(TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the users mentions.
@@ -528,7 +529,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users mentions
 	 */
-	public List<Comment> getUsersMentions(long... userIds);
+	public PagedList<Comment> getUsersMentions(long... userIds);
 	
 	/**
 	 * Gets the users mentions.
@@ -538,7 +539,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users mentions
 	 */
-	public List<Comment> getUsersMentions(TimePeriod timePeriod, long... userIds);
+	public PagedList<Comment> getUsersMentions(TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the users reputations.
@@ -547,7 +548,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users reputations
 	 */
-	public List<Reputation> getUsersReputations(long... userIds);
+	public PagedList<Reputation> getUsersReputations(long... userIds);
 	
 	/**
 	 * Gets the users reputations.
@@ -557,7 +558,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users reputations
 	 */
-	public List<Reputation> getUsersReputations(TimePeriod timePeriod, long... userIds);
+	public PagedList<Reputation> getUsersReputations(TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the users reputations.
@@ -567,7 +568,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users reputations
 	 */
-	public List<Reputation> getUsersReputations(Paging paging, long... userIds);
+	public PagedList<Reputation> getUsersReputations(Paging paging, long... userIds);
 	
 	/**
 	 * Gets the users reputations.
@@ -578,7 +579,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users reputations
 	 */
-	public List<Reputation> getUsersReputations(Paging paging, TimePeriod timePeriod, long... userIds);
+	public PagedList<Reputation> getUsersReputations(Paging paging, TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the users.
@@ -587,7 +588,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers(long... userIds);
+	public PagedList<User> getUsers(long... userIds);
 	
 	// Badge Methods
 	/**
@@ -595,21 +596,21 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the badges
 	 */
-	public List<Badge> getBadges();
+	public PagedList<Badge> getBadges();
 	
 	/**
 	 * Gets the badges by name.
 	 * 
 	 * @return the badges by name
 	 */
-	public List<Badge> getBadgesByName();
+	public PagedList<Badge> getBadgesByName();
 	
 	/**
 	 * Gets the badges by tags.
 	 * 
 	 * @return the badges by tags
 	 */
-	public List<Badge> getBadgesByTags();
+	public PagedList<Badge> getBadgesByTags();
 	
 	/**
 	 * Gets the badges for users.
@@ -618,7 +619,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the badges for users
 	 */
-	public List<Badge> getBadgesForUsers(long... userIds);
+	public PagedList<Badge> getBadgesForUsers(long... userIds);
 	
 	/**
 	 * Gets the badges recipients.
@@ -627,7 +628,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the badges recipients
 	 */
-	public List<User> getBadgesRecipients(long... badgeIds);
+	public PagedList<User> getBadgesRecipients(long... badgeIds);
 	
 	/**
 	 * Gets the badges recipients.
@@ -637,7 +638,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the badges recipients
 	 */
-	public List<User> getBadgesRecipients(Paging paging, long... badgeIds);
+	public PagedList<User> getBadgesRecipients(Paging paging, long... badgeIds);
 
 	// Tag Methods
 	/**
@@ -645,7 +646,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tags
 	 */
-	public List<Tag> getTags();
+	public PagedList<Tag> getTags();
 	
 	/**
 	 * Gets the tags.
@@ -654,7 +655,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tags
 	 */
-	public List<Tag> getTags(Tag.SortOrder sort);
+	public PagedList<Tag> getTags(Tag.SortOrder sort);
 	
 	/**
 	 * Gets the tags.
@@ -663,7 +664,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tags
 	 */
-	public List<Tag> getTags(Paging paging);
+	public PagedList<Tag> getTags(Paging paging);
 	
 	/**
 	 * Gets the tags.
@@ -673,7 +674,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tags
 	 */
-	public List<Tag> getTags(Tag.SortOrder sort, Paging paging);
+	public PagedList<Tag> getTags(Tag.SortOrder sort, Paging paging);
 	
 	/**
 	 * Gets the tags for users.
@@ -682,7 +683,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tags for users
 	 */
-	public List<Tag> getTagsForUsers(long... userIds);
+	public PagedList<Tag> getTagsForUsers(long... userIds);
 	
 	/**
 	 * Gets the tags for users.
@@ -692,7 +693,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the tags for users
 	 */
-	public List<Tag> getTagsForUsers(Paging paging, long... userIds);
+	public PagedList<Tag> getTagsForUsers(Paging paging, long... userIds);
 	
 	// Answer Methods
 	/**
@@ -702,7 +703,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by questions
 	 */
-	public List<Answer> getAnswersByQuestions(long... questionIds); 
+	public PagedList<Answer> getAnswersByQuestions(long... questionIds); 
 	
 	/**
 	 * Gets the answers by questions.
@@ -712,7 +713,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by questions
 	 */
-	public List<Answer> getAnswersByQuestions(Set<FilterOption> filterOptions, long... questionIds); 
+	public PagedList<Answer> getAnswersByQuestions(Set<FilterOption> filterOptions, long... questionIds); 
 	
 	/**
 	 * Gets the answers by questions.
@@ -722,7 +723,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by questions
 	 */
-	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, long... questionIds);
+	public PagedList<Answer> getAnswersByQuestions(Answer.SortOrder sort, long... questionIds);
 	
 	/**
 	 * Gets the answers by questions.
@@ -732,7 +733,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by questions
 	 */
-	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Range range, long... questionIds);
+	public PagedList<Answer> getAnswersByQuestions(Answer.SortOrder sort, Range range, long... questionIds);
 	
 	/**
 	 * Gets the answers by questions.
@@ -743,7 +744,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by questions
 	 */
-	public List<Answer> getAnswersByQuestions(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... questionIds);
+	public PagedList<Answer> getAnswersByQuestions(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... questionIds);
 	
 	/**
 	 * Gets the answers by users.
@@ -752,7 +753,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by users
 	 */
-	public List<Answer> getAnswersByUsers(long... userIds); 
+	public PagedList<Answer> getAnswersByUsers(long... userIds); 
 	
 	/**
 	 * Gets the answers by users.
@@ -762,7 +763,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by users
 	 */
-	public List<Answer> getAnswersByUsers(Set<FilterOption> filterOptions, long... userIds); 
+	public PagedList<Answer> getAnswersByUsers(Set<FilterOption> filterOptions, long... userIds); 
 	
 	/**
 	 * Gets the answers by users.
@@ -772,7 +773,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by users
 	 */
-	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds);
+	public PagedList<Answer> getAnswersByUsers(Answer.SortOrder sort, long... userIds);
 	
 	/**
 	 * Gets the answers by users.
@@ -782,7 +783,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by users
 	 */
-	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Range range, long... userIds);
+	public PagedList<Answer> getAnswersByUsers(Answer.SortOrder sort, Range range, long... userIds);
 	
 	/**
 	 * Gets the answers by users.
@@ -793,7 +794,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers by users
 	 */
-	public List<Answer> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... userIds);
+	public PagedList<Answer> getAnswersByUsers(Answer.SortOrder sort, Set<FilterOption> filterOptions, long... userIds);
 	
 	/**
 	 * Gets the answers.
@@ -802,7 +803,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers
 	 */
-	public List<Answer> getAnswers(long... answerIds);
+	public PagedList<Answer> getAnswers(long... answerIds);
 	
 	/**
 	 * Gets the answers.
@@ -812,7 +813,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the answers
 	 */
-	public List<Answer> getAnswers(Set<FilterOption> filterOptions, long... answerIds);
+	public PagedList<Answer> getAnswers(Set<FilterOption> filterOptions, long... answerIds);
 	
 	// Comment Methods
 	/**
@@ -822,7 +823,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments
 	 */
-	public List<Comment> getUsersComments(long... userIds);
+	public PagedList<Comment> getUsersComments(long... userIds);
 	
 	/**
 	 * Gets the users comments.
@@ -832,7 +833,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments
 	 */
-	public List<Comment> getUsersComments(Comment.SortOrder sort, long... userIds);
+	public PagedList<Comment> getUsersComments(Comment.SortOrder sort, long... userIds);
 	
 	/**
 	 * Gets the users comments.
@@ -842,7 +843,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments
 	 */
-	public List<Comment> getUsersComments(Comment.SortOrder sort, Range range, long... userIds);
+	public PagedList<Comment> getUsersComments(Comment.SortOrder sort, Range range, long... userIds);
 	
 	/**
 	 * Gets the users comments.
@@ -852,7 +853,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments
 	 */
-	public List<Comment> getUsersComments(TimePeriod timePeriod, long... userIds);
+	public PagedList<Comment> getUsersComments(TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the users comments.
@@ -862,7 +863,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments
 	 */
-	public List<Comment> getUsersComments(Paging paging, long... userIds);
+	public PagedList<Comment> getUsersComments(Paging paging, long... userIds);
 	
 	/**
 	 * Gets the users comments.
@@ -874,7 +875,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments
 	 */
-	public List<Comment> getUsersComments(Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
+	public PagedList<Comment> getUsersComments(Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
 
 	/**
 	 * Gets the users comments to user.
@@ -884,7 +885,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments to user
 	 */
-	public List<Comment> getUsersCommentsToUser(long toUserId, long... userIds);
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, long... userIds);
 	
 	/**
 	 * Gets the users comments to user.
@@ -895,7 +896,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments to user
 	 */
-	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, long... userIds);
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, long... userIds);
 	
 	/**
 	 * Gets the users comments to user.
@@ -906,7 +907,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments to user
 	 */
-	public List<Comment> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod, long... userIds);
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the users comments to user.
@@ -917,7 +918,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments to user
 	 */
-	public List<Comment> getUsersCommentsToUser(long toUserId, Paging paging, long... userIds);
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Paging paging, long... userIds);
 	
 	/**
 	 * Gets the users comments to user.
@@ -930,7 +931,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the users comments to user
 	 */
-	public List<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
+	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort, Paging paging, TimePeriod timePeriod, long... userIds);
 	
 	/**
 	 * Gets the comments.
@@ -939,7 +940,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the comments
 	 */
-	public List<Comment> getComments(long... commentIds);
+	public PagedList<Comment> getComments(long... commentIds);
 	
 	// Statistics Method
 	/**
@@ -957,7 +958,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the revisions for posts
 	 */
-	public List<Revision> getRevisionsForPosts(long... postIds);
+	public PagedList<Revision> getRevisionsForPosts(long... postIds);
 	
 	/**
 	 * Gets the revisions for posts.
@@ -967,7 +968,7 @@ public interface StackOverflowApiClient extends StackOverflowAuthenticationClien
 	 * 
 	 * @return the revisions for posts
 	 */
-	public List<Revision> getRevisionsForPosts(TimePeriod timePeriod, long... postIds);
+	public PagedList<Revision> getRevisionsForPosts(TimePeriod timePeriod, long... postIds);
 	
 	/**
 	 * Gets the revision for post.

@@ -1,6 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
-import java.util.List;
+
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface Tags.
@@ -12,13 +13,13 @@ public interface Tags extends SchemaEntity {
 	 * 
 	 * @return the tags
 	 */
-	public List<Tag> getTags();
+	public PagedList<Tag> getTags();
 
 	/**
 	 * Sets the tags.
 	 * 
 	 * @param tags the new tags
 	 */
-	public void setTags(List<Tag> tags);
+	public void setTags(PagedList<Tag> tags);
 
 }

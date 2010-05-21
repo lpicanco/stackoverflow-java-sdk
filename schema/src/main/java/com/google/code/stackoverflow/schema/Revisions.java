@@ -1,6 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
-import java.util.List;
+
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface Revisions.
@@ -12,12 +13,12 @@ public interface Revisions extends SchemaEntity {
 	 * 
 	 * @return the revisions
 	 */
-	public List<Revision> getRevisions();
+	public PagedList<Revision> getRevisions();
 
 	/**
 	 * Sets the revisions.
 	 * 
 	 * @param revisions the new revisions
 	 */
-	public void setRevisions(List<Revision> revisions);
+	public void setRevisions(PagedList<Revision> revisions);
 }

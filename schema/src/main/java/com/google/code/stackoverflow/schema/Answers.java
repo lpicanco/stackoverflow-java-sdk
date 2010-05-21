@@ -1,6 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
-import java.util.List;
+
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface Answers.
@@ -12,13 +13,13 @@ public interface Answers extends SchemaEntity {
 	 * 
 	 * @return the answers
 	 */
-	public List<Answer> getAnswers();
+	public PagedList<Answer> getAnswers();
 
 	/**
 	 * Sets the answers.
 	 * 
 	 * @param answers the new answers
 	 */
-	public void setAnswers(List<Answer> answers);
+	public void setAnswers(PagedList<Answer> answers);
 
 }

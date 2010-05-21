@@ -1,6 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
-import java.util.List;
+
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface Questions.
@@ -12,13 +13,13 @@ public interface Questions extends SchemaEntity {
 	 * 
 	 * @return the questions
 	 */
-	public List<Question> getQuestions();
+	public PagedList<Question> getQuestions();
 
 	/**
 	 * Sets the questions.
 	 * 
 	 * @param questions the new questions
 	 */
-	public void setQuestions(List<Question> questions);
+	public void setQuestions(PagedList<Question> questions);
 
 }

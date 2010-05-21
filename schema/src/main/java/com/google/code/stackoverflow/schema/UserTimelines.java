@@ -1,6 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
-import java.util.List;
+
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface UserTimelines.
@@ -12,13 +13,13 @@ public interface UserTimelines extends SchemaEntity {
 	 * 
 	 * @return the timelines
 	 */
-	public List<UserTimeline> getTimelines();
+	public PagedList<UserTimeline> getTimelines();
 
 	/**
 	 * Sets the timelines.
 	 * 
 	 * @param timelines the new timelines
 	 */
-	public void setTimelines(List<UserTimeline> timelines);
+	public void setTimelines(PagedList<UserTimeline> timelines);
 
 }

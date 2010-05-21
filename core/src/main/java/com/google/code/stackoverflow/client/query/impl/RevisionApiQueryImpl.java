@@ -3,10 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.RevisionApiQuery;
 import com.google.code.stackoverflow.schema.Revision;
@@ -58,7 +58,7 @@ public class RevisionApiQueryImpl extends BaseStackOverflowApiQuery<Revision> im
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Revision> unmarshall(JSONObject json) {
+	protected PagedList<Revision> unmarshall(JSONObject json) {
 		RevisionsImpl adapter = new RevisionsImpl();
 		adapter.adaptFrom(json);
 		return adapter.getRevisions();

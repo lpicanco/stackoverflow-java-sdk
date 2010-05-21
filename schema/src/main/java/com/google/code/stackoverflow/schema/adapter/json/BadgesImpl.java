@@ -3,12 +3,11 @@
  */
 package com.google.code.stackoverflow.schema.adapter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedArrayList;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.Badges;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;
@@ -22,19 +21,19 @@ public class BadgesImpl extends BaseJsonAdapter implements Badges, Adaptable<Bad
 	private static final long serialVersionUID = -5190225278764284533L;
 	
 	/** The badges. */
-	private List<Badge> badges = new ArrayList<Badge>();
+	private PagedList<Badge> badges = new PagedArrayList<Badge>();
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Badges#getBadges()
 	 */
-	public List<Badge> getBadges() {
+	public PagedList<Badge> getBadges() {
 		return badges;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.schema.Badges#setBadges(java.util.List)
 	 */
-	public void setBadges(List<Badge> badges) {
+	public void setBadges(PagedList<Badge> badges) {
 		this.badges = badges;
 	}
 
@@ -44,6 +43,9 @@ public class BadgesImpl extends BaseJsonAdapter implements Badges, Adaptable<Bad
 	@Override
 	public void adaptFrom(JSONObject adaptee) {
 		copyProperties(this, adaptee);
+		getBadges().setTotal(getLongProperty(adaptee, "total"));
+		getBadges().setPage(getIntProperty(adaptee, "page"));
+		getBadges().setPageSize(getIntProperty(adaptee, "pagesize"));
 		JSONArray badges = (JSONArray) adaptee.get("badges");
 		if (badges != null) {
 			for (Object o : badges) {			

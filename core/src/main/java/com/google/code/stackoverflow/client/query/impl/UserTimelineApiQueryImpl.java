@@ -3,10 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.UserTimelineApiQuery;
 import com.google.code.stackoverflow.schema.TimePeriod;
@@ -49,7 +49,7 @@ public class UserTimelineApiQueryImpl extends BaseStackOverflowApiQuery<UserTime
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<UserTimeline> unmarshall(JSONObject json) {
+	protected PagedList<UserTimeline> unmarshall(JSONObject json) {
 		UserTimelinesImpl adapter = new UserTimelinesImpl();
 		adapter.adaptFrom(json);
 		return adapter.getTimelines();

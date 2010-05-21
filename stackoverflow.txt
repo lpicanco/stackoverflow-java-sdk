@@ -42,7 +42,8 @@ X. 8. User Timeline and Post Timeline are different. Change them
 X. 9. Implement vectorized requests. http://dev.meta.stackoverflow.com/questions/34940/vectorized-requests
 7. Modify the client facade to use query API.
 8. Remove Query classification and create separate classes for each classification.
-9. Add new owner and user fields and remove old fields.
+X. 9. Add new owner and user fields and remove old fields.
+X. 10. PagedList
 
 http://api.stackoverflow.com/0.8/help
 http://code.google.com/p/theworldsworststackoverflowclone/

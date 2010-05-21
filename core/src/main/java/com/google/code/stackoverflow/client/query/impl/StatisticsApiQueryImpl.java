@@ -3,11 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedArrayList;
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.StatisticsApiQuery;
 import com.google.code.stackoverflow.schema.Statistics;
@@ -31,10 +30,12 @@ public class StatisticsApiQueryImpl extends BaseStackOverflowApiQuery<Statistics
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Statistics> unmarshall(JSONObject json) {
+	protected PagedList<Statistics> unmarshall(JSONObject json) {
 		Statistics adapter = new StatisticsImpl();
 		((StatisticsImpl) adapter).adaptFrom(json);
-		return Collections.singletonList(adapter);
+		PagedList<Statistics> list = new PagedArrayList<Statistics>();
+		list.add(adapter);
+		return list;
 	}
 
 	/* (non-Javadoc)

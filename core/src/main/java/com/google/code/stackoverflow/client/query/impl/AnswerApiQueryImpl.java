@@ -3,11 +3,11 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 import java.util.Set;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.AnswerApiQuery;
@@ -103,7 +103,7 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Answer> unmarshall(JSONObject json) {
+	protected PagedList<Answer> unmarshall(JSONObject json) {
 		AnswersImpl adapter = new AnswersImpl();
 		adapter.adaptFrom(json);
 		return adapter.getAnswers();

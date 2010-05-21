@@ -3,10 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.UserApiQuery;
@@ -69,7 +69,7 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<User> unmarshall(JSONObject json) {
+	protected PagedList<User> unmarshall(JSONObject json) {
 		UsersImpl adapter = new UsersImpl();
 		adapter.adaptFrom(json);
 		return adapter.getUsers();

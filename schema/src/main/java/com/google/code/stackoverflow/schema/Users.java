@@ -1,6 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
-import java.util.List;
+
+import com.google.code.stackoverflow.client.common.PagedList;
 
 /**
  * The Interface Users.
@@ -12,13 +13,13 @@ public interface Users extends SchemaEntity {
 	 * 
 	 * @return the users
 	 */
-	public List<User> getUsers();
+	public PagedList<User> getUsers();
 
 	/**
 	 * Sets the users.
 	 * 
 	 * @param users the new users
 	 */
-	public void setUsers(List<User> users);
+	public void setUsers(PagedList<User> users);
 
 }

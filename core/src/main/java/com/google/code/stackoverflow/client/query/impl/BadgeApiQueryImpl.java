@@ -3,10 +3,10 @@
  */
 package com.google.code.stackoverflow.client.query.impl;
 
-import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.BadgeApiQuery;
@@ -64,7 +64,7 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected List<Badge> unmarshall(JSONObject json) {
+	protected PagedList<Badge> unmarshall(JSONObject json) {
 		BadgesImpl adapter = new BadgesImpl();
 		adapter.adaptFrom(json);
 		return adapter.getBadges();

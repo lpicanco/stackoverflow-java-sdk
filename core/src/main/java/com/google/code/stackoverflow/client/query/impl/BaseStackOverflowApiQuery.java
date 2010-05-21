@@ -8,6 +8,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
 import com.google.code.stackoverflow.client.impl.StackOverflowApiGateway;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
@@ -54,7 +55,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
 	 * @see com.google.code.stackoverflow.client.query.StackOverflowApiQuery#list()
 	 */
 	@Override
-	public List<T> list() {
+	public PagedList<T> list() {
 		InputStream jsonContent = null;
         try {
         	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
@@ -124,7 +125,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
 	 * 
 	 * @return the list< t>
 	 */
-	protected abstract List<T> unmarshall(JSONObject json);
+	protected abstract PagedList<T> unmarshall(JSONObject json);
 	
 	/**
 	 * Gets the first element.
