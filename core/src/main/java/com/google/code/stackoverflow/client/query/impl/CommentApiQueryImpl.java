@@ -31,35 +31,6 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withClassification(com.google.code.stackoverflow.client.query.CommentApiQuery.Classification)
-	 */
-	@Override
-	public CommentApiQuery withClassification(Classification classification) {
-		switch (classification) {
-		case MENTION:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_USER_MENTIONS);
-			
-			break;
-
-		case USER_COMMENT:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
-			
-			break;
-			
-		case CONVERSATION:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
-			
-			break;
-			
-		default:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENT);
-		
-			break;
-		}
-		return this;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.query.CommentApiQuery#withCommentIds(long[])
 	 */
 	@Override
@@ -135,5 +106,29 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	public CommentApiQuery withRange(Range range) {
 		apiUrlBuilder.withRange(range);
 		return this;
+	}
+
+	@Override
+	public PagedList<Comment> listUserComments() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+		return super.list();
+	}
+
+	@Override
+	public PagedList<Comment> listUserCommentsToUser() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
+		return super.list();
+	}
+
+	@Override
+	public PagedList<Comment> listUserMentions() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_USER_MENTIONS);
+		return super.list();
+	}
+	
+	@Override
+	public PagedList<Comment> list() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_COMMENT);
+		return super.list();
 	}
 }

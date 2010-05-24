@@ -92,28 +92,21 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 		return this;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.query.UserApiQuery#withClassification(com.google.code.stackoverflow.client.query.UserApiQuery.Classification)
-	 */
-	@Override
-	public UserApiQuery withClassification(Classification classification) {
-		switch (classification) {
-		case BY_BADGE:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
-			
-			break;
-
-		default:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_USERS);
-		
-			break;
-		}
-		return this;
-	}
-
 	@Override
 	public UserApiQuery withRange(Range range) {
 		apiUrlBuilder.withRange(range);
 		return this;
+	}
+
+	@Override
+	public PagedList<User> listByBadge() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGE_RECIPIENTS);
+		return super.list();
+	}
+	
+	@Override
+	public PagedList<User> list() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_USERS);
+		return super.list();
 	}
 }

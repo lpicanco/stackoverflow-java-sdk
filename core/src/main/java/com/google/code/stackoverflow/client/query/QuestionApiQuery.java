@@ -5,6 +5,7 @@ package com.google.code.stackoverflow.client.query;
 
 import java.util.Set;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
@@ -17,20 +18,20 @@ import com.google.code.stackoverflow.schema.TimePeriod;
 public interface QuestionApiQuery extends StackOverflowApiQuery<Question> {
 	
 	/**
-	 * The Enum Classification.
+	 * @return the list
 	 */
-	public enum Classification {
-		
-		/** The NONE. */
-		NONE, 
- /** The UNANSWERED. */
- UNANSWERED, 
- /** The FAVORITE. */
- FAVORITE, 
- /** The TAGGED. */
- TAGGED;
-	}
+	public PagedList<Question> listUnansweredQuestions();
+	
+	/**
+	 * @return the list
+	 */
+	public PagedList<Question> listFavoriteQuestions();
 
+	/**
+	 * @return the list
+	 */
+	public PagedList<Question> listUnTaggedQuestions();
+	
 	/**
 	 * With question ids.
 	 * 
@@ -111,13 +112,4 @@ public interface QuestionApiQuery extends StackOverflowApiQuery<Question> {
 	 * @return the question api query
 	 */
 	public QuestionApiQuery withFetchOptions(Set<FilterOption> fetchOptions);
-	
-	/**
-	 * With classification.
-	 * 
-	 * @param classification the classification
-	 * 
-	 * @return the question api query
-	 */
-	public QuestionApiQuery withClassification(Classification classification);
 }

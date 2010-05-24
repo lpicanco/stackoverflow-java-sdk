@@ -57,25 +57,6 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.query.TagApiQuery#withClassification(com.google.code.stackoverflow.client.query.TagApiQuery.Classification)
-	 */
-	@Override
-	public TagApiQuery withClassification(Classification classification) {
-		switch (classification) {
-		case BY_USER:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_TAGS_FOR_USER);
-			
-			break;
-
-		default:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_TAGS);
-		
-			break;
-		}
-		return this;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
@@ -97,5 +78,17 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	public TagApiQuery withRange(Range range) {
 		apiUrlBuilder.withRange(range);
 		return this;
+	}
+
+	@Override
+	public PagedList<Tag> listByUser() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_TAGS_FOR_USER);
+		return super.list();
+	}
+	
+	@Override
+	public PagedList<Tag> list() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_TAGS);
+		return super.list();
 	}
 }

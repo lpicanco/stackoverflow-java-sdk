@@ -34,35 +34,6 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withClassification(com.google.code.stackoverflow.client.query.QuestionApiQuery.Classification)
-	 */
-	@Override
-	public QuestionApiQuery withClassification(Classification classification) {
-		switch (classification) {
-		case UNANSWERED:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
-			
-			break;
-
-		case FAVORITE:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
-			
-			break;
-			
-		case TAGGED:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
-			
-			break;
-			
-		default:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_QUESTIONS);
-		
-			break;
-		}
-		return this;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.query.QuestionApiQuery#withFetchOptions(java.util.Set)
 	 */
 	@Override
@@ -156,5 +127,29 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	public QuestionApiQuery withRange(Range range) {
 		apiUrlBuilder.withRange(range);
 		return this;
+	}
+
+	@Override
+	public PagedList<Question> listFavoriteQuestions() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_FAVORITE_QUESTIONS);
+		return super.list();
+	}
+
+	@Override
+	public PagedList<Question> listUnTaggedQuestions() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
+		return super.list();
+	}
+
+	@Override
+	public PagedList<Question> listUnansweredQuestions() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_UN_ANSWERED_QUESTIONS);
+		return super.list();
+	}
+	
+	@Override
+	public PagedList<Question> list() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_QUESTIONS);
+		return super.list();
 	}
 }

@@ -3,6 +3,7 @@
  */
 package com.google.code.stackoverflow.client.query;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.Tag;
@@ -13,15 +14,9 @@ import com.google.code.stackoverflow.schema.Tag;
 public interface TagApiQuery extends StackOverflowApiQuery<Tag> {
 	
 	/**
-	 * The Enum Classification.
+	 * @return the list
 	 */
-	public enum Classification {
-		
-		/** The NONE. */
-		NONE, 
- /** The B y_ user. */
- BY_USER;
-	}
+	public PagedList<Tag> listByUser();
 	
 	/**
 	 * With user ids.
@@ -58,13 +53,4 @@ public interface TagApiQuery extends StackOverflowApiQuery<Tag> {
 	 * @return the tag api query
 	 */
 	public TagApiQuery withRange(Range range);
-	
-	/**
-	 * With classification.
-	 * 
-	 * @param classification the classification
-	 * 
-	 * @return the tag api query
-	 */
-	public TagApiQuery withClassification(Classification classification);
 }

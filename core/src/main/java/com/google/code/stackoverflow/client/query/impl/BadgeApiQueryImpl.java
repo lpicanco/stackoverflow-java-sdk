@@ -28,30 +28,6 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.query.BadgeApiQuery#withClassification(com.google.code.stackoverflow.client.query.BadgeApiQuery.Classification)
-	 */
-	@Override
-	public BadgeApiQuery withClassification(Classification classification) {
-		switch (classification) {
-		case BY_NAME:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES_BY_NAME);
-			
-			break;
-
-		case BY_TAGS:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES_BY_TAGS);
-			
-			break;
-
-		default:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES);
-		
-			break;
-		}
-		return this;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.query.BadgeApiQuery#withUserIds(long[])
 	 */
 	@Override
@@ -76,5 +52,23 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackOverflowApiMethods.GET_BADGES, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public PagedList<Badge> listByName() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES_BY_NAME);
+		return super.list();
+	}
+
+	@Override
+	public PagedList<Badge> listByTags() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES_BY_TAGS);
+		return super.list();
+	}
+	
+	@Override
+	public PagedList<Badge> list() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES);
+		return super.list();
 	}
 }
