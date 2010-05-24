@@ -6,8 +6,8 @@ package com.google.code.stackoverflow.schema.adapter.json;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.google.code.stackoverflow.client.common.PagedArrayList;
-import com.google.code.stackoverflow.client.common.PagedList;
+import com.google.code.stackoverflow.common.PagedArrayList;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.PostTimeline;
 import com.google.code.stackoverflow.schema.PostTimelines;
 import com.google.code.stackoverflow.schema.adapter.Adaptable;

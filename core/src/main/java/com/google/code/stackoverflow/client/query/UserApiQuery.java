@@ -3,7 +3,7 @@
  */
 package com.google.code.stackoverflow.client.query;
 
-import com.google.code.stackoverflow.client.common.PagedList;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.User;

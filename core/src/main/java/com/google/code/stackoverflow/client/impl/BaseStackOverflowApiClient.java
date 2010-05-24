@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.code.stackoverflow.client.StackOverflowApiClient;
-import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Answers;
 import com.google.code.stackoverflow.schema.Badge;

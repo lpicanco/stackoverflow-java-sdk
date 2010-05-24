@@ -5,7 +5,7 @@ package com.google.code.stackoverflow.client.query;
 
 
 import com.google.code.stackoverflow.client.StackOverflowAuthenticationClient;
-import com.google.code.stackoverflow.client.common.PagedList;
+import com.google.code.stackoverflow.common.PagedList;
 
 /**
  * The Interface StackOverflowApiQuery.

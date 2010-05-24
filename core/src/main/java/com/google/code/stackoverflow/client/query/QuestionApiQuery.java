@@ -5,7 +5,7 @@ package com.google.code.stackoverflow.client.query;
 
 import java.util.Set;
 
-import com.google.code.stackoverflow.client.common.PagedList;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;

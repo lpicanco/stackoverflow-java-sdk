@@ -8,11 +8,11 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
 import com.google.code.stackoverflow.client.impl.StackOverflowApiGateway;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.StackOverflowApiQuery;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.Error;
 import com.google.code.stackoverflow.schema.adapter.json.ErrorImpl;
 
