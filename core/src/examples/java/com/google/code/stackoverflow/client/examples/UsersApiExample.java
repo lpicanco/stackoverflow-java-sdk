@@ -126,7 +126,7 @@ public class UsersApiExample {
         int width = 80;
         String syntax = UsersApiExample.class.getName() + " <options>";
         String header = MessageFormat.format("\nThe -{0} option is required. The -{1} option is optional.", APPLICATION_KEY_OPTION, ID_OPTION);
-        String footer = MessageFormat.format("\nIf you do not specify -{0} option, the message is sent to the current user. You can specify multiple ids separated by comma.", ID_OPTION);
+        String footer = "";
         new HelpFormatter().printHelp(width, syntax, header, options, footer, false);
     }
 }
