@@ -13,6 +13,7 @@ import com.google.code.stackoverflow.client.exception.StackOverflowApiClientExce
 import com.google.code.stackoverflow.client.impl.StackOverflowApiGateway;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.StackOverflowApiQuery;
+import com.google.code.stackoverflow.schema.Error;
 import com.google.code.stackoverflow.schema.adapter.json.ErrorImpl;
 
 /**
