@@ -1,7 +1,7 @@
 /*
  * 
  */
-package com.google.code.stackoverflow.client.common;
+package com.google.code.stackoverflow.common;
 
 import java.util.List;
 

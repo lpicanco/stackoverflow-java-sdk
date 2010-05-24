@@ -6,7 +6,7 @@ package com.google.code.stackoverflow.client;
 import java.util.List;
 import java.util.Set;
 
-import com.google.code.stackoverflow.client.common.PagedList;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.Badge;
 import com.google.code.stackoverflow.schema.Comment;

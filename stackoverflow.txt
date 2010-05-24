@@ -47,6 +47,7 @@ X. 10. PagedList
 
 http://api.stackoverflow.com/0.8/help
 http://code.google.com/p/theworldsworststackoverflowclone/
+http://stackapps.com/questions/7/how-to-list-your-application-library-wrapper-here
 
 X. WARNING: Additional property 'owner' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.QuestionImpl
 X. WARNING: Additional property 'owner' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.CommentImpl

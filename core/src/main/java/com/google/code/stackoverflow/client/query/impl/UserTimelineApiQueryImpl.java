@@ -6,9 +6,9 @@ package com.google.code.stackoverflow.client.query.impl;
 
 import org.json.simple.JSONObject;
 
-import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.query.UserTimelineApiQuery;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.TimePeriod;
 import com.google.code.stackoverflow.schema.UserTimeline;
 import com.google.code.stackoverflow.schema.adapter.json.UserTimelinesImpl;

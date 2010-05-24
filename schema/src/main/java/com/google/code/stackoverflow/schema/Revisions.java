@@ -1,7 +1,7 @@
 package com.google.code.stackoverflow.schema;
 
 
-import com.google.code.stackoverflow.client.common.PagedList;
+import com.google.code.stackoverflow.common.PagedList;
 
 /**
  * The Interface Revisions.

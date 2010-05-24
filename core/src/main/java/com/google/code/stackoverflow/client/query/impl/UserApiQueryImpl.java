@@ -6,10 +6,10 @@ package com.google.code.stackoverflow.client.query.impl;
 
 import org.json.simple.JSONObject;
 
-import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.client.constant.StackOverflowApiMethods;
 import com.google.code.stackoverflow.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackoverflow.client.query.UserApiQuery;
+import com.google.code.stackoverflow.common.PagedList;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.User;
