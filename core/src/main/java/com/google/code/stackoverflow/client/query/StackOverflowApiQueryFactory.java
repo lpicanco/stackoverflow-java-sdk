@@ -41,9 +41,6 @@ public class StackOverflowApiQueryFactory {
      * @return the stack overflow api query factory
      */
     public static StackOverflowApiQueryFactory newInstance(String applicationKey) {
-    	if (applicationKey == null || applicationKey.length() == 0) {
-    		throw new IllegalArgumentException("Please provide valid application key.");
-    	}
         return new StackOverflowApiQueryFactory(applicationKey);
     }
     
