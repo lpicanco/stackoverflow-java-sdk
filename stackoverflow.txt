@@ -41,7 +41,7 @@ X. 7. Convert error codes to exceptions.
 X. 8. User Timeline and Post Timeline are different. Change them
 X. 9. Implement vectorized requests. http://dev.meta.stackoverflow.com/questions/34940/vectorized-requests
 7. Modify the client facade to use query API.
-8. Remove Query classification and create separate classes for each classification.
+X. 8. Remove Query classification and create separate classes for each classification.
 X. 9. Add new owner and user fields and remove old fields.
 X. 10. PagedList
 
