@@ -3,6 +3,7 @@
  */
 package com.google.code.stackoverflow.client.query;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Comment;
 import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Range;
@@ -14,20 +15,20 @@ import com.google.code.stackoverflow.schema.TimePeriod;
 public interface CommentApiQuery extends StackOverflowApiQuery<Comment> {
 	
 	/**
-	 * The Enum Classification.
+	 * @return the list
 	 */
-	public enum Classification {
-		
-		/** The COMMENT. */
-		COMMENT, 
- /** The USE r_ comment. */
- USER_COMMENT, 
- /** The MENTION. */
- MENTION, 
- /** The CONVERSATION. */
- CONVERSATION;
-	}
+	public PagedList<Comment> listUserComments();
+	
+	/**
+	 * @return the list
+	 */
+	public PagedList<Comment> listUserMentions();
 
+	/**
+	 * @return the list
+	 */
+	public PagedList<Comment> listUserCommentsToUser();
+	
 	/**
 	 * With comment ids.
 	 * 
@@ -90,13 +91,4 @@ public interface CommentApiQuery extends StackOverflowApiQuery<Comment> {
 	 * @return the comment api query
 	 */
 	public CommentApiQuery withRange(Range range);
-	
-	/**
-	 * With classification.
-	 * 
-	 * @param classification the classification
-	 * 
-	 * @return the comment api query
-	 */
-	public CommentApiQuery withClassification(Classification classification);
 }

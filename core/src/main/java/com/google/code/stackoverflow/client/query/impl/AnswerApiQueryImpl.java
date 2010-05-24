@@ -76,30 +76,6 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.query.AnswerApiQuery#withClassification(com.google.code.stackoverflow.client.query.AnswerApiQuery.Classification)
-	 */
-	@Override
-	public AnswerApiQuery withClassification(Classification classification) {
-		switch (classification) {
-		case BY_USER:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
-			
-			break;
-
-		case BY_QUESTION:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
-			
-			break;
-
-		default:
-			((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWER);
-		
-			break;
-		}
-		return this;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
@@ -121,5 +97,23 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	public AnswerApiQuery withRange(Range range) {
 		apiUrlBuilder.withRange(range);
 		return this;
+	}
+
+	@Override
+	public PagedList<Answer> listByQuestions() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWERS_BY_QUESTION);
+		return super.list();
+	}
+
+	@Override
+	public PagedList<Answer> listByUsers() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWERS_BY_USER);
+		return super.list();
+	}
+	
+	@Override
+	public PagedList<Answer> list() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_ANSWER);
+		return super.list();
 	}
 }

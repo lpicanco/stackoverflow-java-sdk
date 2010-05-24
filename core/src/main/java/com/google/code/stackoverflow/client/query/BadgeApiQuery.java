@@ -3,6 +3,7 @@
  */
 package com.google.code.stackoverflow.client.query;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Badge;
 
 /**
@@ -11,17 +12,14 @@ import com.google.code.stackoverflow.schema.Badge;
 public interface BadgeApiQuery extends StackOverflowApiQuery<Badge> {
 	
 	/**
-	 * The Enum Classification.
+	 * @return the list
 	 */
-	public enum Classification {
-		
-		/** The NONE. */
-		NONE, 
- /** The B y_ name. */
- BY_NAME, 
- /** The B y_ tags. */
- BY_TAGS;
-	}
+	public PagedList<Badge> listByName();
+	
+	/**
+	 * @return the list
+	 */
+	public PagedList<Badge> listByTags();
 	
 	/**
 	 * With user ids.
@@ -31,13 +29,4 @@ public interface BadgeApiQuery extends StackOverflowApiQuery<Badge> {
 	 * @return the badge api query
 	 */
 	public BadgeApiQuery withUserIds(long... userIds);
-
-	/**
-	 * With classification.
-	 * 
-	 * @param classification the classification
-	 * 
-	 * @return the badge api query
-	 */
-	public BadgeApiQuery withClassification(Classification classification);
 }

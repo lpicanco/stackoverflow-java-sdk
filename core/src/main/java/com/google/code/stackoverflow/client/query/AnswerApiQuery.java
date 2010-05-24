@@ -5,6 +5,7 @@ package com.google.code.stackoverflow.client.query;
 
 import java.util.Set;
 
+import com.google.code.stackoverflow.client.common.PagedList;
 import com.google.code.stackoverflow.schema.Answer;
 import com.google.code.stackoverflow.schema.FilterOption;
 import com.google.code.stackoverflow.schema.Range;
@@ -15,17 +16,14 @@ import com.google.code.stackoverflow.schema.Range;
 public interface AnswerApiQuery extends StackOverflowApiQuery<Answer> {
 	
 	/**
-	 * The Enum Classification.
+	 * @return the list
 	 */
-	public enum Classification {
-		
-		/** The NONE. */
-		NONE, 
- /** The B y_ user. */
- BY_USER, 
- /** The B y_ question. */
- BY_QUESTION;
-	}
+	public PagedList<Answer> listByUsers();
+	
+	/**
+	 * @return the list
+	 */
+	public PagedList<Answer> listByQuestions();
 	
 	/**
 	 * With answer ids.
@@ -80,13 +78,4 @@ public interface AnswerApiQuery extends StackOverflowApiQuery<Answer> {
 	 * @return the answer api query
 	 */
 	public AnswerApiQuery withFetchOptions(Set<FilterOption> fetchOptions);
-	
-	/**
-	 * With classification.
-	 * 
-	 * @param classification the classification
-	 * 
-	 * @return the answer api query
-	 */
-	public AnswerApiQuery withClassification(Classification classification);
 }
