@@ -70,7 +70,9 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	public DefaultApiUrlBuilder(String methodName, String applicationId, String providerHost) {
 		if (stackOverflowApiUrls.containsKey(methodName)) {
 			this.urlFormat = stackOverflowApiUrls.getProperty(methodName);
-			parametersMap.put("key", applicationId);
+			if (applicationId != null) {
+				parametersMap.put("key", applicationId);
+			}
 			fieldsMap.put("host", providerHost);
 			fieldsMap.put("version", DEFAULT_VERSION);
 		} else {
@@ -90,7 +92,9 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 			String apiVersion) {
 		if (stackOverflowApiUrls.containsKey(methodName)) {
 			this.urlFormat = stackOverflowApiUrls.getProperty(methodName);
-			parametersMap.put("key", applicationId);
+			if (applicationId != null) {
+				parametersMap.put("key", applicationId);
+			}
 			fieldsMap.put("host", providerHost);
 			fieldsMap.put("version", apiVersion);
 		} else {
