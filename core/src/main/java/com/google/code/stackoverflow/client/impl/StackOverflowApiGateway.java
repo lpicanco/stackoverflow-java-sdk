@@ -336,7 +336,9 @@ public abstract class StackOverflowApiGateway {
 	 */
 	protected void closeStream(InputStream is) {
 	    try {
-	        is.close();
+	    	if (is != null) {
+		        is.close();
+	    	}
 	    } catch (IOException e) {
 	    	LOG.log(Level.SEVERE, "An error occurred while closing stream.", e);	
 	    }
