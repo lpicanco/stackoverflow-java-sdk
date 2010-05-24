@@ -71,4 +71,10 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES);
 		return super.list();
 	}
+
+	@Override
+	public PagedList<Badge> listByUsers() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_BADGES_FOR_USER);
+		return super.list();
+	}
 }

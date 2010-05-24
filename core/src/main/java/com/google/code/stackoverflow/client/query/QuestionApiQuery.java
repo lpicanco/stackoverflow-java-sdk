@@ -11,6 +11,7 @@ import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.TimePeriod;
+import com.google.code.stackoverflow.schema.User;
 
 /**
  * The Interface QuestionApiQuery.
@@ -30,7 +31,12 @@ public interface QuestionApiQuery extends StackOverflowApiQuery<Question> {
 	/**
 	 * @return the list
 	 */
-	public PagedList<Question> listUnTaggedQuestions();
+	public PagedList<Question> listTaggedQuestions();
+	
+	/**
+	 * @return the list
+	 */
+	public PagedList<Question> listQuestionsByUser();
 	
 	/**
 	 * With question ids.
@@ -94,6 +100,24 @@ public interface QuestionApiQuery extends StackOverflowApiQuery<Question> {
 	 * @return the question api query
 	 */
 	public QuestionApiQuery withSort(Question.UnansweredSortOrder sort);
+	
+	/**
+	 * With sort.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the question api query
+	 */
+	public QuestionApiQuery withSort(User.QuestionSortOrder sort);
+	
+	/**
+	 * With sort.
+	 * 
+	 * @param sort the sort
+	 * 
+	 * @return the question api query
+	 */
+	public QuestionApiQuery withSort(User.FavoriteSortOrder sort);
 	
 	/**
 	 * With sort.

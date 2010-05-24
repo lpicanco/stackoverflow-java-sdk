@@ -22,6 +22,11 @@ public interface BadgeApiQuery extends StackOverflowApiQuery<Badge> {
 	public PagedList<Badge> listByTags();
 	
 	/**
+	 * @return the list
+	 */
+	public PagedList<Badge> listByUsers();
+	
+	/**
 	 * With user ids.
 	 * 
 	 * @param userIds the user ids

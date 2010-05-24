@@ -17,6 +17,7 @@ import com.google.code.stackoverflow.schema.Paging;
 import com.google.code.stackoverflow.schema.Question;
 import com.google.code.stackoverflow.schema.Range;
 import com.google.code.stackoverflow.schema.TimePeriod;
+import com.google.code.stackoverflow.schema.User;
 import com.google.code.stackoverflow.schema.adapter.json.QuestionsImpl;
 
 /**
@@ -74,6 +75,18 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 */
 	@Override
 	public QuestionApiQuery withSort(Question.UnansweredSortOrder sort) {
+		apiUrlBuilder.withSort(sort);
+		return this;
+	}
+	
+	@Override
+	public QuestionApiQuery withSort(User.QuestionSortOrder sort) {
+		apiUrlBuilder.withSort(sort);
+		return this;
+	}
+	
+	@Override
+	public QuestionApiQuery withSort(User.FavoriteSortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
@@ -136,7 +149,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	}
 
 	@Override
-	public PagedList<Question> listUnTaggedQuestions() {
+	public PagedList<Question> listTaggedQuestions() {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_TAGGED_QUESTIONS);
 		return super.list();
 	}
@@ -150,6 +163,12 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	@Override
 	public PagedList<Question> list() {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_QUESTIONS);
+		return super.list();
+	}
+
+	@Override
+	public PagedList<Question> listQuestionsByUser() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackOverflowApiMethods.GET_QUESTIONS_BY_USER);
 		return super.list();
 	}
 }
