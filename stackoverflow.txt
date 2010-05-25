@@ -59,9 +59,8 @@ X. WARNING: Additional property 'user' found in response for object.class com.go
 X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.RevisionImpl
 
 Query API
-Facade
-Paging
-Throttle Limit
-Provider
-Spring configuration.
+Facade API
 Asynchronous API.
+Paging and Throttle Limits
+Providers
+Spring configuration.
