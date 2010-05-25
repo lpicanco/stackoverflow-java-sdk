@@ -12,9 +12,9 @@
     <property name="source" value="1.6"/>
     <path id="stackoverflow-java-sdk.classpath">
         <pathelement location="bin"/>
-        <pathelement location="dev-lib/junit-4.5.jar"/>
-        <pathelement location="lib/commons-cli-1.2.jar"/>
         <pathelement location="lib/json_simple-1.1.jar"/>
+        <pathelement location="dev-lib/junit-4.5.jar"/>
+        <pathelement location="dev-lib/commons-cli-1.2.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
