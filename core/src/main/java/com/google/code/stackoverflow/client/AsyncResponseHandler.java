@@ -5,13 +5,11 @@ package com.google.code.stackoverflow.client;
 
 import java.util.concurrent.Future;
 
-import com.google.code.stackoverflow.schema.SchemaEntity;
-
 
 /**
  * The Class AsyncResponseHandler.
  */
-public abstract class AsyncResponseHandler<T extends SchemaEntity> {
+public abstract class AsyncResponseHandler<T> {
 	
 	/** The future. */
 	private Future<T> future;

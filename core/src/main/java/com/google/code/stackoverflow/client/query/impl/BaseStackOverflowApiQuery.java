@@ -2,12 +2,14 @@ package com.google.code.stackoverflow.client.query.impl;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.google.code.stackoverflow.client.AsyncResponseHandler;
 import com.google.code.stackoverflow.client.exception.StackOverflowApiClientException;
 import com.google.code.stackoverflow.client.impl.StackOverflowApiGateway;
 import com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder;
@@ -26,6 +28,8 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
     
     /** The parser. */
     private final JSONParser parser = new JSONParser();
+    
+    private List<AsyncResponseHandler<PagedList<T>>> handlers = new ArrayList<AsyncResponseHandler<PagedList<T>>>();
 	
 	/**
 	 * Instantiates a new base stack overflow api query.
@@ -62,7 +66,9 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
         	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
         	Object response = parser.parse(new InputStreamReader(jsonContent));
         	if (response instanceof JSONObject) {
-        		return unmarshall((JSONObject) response);
+        		PagedList<T> responseList = unmarshall((JSONObject) response);
+        		notifyObservers(responseList);
+				return responseList;
         	}
         	throw new StackOverflowApiClientException("Unknown content found in response:" + response.toString());
         } catch (Exception e) {
@@ -82,7 +88,9 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
         	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
         	Object response = parser.parse(new InputStreamReader(jsonContent));
         	if (response instanceof JSONObject) {
-        		return getFirstElement(unmarshall((JSONObject) response));
+        		PagedList<T> responseList = unmarshall((JSONObject) response);
+        		notifyObservers(responseList);
+				return getFirstElement(responseList);
         	}
         	throw new StackOverflowApiClientException("Unknown content found in response:" + response.toString());
         } catch (Exception e) {
@@ -91,6 +99,22 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackOverflowApiGatew
 	        closeStream(jsonContent);
 	    }
 	}
+	
+	protected void notifyObservers(PagedList<T> response) {
+		for(AsyncResponseHandler<PagedList<T>> handler : handlers) {
+			handler.handleResponse(response);
+		}
+	}
+	
+	/**
+	 * List.
+	 * 
+	 * @return the list< t>
+	 */
+	public void addResonseHandler(AsyncResponseHandler<PagedList<T>> handler) {
+		handlers.add(handler);
+	}
+	
 	
     /* (non-Javadoc)
      * @see com.google.code.stackoverflow.client.impl.StackOverflowApiGateway#unmarshallObject(java.lang.Class, java.io.InputStream)
