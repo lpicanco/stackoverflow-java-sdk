@@ -45,7 +45,7 @@ public class ReputationsImpl extends BaseJsonAdapter implements Reputations, Ada
 		getReputations().setTotal(getLongProperty(adaptee, "total"));
 		getReputations().setPage(getIntProperty(adaptee, "page"));
 		getReputations().setPageSize(getIntProperty(adaptee, "pagesize"));
-		JSONArray reputations = (JSONArray) adaptee.get("repchanges");
+		JSONArray reputations = (JSONArray) adaptee.get("rep_changes");
 		if (reputations != null) {
 			for (Object o : reputations) {			
 				ReputationImpl reputation = new ReputationImpl();
