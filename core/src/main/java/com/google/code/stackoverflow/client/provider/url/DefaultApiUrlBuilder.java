@@ -151,6 +151,25 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	}
 
 	/* (non-Javadoc)
+	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withParameters(java.lang.String, java.util.Collection)
+	 */
+	public ApiUrlBuilder withFields(String name,
+			Collection<String> values) {
+		if (values != null && !values.isEmpty()) {
+			StringBuilder builder = new StringBuilder();
+			for (Iterator<String> iterator = values.iterator(); iterator.hasNext();) {
+				builder.append(iterator.next());
+				if (iterator.hasNext()) {
+					builder.append("%20");
+				}
+			}
+			fieldsMap.put(name, builder.toString());
+		}
+
+		return this;
+	}
+	
+	/* (non-Javadoc)
 	 * @see com.google.code.stackoverflow.client.provider.url.ApiUrlBuilder#withParameterEnum(java.lang.String, com.google.code.stackoverflow.schema.ValueEnum)
 	 */
 	public ApiUrlBuilder withParameterEnum(String name,

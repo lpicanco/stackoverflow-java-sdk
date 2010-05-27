@@ -38,6 +38,17 @@ public interface ApiUrlBuilder {
 			Collection<String> values);
 
 	/**
+	 * With parameters.
+	 * 
+	 * @param name the name
+	 * @param values the values
+	 * 
+	 * @return the api url builder
+	 */
+	public ApiUrlBuilder withFields(String name,
+			Collection<String> values);
+	
+	/**
 	 * With parameter enum.
 	 * 
 	 * @param name the name
