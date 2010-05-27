@@ -1096,7 +1096,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	 */
 	@Override
 	public PagedList<Comment> getUsersCommentsToUser(long toUserId, long... userIds) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).buildUrl();
 
         Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
@@ -1110,7 +1110,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	@Override
 	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
 			long... userIds) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withSort(sort).buildUrl();
 
         Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
@@ -1124,7 +1124,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	@Override
 	public PagedList<Comment> getUsersCommentsToUser(long toUserId, TimePeriod timePeriod,
 			long... userIds) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withTimePeriod(timePeriod).buildUrl();
 
         Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
@@ -1138,7 +1138,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	@Override
 	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Paging paging,
 			long... userIds) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withPaging(paging).buildUrl();
 
         Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
@@ -1152,7 +1152,7 @@ public abstract class BaseStackOverflowApiClient extends StackOverflowApiGateway
 	@Override
 	public PagedList<Comment> getUsersCommentsToUser(long toUserId, Comment.SortOrder sort,
 			Paging paging, TimePeriod timePeriod, long... userIds) {
-		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER);
+		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackOverflowApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withSort(sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
 
         Comments comments = readResponse(Comments.class, callApiMethod(apiUrl));
