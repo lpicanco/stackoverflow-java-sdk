@@ -45,7 +45,7 @@ public class UserTimelinesImpl extends BaseJsonAdapter implements UserTimelines,
 		getTimelines().setTotal(getLongProperty(adaptee, "total"));
 		getTimelines().setPage(getIntProperty(adaptee, "page"));
 		getTimelines().setPageSize(getIntProperty(adaptee, "pagesize"));
-		JSONArray timelines = (JSONArray) adaptee.get("usertimelines");
+		JSONArray timelines = (JSONArray) adaptee.get("user_timelines");
 		if (timelines != null) {
 			for (Object o : timelines) {			
 				UserTimelineImpl timeline = new UserTimelineImpl();
