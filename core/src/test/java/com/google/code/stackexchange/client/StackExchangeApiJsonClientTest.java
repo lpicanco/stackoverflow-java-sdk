@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.client;
+package com.google.code.stackexchange.client;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -10,29 +10,29 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.code.stackoverflow.client.constant.TestConstants;
-import com.google.code.stackoverflow.schema.Answer;
-import com.google.code.stackoverflow.schema.Badge;
-import com.google.code.stackoverflow.schema.Comment;
-import com.google.code.stackoverflow.schema.FilterOption;
-import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.Reputation;
-import com.google.code.stackoverflow.schema.Revision;
-import com.google.code.stackoverflow.schema.Tag;
-import com.google.code.stackoverflow.schema.PostTimeline;
-import com.google.code.stackoverflow.schema.User;
-import com.google.code.stackoverflow.schema.UserTimeline;
+import com.google.code.stackexchange.client.constant.TestConstants;
+import com.google.code.stackexchange.schema.Answer;
+import com.google.code.stackexchange.schema.Badge;
+import com.google.code.stackexchange.schema.Comment;
+import com.google.code.stackexchange.schema.FilterOption;
+import com.google.code.stackexchange.schema.PostTimeline;
+import com.google.code.stackexchange.schema.Question;
+import com.google.code.stackexchange.schema.Reputation;
+import com.google.code.stackexchange.schema.Revision;
+import com.google.code.stackexchange.schema.Tag;
+import com.google.code.stackexchange.schema.User;
+import com.google.code.stackexchange.schema.UserTimeline;
 
 /**
- * The Class StackOverflowApiJsonClientTest.
+ * The Class StackExchangeApiJsonClientTest.
  */
-public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
+public class StackExchangeApiJsonClientTest extends StackExchangeApiClientTest {
 	
 	/** The client. */
-	private StackOverflowApiClient client;
+	private StackExchangeApiClient client;
 	
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.StackOverflowApiClientTest#setUp()
+	 * @see com.google.code.stackexchange.client.StackOverflowApiClientTest#setUp()
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -41,7 +41,7 @@ public class StackOverflowApiJsonClientTest extends StackOverflowApiClientTest {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackoverflow.client.StackOverflowApiClientTest#tearDown()
+	 * @see com.google.code.stackexchange.client.StackOverflowApiClientTest#tearDown()
 	 */
 	@After
 	public void tearDown() throws Exception {

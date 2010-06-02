@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.client.examples;
+package com.google.code.stackexchange.client.examples;
 
 import java.text.MessageFormat;
 import java.util.EnumSet;
@@ -15,11 +15,11 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClient;
-import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
-import com.google.code.stackoverflow.schema.FilterOption;
-import com.google.code.stackoverflow.schema.Question;
-import com.google.code.stackoverflow.schema.PostTimeline;
+import com.google.code.stackexchange.client.StackExchangeApiClient;
+import com.google.code.stackexchange.client.StackExchangeApiClientFactory;
+import com.google.code.stackexchange.schema.FilterOption;
+import com.google.code.stackexchange.schema.PostTimeline;
+import com.google.code.stackexchange.schema.Question;
 
 /**
  * The Class QuestionsApiExample.
@@ -63,8 +63,8 @@ public class QuestionsApiExample {
         } else if(line.hasOption(APPLICATION_KEY_OPTION)) {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
-    		final StackOverflowApiClientFactory factory = StackOverflowApiClientFactory.newInstance(keyValue);
-    		final StackOverflowApiClient client = factory.createStackOverflowApiClient();
+    		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
+    		final StackExchangeApiClient client = factory.createStackOverflowApiClient();
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);

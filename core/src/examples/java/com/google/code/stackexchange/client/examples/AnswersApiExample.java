@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.google.code.stackoverflow.client.examples;
+package com.google.code.stackexchange.client.examples;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -14,14 +14,14 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClient;
-import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
-import com.google.code.stackoverflow.schema.Comment;
+import com.google.code.stackexchange.client.StackExchangeApiClient;
+import com.google.code.stackexchange.client.StackExchangeApiClientFactory;
+import com.google.code.stackexchange.schema.Answer;
 
 /**
- * The Class CommentsApiExample.
+ * The Class AnswersApiExample.
  */
-public class CommentsApiExample {
+public class AnswersApiExample {
 
     /** The Constant APPLICATION_KEY_OPTION. */
     private static final String APPLICATION_KEY_OPTION = "key";
@@ -31,7 +31,7 @@ public class CommentsApiExample {
     
     /** The Constant HELP_OPTION. */
     private static final String HELP_OPTION = "help";
-    
+
     /**
      * The main method.
      * 
@@ -60,16 +60,16 @@ public class CommentsApiExample {
         } else if(line.hasOption(APPLICATION_KEY_OPTION)) {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
-    		final StackOverflowApiClientFactory factory = StackOverflowApiClientFactory.newInstance(keyValue);
-    		final StackOverflowApiClient client = factory.createStackOverflowApiClient();
+    		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
+    		final StackExchangeApiClient client = factory.createStackOverflowApiClient();
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
-    			List<Comment> userComments = client.getUsersComments(Long.valueOf(idValue));
-    			for (Comment comment : userComments) {
-    				printResult(comment);
-    			}
-    		}
+    			List<Answer> answersByUser = client.getAnswersByUsers(Long.valueOf(idValue));
+    			for (Answer answer : answersByUser) {
+					printResult(answer);
+				}
+    		} 
         } else {
             printHelp(options);
         }
@@ -78,10 +78,10 @@ public class CommentsApiExample {
 	/**
 	 * Prints the result.
 	 * 
-	 * @param comment the comment
+	 * @param answer the answer
 	 */
-	private static void printResult(Comment comment) {
-		System.out.println(comment.getOwner().getDisplayName() + ":" + comment.getBody());
+	private static void printResult(Answer answer) {
+		System.out.println(answer.getOwner().getDisplayName() + ":" + answer.getTitle());
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class CommentsApiExample {
      */
     private static void printHelp(Options options) {
         int width = 80;
-        String syntax = CommentsApiExample.class.getName() + " <options>";
+        String syntax = AnswersApiExample.class.getName() + " <options>";
         String header = MessageFormat.format("\nThe -{0} option is required. The -{1} option is optional.", APPLICATION_KEY_OPTION, ID_OPTION);
         String footer = "";
         new HelpFormatter().printHelp(width, syntax, header, options, footer, false);

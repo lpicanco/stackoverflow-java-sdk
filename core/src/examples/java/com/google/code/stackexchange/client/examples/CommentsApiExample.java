@@ -1,9 +1,10 @@
 /**
  *
  */
-package com.google.code.stackoverflow.client.examples;
+package com.google.code.stackexchange.client.examples;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -13,18 +14,21 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.code.stackoverflow.client.StackOverflowApiClient;
-import com.google.code.stackoverflow.client.StackOverflowApiClientFactory;
-import com.google.code.stackoverflow.schema.Statistics;
+import com.google.code.stackexchange.client.StackExchangeApiClient;
+import com.google.code.stackexchange.client.StackExchangeApiClientFactory;
+import com.google.code.stackexchange.schema.Comment;
 
 /**
- * The Class StatsApiExample.
+ * The Class CommentsApiExample.
  */
-public class StatsApiExample {
+public class CommentsApiExample {
 
     /** The Constant APPLICATION_KEY_OPTION. */
     private static final String APPLICATION_KEY_OPTION = "key";
 	
+    /** The Constant ID_OPTION. */
+    private static final String ID_OPTION = "id";
+    
     /** The Constant HELP_OPTION. */
     private static final String HELP_OPTION = "help";
     
@@ -56,12 +60,16 @@ public class StatsApiExample {
         } else if(line.hasOption(APPLICATION_KEY_OPTION)) {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
-    		final StackOverflowApiClientFactory factory = StackOverflowApiClientFactory.newInstance(keyValue);
-    		final StackOverflowApiClient client = factory.createStackOverflowApiClient();
+    		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
+    		final StackExchangeApiClient client = factory.createStackOverflowApiClient();
     		
-    		Statistics stats = client.getStatistics();
-    		printResult(stats);
-    		
+    		if(line.hasOption(ID_OPTION)) {
+    			String idValue = line.getOptionValue(ID_OPTION);
+    			List<Comment> userComments = client.getUsersComments(Long.valueOf(idValue));
+    			for (Comment comment : userComments) {
+    				printResult(comment);
+    			}
+    		}
         } else {
             printHelp(options);
         }
@@ -70,20 +78,10 @@ public class StatsApiExample {
 	/**
 	 * Prints the result.
 	 * 
-	 * @param stats the stats
+	 * @param comment the comment
 	 */
-	private static void printResult(Statistics stats) {
-		System.out.println("Answers per minute:" + stats.getAnswersPerMinute());
-		System.out.println("Badges per minute:" + stats.getBadgesPerMinute());
-		System.out.println("Questions per minute:" + stats.getQuestionsPerMinute());
-		System.out.println("Total answers:" + stats.getTotalAnswers());
-		System.out.println("Total badges:" + stats.getTotalBadges());
-		System.out.println("Total comments:" + stats.getTotalComments());
-		System.out.println("Total questions:" + stats.getTotalQuestions());
-		System.out.println("Total unanswered questions:" + stats.getTotalUnanswered());
-		System.out.println("Total users:" + stats.getTotalUsers());
-		System.out.println("Total votes:" + stats.getTotalVotes());
-		System.out.println("API Version:" + stats.getApiVersion().getVersion() + ":" + stats.getApiVersion().getRevision());
+	private static void printResult(Comment comment) {
+		System.out.println(comment.getOwner().getDisplayName() + ":" + comment.getBody());
 	}
 
 	/**
@@ -106,6 +104,13 @@ public class StatsApiExample {
         Option consumerKey = OptionBuilder.create(APPLICATION_KEY_OPTION);
         opts.addOption(consumerKey);
         
+        String idMsg = "ID of the users to whom a message is to be sent (separated by comma).";
+        OptionBuilder.withArgName("id");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription(idMsg);
+        Option id = OptionBuilder.create(ID_OPTION);
+        opts.addOption(id);
+        
         return opts;
     }
 
@@ -116,8 +121,8 @@ public class StatsApiExample {
      */
     private static void printHelp(Options options) {
         int width = 80;
-        String syntax = StatsApiExample.class.getName() + " <options>";
-        String header = MessageFormat.format("\nThe -{0} option is required.", APPLICATION_KEY_OPTION);
+        String syntax = CommentsApiExample.class.getName() + " <options>";
+        String header = MessageFormat.format("\nThe -{0} option is required. The -{1} option is optional.", APPLICATION_KEY_OPTION, ID_OPTION);
         String footer = "";
         new HelpFormatter().printHelp(width, syntax, header, options, footer, false);
     }

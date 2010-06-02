@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.google.code.stackoverflow.client;
+package com.google.code.stackexchange.client;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -16,17 +16,17 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import com.google.code.stackoverflow.client.constant.TestConstants;
-import com.google.code.stackoverflow.schema.Paging;
-import com.google.code.stackoverflow.schema.TimePeriod;
+import com.google.code.stackexchange.client.constant.TestConstants;
+import com.google.code.stackexchange.schema.Paging;
+import com.google.code.stackexchange.schema.TimePeriod;
 
 /**
- * The Class StackOverflowApiClientTest.
+ * The Class StackExchangeApiClientTest.
  */
-public abstract class StackOverflowApiClientTest extends TestCase {
+public abstract class StackExchangeApiClientTest extends TestCase {
 
     /** The factory. */
-    protected StackOverflowApiClientFactory factory;
+    protected StackExchangeApiClientFactory factory;
 
     /** The Constant RESOURCE_MISSING_MESSAGE. */
 	protected static final String RESOURCE_MISSING_MESSAGE = "Please define a test %s in TestConstants.properties file.";
@@ -55,7 +55,7 @@ public abstract class StackOverflowApiClientTest extends TestCase {
     public void setUp() throws Exception {
     	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Application Key"), TestConstants.STACK_OVERFLOW_TEST_API_KEY);
     	factory =
-            StackOverflowApiClientFactory.newInstance(TestConstants.STACK_OVERFLOW_TEST_API_KEY);
+            StackExchangeApiClientFactory.newInstance(TestConstants.STACK_OVERFLOW_TEST_API_KEY);
     }
 
     /* (non-Javadoc)

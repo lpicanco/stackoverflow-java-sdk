@@ -1,10 +1,9 @@
 /**
  * 
  */
-package com.google.code.stackoverflow.client.examples;
+package com.google.code.stackexchange.client.examples;
 
 import java.text.MessageFormat;
-import java.util.EnumSet;
 import java.util.List;
 
 import org.apache.commons.cli.BasicParser;
@@ -15,15 +14,15 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.code.stackoverflow.client.query.QuestionApiQuery;
-import com.google.code.stackoverflow.client.query.StackOverflowApiQueryFactory;
-import com.google.code.stackoverflow.schema.FilterOption;
-import com.google.code.stackoverflow.schema.Question;
+import com.google.code.stackexchange.client.StackExchangeApiClient;
+import com.google.code.stackexchange.client.StackExchangeApiClientFactory;
+import com.google.code.stackexchange.schema.Badge;
+import com.google.code.stackexchange.schema.Tag;
 
 /**
- * The Class QueryApiExample.
+ * The Class BadgesAndTagsApiExample.
  */
-public class QueryApiExample {
+public class BadgesAndTagsApiExample {
 
     /** The Constant APPLICATION_KEY_OPTION. */
     private static final String APPLICATION_KEY_OPTION = "key";
@@ -59,12 +58,18 @@ public class QueryApiExample {
         } else if(line.hasOption(APPLICATION_KEY_OPTION)) {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
-    		final StackOverflowApiQueryFactory factory = StackOverflowApiQueryFactory.newInstance(keyValue);
-    		final QuestionApiQuery query = factory.newQuestionApiQuery();
+    		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
+    		final StackExchangeApiClient client = factory.createStackOverflowApiClient();
     		
-			List<Question> questions = query.withFetchOptions(EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS)).withSort(Question.SortOrder.HOT).list();
-			for (Question question : questions) {
-				printResult(question);
+			List<Badge> badges = client.getBadgesByName();
+			System.out.println("============ Badges ============");
+			for (Badge badge : badges) {
+				printResult(badge);
+			}
+			List<Tag> tags = client.getTags();
+			System.out.println("============ Tags ============");
+			for(Tag tag : tags) {
+				printResult(tag);
 			}
         } else {
             printHelp(options);
@@ -74,10 +79,19 @@ public class QueryApiExample {
 	/**
 	 * Prints the result.
 	 * 
-	 * @param question the question
+	 * @param tag the tag
 	 */
-	private static void printResult(Question question) {
-		System.out.println(question.getTitle() + ":" + question.getAnswerCount());
+	private static void printResult(Tag tag) {
+		System.out.println(tag.getName() + ":" + tag.getCount());
+	}
+
+	/**
+	 * Prints the result.
+	 * 
+	 * @param badge the badge
+	 */
+	private static void printResult(Badge badge) {
+		System.out.println(badge.getName() + ":" + badge.getRank() + ":" + badge.getAwardCount());
 	}
 
 	/**
@@ -110,7 +124,7 @@ public class QueryApiExample {
      */
     private static void printHelp(Options options) {
         int width = 80;
-        String syntax = QueryApiExample.class.getName() + " <options>";
+        String syntax = BadgesAndTagsApiExample.class.getName() + " <options>";
         String header = MessageFormat.format("\nThe -{0} option is required.", APPLICATION_KEY_OPTION);
         String footer = "";
         new HelpFormatter().printHelp(width, syntax, header, options, footer, false);
