@@ -25,6 +25,8 @@ public class TagImpl extends BaseJsonAdapter implements Tag, Adaptable<Tag, JSON
 	/** The user id. */
 	private long userId;
 	
+	private boolean fulfillsRequired;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.Tag#getUserId()
 	 */
@@ -67,6 +69,20 @@ public class TagImpl extends BaseJsonAdapter implements Tag, Adaptable<Tag, JSON
 	 */
 	public void setCount(long count) {
 		this.count = count;
+	}
+
+	/**
+	 * @return the fulfillsRequired
+	 */
+	public boolean isFulfillsRequired() {
+		return fulfillsRequired;
+	}
+
+	/**
+	 * @param fulfillsRequired the fulfillsRequired to set
+	 */
+	public void setFulfillsRequired(boolean fulfillsRequired) {
+		this.fulfillsRequired = fulfillsRequired;
 	}
 
 	/* (non-Javadoc)
