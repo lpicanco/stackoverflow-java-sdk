@@ -114,6 +114,16 @@ public interface Tag extends SchemaEntity {
 	public void setCount(long count);
 	
 	/**
+	 * @return the fulfillsRequired
+	 */
+	public boolean isFulfillsRequired();
+
+	/**
+	 * @param fulfillsRequired the fulfillsRequired to set
+	 */
+	public void setFulfillsRequired(boolean fulfillsRequired);
+	
+	/**
 	 * Gets the user id.
 	 * 
 	 * @return the user id
