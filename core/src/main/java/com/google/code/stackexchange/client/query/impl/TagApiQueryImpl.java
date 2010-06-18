@@ -4,8 +4,6 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.TagApiQuery;
@@ -13,7 +11,8 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.Tag;
-import com.google.code.stackexchange.schema.adapter.json.TagsImpl;
+import com.google.code.stackexchange.schema.Tags;
+import com.google.gson.JsonObject;
 
 /**
  * The Class TagApiQueryImpl.
@@ -60,8 +59,8 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<Tag> unmarshall(JSONObject json) {
-		TagsImpl adapter = new TagsImpl();
+	protected PagedList<Tag> unmarshall(JsonObject json) {
+		Tags adapter = new Tags();
 		adapter.adaptFrom(json);
 		return adapter.getTags();
 	}

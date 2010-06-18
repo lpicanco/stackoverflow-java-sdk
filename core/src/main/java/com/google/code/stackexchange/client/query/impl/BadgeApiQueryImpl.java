@@ -4,14 +4,13 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.BadgeApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Badge;
-import com.google.code.stackexchange.schema.adapter.json.BadgesImpl;
+import com.google.code.stackexchange.schema.Badges;
+import com.google.gson.JsonObject;
 
 /**
  * The Class BadgeApiQueryImpl.
@@ -40,8 +39,8 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<Badge> unmarshall(JSONObject json) {
-		BadgesImpl adapter = new BadgesImpl();
+	protected PagedList<Badge> unmarshall(JsonObject json) {
+		Badges adapter = new Badges();
 		adapter.adaptFrom(json);
 		return adapter.getBadges();
 	}

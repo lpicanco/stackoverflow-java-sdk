@@ -1,14 +1,22 @@
+/**
+ * 
+ */
 package com.google.code.stackexchange.schema;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.code.stackexchange.schema.Answer;
+import com.google.code.stackexchange.schema.Comment;
+import com.google.code.stackexchange.schema.User;
+
 /**
- * The Interface Answer.
+ * The Class AnswerImpl.
  */
-public interface Answer extends SchemaEntity {
+public class Answer extends SchemaEntity {
 	
 	/**
 	 * The Enum SortOrder.
@@ -92,243 +100,195 @@ public interface Answer extends SchemaEntity {
 			return order;
 		}
 	}
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 2188321598388034039L;
 	
-
-	/**
-	 * Gets the answer id.
-	 * 
-	 * @return the answer id
-	 */
-	public long getAnswerId();
-
-	/**
-	 * Sets the answer id.
-	 * 
-	 * @param answerId the new answer id
-	 */
-	public void setAnswerId(long answerId);
-
-	/**
-	 * Checks if is accepted.
-	 * 
-	 * @return true, if is accepted
-	 */
-	public boolean isAccepted();
-
-	/**
-	 * Sets the accepted.
-	 * 
-	 * @param accepted the new accepted
-	 */
-	public void setAccepted(boolean accepted);
-
-	/**
-	 * Gets the question id.
-	 * 
-	 * @return the question id
-	 */
-	public long getQuestionId();
-
-	/**
-	 * Sets the question id.
-	 * 
-	 * @param questionId the new question id
-	 */
-	public void setQuestionId(long questionId);
-
-	/**
-	 * Gets the owner.
-	 * 
-	 * @return the owner
-	 */
-	public User getOwner();
-
-	/**
-	 * Sets the owner.
-	 * 
-	 * @param owner the new owner
-	 */
-	public void setOwner(User owner);
-
-	/**
-	 * Gets the creation date.
-	 * 
-	 * @return the creation date
-	 */
-	public Date getCreationDate();
-
-	/**
-	 * Sets the creation date.
-	 * 
-	 * @param creationDate the new creation date
-	 */
-	public void setCreationDate(Date creationDate);
-
-	/**
-	 * Gets the up vote count.
-	 * 
-	 * @return the up vote count
-	 */
-	public long getUpVoteCount();
-
-	/**
-	 * Sets the up vote count.
-	 * 
-	 * @param upVoteCount the new up vote count
-	 */
-	public void setUpVoteCount(long upVoteCount);
-
-	/**
-	 * Gets the down vote count.
-	 * 
-	 * @return the down vote count
-	 */
-	public long getDownVoteCount();
-
-	/**
-	 * Sets the down vote count.
-	 * 
-	 * @param downVoteCount the new down vote count
-	 */
-	public void setDownVoteCount(long downVoteCount);
-
-	/**
-	 * Gets the favorite count.
-	 * 
-	 * @return the favorite count
-	 */
-	public long getFavoriteCount();
-
-	/**
-	 * Sets the favorite count.
-	 * 
-	 * @param favoriteCount the new favorite count
-	 */
-	public void setFavoriteCount(long favoriteCount);
-
-	/**
-	 * Gets the view count.
-	 * 
-	 * @return the view count
-	 */
-	public long getViewCount();
-
-	/**
-	 * Sets the view count.
-	 * 
-	 * @param viewCount the new view count
-	 */
-	public void setViewCount(long viewCount);
-
-	/**
-	 * Gets the score.
-	 * 
-	 * @return the score
-	 */
-	public long getScore();
-
-	/**
-	 * Sets the score.
-	 * 
-	 * @param score the new score
-	 */
-	public void setScore(long score);
-
-	/**
-	 * Checks if is community owned.
-	 * 
-	 * @return true, if is community owned
-	 */
-	public boolean isCommunityOwned();
-
-	/**
-	 * Sets the community owned.
-	 * 
-	 * @param communityOwned the new community owned
-	 */
-	public void setCommunityOwned(boolean communityOwned);
-
-	/**
-	 * Gets the title.
-	 * 
-	 * @return the title
-	 */
-	public String getTitle();
-
-	/**
-	 * Sets the title.
-	 * 
-	 * @param title the new title
-	 */
-	public void setTitle(String title);
+	/** The answer id. */
+	private long answerId;
 	
-	/**
-	 * Gets the body.
-	 * 
-	 * @return the body
-	 */
-	public String getBody();
-
-	/**
-	 * Sets the body.
-	 * 
-	 * @param body the new body
-	 */
-	public void setBody(String body);
+	/** The accepted. */
+	private boolean accepted;
 	
-	/**
-	 * Gets the comments.
-	 * 
-	 * @return the comments
-	 */
-	public List<Comment> getComments();
-
-	/**
-	 * Sets the comments.
-	 * 
-	 * @param comments the new comments
-	 */
-	public void setComments(List<Comment> comments);
-
-	/**
-	 * Gets the last edit date.
-	 * 
-	 * @return the last edit date
-	 */
-	public Date getLastEditDate();
-
-	/**
-	 * Sets the last edit date.
-	 * 
-	 * @param lastEditDate the new last edit date
-	 */
-	public void setLastEditDate(Date lastEditDate);
-
-	/**
-	 * Gets the last activity date.
-	 * 
-	 * @return the last activity date
-	 */
-	public Date getLastActivityDate();
-
-	/**
-	 * Sets the last activity date.
-	 * 
-	 * @param lastActivityDate the new last activity date
-	 */
-	public void setLastActivityDate(Date lastActivityDate);
+	/** The question id. */
+	private long questionId;
 	
-	/**
-	 * Gets the answer comments url.
-	 * 
-	 * @return the answer comments url
-	 */
-	public String getAnswerCommentsUrl();
+	/** The owner. */
+	private User owner;
+	
+	/** The creation date. */
+	private Date creationDate;
+	
+	/** The last edit date. */
+	private Date lastEditDate;
+	
+	/** The last activity date. */
+	private Date lastActivityDate;
+	
+	/** The up vote count. */
+	private long upVoteCount;
+	
+	/** The down vote count. */
+	private long downVoteCount;
+	
+	/** The favorite count. */
+	private long favoriteCount;
+	
+	/** The view count. */
+	private long viewCount;
+	
+	/** The score. */
+	private long score;
+	
+	/** The community owned. */
+	private boolean communityOwned;
+	
+	/** The title. */
+	private String title;
+	
+	/** The body. */
+	private String body;
+	
+	/** The comments. */
+	private List<Comment> comments = new ArrayList<Comment>();
+	
+	/** The answer comments url. */
+	private String answerCommentsUrl;
+	
+	
+	public long getAnswerId() {
+		return answerId;
+	}
 
-	/**
-	 * Sets the answer comments url.
-	 * 
-	 * @param answerCommentsUrl the new answer comments url
-	 */
-	public void setAnswerCommentsUrl(String answerCommentsUrl);
+	public void setAnswerId(long answerId) {
+		this.answerId = answerId;
+	}
+
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
+	}
+
+	public long getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(long questionId) {
+		this.questionId = questionId;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = (User) owner;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public long getUpVoteCount() {
+		return upVoteCount;
+	}
+
+	public void setUpVoteCount(long upVoteCount) {
+		this.upVoteCount = upVoteCount;
+	}
+
+	public long getDownVoteCount() {
+		return downVoteCount;
+	}
+
+	public void setDownVoteCount(long downVoteCount) {
+		this.downVoteCount = downVoteCount;
+	}
+
+	public long getFavoriteCount() {
+		return favoriteCount;
+	}
+
+	public void setFavoriteCount(long favoriteCount) {
+		this.favoriteCount = favoriteCount;
+	}
+
+	public long getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(long viewCount) {
+		this.viewCount = viewCount;
+	}
+
+	public long getScore() {
+		return score;
+	}
+
+	public void setScore(long score) {
+		this.score = score;
+	}
+
+	public boolean isCommunityOwned() {
+		return communityOwned;
+	}
+
+	public void setCommunityOwned(boolean communityOwned) {
+		this.communityOwned = communityOwned;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Date getLastEditDate() {
+		return lastEditDate;
+	}
+	
+	public void setLastEditDate(Date lastEditDate) {
+		this.lastEditDate = lastEditDate;
+	}
+	
+	public Date getLastActivityDate() {
+		return lastActivityDate;
+	}
+	
+	public void setLastActivityDate(Date lastActivityDate) {
+		this.lastActivityDate = lastActivityDate;
+	}
+	
+	public String getAnswerCommentsUrl() {
+		return answerCommentsUrl;
+	}
+
+	public void setAnswerCommentsUrl(String answerCommentsUrl) {
+		this.answerCommentsUrl = answerCommentsUrl;
+	}
 }

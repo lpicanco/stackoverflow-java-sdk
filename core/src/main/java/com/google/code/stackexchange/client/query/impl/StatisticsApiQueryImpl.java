@@ -3,14 +3,13 @@
  */
 package com.google.code.stackexchange.client.query.impl;
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.StatisticsApiQuery;
 import com.google.code.stackexchange.common.PagedArrayList;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Statistics;
-import com.google.code.stackexchange.schema.adapter.json.StatisticsImpl;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 /**
  * The Class StatisticsApiQueryImpl.
@@ -30,11 +29,9 @@ public class StatisticsApiQueryImpl extends BaseStackOverflowApiQuery<Statistics
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<Statistics> unmarshall(JSONObject json) {
-		Statistics adapter = new StatisticsImpl();
-		((StatisticsImpl) adapter).adaptFrom(json);
+	protected PagedList<Statistics> unmarshall(JsonObject json) {
 		PagedList<Statistics> list = new PagedArrayList<Statistics>();
-		list.add(adapter);
+		list.add(new Gson().fromJson(json, Statistics.class));
 		return list;
 	}
 

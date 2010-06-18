@@ -4,15 +4,14 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.ReputationApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Reputation;
+import com.google.code.stackexchange.schema.Reputations;
 import com.google.code.stackexchange.schema.TimePeriod;
-import com.google.code.stackexchange.schema.adapter.json.ReputationsImpl;
+import com.google.gson.JsonObject;
 
 /**
  * The Class ReputationApiQueryImpl.
@@ -59,8 +58,8 @@ public class ReputationApiQueryImpl extends BaseStackOverflowApiQuery<Reputation
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<Reputation> unmarshall(JSONObject json) {
-		ReputationsImpl adapter = new ReputationsImpl();
+	protected PagedList<Reputation> unmarshall(JsonObject json) {
+		Reputations adapter = new Reputations();
 		adapter.adaptFrom(json);
 		return adapter.getReputations();
 	}

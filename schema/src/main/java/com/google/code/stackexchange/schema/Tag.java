@@ -1,12 +1,17 @@
+/**
+ * 
+ */
 package com.google.code.stackexchange.schema;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.code.stackexchange.schema.Tag;
+
 /**
- * The Interface Tag.
+ * The Class TagImpl.
  */
-public interface Tag extends SchemaEntity {
+public class Tag extends SchemaEntity {
 	
 	/**
 	 * The Enum SortOrder.
@@ -84,56 +89,76 @@ public interface Tag extends SchemaEntity {
 			return order;
 		}
 	}
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = -4228675989610922635L;
 	
-	/**
-	 * Gets the name.
-	 * 
-	 * @return the name
-	 */
-	public String getName();
-
-	/**
-	 * Sets the name.
-	 * 
-	 * @param name the new name
-	 */
-	public void setName(String name);
-
-	/**
-	 * Gets the count.
-	 * 
-	 * @return the count
-	 */
-	public long getCount();
-
-	/**
-	 * Sets the count.
-	 * 
-	 * @param count the new count
-	 */
-	public void setCount(long count);
+	/** The name. */
+	private String name;
 	
+	/** The count. */
+	private long count;
+	
+	/** The user id. */
+	private long userId;
+	
+	private boolean fulfillsRequired;
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Tag#getUserId()
+	 */
+	
+	public long getUserId() {
+		return userId;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Tag#setUserId(long)
+	 */
+	
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Tag#getName()
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Tag#setName(java.lang.String)
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Tag#getCount()
+	 */
+	public long getCount() {
+		return count;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Tag#setCount(long)
+	 */
+	public void setCount(long count) {
+		this.count = count;
+	}
+
 	/**
 	 * @return the fulfillsRequired
 	 */
-	public boolean isFulfillsRequired();
+	public boolean isFulfillsRequired() {
+		return fulfillsRequired;
+	}
 
 	/**
 	 * @param fulfillsRequired the fulfillsRequired to set
 	 */
-	public void setFulfillsRequired(boolean fulfillsRequired);
-	
-	/**
-	 * Gets the user id.
-	 * 
-	 * @return the user id
-	 */
-	public long getUserId();
-
-	/**
-	 * Sets the user id.
-	 * 
-	 * @param userId the new user id
-	 */
-	public void setUserId(long userId);
+	public void setFulfillsRequired(boolean fulfillsRequired) {
+		this.fulfillsRequired = fulfillsRequired;
+	}
 }

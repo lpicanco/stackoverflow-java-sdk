@@ -4,8 +4,6 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.UserApiQuery;
@@ -13,7 +11,8 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.User;
-import com.google.code.stackexchange.schema.adapter.json.UsersImpl;
+import com.google.code.stackexchange.schema.Users;
+import com.google.gson.JsonObject;
 
 /**
  * The Class UserApiQueryImpl.
@@ -69,8 +68,8 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<User> unmarshall(JSONObject json) {
-		UsersImpl adapter = new UsersImpl();
+	protected PagedList<User> unmarshall(JsonObject json) {
+		Users adapter = new Users();
 		adapter.adaptFrom(json);
 		return adapter.getUsers();
 	}

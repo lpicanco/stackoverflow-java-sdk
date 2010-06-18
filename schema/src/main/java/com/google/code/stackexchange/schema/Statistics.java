@@ -1,163 +1,203 @@
+/**
+ * 
+ */
 package com.google.code.stackexchange.schema;
 
+import com.google.code.stackexchange.schema.ApiVersion;
+import com.google.code.stackexchange.schema.Statistics;
 
 /**
- * The Interface Statistics.
+ * The Class StatisticsImpl.
  */
-public interface Statistics extends SchemaEntity {
-
-	/**
-	 * Gets the total questions.
-	 * 
-	 * @return the total questions
+public class Statistics extends SchemaEntity {
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = -3816093709987797926L;
+	
+	/** The total questions. */
+	private long totalQuestions;
+	
+	/** The total unanswered. */
+	private long totalUnanswered;
+	
+	/** The total answers. */
+	private long totalAnswers;
+	
+	/** The total comments. */
+	private long totalComments;
+	
+	/** The total votes. */
+	private long totalVotes;
+	
+	/** The total badges. */
+	private long totalBadges;
+	
+	/** The total users. */
+	private long totalUsers;
+	
+	/** The questions per minute. */
+	private double questionsPerMinute;
+	
+	/** The answers per minute. */
+	private double answersPerMinute;
+	
+	/** The badges per minute. */
+	private double badgesPerMinute;
+	
+	/** The api version. */
+	private ApiVersion apiVersion;
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getTotalQuestions()
 	 */
-	public long getTotalQuestions();
-
-	/**
-	 * Sets the total questions.
-	 * 
-	 * @param totalQuestions the new total questions
+	public long getTotalQuestions() {
+		return totalQuestions;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setTotalQuestions(long)
 	 */
-	public void setTotalQuestions(long totalQuestions);
-
-	/**
-	 * Gets the total unanswered.
-	 * 
-	 * @return the total unanswered
+	public void setTotalQuestions(long totalQuestions) {
+		this.totalQuestions = totalQuestions;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getTotalUnanswered()
 	 */
-	public long getTotalUnanswered();
-
-	/**
-	 * Sets the total unanswered.
-	 * 
-	 * @param totalUnanswered the new total unanswered
+	public long getTotalUnanswered() {
+		return totalUnanswered;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setTotalUnanswered(long)
 	 */
-	public void setTotalUnanswered(long totalUnanswered);
-
-	/**
-	 * Gets the total answers.
-	 * 
-	 * @return the total answers
+	public void setTotalUnanswered(long totalUnanswered) {
+		this.totalUnanswered = totalUnanswered;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getTotalAnswers()
 	 */
-	public long getTotalAnswers();
-
-	/**
-	 * Sets the total answers.
-	 * 
-	 * @param totalAnswers the new total answers
+	public long getTotalAnswers() {
+		return totalAnswers;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setTotalAnswers(long)
 	 */
-	public void setTotalAnswers(long totalAnswers);
-
-	/**
-	 * Gets the total comments.
-	 * 
-	 * @return the total comments
+	public void setTotalAnswers(long totalAnswers) {
+		this.totalAnswers = totalAnswers;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getTotalComments()
 	 */
-	public long getTotalComments();
-
-	/**
-	 * Sets the total comments.
-	 * 
-	 * @param totalComments the new total comments
+	public long getTotalComments() {
+		return totalComments;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setTotalComments(long)
 	 */
-	public void setTotalComments(long totalComments);
-
-	/**
-	 * Gets the total votes.
-	 * 
-	 * @return the total votes
+	public void setTotalComments(long totalComments) {
+		this.totalComments = totalComments;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getTotalVotes()
 	 */
-	public long getTotalVotes();
-
-	/**
-	 * Sets the total votes.
-	 * 
-	 * @param totalVotes the new total votes
+	public long getTotalVotes() {
+		return totalVotes;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setTotalVotes(long)
 	 */
-	public void setTotalVotes(long totalVotes);
-
-	/**
-	 * Gets the total badges.
-	 * 
-	 * @return the total badges
+	public void setTotalVotes(long totalVotes) {
+		this.totalVotes = totalVotes;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getTotalBadges()
 	 */
-	public long getTotalBadges();
-
-	/**
-	 * Sets the total badges.
-	 * 
-	 * @param totalBadges the new total badges
+	public long getTotalBadges() {
+		return totalBadges;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setTotalBadges(long)
 	 */
-	public void setTotalBadges(long totalBadges);
-
-	/**
-	 * Gets the total users.
-	 * 
-	 * @return the total users
+	public void setTotalBadges(long totalBadges) {
+		this.totalBadges = totalBadges;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getTotalUsers()
 	 */
-	public long getTotalUsers();
-
-	/**
-	 * Sets the total users.
-	 * 
-	 * @param totalUsers the new total users
+	public long getTotalUsers() {
+		return totalUsers;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setTotalUsers(long)
 	 */
-	public void setTotalUsers(long totalUsers);
-
-	/**
-	 * Gets the questions per minute.
-	 * 
-	 * @return the questions per minute
+	public void setTotalUsers(long totalUsers) {
+		this.totalUsers = totalUsers;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getQuestionsPerMinute()
 	 */
-	public double getQuestionsPerMinute();
-
-	/**
-	 * Sets the questions per minute.
-	 * 
-	 * @param questionsPerMinute the new questions per minute
+	public double getQuestionsPerMinute() {
+		return questionsPerMinute;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setQuestionsPerMinute(double)
 	 */
-	public void setQuestionsPerMinute(double questionsPerMinute);
-
-	/**
-	 * Gets the answers per minute.
-	 * 
-	 * @return the answers per minute
+	public void setQuestionsPerMinute(double questionsPerMinute) {
+		this.questionsPerMinute = questionsPerMinute;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getAnswersPerMinute()
 	 */
-	public double getAnswersPerMinute();
-
-	/**
-	 * Sets the answers per minute.
-	 * 
-	 * @param answersPerMinute the new answers per minute
+	public double getAnswersPerMinute() {
+		return answersPerMinute;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setAnswersPerMinute(double)
 	 */
-	public void setAnswersPerMinute(double answersPerMinute);
-
-	/**
-	 * Gets the badges per minute.
-	 * 
-	 * @return the badges per minute
+	public void setAnswersPerMinute(double answersPerMinute) {
+		this.answersPerMinute = answersPerMinute;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getBadgesPerMinute()
 	 */
-	public double getBadgesPerMinute();
-
-	/**
-	 * Sets the badges per minute.
-	 * 
-	 * @param badgesPerMinute the new badges per minute
+	public double getBadgesPerMinute() {
+		return badgesPerMinute;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setBadgesPerMinute(double)
 	 */
-	public void setBadgesPerMinute(double badgesPerMinute);
-
-	/**
-	 * Gets the api version.
-	 * 
-	 * @return the api version
+	public void setBadgesPerMinute(double badgesPerMinute) {
+		this.badgesPerMinute = badgesPerMinute;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#getApiVersion()
 	 */
-	public ApiVersion getApiVersion();
-
-	/**
-	 * Sets the api version.
-	 * 
-	 * @param apiVersion the new api version
+	public ApiVersion getApiVersion() {
+		return apiVersion;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Statistics#setApiVersion(com.google.code.stackexchange.schema.ApiVersion)
 	 */
-	public void setApiVersion(ApiVersion apiVersion);
-
+	public void setApiVersion(ApiVersion apiVersion) {
+		this.apiVersion = apiVersion;
+	}
 }

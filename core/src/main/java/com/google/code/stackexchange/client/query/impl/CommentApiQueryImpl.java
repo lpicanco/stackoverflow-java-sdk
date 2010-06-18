@@ -4,17 +4,16 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.CommentApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Comment;
+import com.google.code.stackexchange.schema.Comments;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.TimePeriod;
-import com.google.code.stackexchange.schema.adapter.json.CommentsImpl;
+import com.google.gson.JsonObject;
 
 /**
  * The Class CommentApiQueryImpl.
@@ -88,8 +87,8 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<Comment> unmarshall(JSONObject json) {
-		CommentsImpl adapter = new CommentsImpl();
+	protected PagedList<Comment> unmarshall(JsonObject json) {
+		Comments adapter = new Comments();
 		adapter.adaptFrom(json);
 		return adapter.getComments();
 	}
