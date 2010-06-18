@@ -43,9 +43,9 @@ public class Revisions extends SchemaEntity implements Adaptable<Revisions, Json
 	 */
 	@Override
 	public void adaptFrom(JsonObject adaptee) {
-		getRevisions().setTotal(adaptee.get("total").getAsLong());
-		getRevisions().setPage(adaptee.get("page").getAsInt());
-		getRevisions().setPageSize(adaptee.get("pagesize").getAsInt());
+//		getRevisions().setTotal(adaptee.get("total").getAsLong());
+//		getRevisions().setPage(adaptee.get("page").getAsInt());
+//		getRevisions().setPageSize(adaptee.get("pagesize").getAsInt());
 		JsonArray revisions = adaptee.get("revisions").getAsJsonArray();
 		if (revisions != null) {
 			Gson gson = getGsonBuilder().create();
