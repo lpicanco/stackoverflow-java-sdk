@@ -6,8 +6,6 @@ package com.google.code.stackexchange.client.query.impl;
 import java.util.Arrays;
 import java.util.Set;
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.QuestionApiQuery;
@@ -15,10 +13,11 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Question;
+import com.google.code.stackexchange.schema.Questions;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.code.stackexchange.schema.User;
-import com.google.code.stackexchange.schema.adapter.json.QuestionsImpl;
+import com.google.gson.JsonObject;
 
 /**
  * The Class QuestionApiQueryImpl.
@@ -128,8 +127,8 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<Question> unmarshall(JSONObject json) {
-		QuestionsImpl adapter = new QuestionsImpl();
+	protected PagedList<Question> unmarshall(JsonObject json) {
+		Questions adapter = new Questions();
 		adapter.adaptFrom(json);
 		return adapter.getQuestions();
 	}

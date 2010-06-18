@@ -1,14 +1,19 @@
+/**
+ * 
+ */
 package com.google.code.stackexchange.schema;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.code.stackexchange.schema.Comment;
+import com.google.code.stackexchange.schema.User;
 
 /**
- * The Interface Comment.
+ * The Class CommentImpl.
  */
-public interface Comment extends SchemaEntity {
+public class Comment extends SchemaEntity {
 	
 	/**
 	 * The Enum SortOrder.
@@ -80,131 +85,160 @@ public interface Comment extends SchemaEntity {
 			return order;
 		}
 	}
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 9211122295203879070L;
 	
-	/**
-	 * Gets the comment id.
-	 * 
-	 * @return the comment id
+	/** The comment id. */
+	private long commentId;
+	
+	/** The creation date. */
+	private Date creationDate;
+	
+	/** The owner. */
+	private User owner;
+	
+	/** The post id. */
+	private long postId;
+	
+	/** The post type. */
+	private PostType postType;
+	
+	/** The body. */
+	private String body;
+	
+	/** The reply to user. */
+	private User replyToUser;
+	
+	/** The score. */
+	private long score;
+	
+	/** The edit count. */
+	private long editCount;
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getCommentId()
 	 */
-	public long getCommentId();
+	public long getCommentId() {
+		return commentId;
+	}
 
-	/**
-	 * Sets the comment id.
-	 * 
-	 * @param commentId the new comment id
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setCommentId(long)
 	 */
-	public void setCommentId(long commentId);
+	public void setCommentId(long commentId) {
+		this.commentId = commentId;
+	}
 
-	/**
-	 * Gets the creation date.
-	 * 
-	 * @return the creation date
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getCreationDate()
 	 */
-	public Date getCreationDate();
+	public Date getCreationDate() {
+		return creationDate;
+	}
 
-	/**
-	 * Sets the creation date.
-	 * 
-	 * @param creationDate the new creation date
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setCreationDate(java.util.Date)
 	 */
-	public void setCreationDate(Date creationDate);
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
 
-	/**
-	 * Gets the owner.
-	 * 
-	 * @return the owner
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getOwnerUserId()
 	 */
-	public User getOwner();
+	public User getOwner() {
+		return owner;
+	}
 
-	/**
-	 * Sets the owner.
-	 * 
-	 * @param owner the new owner
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setOwnerUserId(long)
 	 */
-	public void setOwner(User owner);
+	public void setOwner(User owner) {
+		this.owner = (User) owner;
+	}
 
-	/**
-	 * Gets the post id.
-	 * 
-	 * @return the post id
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getPostId()
 	 */
-	public long getPostId();
+	public long getPostId() {
+		return postId;
+	}
 
-	/**
-	 * Sets the post id.
-	 * 
-	 * @param postId the new post id
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setPostId(long)
 	 */
-	public void setPostId(long postId);
+	public void setPostId(long postId) {
+		this.postId = postId;
+	}
 
-	/**
-	 * Gets the post type.
-	 * 
-	 * @return the post type
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getPostType()
 	 */
-	public PostType getPostType();
+	public PostType getPostType() {
+		return postType;
+	}
 
-	/**
-	 * Sets the post type.
-	 * 
-	 * @param postType the new post type
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setPostType(com.google.code.stackexchange.schema.PostType)
 	 */
-	public void setPostType(PostType postType);
+	public void setPostType(PostType postType) {
+		this.postType = postType;
+	}
 
-	/**
-	 * Gets the body.
-	 * 
-	 * @return the body
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getBody()
 	 */
-	public String getBody();
+	public String getBody() {
+		return body;
+	}
 
-	/**
-	 * Sets the body.
-	 * 
-	 * @param body the new body
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setBody(java.lang.String)
 	 */
-	public void setBody(String body);
+	public void setBody(String body) {
+		this.body = body;
+	}
 
-	/**
-	 * Gets the reply to user.
-	 * 
-	 * @return the reply to user
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getReplyToUserId()
 	 */
-	public User getReplyToUser();
+	public User getReplyToUser() {
+		return replyToUser;
+	}
 
-	/**
-	 * Sets the reply to user.
-	 * 
-	 * @param replyToUser the new reply to user
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setReplyToUserId(long)
 	 */
-	public void setReplyToUser(User replyToUser);
+	public void setReplyToUser(User replyToUser) {
+		this.replyToUser = (User) replyToUser;
+	}
 
-	/**
-	 * Gets the score.
-	 * 
-	 * @return the score
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getScore()
 	 */
-	public long getScore();
+	public long getScore() {
+		return score;
+	}
 
-	/**
-	 * Sets the score.
-	 * 
-	 * @param score the new score
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setScore(long)
 	 */
-	public void setScore(long score);
+	public void setScore(long score) {
+		this.score = score;
+	}
 
-	/**
-	 * Gets the edits the count.
-	 * 
-	 * @return the edits the count
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#getEditCount()
 	 */
-	public long getEditCount();
+	public long getEditCount() {
+		return editCount;
+	}
 
-	/**
-	 * Sets the edits the count.
-	 * 
-	 * @param editCount the new edits the count
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Comment#setEditCount(long)
 	 */
-	public void setEditCount(long editCount);
-
+	public void setEditCount(long editCount) {
+		this.editCount = editCount;
+	}
 }

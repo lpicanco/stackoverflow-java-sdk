@@ -1,165 +1,229 @@
+/**
+ * 
+ */
 package com.google.code.stackexchange.schema;
 
 import java.util.Date;
 
+import com.google.code.stackexchange.schema.PostTimeline;
+import com.google.code.stackexchange.schema.User;
 
 /**
- * The Interface PostTimeline.
+ * The Class PostTimelineImpl.
  */
-public interface PostTimeline extends SchemaEntity {
+public class PostTimeline extends SchemaEntity {
 
-	/**
-	 * Gets the timeline type.
-	 * 
-	 * @return the timeline type
-	 */
-	public PostTimelineType getTimelineType();
-
-	/**
-	 * Sets the timeline type.
-	 * 
-	 * @param timelineType the new timeline type
-	 */
-	public void setTimelineType(PostTimelineType timelineType);
-
-	/**
-	 * Gets the post id.
-	 * 
-	 * @return the post id
-	 */
-	public long getPostId();
-
-	/**
-	 * Sets the post id.
-	 * 
-	 * @param postId the new post id
-	 */
-	public void setPostId(long postId);
-
-	/**
-	 * Gets the action.
-	 * 
-	 * @return the action
-	 */
-	public String getAction();
-
-	/**
-	 * Sets the action.
-	 * 
-	 * @param action the new action
-	 */
-	public void setAction(String action);
-
-	/**
-	 * Gets the creation date.
-	 * 
-	 * @return the creation date
-	 */
-	public Date getCreationDate();
-
-	/**
-	 * Sets the creation date.
-	 * 
-	 * @param creationDate the new creation date
-	 */
-	public void setCreationDate(Date creationDate);
-
-	/**
-	 * Gets the user.
-	 * 
-	 * @return the user
-	 */
-	public User getUser();
-
-	/**
-	 * Sets the user.
-	 * 
-	 * @param user the new user
-	 */
-	public void setUser(User user);
-
-	/**
-	 * Gets the owner.
-	 * 
-	 * @return the owner
-	 */
-	public User getOwner();
-
-	/**
-	 * Sets the owner.
-	 * 
-	 * @param owner the new owner
-	 */
-	public void setOwner(User owner);
-
-	/**
-	 * Gets the revision guid.
-	 * 
-	 * @return the revision guid
-	 */
-	public String getRevisionGuid();
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = -1401085998475480138L;
 	
-	/**
-	 * Sets the revision guid.
-	 * 
-	 * @param revisionGuid the new revision guid
-	 */
-	public void setRevisionGuid(String revisionGuid);
+	/** The timeline type. */
+	private PostTimelineType timelineType;
 	
-	/**
-	 * Gets the comment id.
-	 * 
-	 * @return the comment id
-	 */
-	public long getCommentId();
+	/** The post id. */
+	private long postId;
 	
-	/**
-	 * Sets the comment id.
-	 * 
-	 * @param commentId the new comment id
-	 */
-	public void setCommentId(long commentId);
+	/** The user. */
+	private User user;
 	
-	/**
-	 * Gets the post comment url.
-	 * 
-	 * @return the post comment url
+	/** The owner. */
+	private User owner;
+	
+	/** The action. */
+	private String action;
+	
+	/** The creation date. */
+	private Date creationDate;
+	
+	/** The revision guid. */
+	private String revisionGuid;
+	
+	/** The comment id. */
+	private long commentId;
+	
+	/** The display name. */
+	private String displayName;
+	
+	/** The post comment url. */
+	private String postCommentUrl;
+	
+	/** The email hash. */
+	private String emailHash;
+	
+	/** The post url. */
+	private String postUrl;
+	
+	/** The post revision url. */
+	private String postRevisionUrl;
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getTimelineType()
 	 */
-	public String getPostCommentUrl();
+	public PostTimelineType getTimelineType() {
+		return timelineType;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setTimelineType(com.google.code.stackexchange.schema.PostTimelineType)
+	 */
+	public void setTimelineType(PostTimelineType timelineType) {
+		this.timelineType = timelineType;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getPostId()
+	 */
+	public long getPostId() {
+		return postId;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setPostId(long)
+	 */
+	public void setPostId(long postId) {
+		this.postId = postId;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getAction()
+	 */
+	public String getAction() {
+		return action;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setAction(java.lang.String)
+	 */
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getCreationDate()
+	 */
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setCreationDate(java.util.Date)
+	 */
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getUserId()
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setUserId(long)
+	 */
+	public void setUser(User user) {
+		this.user = (User) user;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = (User) owner;
+	}
+
+	public String getRevisionGuid() {
+		return revisionGuid;
+	}
+
+	public void setRevisionGuid(String revisionGuid) {
+		this.revisionGuid = revisionGuid;
+	}
+
+	public long getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(long commentId) {
+		this.commentId = commentId;
+	}
 
 	/**
-	 * Sets the post comment url.
+	 * Gets the display name.
 	 * 
-	 * @param postCommentUrl the new post comment url
+	 * @return the display name
 	 */
-	public void setPostCommentUrl(String postCommentUrl);
+	public String getDisplayName() {
+		return displayName;
+	}
 
 	/**
-	 * Gets the post url.
+	 * Sets the display name.
 	 * 
-	 * @return the post url
+	 * @param displayName the new display name
 	 */
-	public String getPostUrl();
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getPostCommentUrl()
+	 */
+	public String getPostCommentUrl() {
+		return postCommentUrl;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setPostCommentUrl(java.lang.String)
+	 */
+	public void setPostCommentUrl(String postCommentUrl) {
+		this.postCommentUrl = postCommentUrl;
+	}
 
 	/**
-	 * Sets the post url.
+	 * Gets the email hash.
 	 * 
-	 * @param postUrl the new post url
+	 * @return the email hash
 	 */
-	public void setPostUrl(String postUrl);
-	
-	/**
-	 * Gets the post revision url.
-	 * 
-	 * @return the post revision url
-	 */
-	public String getPostRevisionUrl();
+	public String getEmailHash() {
+		return emailHash;
+	}
 
 	/**
-	 * Sets the post revision url.
+	 * Sets the email hash.
 	 * 
-	 * @param postRevisionUrl the new post revision url
+	 * @param emailHash the new email hash
 	 */
-	public void setPostRevisionUrl(String postRevisionUrl);
-	
+	public void setEmailHash(String emailHash) {
+		this.emailHash = emailHash;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getPostUrl()
+	 */
+	public String getPostUrl() {
+		return postUrl;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setPostUrl(java.lang.String)
+	 */
+	public void setPostUrl(String postUrl) {
+		this.postUrl = postUrl;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#getPostRevisionUrl()
+	 */
+	public String getPostRevisionUrl() {
+		return postRevisionUrl;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.PostTimeline#setPostRevisionUrl(java.lang.String)
+	 */
+	public void setPostRevisionUrl(String postRevisionUrl) {
+		this.postRevisionUrl = postRevisionUrl;
+	}
 }

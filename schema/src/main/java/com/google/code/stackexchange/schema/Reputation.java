@@ -2,107 +2,146 @@ package com.google.code.stackexchange.schema;
 
 import java.util.Date;
 
+import com.google.code.stackexchange.schema.Reputation;
 
 /**
- * The Interface Reputation.
+ * The Class ReputationImpl.
  */
-public interface Reputation extends SchemaEntity {
+public class Reputation extends SchemaEntity {
 
-	/**
-	 * Gets the on date.
-	 * 
-	 * @return the on date
-	 */
-	public Date getOnDate();
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 2066676039083125977L;
+	
+	/** The negative rep. */
+	private long negativeRep;
+	
+	/** The on date. */
+	private Date onDate;
+	
+	/** The positive rep. */
+	private long positiveRep;
+	
+	/** The post id. */
+	private long postId;
+	
+	/** The post type. */
+	private PostType postType;
+	
+	/** The title. */
+	private String title;
 
-	/**
-	 * Sets the on date.
-	 * 
-	 * @param onDate the new on date
+	/** The user id. */
+	private long userId;
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#getUserId()
 	 */
-	public void setOnDate(Date onDate);
+	
+	public long getUserId() {
+		return userId;
+	}
 
-	/**
-	 * Gets the post id.
-	 * 
-	 * @return the post id
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#setUserId(long)
 	 */
-	public long getPostId();
+	
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#getNegativeRep()
+	 */
+	
+	public long getNegativeRep() {
+		return negativeRep;
+	}
 
-	/**
-	 * Sets the post id.
-	 * 
-	 * @param postId the new post id
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#getOnDate()
 	 */
-	public void setPostId(long postId);
+	
+	public Date getOnDate() {
+		return onDate;
+	}
 
-	/**
-	 * Gets the post type.
-	 * 
-	 * @return the post type
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#getPositiveRep()
 	 */
-	public PostType getPostType();
+	
+	public long getPositiveRep() {
+		return positiveRep;
+	}
 
-	/**
-	 * Sets the post type.
-	 * 
-	 * @param postType the new post type
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#getPostId()
 	 */
-	public void setPostType(PostType postType);
+	
+	public long getPostId() {
+		return postId;
+	}
 
-	/**
-	 * Gets the title.
-	 * 
-	 * @return the title
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#getPostType()
 	 */
-	public String getTitle();
+	
+	public PostType getPostType() {
+		return postType;
+	}
 
-	/**
-	 * Sets the title.
-	 * 
-	 * @param title the new title
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#getTitle()
 	 */
-	public void setTitle(String title);
+	
+	public String getTitle() {
+		return title;
+	}
 
-	/**
-	 * Gets the positive rep.
-	 * 
-	 * @return the positive rep
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#setNegativeRep(long)
 	 */
-	public long getPositiveRep();
+	
+	public void setNegativeRep(long negativeRep) {
+		this.negativeRep = negativeRep;
+	}
 
-	/**
-	 * Sets the positive rep.
-	 * 
-	 * @param positiveRep the new positive rep
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#setOnDate(java.util.Date)
 	 */
-	public void setPositiveRep(long positiveRep);
+	
+	public void setOnDate(Date onDate) {
+		this.onDate = onDate;
+	}
 
-	/**
-	 * Gets the negative rep.
-	 * 
-	 * @return the negative rep
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#setPositiveRep(long)
 	 */
-	public long getNegativeRep();
+	
+	public void setPositiveRep(long positiveRep) {
+		this.positiveRep = positiveRep;
+	}
 
-	/**
-	 * Sets the negative rep.
-	 * 
-	 * @param negativeRep the new negative rep
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#setPostId(long)
 	 */
-	public void setNegativeRep(long negativeRep);
+	
+	public void setPostId(long postId) {
+		this.postId = postId;
+	}
 
-	/**
-	 * Gets the user id.
-	 * 
-	 * @return the user id
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#setPostType(com.google.code.stackexchange.schema.PostType)
 	 */
-	public long getUserId();
+	
+	public void setPostType(PostType postType) {
+		this.postType = postType;
+	}
 
-	/**
-	 * Sets the user id.
-	 * 
-	 * @param userId the new user id
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.Reputation#setTitle(java.lang.String)
 	 */
-	public void setUserId(long userId);
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
 }

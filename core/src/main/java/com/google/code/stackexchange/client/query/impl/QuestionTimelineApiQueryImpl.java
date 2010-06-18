@@ -4,14 +4,13 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.QuestionTimelineApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.PostTimeline;
+import com.google.code.stackexchange.schema.PostTimelines;
 import com.google.code.stackexchange.schema.TimePeriod;
-import com.google.code.stackexchange.schema.adapter.json.PostTimelinesImpl;
+import com.google.gson.JsonObject;
 
 /**
  * The Class QuestionTimelineApiQueryImpl.
@@ -49,8 +48,8 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<PostTimeline> unmarshall(JSONObject json) {
-		PostTimelinesImpl adapter = new PostTimelinesImpl();
+	protected PagedList<PostTimeline> unmarshall(JsonObject json) {
+		PostTimelines adapter = new PostTimelines();
 		adapter.adaptFrom(json);
 		return adapter.getTimelines();
 	}

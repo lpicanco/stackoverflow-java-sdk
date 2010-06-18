@@ -8,9 +8,6 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackexchange.schema.Answers;
@@ -27,18 +24,10 @@ import com.google.code.stackexchange.schema.Tags;
 import com.google.code.stackexchange.schema.UserTimelines;
 import com.google.code.stackexchange.schema.Users;
 import com.google.code.stackexchange.schema.adapter.Adaptable;
-import com.google.code.stackexchange.schema.adapter.json.AnswersImpl;
-import com.google.code.stackexchange.schema.adapter.json.BadgesImpl;
-import com.google.code.stackexchange.schema.adapter.json.CommentsImpl;
-import com.google.code.stackexchange.schema.adapter.json.ErrorImpl;
-import com.google.code.stackexchange.schema.adapter.json.PostTimelinesImpl;
-import com.google.code.stackexchange.schema.adapter.json.QuestionsImpl;
-import com.google.code.stackexchange.schema.adapter.json.ReputationsImpl;
-import com.google.code.stackexchange.schema.adapter.json.RevisionsImpl;
-import com.google.code.stackexchange.schema.adapter.json.StatisticsImpl;
-import com.google.code.stackexchange.schema.adapter.json.TagsImpl;
-import com.google.code.stackexchange.schema.adapter.json.UserTimelinesImpl;
-import com.google.code.stackexchange.schema.adapter.json.UsersImpl;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 
 /**
@@ -47,24 +36,24 @@ import com.google.code.stackexchange.schema.adapter.json.UsersImpl;
 public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
 	
     /** The parser. */
-    private final JSONParser parser = new JSONParser();
+    private final JsonParser parser = new JsonParser();
     
     /** The Constant ADAPTER_CLASSES_MAP. */
-	private static final Map<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, ?>>> ADAPTER_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, ?>>>();
+	private static final Map<Class<? extends SchemaEntity>, Class<? extends SchemaEntity>> ADAPTER_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends SchemaEntity>>();
 	
 	static {
-		ADAPTER_CLASSES_MAP.put(Answers.class, AnswersImpl.class);
-		ADAPTER_CLASSES_MAP.put(Badges.class, BadgesImpl.class);
-		ADAPTER_CLASSES_MAP.put(Comments.class, CommentsImpl.class);
-		ADAPTER_CLASSES_MAP.put(Error.class, ErrorImpl.class);
-		ADAPTER_CLASSES_MAP.put(Questions.class, QuestionsImpl.class);
-		ADAPTER_CLASSES_MAP.put(PostTimelines.class, PostTimelinesImpl.class);
-		ADAPTER_CLASSES_MAP.put(Reputations.class, ReputationsImpl.class);
-		ADAPTER_CLASSES_MAP.put(Statistics.class, StatisticsImpl.class);
-		ADAPTER_CLASSES_MAP.put(Tags.class, TagsImpl.class);
-		ADAPTER_CLASSES_MAP.put(Users.class, UsersImpl.class);
-		ADAPTER_CLASSES_MAP.put(UserTimelines.class, UserTimelinesImpl.class);
-		ADAPTER_CLASSES_MAP.put(Revisions.class, RevisionsImpl.class);
+		ADAPTER_CLASSES_MAP.put(Answers.class, Answers.class);
+		ADAPTER_CLASSES_MAP.put(Badges.class, Badges.class);
+		ADAPTER_CLASSES_MAP.put(Comments.class, Comments.class);
+		ADAPTER_CLASSES_MAP.put(Error.class, Error.class);
+		ADAPTER_CLASSES_MAP.put(Questions.class, Questions.class);
+		ADAPTER_CLASSES_MAP.put(PostTimelines.class, PostTimelines.class);
+		ADAPTER_CLASSES_MAP.put(Reputations.class, Reputations.class);
+		ADAPTER_CLASSES_MAP.put(Statistics.class, Statistics.class);
+		ADAPTER_CLASSES_MAP.put(Tags.class, Tags.class);
+		ADAPTER_CLASSES_MAP.put(Users.class, Users.class);
+		ADAPTER_CLASSES_MAP.put(UserTimelines.class, UserTimelines.class);
+		ADAPTER_CLASSES_MAP.put(Revisions.class, Revisions.class);
 	}
 	
 
@@ -93,11 +82,16 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
     @SuppressWarnings("unchecked")
     protected <T> T unmarshallObject(Class<T> clazz, InputStream jsonContent) {
         try {
-        	Object response = parser.parse(new InputStreamReader(jsonContent));
-        	if (response instanceof JSONObject) {
-        		Adaptable<?, JSONObject> adaptable = (Adaptable<?, JSONObject>) ADAPTER_CLASSES_MAP.get(clazz).newInstance();
-        		adaptable.adaptFrom((JSONObject) response);
-        		return (T) adaptable;
+        	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+        	if (response.isJsonObject()) {
+        		SchemaEntity entity = ADAPTER_CLASSES_MAP.get(clazz).newInstance();
+        		if (entity instanceof Adaptable) {
+        			Adaptable<?, JsonObject> adaptable = (Adaptable<?, JsonObject>) entity;     			
+            		adaptable.adaptFrom(response.getAsJsonObject());
+            		return (T) adaptable;
+        		} else {
+        			return new Gson().fromJson(response, clazz);
+        		}
         	}
         	throw new StackExchangeApiException("Unknown content found in response:" + response.toString());
         } catch (Exception e) {

@@ -5,16 +5,15 @@ package com.google.code.stackexchange.client.query.impl;
 
 import java.util.Set;
 
-import org.json.simple.JSONObject;
-
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.AnswerApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Answer;
+import com.google.code.stackexchange.schema.Answers;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Range;
-import com.google.code.stackexchange.schema.adapter.json.AnswersImpl;
+import com.google.gson.JsonObject;
 
 /**
  * The Class AnswerApiQueryImpl.
@@ -79,8 +78,8 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
 	@Override
-	protected PagedList<Answer> unmarshall(JSONObject json) {
-		AnswersImpl adapter = new AnswersImpl();
+	protected PagedList<Answer> unmarshall(JsonObject json) {
+		Answers adapter = new Answers();
 		adapter.adaptFrom(json);
 		return adapter.getAnswers();
 	}

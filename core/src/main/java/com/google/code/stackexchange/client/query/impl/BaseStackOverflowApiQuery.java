@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import com.google.code.stackexchange.client.AsyncResponseHandler;
 import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.client.impl.StackExchangeApiGateway;
@@ -16,7 +13,10 @@ import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackexchange.client.query.StackExchangeApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Error;
-import com.google.code.stackexchange.schema.adapter.json.ErrorImpl;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 /**
  * The Class BaseStackOverflowApiQuery.
@@ -27,7 +27,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 	protected ApiUrlBuilder apiUrlBuilder;
     
     /** The parser. */
-    private final JSONParser parser = new JSONParser();
+    private final JsonParser parser = new JsonParser();
     
     /** The handlers. */
     private List<AsyncResponseHandler<PagedList<T>>> handlers = new ArrayList<AsyncResponseHandler<PagedList<T>>>();
@@ -65,9 +65,9 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 		InputStream jsonContent = null;
         try {
         	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
-        	Object response = parser.parse(new InputStreamReader(jsonContent));
-        	if (response instanceof JSONObject) {
-        		PagedList<T> responseList = unmarshall((JSONObject) response);
+        	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+        	if (response.isJsonObject()) {
+        		PagedList<T> responseList = unmarshall(response.getAsJsonObject());
         		notifyObservers(responseList);
 				return responseList;
         	}
@@ -87,9 +87,9 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 		InputStream jsonContent = null;
         try {
         	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
-        	Object response = parser.parse(new InputStreamReader(jsonContent));
-        	if (response instanceof JSONObject) {
-        		PagedList<T> responseList = unmarshall((JSONObject) response);
+        	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+        	if (response.isJsonObject()) {
+        		PagedList<T> responseList = unmarshall(response.getAsJsonObject());
         		notifyObservers(responseList);
 				return getFirstElement(responseList);
         	}
@@ -127,11 +127,9 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 	protected <A> A unmarshallObject(Class<A> clazz, InputStream jsonContent) {
     	if (clazz.equals(Error.class)) {
             try {
-            	Object response = parser.parse(new InputStreamReader(jsonContent));
-            	if (response instanceof JSONObject) {
-            		ErrorImpl error = new ErrorImpl();
-            		error.adaptFrom((JSONObject)response);
-            		return (A) error;
+            	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+            	if (response.isJsonObject()) {
+            		return (A) new Gson().fromJson(response, Error.class);
             	}
             } catch (Exception e) {
                 throw new StackExchangeApiException(e);
@@ -154,7 +152,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 	 * 
 	 * @return the paged list< t>
 	 */
-	protected abstract PagedList<T> unmarshall(JSONObject json);
+	protected abstract PagedList<T> unmarshall(JsonObject json);
 	
 	/**
 	 * Gets the first element.

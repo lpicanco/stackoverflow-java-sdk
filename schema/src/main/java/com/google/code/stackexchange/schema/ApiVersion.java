@@ -1,36 +1,49 @@
+/**
+ * 
+ */
 package com.google.code.stackexchange.schema;
 
+import com.google.code.stackexchange.schema.ApiVersion;
+
 /**
- * The Interface ApiVersion.
+ * The Class ApiVersionImpl.
  */
-public interface ApiVersion {
+public class ApiVersion extends SchemaEntity {
 
-	/**
-	 * Gets the version.
-	 * 
-	 * @return the version
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 4844722882774546494L;
+	
+	/** The version. */
+	private String version;
+	
+	/** The revision. */
+	private String revision;
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.ApiVersion#getVersion()
 	 */
-	public String getVersion();
-
-	/**
-	 * Sets the version.
-	 * 
-	 * @param version the new version
+	public String getVersion() {
+		return version;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.ApiVersion#setVersion(java.lang.String)
 	 */
-	public void setVersion(String version);
-
-	/**
-	 * Gets the revision.
-	 * 
-	 * @return the revision
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.ApiVersion#getRevision()
 	 */
-	public String getRevision();
-
-	/**
-	 * Sets the revision.
-	 * 
-	 * @param revision the new revision
+	public String getRevision() {
+		return revision;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.schema.ApiVersion#setRevision(java.lang.String)
 	 */
-	public void setRevision(String revision);
-
+	public void setRevision(String revision) {
+		this.revision = revision;
+	}
 }
