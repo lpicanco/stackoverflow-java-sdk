@@ -46,6 +46,7 @@ X. 9. Add new owner and user fields and remove old fields.
 X. 10. PagedList
 X. 11. Use GSON..
 12. Statistic and Error are not populated. 
+13. Write a google wave robot for the contest.
 
 http://api.stackoverflow.com/0.8/help
 http://code.google.com/p/theworldsworststackoverflowclone/
