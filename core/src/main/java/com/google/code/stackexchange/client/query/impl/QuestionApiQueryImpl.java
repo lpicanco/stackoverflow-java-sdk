@@ -129,8 +129,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	@Override
 	protected PagedList<Question> unmarshall(JsonObject json) {
 		Questions adapter = new Questions();
-		adapter.adaptFrom(json);
-		return adapter.getQuestions();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

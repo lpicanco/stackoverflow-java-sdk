@@ -956,7 +956,7 @@ public interface StackExchangeApiClient extends StackExchangeAuthenticationClien
 	 * 
 	 * @return the statistics
 	 */
-	public Statistics getStatistics();
+	public List<Statistics> getStatistics();
 	
 	// Revision Methods
 	/**

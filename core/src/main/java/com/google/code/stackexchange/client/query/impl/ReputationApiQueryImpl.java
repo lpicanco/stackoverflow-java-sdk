@@ -60,8 +60,7 @@ public class ReputationApiQueryImpl extends BaseStackOverflowApiQuery<Reputation
 	@Override
 	protected PagedList<Reputation> unmarshall(JsonObject json) {
 		Reputations adapter = new Reputations();
-		adapter.adaptFrom(json);
-		return adapter.getReputations();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

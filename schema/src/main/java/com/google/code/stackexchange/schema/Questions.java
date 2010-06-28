@@ -16,50 +16,35 @@ import com.google.gson.JsonObject;
 /**
  * The Class QuestionsImpl.
  */
-public class Questions extends SchemaEntity implements Adaptable<Questions, JsonObject> {
+public class Questions extends SchemaEntity implements Adaptable<PagedList<Question>, JsonObject> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
-	/** The questions. */
-	private PagedList<Question> questions = new PagedArrayList<Question>();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.Questions#getQuestions()
-	 */
-	public PagedList<Question> getQuestions() {
-		return questions;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.Questions#setQuestions(java.util.List)
-	 */
-	public void setQuestions(PagedList<Question> questions) {
-		this.questions = questions;
-	}
-
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
 	 */
 	@Override
-	public void adaptFrom(JsonObject adaptee) {
-		getQuestions().setTotal(adaptee.get("total").getAsLong());
-		getQuestions().setPage(adaptee.get("page").getAsInt());
-		getQuestions().setPageSize(adaptee.get("pagesize").getAsInt());
+	public PagedList<Question> adaptFrom(JsonObject adaptee) {
+		PagedList<Question> list = new PagedArrayList<Question>();		
+		list.setTotal(adaptee.get("total").getAsLong());
+		list.setPage(adaptee.get("page").getAsInt());
+		list.setPageSize(adaptee.get("pagesize").getAsInt());
 		JsonArray questions = adaptee.get("questions").getAsJsonArray();
 		if (questions != null) {
 			Gson gson = getGsonBuilder().create();
 			for (JsonElement o : questions) {			
-				getQuestions().add(gson.fromJson(o, Question.class));
+				list.add(gson.fromJson(o, Question.class));
 			}
 		}
+		return list;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptTo()
 	 */
 	@Override
-	public JsonObject adaptTo() {
-		return (JsonObject) getGsonBuilder().create().toJsonTree(this);
+	public JsonObject adaptTo(PagedList<Question> adapter) {
+		return (JsonObject) getGsonBuilder().create().toJsonTree(adapter);
 	}
 }

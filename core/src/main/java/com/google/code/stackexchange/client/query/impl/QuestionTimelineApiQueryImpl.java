@@ -50,8 +50,7 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 	@Override
 	protected PagedList<PostTimeline> unmarshall(JsonObject json) {
 		PostTimelines adapter = new PostTimelines();
-		adapter.adaptFrom(json);
-		return adapter.getTimelines();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

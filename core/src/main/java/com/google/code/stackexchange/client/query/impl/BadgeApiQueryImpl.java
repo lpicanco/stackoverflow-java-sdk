@@ -41,8 +41,7 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 	@Override
 	protected PagedList<Badge> unmarshall(JsonObject json) {
 		Badges adapter = new Badges();
-		adapter.adaptFrom(json);
-		return adapter.getBadges();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

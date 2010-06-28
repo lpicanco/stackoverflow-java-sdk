@@ -16,50 +16,35 @@ import com.google.gson.JsonObject;
 /**
  * The Class CommentsImpl.
  */
-public class Comments extends SchemaEntity implements Adaptable<Comments, JsonObject> {
+public class Comments extends SchemaEntity implements Adaptable<PagedList<Comment>, JsonObject> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
-	/** The comments. */
-	private PagedList<Comment> comments = new PagedArrayList<Comment>();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.Comments#getComments()
-	 */
-	public PagedList<Comment> getComments() {
-		return comments;
-	}
-
-	/**
-	 * @see com.google.code.stackexchange.schema.Comments#setComments(java.util.List)
-	 */
-	public void setComments(PagedList<Comment> comments) {
-		this.comments = comments;
-	}
-
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
 	 */
 	@Override
-	public void adaptFrom(JsonObject adaptee) {
-		getComments().setTotal(adaptee.get("total").getAsLong());
-		getComments().setPage(adaptee.get("page").getAsInt());
-		getComments().setPageSize(adaptee.get("pagesize").getAsInt());
+	public PagedList<Comment> adaptFrom(JsonObject adaptee) {
+		PagedList<Comment> list = new PagedArrayList<Comment>();
+		list.setTotal(adaptee.get("total").getAsLong());
+		list.setPage(adaptee.get("page").getAsInt());
+		list.setPageSize(adaptee.get("pagesize").getAsInt());
 		JsonArray comments = adaptee.get("comments").getAsJsonArray();
 		if (comments != null) {
 			Gson gson = getGsonBuilder().create();
 			for (JsonElement o : comments) {			
-				getComments().add(gson.fromJson(o, Comment.class));
+				list.add(gson.fromJson(o, Comment.class));
 			}
 		}
+		return list;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptTo()
 	 */
 	@Override
-	public JsonObject adaptTo() {
-		return (JsonObject) getGsonBuilder().create().toJsonTree(this);
+	public JsonObject adaptTo(PagedList<Comment> adapter) {
+		return (JsonObject) getGsonBuilder().create().toJsonTree(adapter);
 	}
 }

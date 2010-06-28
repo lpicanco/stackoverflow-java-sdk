@@ -619,10 +619,10 @@ public class AsyncStackExchangeApiClientAdapter implements AsyncStackOverflowApi
 	 * @see com.google.code.stackexchange.client.AsyncStackOverflowApiClient#getStatistics()
 	 */
 	@Override
-	public Future<Statistics> getStatistics() {
-		return execute(new Callable<Statistics>() {
+	public Future<List<Statistics>> getStatistics() {
+		return execute(new Callable<List<Statistics>>() {
             @Override
-            public Statistics call() throws Exception {
+            public List<Statistics> call() throws Exception {
                 return client.getStatistics();
             }
         });

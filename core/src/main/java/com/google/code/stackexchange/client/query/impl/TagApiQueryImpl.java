@@ -61,8 +61,7 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	@Override
 	protected PagedList<Tag> unmarshall(JsonObject json) {
 		Tags adapter = new Tags();
-		adapter.adaptFrom(json);
-		return adapter.getTags();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

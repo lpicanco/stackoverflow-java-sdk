@@ -80,8 +80,7 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	@Override
 	protected PagedList<Answer> unmarshall(JsonObject json) {
 		Answers adapter = new Answers();
-		adapter.adaptFrom(json);
-		return adapter.getAnswers();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

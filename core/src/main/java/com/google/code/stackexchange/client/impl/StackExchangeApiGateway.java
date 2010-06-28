@@ -430,7 +430,7 @@ public abstract class StackExchangeApiGateway {
 	 * 
 	 * @return the t
 	 */
-	protected <T> T readResponse(Class<T> clazz, InputStream is) {
+	protected <T> T readResponse(Class<?> clazz, InputStream is) {
 	    try {
 	        return unmarshallObject(clazz, is);
 	    } finally {
@@ -447,7 +447,7 @@ public abstract class StackExchangeApiGateway {
      * 
      * @return the t
      */
-    protected abstract <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent);
+    protected abstract <T> T unmarshallObject(Class<?> clazz, InputStream xmlContent);
 
     /**
      * Marshall object.
