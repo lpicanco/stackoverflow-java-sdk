@@ -70,8 +70,7 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 	@Override
 	protected PagedList<User> unmarshall(JsonObject json) {
 		Users adapter = new Users();
-		adapter.adaptFrom(json);
-		return adapter.getUsers();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

@@ -24,7 +24,6 @@ import com.google.code.stackexchange.schema.Tags;
 import com.google.code.stackexchange.schema.UserTimelines;
 import com.google.code.stackexchange.schema.Users;
 import com.google.code.stackexchange.schema.adapter.Adaptable;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -39,7 +38,7 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
     private final JsonParser parser = new JsonParser();
     
     /** The Constant ADAPTER_CLASSES_MAP. */
-	private static final Map<Class<? extends SchemaEntity>, Class<? extends SchemaEntity>> ADAPTER_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends SchemaEntity>>();
+	private static final Map<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, JsonObject>>> ADAPTER_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, JsonObject>>>();
 	
 	static {
 		ADAPTER_CLASSES_MAP.put(Answers.class, Answers.class);
@@ -80,18 +79,12 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
      * @see com.google.code.stackexchange.client.impl.StackOverflowApiGateway#unmarshallObject(java.lang.Class, java.io.InputStream)
      */
     @SuppressWarnings("unchecked")
-    protected <T> T unmarshallObject(Class<T> clazz, InputStream jsonContent) {
+    protected <T> T unmarshallObject(Class<?> clazz, InputStream jsonContent) {
         try {
         	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
         	if (response.isJsonObject()) {
-        		SchemaEntity entity = ADAPTER_CLASSES_MAP.get(clazz).newInstance();
-        		if (entity instanceof Adaptable) {
-        			Adaptable<?, JsonObject> adaptable = (Adaptable<?, JsonObject>) entity;     			
-            		adaptable.adaptFrom(response.getAsJsonObject());
-            		return (T) adaptable;
-        		} else {
-        			return new Gson().fromJson(response, clazz);
-        		}
+        		Adaptable<?, JsonObject> adaptable = ADAPTER_CLASSES_MAP.get(clazz).newInstance();
+        		return (T) adaptable.adaptFrom(response.getAsJsonObject());
         	}
         	throw new StackExchangeApiException("Unknown content found in response:" + response.toString());
         } catch (Exception e) {

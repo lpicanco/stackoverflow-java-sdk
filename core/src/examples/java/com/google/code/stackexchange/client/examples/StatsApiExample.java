@@ -4,6 +4,7 @@
 package com.google.code.stackexchange.client.examples;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -59,7 +60,7 @@ public class StatsApiExample {
     		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
     		final StackExchangeApiClient client = factory.createStackOverflowApiClient();
     		
-    		Statistics stats = client.getStatistics();
+    		List<Statistics> stats = client.getStatistics();
     		printResult(stats);
     		
         } else {
@@ -72,18 +73,20 @@ public class StatsApiExample {
 	 * 
 	 * @param stats the stats
 	 */
-	private static void printResult(Statistics stats) {
-		System.out.println("Answers per minute:" + stats.getAnswersPerMinute());
-		System.out.println("Badges per minute:" + stats.getBadgesPerMinute());
-		System.out.println("Questions per minute:" + stats.getQuestionsPerMinute());
-		System.out.println("Total answers:" + stats.getTotalAnswers());
-		System.out.println("Total badges:" + stats.getTotalBadges());
-		System.out.println("Total comments:" + stats.getTotalComments());
-		System.out.println("Total questions:" + stats.getTotalQuestions());
-		System.out.println("Total unanswered questions:" + stats.getTotalUnanswered());
-		System.out.println("Total users:" + stats.getTotalUsers());
-		System.out.println("Total votes:" + stats.getTotalVotes());
-		System.out.println("API Version:" + stats.getApiVersion().getVersion() + ":" + stats.getApiVersion().getRevision());
+	private static void printResult(List<Statistics> statsList) {
+		for (Statistics stats : statsList) {
+			System.out.println("Answers per minute:" + stats.getAnswersPerMinute());
+			System.out.println("Badges per minute:" + stats.getBadgesPerMinute());
+			System.out.println("Questions per minute:" + stats.getQuestionsPerMinute());
+			System.out.println("Total answers:" + stats.getTotalAnswers());
+			System.out.println("Total badges:" + stats.getTotalBadges());
+			System.out.println("Total comments:" + stats.getTotalComments());
+			System.out.println("Total questions:" + stats.getTotalQuestions());
+			System.out.println("Total unanswered questions:" + stats.getTotalUnanswered());
+			System.out.println("Total users:" + stats.getTotalUsers());
+			System.out.println("Total votes:" + stats.getTotalVotes());
+			System.out.println("API Version:" + stats.getApiVersion().getVersion() + ":" + stats.getApiVersion().getRevision());
+		}
 	}
 
 	/**

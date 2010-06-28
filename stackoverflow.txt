@@ -45,10 +45,11 @@ X. 8. Remove Query classification and create separate classes for each classific
 X. 9. Add new owner and user fields and remove old fields.
 X. 10. PagedList
 X. 11. Use GSON..
-12. Statistic and Error are not populated. 
+X. 12. Statistic and Error are not populated. 
 13. Write a google wave robot for the contest.
+14. Go through the API and do changes.
 
-http://api.stackoverflow.com/0.8/help
+http://api.stackoverflow.com/0.9/help
 http://code.google.com/p/theworldsworststackoverflowclone/
 http://stackapps.com/questions/7/how-to-list-your-application-library-wrapper-here
 

@@ -16,33 +16,18 @@ import com.google.gson.JsonObject;
 /**
  * The Class BadgesImpl.
  */
-public class Badges extends SchemaEntity implements Adaptable<Badges, JsonObject> {
+public class Badges extends SchemaEntity implements Adaptable<PagedList<Badge>, JsonObject> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
-	/** The badges. */
-	private PagedList<Badge> badges = new PagedArrayList<Badge>();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.Badges#getBadges()
-	 */
-	public PagedList<Badge> getBadges() {
-		return badges;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.Badges#setBadges(java.util.List)
-	 */
-	public void setBadges(PagedList<Badge> badges) {
-		this.badges = badges;
-	}
-
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
 	 */
 	@Override
-	public void adaptFrom(JsonObject adaptee) {
+	public PagedList<Badge> adaptFrom(JsonObject adaptee) {
+		PagedList<Badge> list = new PagedArrayList<Badge>();
+		
 //		getBadges().setTotal(adaptee.get("total").getAsLong());
 //		getBadges().setPage(adaptee.get("page").getAsInt());
 //		getBadges().setPageSize(adaptee.get("pagesize").getAsInt());
@@ -50,16 +35,17 @@ public class Badges extends SchemaEntity implements Adaptable<Badges, JsonObject
 		if (badges != null) {
 			Gson gson = getGsonBuilder().create();
 			for (JsonElement o : badges) {			
-				getBadges().add(gson.fromJson(o, Badge.class));
+				list.add(gson.fromJson(o, Badge.class));
 			}
 		}
+		return list;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptTo()
 	 */
 	@Override
-	public JsonObject adaptTo() {
-		return (JsonObject) getGsonBuilder().create().toJsonTree(this);
+	public JsonObject adaptTo(PagedList<Badge> adapter) {
+		return (JsonObject) getGsonBuilder().create().toJsonTree(adapter);
 	}
 }

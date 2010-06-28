@@ -59,8 +59,7 @@ public class RevisionApiQueryImpl extends BaseStackOverflowApiQuery<Revision> im
 	@Override
 	protected PagedList<Revision> unmarshall(JsonObject json) {
 		Revisions adapter = new Revisions();
-		adapter.adaptFrom(json);
-		return adapter.getRevisions();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

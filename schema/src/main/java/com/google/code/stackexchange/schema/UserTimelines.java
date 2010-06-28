@@ -16,50 +16,35 @@ import com.google.gson.JsonObject;
 /**
  * The Class UserTimelinesImpl.
  */
-public class UserTimelines extends SchemaEntity implements Adaptable<UserTimelines, JsonObject> {
+public class UserTimelines extends SchemaEntity implements Adaptable<PagedList<UserTimeline>, JsonObject> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
-	/** The timelines. */
-	private PagedList<UserTimeline> timelines = new PagedArrayList<UserTimeline>();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.UserTimelines#getTimelines()
-	 */
-	public PagedList<UserTimeline> getTimelines() {
-		return timelines;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.UserTimelines#setTimelines(java.util.List)
-	 */
-	public void setTimelines(PagedList<UserTimeline> timelines) {
-		this.timelines = timelines;
-	}
-
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
 	 */
 	@Override
-	public void adaptFrom(JsonObject adaptee) {
-		getTimelines().setTotal(adaptee.get("total").getAsLong());
-		getTimelines().setPage(adaptee.get("page").getAsInt());
-		getTimelines().setPageSize(adaptee.get("pagesize").getAsInt());
+	public PagedList<UserTimeline> adaptFrom(JsonObject adaptee) {
+		PagedList<UserTimeline> list = new PagedArrayList<UserTimeline>();
+		list.setTotal(adaptee.get("total").getAsLong());
+		list.setPage(adaptee.get("page").getAsInt());
+		list.setPageSize(adaptee.get("pagesize").getAsInt());
 		JsonArray timelines = adaptee.get("user_timelines").getAsJsonArray();
 		if (timelines != null) {
 			Gson gson = getGsonBuilder().create();
 			for (JsonElement o : timelines) {			
-				getTimelines().add(gson.fromJson(o, UserTimeline.class));
+				list.add(gson.fromJson(o, UserTimeline.class));
 			}
 		}
+		return list;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptTo()
 	 */
 	@Override
-	public JsonObject adaptTo() {
-		return (JsonObject) getGsonBuilder().create().toJsonTree(this);
+	public JsonObject adaptTo(PagedList<UserTimeline> adapter) {
+		return (JsonObject) getGsonBuilder().create().toJsonTree(adapter);
 	}
 }

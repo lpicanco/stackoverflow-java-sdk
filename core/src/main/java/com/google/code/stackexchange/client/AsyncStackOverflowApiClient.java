@@ -804,7 +804,7 @@ public interface AsyncStackOverflowApiClient extends StackExchangeAuthentication
 	 * 
 	 * @return the statistics
 	 */
-	public Future<Statistics> getStatistics();
+	public Future<List<Statistics>> getStatistics();
 	
 	// Revision Methods
 	/**

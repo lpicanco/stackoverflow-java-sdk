@@ -5,10 +5,8 @@ package com.google.code.stackexchange.client.query.impl;
 
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.StatisticsApiQuery;
-import com.google.code.stackexchange.common.PagedArrayList;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Statistics;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 /**
@@ -30,9 +28,8 @@ public class StatisticsApiQueryImpl extends BaseStackOverflowApiQuery<Statistics
 	 */
 	@Override
 	protected PagedList<Statistics> unmarshall(JsonObject json) {
-		PagedList<Statistics> list = new PagedArrayList<Statistics>();
-		list.add(new Gson().fromJson(json, Statistics.class));
-		return list;
+		Statistics adapter = new Statistics();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

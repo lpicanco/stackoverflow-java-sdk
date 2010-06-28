@@ -89,8 +89,7 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	@Override
 	protected PagedList<Comment> unmarshall(JsonObject json) {
 		Comments adapter = new Comments();
-		adapter.adaptFrom(json);
-		return adapter.getComments();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

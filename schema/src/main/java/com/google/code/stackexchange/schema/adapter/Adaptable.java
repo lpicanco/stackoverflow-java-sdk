@@ -12,13 +12,15 @@ public interface Adaptable<Adapter, Adaptee> {
      * Adapt from.
      * 
      * @param adaptee the adaptee
+     * @return TODO
      */
-    public void adaptFrom(Adaptee adaptee);
+    public Adapter adaptFrom(Adaptee adaptee);
 
     /**
      * Adapt to.
+     * @param adapter TODO
      * 
      * @return the adaptee
      */
-    public Adaptee adaptTo();
+    public Adaptee adaptTo(Adapter adapter);
 }

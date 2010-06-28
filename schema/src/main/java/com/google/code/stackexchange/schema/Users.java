@@ -16,50 +16,35 @@ import com.google.gson.JsonObject;
 /**
  * The Class UsersImpl.
  */
-public class Users extends SchemaEntity implements Adaptable<Users, JsonObject> {
+public class Users extends SchemaEntity implements Adaptable<PagedList<User>, JsonObject> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5190225278764284533L;
 	
-	/** The users. */
-	private PagedList<User> users = new PagedArrayList<User>();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.Users#getUsers()
-	 */
-	public PagedList<User> getUsers() {
-		return users;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.schema.Users#setUsers(java.util.List)
-	 */
-	public void setUsers(PagedList<User> users) {
-		this.users = users;
-	}
-
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptFrom(java.lang.Object)
 	 */
 	@Override
-	public void adaptFrom(JsonObject adaptee) {
-		getUsers().setTotal(adaptee.get("total").getAsLong());
-		getUsers().setPage(adaptee.get("page").getAsInt());
-		getUsers().setPageSize(adaptee.get("pagesize").getAsInt());
+	public PagedList<User> adaptFrom(JsonObject adaptee) {
+		PagedList<User> list = new PagedArrayList<User>();
+		list.setTotal(adaptee.get("total").getAsLong());
+		list.setPage(adaptee.get("page").getAsInt());
+		list.setPageSize(adaptee.get("pagesize").getAsInt());
 		JsonArray users = adaptee.get("users").getAsJsonArray();
 		if (users != null) {
 			Gson gson = getGsonBuilder().create();
 			for (JsonElement o : users) {			
-				getUsers().add(gson.fromJson(o, User.class));
+				list.add(gson.fromJson(o, User.class));
 			}
 		}
+		return list;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.adapter.Adaptable#adaptTo()
 	 */
 	@Override
-	public JsonObject adaptTo() {
-		return (JsonObject) getGsonBuilder().create().toJsonTree(this);
+	public JsonObject adaptTo(PagedList<User> adapter) {
+		return (JsonObject) getGsonBuilder().create().toJsonTree(adapter);
 	}
 }

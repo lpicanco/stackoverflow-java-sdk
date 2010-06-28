@@ -50,8 +50,7 @@ public class UserTimelineApiQueryImpl extends BaseStackOverflowApiQuery<UserTime
 	@Override
 	protected PagedList<UserTimeline> unmarshall(JsonObject json) {
 		UserTimelines adapter = new UserTimelines();
-		adapter.adaptFrom(json);
-		return adapter.getTimelines();
+		return adapter.adaptFrom(json);
 	}
 
 	/* (non-Javadoc)

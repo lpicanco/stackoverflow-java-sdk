@@ -13,7 +13,6 @@ import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackexchange.client.query.StackExchangeApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Error;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -124,12 +123,13 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
      * @see com.google.code.stackexchange.client.impl.StackOverflowApiGateway#unmarshallObject(java.lang.Class, java.io.InputStream)
      */
     @SuppressWarnings("unchecked")
-	protected <A> A unmarshallObject(Class<A> clazz, InputStream jsonContent) {
+	protected <A> A unmarshallObject(Class<?> clazz, InputStream jsonContent) {
     	if (clazz.equals(Error.class)) {
             try {
             	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
             	if (response.isJsonObject()) {
-            		return (A) new Gson().fromJson(response, Error.class);
+            		Error error = new Error();
+            		return (A) error.adaptFrom(response.getAsJsonObject());
             	}
             } catch (Exception e) {
                 throw new StackExchangeApiException(e);
