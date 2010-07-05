@@ -8,6 +8,7 @@ import java.util.Set;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Answer;
 import com.google.code.stackexchange.schema.FilterOption;
+import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 
 /**
@@ -74,6 +75,15 @@ public interface AnswerApiQuery extends StackExchangeApiQuery<Answer> {
 	 */
 	public AnswerApiQuery withRange(Range range);
 	
+	/**
+	 * With paging.
+	 * 
+	 * @param paging the paging
+	 * 
+	 * @return the question api query
+	 */
+	public AnswerApiQuery withPaging(Paging paging);
+
 	/**
 	 * With fetch options.
 	 * 

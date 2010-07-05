@@ -8,7 +8,7 @@ import java.util.Set;
 
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
-import com.google.code.stackexchange.client.query.QuestionApiQuery;
+import com.google.code.stackexchange.client.query.SearchApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
@@ -22,14 +22,14 @@ import com.google.gson.JsonObject;
 /**
  * The Class QuestionApiQueryImpl.
  */
-public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> implements QuestionApiQuery {
+public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> implements SearchApiQuery {
 
 	/**
 	 * Instantiates a new question api query impl.
 	 * 
 	 * @param applicationId the application id
 	 */
-	public QuestionApiQueryImpl(String applicationId) {
+	public SearchApiQueryImpl(String applicationId) {
 		super(applicationId);
 	}
 
@@ -37,7 +37,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withFetchOptions(java.util.Set)
 	 */
 	@Override
-	public QuestionApiQuery withFetchOptions(Set<FilterOption> fetchOptions) {
+	public SearchApiQuery withFetchOptions(Set<FilterOption> fetchOptions) {
 		apiUrlBuilder.withFetchOptions(fetchOptions);
 		return this;
 	}
@@ -46,7 +46,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withPaging(com.google.code.stackexchange.schema.Paging)
 	 */
 	@Override
-	public QuestionApiQuery withPaging(Paging paging) {
+	public SearchApiQuery withPaging(Paging paging) {
 		apiUrlBuilder.withPaging(paging);
 		return this;
 	}
@@ -55,7 +55,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withQuestionIds(long[])
 	 */
 	@Override
-	public QuestionApiQuery withQuestionIds(long... questionIds) {
+	public SearchApiQuery withQuestionIds(long... questionIds) {
 		apiUrlBuilder.withIds(questionIds);
 		return this;
 	}
@@ -64,7 +64,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.Question.SortOrder)
 	 */
 	@Override
-	public QuestionApiQuery withSort(Question.SortOrder sort) {
+	public SearchApiQuery withSort(Question.SortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
@@ -73,7 +73,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.Question.UnansweredSortOrder)
 	 */
 	@Override
-	public QuestionApiQuery withSort(Question.UnansweredSortOrder sort) {
+	public SearchApiQuery withSort(Question.UnansweredSortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
@@ -82,7 +82,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.User.QuestionSortOrder)
 	 */
 	@Override
-	public QuestionApiQuery withSort(User.QuestionSortOrder sort) {
+	public SearchApiQuery withSort(User.QuestionSortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
@@ -91,7 +91,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.User.FavoriteSortOrder)
 	 */
 	@Override
-	public QuestionApiQuery withSort(User.FavoriteSortOrder sort) {
+	public SearchApiQuery withSort(User.FavoriteSortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
@@ -100,7 +100,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withTags(java.lang.String[])
 	 */
 	@Override
-	public QuestionApiQuery withTags(String... tag) {
+	public SearchApiQuery withTags(String... tag) {
 		apiUrlBuilder.withParameters("tagged", Arrays.asList(tag));
 		return this;
 	}
@@ -109,7 +109,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withTimePeriod(com.google.code.stackexchange.schema.TimePeriod)
 	 */
 	@Override
-	public QuestionApiQuery withTimePeriod(TimePeriod timePeriod) {
+	public SearchApiQuery withTimePeriod(TimePeriod timePeriod) {
 		apiUrlBuilder.withTimePeriod(timePeriod);
 		return this;
 	}
@@ -118,7 +118,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withUserIds(long[])
 	 */
 	@Override
-	public QuestionApiQuery withUserIds(long... userIds) {
+	public SearchApiQuery withUserIds(long... userIds) {
 		apiUrlBuilder.withIds(userIds);
 		return this;
 	}
@@ -137,60 +137,33 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 */
 	@Override
 	public void reset() {
-		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS, getApplicationKey(), getApiVersion());
+		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS, getApplicationKey(), getApiVersion());
 	}
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withRange(com.google.code.stackexchange.schema.Range)
 	 */
 	@Override
-	public QuestionApiQuery withRange(Range range) {
+	public SearchApiQuery withRange(Range range) {
 		apiUrlBuilder.withRange(range);
 		return this;
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#listFavoriteQuestions()
+	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withRange(com.google.code.stackexchange.schema.Range)
 	 */
 	@Override
-	public PagedList<Question> listFavoriteQuestions() {
-		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
-		return super.list();
+	public SearchApiQuery withInTitle(String inTitle) {
+		apiUrlBuilder.withParameter("intitle", inTitle);
+		return this;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#listTaggedQuestions()
-	 */
-	@Override
-	public PagedList<Question> listTaggedQuestions() {
-		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_TAGGED_QUESTIONS);
-		return super.list();
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#listUnansweredQuestions()
-	 */
-	@Override
-	public PagedList<Question> listUnansweredQuestions() {
-		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
-		return super.list();
-	}
-	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#list()
 	 */
 	@Override
 	public PagedList<Question> list() {
-		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_QUESTIONS);
-		return super.list();
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#listQuestionsByUser()
-	 */
-	@Override
-	public PagedList<Question> listQuestionsByUser() {
-		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.SEARCH_QUESTIONS);
 		return super.list();
 	}
 }

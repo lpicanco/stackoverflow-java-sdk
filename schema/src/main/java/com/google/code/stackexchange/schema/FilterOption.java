@@ -13,7 +13,10 @@ public enum FilterOption implements ValueEnum {
 	INCLUDE_COMMENTS("comments", "true"),
 	
 	/** The INCLUD e_ body. */
-	INCLUDE_BODY("body", "true");
+	INCLUDE_BODY("body", "true"),
+	
+	/** The INCLUD e_ answers. */
+	INCLUDE_ANSWERS("answers", "true");
 	
     /** The Constant stringToEnum. */
 	private static final Map<String, FilterOption> stringToEnum = new HashMap<String, FilterOption>();

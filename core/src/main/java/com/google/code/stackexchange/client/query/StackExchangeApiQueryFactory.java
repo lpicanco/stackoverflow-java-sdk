@@ -10,6 +10,7 @@ import com.google.code.stackexchange.client.query.impl.QuestionApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.QuestionTimelineApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.ReputationApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.RevisionApiQueryImpl;
+import com.google.code.stackexchange.client.query.impl.SearchApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.StatisticsApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.TagApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.UserApiQueryImpl;
@@ -78,6 +79,15 @@ public class StackExchangeApiQueryFactory {
      */
     public QuestionApiQuery newQuestionApiQuery() {
     	return new QuestionApiQueryImpl(applicationKey);
+    }
+    
+    /**
+     * New search api query.
+     * 
+     * @return the search api query
+     */
+    public SearchApiQuery newSearchApiQuery() {
+    	return new SearchApiQueryImpl(applicationKey);
     }
 
     /**
