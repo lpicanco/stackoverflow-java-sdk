@@ -21,7 +21,7 @@ import com.google.gson.JsonParseException;
 public abstract class SchemaEntity implements Serializable {
 
 	/** The logger. */
-    protected final Logger logger = Logger.getLogger(getClass().getCanonicalName());
+    protected transient final Logger logger = Logger.getLogger(getClass().getCanonicalName());
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 250056223059654638L;

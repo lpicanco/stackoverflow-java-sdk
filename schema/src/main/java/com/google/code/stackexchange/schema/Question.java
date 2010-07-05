@@ -23,10 +23,10 @@ public class Question extends SchemaEntity {
 	public enum SortOrder implements SortEnum {
 		
 		/** The ACTIVE. */
-		ACTIVE("active"),
+		ACTIVITY("activity"),
 		
 		/** The NEWEST. */
-		NEWEST("newest"),
+		CREATION("creation"),
 		
 		/** The FEATURED. */
 		FEATURED("featured"),

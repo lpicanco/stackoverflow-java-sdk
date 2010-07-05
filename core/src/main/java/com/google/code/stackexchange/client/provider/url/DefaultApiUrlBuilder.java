@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.code.stackexchange.client.constant.ApplicationConstants;
+import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
@@ -370,6 +371,8 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 	public String buildUrl() {
 		StringBuilder urlBuilder = new StringBuilder();
 		StringBuilder placeHolderBuilder = new StringBuilder();
+		Map<String, String> fieldsLeftMap = new HashMap<String, String>(fieldsMap);
+		Map<String, String> parametersLeftMap = new HashMap<String, String>(parametersMap);
 		boolean placeHolderFlag = false;
 		boolean firstParameter = true;
 		for (int i = 0; i < urlFormat.length(); i++) {
@@ -381,6 +384,7 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 				String placeHolder = placeHolderBuilder.toString();
 				if (fieldsMap.containsKey(placeHolder)) {
 					urlBuilder.append(fieldsMap.get(placeHolder));
+					fieldsLeftMap.remove(placeHolder);
 				} else if (parametersMap.containsKey(placeHolder)) {
 					StringBuilder builder = new StringBuilder();
 					if (firstParameter) {
@@ -392,6 +396,7 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 					builder.append("=");
 					builder.append(parametersMap.get(placeHolder));
 					urlBuilder.append(builder.toString());
+					parametersLeftMap.remove(placeHolder);
 				} else {
 					// we did not find a binding for the placeholder.
 					// skip it.
@@ -407,6 +412,17 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 			}
 		}
 
+
+		if (fieldsLeftMap.size() > 0) {
+			throw new StackExchangeApiException("Field [" + fieldsLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
+		}
+		
+		if (parametersLeftMap.size() > 0) {
+			throw new StackExchangeApiException("Parameter [" + parametersLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
+		}
+		
+		logger.log(Level.INFO, "URL generated: " + urlBuilder.toString());
+		
 		return urlBuilder.toString();
 	}
 

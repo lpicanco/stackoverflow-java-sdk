@@ -12,6 +12,7 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Answer;
 import com.google.code.stackexchange.schema.Answers;
 import com.google.code.stackexchange.schema.FilterOption;
+import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.gson.JsonObject;
 
@@ -44,6 +45,15 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	@Override
 	public AnswerApiQuery withFetchOptions(Set<FilterOption> fetchOptions) {
 		apiUrlBuilder.withFetchOptions(fetchOptions);
+		return this;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.stackexchange.client.query.AnswerApiQuery#withPaging(com.google.code.stackexchange.schema.Paging)
+	 */
+	@Override
+	public AnswerApiQuery withPaging(Paging paging) {
+		apiUrlBuilder.withPaging(paging);
 		return this;
 	}
 
