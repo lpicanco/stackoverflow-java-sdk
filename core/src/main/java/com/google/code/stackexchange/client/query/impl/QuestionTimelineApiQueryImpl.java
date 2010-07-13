@@ -8,7 +8,6 @@ import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.QuestionTimelineApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.PostTimeline;
-import com.google.code.stackexchange.schema.PostTimelines;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.gson.JsonObject;
 
@@ -49,8 +48,7 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 	 */
 	@Override
 	protected PagedList<PostTimeline> unmarshall(JsonObject json) {
-		PostTimelines adapter = new PostTimelines();
-		return adapter.adaptFrom(json);
+		return unmarshallList(PostTimeline.class, json);
 	}
 
 	/* (non-Javadoc)

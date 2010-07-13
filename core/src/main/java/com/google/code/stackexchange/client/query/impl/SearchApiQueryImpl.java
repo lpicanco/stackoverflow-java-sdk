@@ -13,7 +13,6 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Question;
-import com.google.code.stackexchange.schema.Questions;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.code.stackexchange.schema.User;
@@ -128,8 +127,7 @@ public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> impl
 	 */
 	@Override
 	protected PagedList<Question> unmarshall(JsonObject json) {
-		Questions adapter = new Questions();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Question.class, json);
 	}
 
 	/* (non-Javadoc)

@@ -9,7 +9,6 @@ import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.CommentApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Comment;
-import com.google.code.stackexchange.schema.Comments;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.TimePeriod;
@@ -88,8 +87,7 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	 */
 	@Override
 	protected PagedList<Comment> unmarshall(JsonObject json) {
-		Comments adapter = new Comments();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Comment.class, json);
 	}
 
 	/* (non-Javadoc)

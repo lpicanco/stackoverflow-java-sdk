@@ -3,18 +3,11 @@
  */
 package com.google.code.stackexchange.schema;
 
-import com.google.code.stackexchange.common.PagedArrayList;
-import com.google.code.stackexchange.common.PagedList;
-import com.google.code.stackexchange.schema.adapter.Adaptable;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 /**
  * The Class StatisticsImpl.
  */
-public class Statistics extends SchemaEntity implements Adaptable<PagedList<Statistics>, JsonObject> {
+public class Statistics extends SchemaEntity {
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -3816093709987797926L;
@@ -204,23 +197,5 @@ public class Statistics extends SchemaEntity implements Adaptable<PagedList<Stat
 	 */
 	public void setApiVersion(ApiVersion apiVersion) {
 		this.apiVersion = apiVersion;
-	}
-
-	@Override
-	public PagedList<Statistics> adaptFrom(JsonObject adaptee) {
-		PagedList<Statistics> list = new PagedArrayList<Statistics>();
-		JsonArray stats = adaptee.get("statistics").getAsJsonArray();
-		if (stats != null) {
-			Gson gson = getGsonBuilder().create();
-			for (JsonElement o : stats) {			
-				list.add(gson.fromJson(o, Statistics.class));
-			}
-		}
-		return list;
-	}
-
-	@Override
-	public JsonObject adaptTo(PagedList<Statistics> adapter) {
-		return (JsonObject) getGsonBuilder().create().toJsonTree(adapter);
 	}
 }
