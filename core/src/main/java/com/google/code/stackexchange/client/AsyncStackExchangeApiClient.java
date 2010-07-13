@@ -26,7 +26,7 @@ import com.google.code.stackexchange.schema.UserTimeline;
 /**
  * The Interface AsyncStackOverflowApiClient.
  */
-public interface AsyncStackOverflowApiClient extends StackExchangeAuthenticationClient {
+public interface AsyncStackExchangeApiClient extends StackExchangeAuthenticationClient {
 	
 	// Question Methods
 	/**

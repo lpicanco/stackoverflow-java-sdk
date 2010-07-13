@@ -61,7 +61,7 @@ public class AnswersApiExample {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
     		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
-    		final StackExchangeApiClient client = factory.createStackOverflowApiClient();
+    		final StackExchangeApiClient client = factory.createStackExchangeApiClient();
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);

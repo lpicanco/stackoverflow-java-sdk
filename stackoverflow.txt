@@ -50,7 +50,7 @@ X. 12. Statistic and Error are not populated.
 14. Go through the API and do changes.
 
 http://stackauth.com/0.9/sites?key=C9uyDMP_i0u1y7mXhB1GkQ
-http://api.stackoverflow.com/0.9/help
+http://api.stackoverflow.com/1.0/help
 http://code.google.com/p/theworldsworststackoverflowclone/
 http://stackapps.com/questions/7/how-to-list-your-application-library-wrapper-here
 

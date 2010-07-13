@@ -15,7 +15,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.code.stackexchange.client.AsyncStackOverflowApiClient;
+import com.google.code.stackexchange.client.AsyncStackExchangeApiClient;
 import com.google.code.stackexchange.client.StackExchangeApiClientFactory;
 import com.google.code.stackexchange.schema.Badge;
 import com.google.code.stackexchange.schema.Tag;
@@ -64,7 +64,7 @@ public class AsyncApiExample {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
     		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
-    		final AsyncStackOverflowApiClient client = factory.createAsyncStackOverflowApiClient();
+    		final AsyncStackExchangeApiClient client = factory.createAsyncStackExchangeApiClient();
 			System.out.println("Fetching badges and tags asynchronously.");
     		Future<List<Badge>> badgesFuture = client.getBadges();
     		Future<List<Tag>> tagsFuture = client.getTags();

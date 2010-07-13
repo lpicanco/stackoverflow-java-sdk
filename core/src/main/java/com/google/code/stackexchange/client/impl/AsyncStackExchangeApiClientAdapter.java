@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-import com.google.code.stackexchange.client.AsyncStackOverflowApiClient;
+import com.google.code.stackexchange.client.AsyncStackExchangeApiClient;
 import com.google.code.stackexchange.client.StackExchangeApiClient;
 import com.google.code.stackexchange.client.provider.ApiProvider;
 import com.google.code.stackexchange.schema.Answer;
@@ -32,7 +32,7 @@ import com.google.code.stackexchange.schema.Answer.SortOrder;
 /**
  * The Class AsyncStackExchangeApiClientAdapter.
  */
-public class AsyncStackExchangeApiClientAdapter implements AsyncStackOverflowApiClient {
+public class AsyncStackExchangeApiClientAdapter implements AsyncStackExchangeApiClient {
 
     /** The client. */
     private StackExchangeApiClient client;
