@@ -9,7 +9,6 @@ import com.google.code.stackexchange.client.query.UserTimelineApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.code.stackexchange.schema.UserTimeline;
-import com.google.code.stackexchange.schema.UserTimelines;
 import com.google.gson.JsonObject;
 
 /**
@@ -49,8 +48,7 @@ public class UserTimelineApiQueryImpl extends BaseStackOverflowApiQuery<UserTime
 	 */
 	@Override
 	protected PagedList<UserTimeline> unmarshall(JsonObject json) {
-		UserTimelines adapter = new UserTimelines();
-		return adapter.adaptFrom(json);
+		return unmarshallList(UserTimeline.class, json);
 	}
 
 	/* (non-Javadoc)

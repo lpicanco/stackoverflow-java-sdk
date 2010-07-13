@@ -8,7 +8,6 @@ import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.RevisionApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Revision;
-import com.google.code.stackexchange.schema.Revisions;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.gson.JsonObject;
 
@@ -58,8 +57,7 @@ public class RevisionApiQueryImpl extends BaseStackOverflowApiQuery<Revision> im
 	 */
 	@Override
 	protected PagedList<Revision> unmarshall(JsonObject json) {
-		Revisions adapter = new Revisions();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Revision.class, json);
 	}
 
 	/* (non-Javadoc)

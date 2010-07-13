@@ -13,30 +13,20 @@ import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Answer;
-import com.google.code.stackexchange.schema.Answers;
 import com.google.code.stackexchange.schema.Badge;
-import com.google.code.stackexchange.schema.Badges;
 import com.google.code.stackexchange.schema.Comment;
-import com.google.code.stackexchange.schema.Comments;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.PostTimeline;
-import com.google.code.stackexchange.schema.PostTimelines;
 import com.google.code.stackexchange.schema.Question;
-import com.google.code.stackexchange.schema.Questions;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.Reputation;
-import com.google.code.stackexchange.schema.Reputations;
 import com.google.code.stackexchange.schema.Revision;
-import com.google.code.stackexchange.schema.Revisions;
 import com.google.code.stackexchange.schema.Statistics;
 import com.google.code.stackexchange.schema.Tag;
-import com.google.code.stackexchange.schema.Tags;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.code.stackexchange.schema.User;
 import com.google.code.stackexchange.schema.UserTimeline;
-import com.google.code.stackexchange.schema.UserTimelines;
-import com.google.code.stackexchange.schema.Users;
 import com.google.code.stackexchange.schema.User.QuestionSortOrder;
 
 /**
@@ -144,7 +134,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -156,7 +146,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -168,7 +158,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -183,7 +173,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -196,7 +186,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -209,7 +199,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -223,7 +213,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withPaging(paging).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -237,7 +227,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withIds(questionIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(PostTimelines.class, callApiMethod(apiUrl));
+        return unmarshallList(PostTimeline.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -248,7 +238,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -259,7 +249,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -270,7 +260,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -282,7 +272,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -293,7 +283,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -304,7 +294,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -316,7 +306,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -329,7 +319,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -342,7 +332,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGGED_QUESTIONS);
         String                apiUrl  = builder.withFields("tags", tags).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -353,7 +343,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
-        return readResponse(Tags.class, callApiMethod(apiUrl));
+        return unmarshallList(Tag.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -364,7 +354,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGS);
         String                apiUrl  = builder.withSort(sort).withPaging(paging).buildUrl();
 
-        return readResponse(Tags.class, callApiMethod(apiUrl));
+        return unmarshallList(Tag.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -375,7 +365,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGS_FOR_USER);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
-        return readResponse(Tags.class, callApiMethod(apiUrl));
+        return unmarshallList(Tag.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -386,7 +376,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -397,7 +387,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -408,7 +398,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -421,7 +411,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -432,7 +422,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_MENTIONS);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -443,7 +433,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(UserTimelines.class, callApiMethod(apiUrl));
+        return unmarshallList(UserTimeline.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -454,7 +444,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USERS);
         String                apiUrl  = builder.withPaging(paging).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -465,7 +455,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USERS);
         String                apiUrl  = builder.withParameter("filter", filter).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -476,7 +466,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USERS);
         String                apiUrl  = builder.withParameter("filter", filter).withSort(sort).withPaging(paging).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -487,7 +477,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWER);
         String                apiUrl  = builder.withIds(answerIds).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -498,7 +488,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -509,7 +499,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -520,7 +510,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -531,7 +521,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -542,7 +532,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withSort(sort).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -553,7 +543,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.StackOverflowApiClient#getBadges()
@@ -563,7 +553,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_BADGES);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Badges.class, callApiMethod(apiUrl));
+        return unmarshallList(Badge.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -574,7 +564,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_BADGES_BY_NAME);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Badges.class, callApiMethod(apiUrl));
+        return unmarshallList(Badge.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -585,7 +575,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_BADGES_BY_TAGS);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Badges.class, callApiMethod(apiUrl));
+        return unmarshallList(Badge.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -596,7 +586,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_BADGES_FOR_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Badges.class, callApiMethod(apiUrl));
+        return unmarshallList(Badge.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -607,7 +597,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -619,7 +609,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -631,7 +621,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_FAVORITE_QUESTIONS);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -642,7 +632,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -653,7 +643,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTION_TIMELINE);
         String                apiUrl  = builder.withIds(questionIds).buildUrl();
 
-        return readResponse(PostTimelines.class, callApiMethod(apiUrl));
+        return unmarshallList(PostTimeline.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -664,7 +654,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -675,7 +665,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
         
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -686,7 +676,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
         
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -697,7 +687,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -709,7 +699,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -721,7 +711,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.StackOverflowApiClient#getTaggedQuestions(java.util.List)
@@ -731,7 +721,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGGED_QUESTIONS);
         String                apiUrl  = builder.withFields("tags", tags).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -742,7 +732,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGS);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Tags.class, callApiMethod(apiUrl));
+        return unmarshallList(Tag.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -753,7 +743,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
 
-        return readResponse(Tags.class, callApiMethod(apiUrl));
+        return unmarshallList(Tag.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -764,7 +754,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_TAGS_FOR_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Tags.class, callApiMethod(apiUrl));
+        return unmarshallList(Tag.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -775,7 +765,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -786,7 +776,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -797,7 +787,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_UN_ANSWERED_QUESTIONS);
         String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -808,7 +798,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -819,7 +809,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_MENTIONS);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -830,7 +820,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_TIMELINE);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(UserTimelines.class, callApiMethod(apiUrl));
+        return unmarshallList(UserTimeline.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -841,7 +831,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USERS);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -852,7 +842,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USERS);
         String                apiUrl  = builder.withSort(sort).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -863,7 +853,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USERS);
         String                apiUrl  = builder.withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -874,7 +864,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Reputations.class, callApiMethod(apiUrl));
+        return unmarshallList(Reputation.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -886,7 +876,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Reputations.class, callApiMethod(apiUrl));
+        return unmarshallList(Reputation.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -897,7 +887,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
-        return readResponse(Reputations.class, callApiMethod(apiUrl));
+        return unmarshallList(Reputation.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -909,7 +899,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_USER_REPUTATIONS);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Reputations.class, callApiMethod(apiUrl));
+        return unmarshallList(Reputation.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -920,7 +910,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -931,7 +921,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -942,7 +932,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -953,7 +943,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -964,7 +954,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withPaging(paging).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -976,7 +966,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -987,7 +977,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -999,7 +989,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withSort(sort).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1011,7 +1001,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1023,7 +1013,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withPaging(paging).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1035,7 +1025,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENTS_BY_USER_TO_USER);
         String                apiUrl  = builder.withIds(userIds).withField("toid", String.valueOf(toUserId)).withSort(sort).withPaging(paging).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1046,7 +1036,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_COMMENT);
         String                apiUrl  = builder.withIds(commentIds).buildUrl();
 
-        return readResponse(Comments.class, callApiMethod(apiUrl));
+        return unmarshallList(Comment.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1057,7 +1047,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_STATISTICS);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(Statistics.class, callApiMethod(apiUrl));
+        return unmarshallList(Statistics.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -1068,7 +1058,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWER);
         String                apiUrl  = builder.withIds(answerIds).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1080,7 +1070,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1092,7 +1082,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -1104,7 +1094,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_USER);
         String                apiUrl  = builder.withIds(userIds).withSort(sort).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -1116,7 +1106,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_ANSWERS_BY_QUESTION);
         String                apiUrl  = builder.withIds(questionIds).withSort(sort).withFetchOptions(filterOptions).buildUrl();
 
-        return readResponse(Answers.class, callApiMethod(apiUrl));
+        return unmarshallList(Answer.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -1127,7 +1117,8 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_REVISIONS_FOR_POST);
         String                apiUrl  = builder.withId(postId).withField("revisionguid", revisionGuid).buildUrl();
 
-        return readResponse(Revisions.class, callApiMethod(apiUrl));
+        PagedList<Revision> list = unmarshallList(Revision.class, callApiMethod(apiUrl));
+        return (list.isEmpty())? null : list.get(0);
 	}
 
 	/* (non-Javadoc)
@@ -1138,7 +1129,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_REVISIONS_FOR_POST);
         String                apiUrl  = builder.withIds(postIds).buildUrl();
 
-        return readResponse(Revisions.class, callApiMethod(apiUrl));
+        return unmarshallList(Revision.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1149,7 +1140,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_REVISIONS_FOR_POST);
         String                apiUrl  = builder.withIds(postIds).withTimePeriod(timePeriod).buildUrl();
 
-        return readResponse(Revisions.class, callApiMethod(apiUrl));
+        return unmarshallList(Revision.class, callApiMethod(apiUrl));
 	}
 	
 	/* (non-Javadoc)
@@ -1160,7 +1151,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_BADGE_RECIPIENTS);
         String                apiUrl  = builder.withIds(badgeIds).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
 	}
 
 	/* (non-Javadoc)
@@ -1171,7 +1162,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_BADGE_RECIPIENTS);
         String                apiUrl  = builder.withIds(badgeIds).withPaging(paging).buildUrl();
 
-        return readResponse(Users.class, callApiMethod(apiUrl));
+        return unmarshallList(User.class, callApiMethod(apiUrl));
         
         
 	}
@@ -1184,7 +1175,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -1198,7 +1189,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).withSort(sort).withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -1212,7 +1203,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).withSort(sort).withRange(range).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -1226,7 +1217,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -1240,7 +1231,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
         
         
 	}
@@ -1255,6 +1246,6 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
         String                apiUrl  = builder.withParameter("intitle", query).withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
 
-        return readResponse(Questions.class, callApiMethod(apiUrl));
+        return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
 }

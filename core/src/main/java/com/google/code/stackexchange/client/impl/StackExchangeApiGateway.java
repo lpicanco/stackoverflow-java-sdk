@@ -33,6 +33,7 @@ import com.google.code.stackexchange.client.exception.TooManyIdsException;
 import com.google.code.stackexchange.client.exception.UnconstrainedSearchException;
 import com.google.code.stackexchange.client.provider.ApiProvider;
 import com.google.code.stackexchange.client.provider.StackOverflowApiProvider;
+import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Error;
 
 /**
@@ -249,7 +250,7 @@ public abstract class StackExchangeApiGateway {
 	        currentRateLimit = request.getHeaderFieldInt(ApplicationConstants.CURRENT_RATE_LIMIT_HEADER, -1);
 	        
 	        if (request.getResponseCode() != expected) {
-	            Error error = readResponse(Error.class,
+	            Error error = unmarshallObject(Error.class,
 	                    getWrappedInputStream(request.getErrorStream(),
 	                        GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
 	            error.setStatusCode(request.getResponseCode());
@@ -314,7 +315,7 @@ public abstract class StackExchangeApiGateway {
 			        currentRateLimit = request.getHeaderFieldInt(ApplicationConstants.CURRENT_RATE_LIMIT_HEADER, -1);
 			        
 			        if (request.getResponseCode() != expected) {
-			            Error error = readResponse(Error.class,
+			            Error error = unmarshallObject(Error.class,
 			                    getWrappedInputStream(request.getErrorStream(),
 			                        GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
 			            error.setStatusCode(request.getResponseCode());
@@ -422,23 +423,15 @@ public abstract class StackExchangeApiGateway {
 			    }
 			}
 
-	/**
-	 * Read response.
-	 * 
-	 * @param clazz the clazz
-	 * @param is the is
-	 * 
-	 * @return the t
-	 */
-	@SuppressWarnings("unchecked")
-	protected <T> T readResponse(Class<?> clazz, InputStream is) {
-	    try {
-	        return (T) unmarshallObject(clazz, is);
-	    } finally {
-	        closeStream(is);
-	    }
-	}
-	
+    /**
+     * Unmarshall object.
+     * 
+     * @param clazz the clazz
+     * @param xmlContent the xml content
+     * 
+     * @return the t
+     */
+    protected abstract <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent);
 
     /**
      * Unmarshall object.
@@ -448,8 +441,8 @@ public abstract class StackExchangeApiGateway {
      * 
      * @return the t
      */
-    protected abstract <T> T unmarshallObject(Class<?> clazz, InputStream xmlContent);
-
+    protected abstract <T> PagedList<T> unmarshallList(Class<T> clazz, InputStream xmlContent);
+    
     /**
      * Marshall object.
      * 

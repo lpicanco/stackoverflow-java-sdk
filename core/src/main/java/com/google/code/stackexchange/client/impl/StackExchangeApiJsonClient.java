@@ -5,27 +5,43 @@ package com.google.code.stackexchange.client.impl;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
-import com.google.code.stackexchange.schema.Answers;
-import com.google.code.stackexchange.schema.Badges;
-import com.google.code.stackexchange.schema.Comments;
+import com.google.code.stackexchange.common.PagedArrayList;
+import com.google.code.stackexchange.common.PagedList;
+import com.google.code.stackexchange.schema.Answer;
+import com.google.code.stackexchange.schema.Badge;
+import com.google.code.stackexchange.schema.BadgeRank;
+import com.google.code.stackexchange.schema.Comment;
 import com.google.code.stackexchange.schema.Error;
-import com.google.code.stackexchange.schema.PostTimelines;
-import com.google.code.stackexchange.schema.Questions;
-import com.google.code.stackexchange.schema.Reputations;
-import com.google.code.stackexchange.schema.Revisions;
+import com.google.code.stackexchange.schema.PostTimeline;
+import com.google.code.stackexchange.schema.PostTimelineType;
+import com.google.code.stackexchange.schema.PostType;
+import com.google.code.stackexchange.schema.Question;
+import com.google.code.stackexchange.schema.Reputation;
+import com.google.code.stackexchange.schema.Revision;
+import com.google.code.stackexchange.schema.RevisionType;
 import com.google.code.stackexchange.schema.SchemaEntity;
 import com.google.code.stackexchange.schema.Statistics;
-import com.google.code.stackexchange.schema.Tags;
-import com.google.code.stackexchange.schema.UserTimelines;
-import com.google.code.stackexchange.schema.Users;
-import com.google.code.stackexchange.schema.adapter.Adaptable;
+import com.google.code.stackexchange.schema.Tag;
+import com.google.code.stackexchange.schema.User;
+import com.google.code.stackexchange.schema.UserTimeline;
+import com.google.code.stackexchange.schema.UserTimelineType;
+import com.google.code.stackexchange.schema.UserType;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
 
@@ -34,28 +50,25 @@ import com.google.gson.JsonParser;
  */
 public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
 	
+	private static final Map<Class<? extends SchemaEntity>, String> LIST_PLACE_HOLDERS = new HashMap<Class<? extends SchemaEntity>, String>();
+	
+	static {
+		LIST_PLACE_HOLDERS.put(Answer.class, "answers");
+		LIST_PLACE_HOLDERS.put(Badge.class, "badges");
+		LIST_PLACE_HOLDERS.put(Comment.class, "comments");
+		LIST_PLACE_HOLDERS.put(Question.class, "questions");
+		LIST_PLACE_HOLDERS.put(PostTimeline.class, "post_timelines");
+		LIST_PLACE_HOLDERS.put(Reputation.class, "rep_changes");
+		LIST_PLACE_HOLDERS.put(Statistics.class, "statistics");
+		LIST_PLACE_HOLDERS.put(Tag.class, "tags");
+		LIST_PLACE_HOLDERS.put(User.class, "users");
+		LIST_PLACE_HOLDERS.put(UserTimeline.class, "user_timelines");
+		LIST_PLACE_HOLDERS.put(Revision.class, "revisions");
+	}
+	
     /** The parser. */
     private final JsonParser parser = new JsonParser();
     
-    /** The Constant ADAPTER_CLASSES_MAP. */
-	private static final Map<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, JsonObject>>> ADAPTER_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends Adaptable<?, JsonObject>>>();
-	
-	static {
-		ADAPTER_CLASSES_MAP.put(Answers.class, Answers.class);
-		ADAPTER_CLASSES_MAP.put(Badges.class, Badges.class);
-		ADAPTER_CLASSES_MAP.put(Comments.class, Comments.class);
-		ADAPTER_CLASSES_MAP.put(Error.class, Error.class);
-		ADAPTER_CLASSES_MAP.put(Questions.class, Questions.class);
-		ADAPTER_CLASSES_MAP.put(PostTimelines.class, PostTimelines.class);
-		ADAPTER_CLASSES_MAP.put(Reputations.class, Reputations.class);
-		ADAPTER_CLASSES_MAP.put(Statistics.class, Statistics.class);
-		ADAPTER_CLASSES_MAP.put(Tags.class, Tags.class);
-		ADAPTER_CLASSES_MAP.put(Users.class, Users.class);
-		ADAPTER_CLASSES_MAP.put(UserTimelines.class, UserTimelines.class);
-		ADAPTER_CLASSES_MAP.put(Revisions.class, Revisions.class);
-	}
-	
-
     /**
      * Instantiates a new stack exchange api json client.
      * 
@@ -79,12 +92,32 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
      * @see com.google.code.stackexchange.client.impl.StackOverflowApiGateway#unmarshallObject(java.lang.Class, java.io.InputStream)
      */
     @SuppressWarnings("unchecked")
-    protected <T> T unmarshallObject(Class<?> clazz, InputStream jsonContent) {
+    protected <T> PagedList<T> unmarshallList(Class<T> clazz, InputStream jsonContent) {
         try {
         	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
         	if (response.isJsonObject()) {
-        		Adaptable<?, JsonObject> adaptable = ADAPTER_CLASSES_MAP.get(clazz).newInstance();
-        		return (T) adaptable.adaptFrom(response.getAsJsonObject());
+        		JsonObject adaptee = response.getAsJsonObject();
+        		PagedList<T> list = new PagedArrayList<T>();
+        		if (adaptee.has("total")) {
+            		list.setTotal(adaptee.get("total").getAsLong());
+        		}
+        		if (adaptee.has("page")) {
+            		list.setPage(adaptee.get("page").getAsInt());
+        		}
+        		if (adaptee.has("pagesize")) {
+            		list.setPageSize(adaptee.get("pagesize").getAsInt());
+        		}
+        		String placeHolder = LIST_PLACE_HOLDERS.get(clazz);
+        		if (adaptee.has(placeHolder)) {
+            		JsonArray elements = adaptee.get(placeHolder).getAsJsonArray();
+            		if (elements != null) {
+            			Gson gson = getGsonBuilder().create();
+            			for (JsonElement o : elements) {			
+            				list.add(gson.fromJson(o, clazz));
+            			}
+            		}
+        		}
+        		return list;
         	}
         	throw new StackExchangeApiException("Unknown content found in response:" + response.toString());
         } catch (Exception e) {
@@ -92,6 +125,23 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    protected <T> T unmarshallObject(Class<T> clazz, InputStream jsonContent) {
+    	if (clazz.equals(Error.class)) {
+            try {
+            	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+            	if (response.isJsonObject()) {
+            		JsonObject adaptee = response.getAsJsonObject();
+            		Gson gson = getGsonBuilder().create();
+            		return gson.fromJson(adaptee.get("error"), clazz);
+            	}
+            } catch (Exception e) {
+                throw new StackExchangeApiException(e);
+            }
+    	}
+    	return null;
+    }
+    
     /* (non-Javadoc)
      * @see com.google.code.stackexchange.client.impl.StackOverflowApiGateway#marshallObject(java.lang.Object)
      */
@@ -111,4 +161,75 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
     protected ApiUrlBuilder createStackOverflowApiUrlBuilder(String methodName) {
         return getApiProvider().createApiUrlBuilder(methodName, getApplicationKey(), getApiVersion());
     }
+    
+	protected GsonBuilder getGsonBuilder() {
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+
+			@Override
+			public Date deserialize(JsonElement source, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return new Date(source.getAsLong() * 1000);
+			}
+			
+		});
+		builder.registerTypeAdapter(BadgeRank.class, new JsonDeserializer<BadgeRank>() {
+
+			@Override
+			public BadgeRank deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return BadgeRank.fromValue(arg0.getAsString());
+			}
+			
+		});
+		builder.registerTypeAdapter(PostType.class, new JsonDeserializer<PostType>() {
+
+			@Override
+			public PostType deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return PostType.fromValue(arg0.getAsString());
+			}
+			
+		});
+		builder.registerTypeAdapter(PostTimelineType.class, new JsonDeserializer<PostTimelineType>() {
+
+			@Override
+			public PostTimelineType deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return PostTimelineType.fromValue(arg0.getAsString());
+			}
+			
+		});
+		builder.registerTypeAdapter(UserTimelineType.class, new JsonDeserializer<UserTimelineType>() {
+
+			@Override
+			public UserTimelineType deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return UserTimelineType.fromValue(arg0.getAsString());
+			}
+			
+		});
+		builder.registerTypeAdapter(UserType.class, new JsonDeserializer<UserType>() {
+
+			@Override
+			public UserType deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return UserType.fromValue(arg0.getAsString());
+			}
+			
+		});
+		builder.registerTypeAdapter(RevisionType.class, new JsonDeserializer<RevisionType>() {
+
+			@Override
+			public RevisionType deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return RevisionType.fromValue(arg0.getAsString());
+			}
+			
+		});
+		
+		builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+		
+		return builder;		
+	}
 }

@@ -9,7 +9,6 @@ import com.google.code.stackexchange.client.query.ReputationApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Reputation;
-import com.google.code.stackexchange.schema.Reputations;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.gson.JsonObject;
 
@@ -59,8 +58,7 @@ public class ReputationApiQueryImpl extends BaseStackOverflowApiQuery<Reputation
 	 */
 	@Override
 	protected PagedList<Reputation> unmarshall(JsonObject json) {
-		Reputations adapter = new Reputations();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Reputation.class, json);
 	}
 
 	/* (non-Javadoc)

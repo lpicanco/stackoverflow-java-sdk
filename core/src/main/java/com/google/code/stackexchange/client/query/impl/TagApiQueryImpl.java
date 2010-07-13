@@ -11,7 +11,6 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.Tag;
-import com.google.code.stackexchange.schema.Tags;
 import com.google.gson.JsonObject;
 
 /**
@@ -60,8 +59,7 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	 */
 	@Override
 	protected PagedList<Tag> unmarshall(JsonObject json) {
-		Tags adapter = new Tags();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Tag.class, json);
 	}
 
 	/* (non-Javadoc)

@@ -11,7 +11,6 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.User;
-import com.google.code.stackexchange.schema.Users;
 import com.google.gson.JsonObject;
 
 /**
@@ -69,8 +68,7 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 	 */
 	@Override
 	protected PagedList<User> unmarshall(JsonObject json) {
-		Users adapter = new Users();
-		return adapter.adaptFrom(json);
+		return unmarshallList(User.class, json);
 	}
 
 	/* (non-Javadoc)

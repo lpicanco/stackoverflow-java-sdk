@@ -10,7 +10,6 @@ import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.AnswerApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Answer;
-import com.google.code.stackexchange.schema.Answers;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
@@ -89,8 +88,7 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	 */
 	@Override
 	protected PagedList<Answer> unmarshall(JsonObject json) {
-		Answers adapter = new Answers();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Answer.class, json);
 	}
 
 	/* (non-Javadoc)

@@ -28,8 +28,7 @@ public class StatisticsApiQueryImpl extends BaseStackOverflowApiQuery<Statistics
 	 */
 	@Override
 	protected PagedList<Statistics> unmarshall(JsonObject json) {
-		Statistics adapter = new Statistics();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Statistics.class, json);
 	}
 
 	/* (non-Javadoc)

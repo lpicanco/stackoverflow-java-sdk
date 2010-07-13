@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.code.stackexchange.client.constant.ApplicationConstants;
-import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
@@ -414,11 +413,11 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 
 
 		if (fieldsLeftMap.size() > 0) {
-			throw new StackExchangeApiException("Field [" + fieldsLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
+			logger.warning("Field [" + fieldsLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
 		}
 		
 		if (parametersLeftMap.size() > 0) {
-			throw new StackExchangeApiException("Parameter [" + parametersLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
+			logger.warning("Parameter [" + parametersLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
 		}
 		
 		logger.log(Level.FINE, "URL generated: " + urlBuilder.toString());

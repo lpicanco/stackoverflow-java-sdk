@@ -9,7 +9,6 @@ import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.BadgeApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Badge;
-import com.google.code.stackexchange.schema.Badges;
 import com.google.gson.JsonObject;
 
 /**
@@ -40,8 +39,7 @@ public class BadgeApiQueryImpl extends BaseStackOverflowApiQuery<Badge> implemen
 	 */
 	@Override
 	protected PagedList<Badge> unmarshall(JsonObject json) {
-		Badges adapter = new Badges();
-		return adapter.adaptFrom(json);
+		return unmarshallList(Badge.class, json);
 	}
 
 	/* (non-Javadoc)

@@ -48,6 +48,7 @@ X. 11. Use GSON..
 X. 12. Statistic and Error are not populated. 
 13. Write a google wave robot for the contest.
 14. Go through the API and do changes.
+X. 15. Remove gson from schema.
 
 http://stackauth.com/0.9/sites?key=C9uyDMP_i0u1y7mXhB1GkQ
 http://api.stackoverflow.com/1.0/help
