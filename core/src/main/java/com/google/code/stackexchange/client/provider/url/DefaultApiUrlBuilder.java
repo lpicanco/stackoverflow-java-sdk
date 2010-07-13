@@ -421,7 +421,7 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 			throw new StackExchangeApiException("Parameter [" + parametersLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
 		}
 		
-		logger.log(Level.INFO, "URL generated: " + urlBuilder.toString());
+		logger.log(Level.FINE, "URL generated: " + urlBuilder.toString());
 		
 		return urlBuilder.toString();
 	}

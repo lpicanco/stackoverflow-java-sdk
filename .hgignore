@@ -1,0 +1,5 @@
+
+syntax: regexp
+^schema/target$
+syntax: regexp
+^core/target$

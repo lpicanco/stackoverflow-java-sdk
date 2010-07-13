@@ -37,7 +37,7 @@ public class StackExchangeApiJsonClientTest extends StackExchangeApiClientTest {
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
-		client = factory.createStackOverflowApiClient();
+		client = factory.createStackExchangeApiClient();
 	}
 
 	/* (non-Javadoc)

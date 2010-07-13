@@ -55,7 +55,7 @@ public class StackExchangeApiClientFactory {
 	 * 
 	 * @return the stack exchange api client
 	 */
-	public StackExchangeApiClient createStackOverflowApiClient() {
+	public StackExchangeApiClient createStackExchangeApiClient() {
 		final StackExchangeApiClient client = new StackExchangeApiJsonClient(applicationKey);
 
         return client;
@@ -68,7 +68,7 @@ public class StackExchangeApiClientFactory {
 	 * 
 	 * @return the stack exchange api client
 	 */
-	public StackExchangeApiClient createStackOverflowApiClient(String apiVersion) {
+	public StackExchangeApiClient createStackExchangeApiClient(String apiVersion) {
 		final StackExchangeApiClient client = new StackExchangeApiJsonClient(applicationKey, apiVersion);
 
         return client;
@@ -81,7 +81,7 @@ public class StackExchangeApiClientFactory {
      * 
      * @return the stack exchange api client
      */
-	public StackExchangeApiClient createStackOverflowApiClient(Class<? extends StackExchangeApiClient> implClass) {
+	public StackExchangeApiClient createStackEchangeApiClient(Class<? extends StackExchangeApiClient> implClass) {
     	try {
 			final StackExchangeApiClient client = implClass.getConstructor(String.class).newInstance(applicationKey);
 
@@ -96,8 +96,8 @@ public class StackExchangeApiClientFactory {
      * 
      * @return the async stack overflow api client
      */
-    public AsyncStackOverflowApiClient createAsyncStackOverflowApiClient() {
-        final StackExchangeApiClient client = createStackOverflowApiClient();
+    public AsyncStackExchangeApiClient createAsyncStackExchangeApiClient() {
+        final StackExchangeApiClient client = createStackExchangeApiClient();
 
         return new AsyncStackExchangeApiClientAdapter(client, taskExecutor);
     }

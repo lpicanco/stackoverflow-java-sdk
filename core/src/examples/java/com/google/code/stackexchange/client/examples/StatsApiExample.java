@@ -58,7 +58,7 @@ public class StatsApiExample {
     		final String keyValue = line.getOptionValue(APPLICATION_KEY_OPTION);
     		
     		final StackExchangeApiClientFactory factory = StackExchangeApiClientFactory.newInstance(keyValue);
-    		final StackExchangeApiClient client = factory.createStackOverflowApiClient();
+    		final StackExchangeApiClient client = factory.createStackExchangeApiClient();
     		
     		List<Statistics> stats = client.getStatistics();
     		printResult(stats);

@@ -430,9 +430,10 @@ public abstract class StackExchangeApiGateway {
 	 * 
 	 * @return the t
 	 */
+	@SuppressWarnings("unchecked")
 	protected <T> T readResponse(Class<?> clazz, InputStream is) {
 	    try {
-	        return unmarshallObject(clazz, is);
+	        return (T) unmarshallObject(clazz, is);
 	    } finally {
 	        closeStream(is);
 	    }
