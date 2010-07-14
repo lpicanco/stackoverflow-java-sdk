@@ -3,3 +3,7 @@ syntax: regexp
 ^schema/target$
 syntax: regexp
 ^core/target$
+syntax: regexp
+^dist/target$
+syntax: regexp
+^dist/target$
