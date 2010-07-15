@@ -72,3 +72,4 @@ Providers
 Spring configuration.
 
 http://blog.stackoverflow.com/2010/05/stack-exchange-api-contest/
+http://blog.stackoverflow.com/category/api/
