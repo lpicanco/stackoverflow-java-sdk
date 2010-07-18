@@ -88,10 +88,6 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
         super(applicationKey, apiVersion);
     }
     
-    /* (non-Javadoc)
-     * @see com.google.code.stackexchange.client.impl.StackOverflowApiGateway#unmarshallObject(java.lang.Class, java.io.InputStream)
-     */
-    @SuppressWarnings("unchecked")
     protected <T> PagedList<T> unmarshallList(Class<T> clazz, InputStream jsonContent) {
         try {
         	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
@@ -125,7 +121,6 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
         }
     }
 
-    @SuppressWarnings("unchecked")
     protected <T> T unmarshallObject(Class<T> clazz, InputStream jsonContent) {
     	if (clazz.equals(Error.class)) {
             try {
