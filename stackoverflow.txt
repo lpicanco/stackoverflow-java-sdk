@@ -74,3 +74,12 @@ Spring configuration.
 
 http://blog.stackoverflow.com/2010/05/stack-exchange-api-contest/
 http://blog.stackoverflow.com/category/api/
+
+Robot
+=====
+Get keywords from text.
+Search questios from keywords.
+Match questions with the test.
+If distance < threshold display the most votedt answer.
+Otherwise display question as well.
+Another button for showing more answers.
