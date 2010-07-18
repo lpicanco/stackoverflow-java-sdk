@@ -164,10 +164,6 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 	}
 	
 	
-    /* (non-Javadoc)
-     * @see com.google.code.stackexchange.client.impl.StackOverflowApiGateway#unmarshallObject(java.lang.Class, java.io.InputStream)
-     */
-    @SuppressWarnings("unchecked")
 	protected <A> A unmarshallObject(Class<A> clazz, InputStream jsonContent) {
     	if (clazz.equals(Error.class)) {
             try {
@@ -184,7 +180,6 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
     	return null;
     }
     
-    @SuppressWarnings("unchecked")
     protected <A> PagedList<A> unmarshallList(Class<A> clazz, InputStream jsonContent) {
         try {
         	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
