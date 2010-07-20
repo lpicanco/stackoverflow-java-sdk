@@ -155,7 +155,22 @@ public class Answer extends SchemaEntity {
 	/** The answer comments url. */
 	private String answerCommentsUrl;
 	
+	private Date lockedDate;
 	
+	/**
+	 * @return the lockedDate
+	 */
+	public Date getLockedDate() {
+		return lockedDate;
+	}
+
+	/**
+	 * @param lockedDate the lockedDate to set
+	 */
+	public void setLockedDate(Date lockedDate) {
+		this.lockedDate = lockedDate;
+	}
+
 	public long getAnswerId() {
 		return answerId;
 	}

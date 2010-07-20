@@ -347,6 +347,10 @@ public class User extends SchemaEntity {
 	/** The badge counts. */
 	private Map<BadgeRank, Long> badgeCounts = new HashMap<BadgeRank, Long>();
 	
+	private Date timedPenaltyDate;
+	
+	private String associationId;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.User#getUserId()
 	 */
@@ -723,5 +727,33 @@ public class User extends SchemaEntity {
 	 */
 	public void setBadgeCounts(Map<BadgeRank, Long> badgeCounts) {
 		this.badgeCounts = badgeCounts;
+	}
+
+	/**
+	 * @return the timedPenaltyDate
+	 */
+	public Date getTimedPenaltyDate() {
+		return timedPenaltyDate;
+	}
+
+	/**
+	 * @param timedPenaltyDate the timedPenaltyDate to set
+	 */
+	public void setTimedPenaltyDate(Date timedPenaltyDate) {
+		this.timedPenaltyDate = timedPenaltyDate;
+	}
+
+	/**
+	 * @return the associationId
+	 */
+	public String getAssociationId() {
+		return associationId;
+	}
+
+	/**
+	 * @param associationId the associationId to set
+	 */
+	public void setAssociationId(String associationId) {
+		this.associationId = associationId;
 	}
 }

@@ -212,7 +212,7 @@ public class StackExchangeApiJsonQueryTest extends StackExchangeApiClientTest {
 	@Test
 	public void testGetTaggedQuestionsListOfStringPagingTimePeriodSetOfFilterOption() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Tags."), TestConstants.STACK_OVERFLOW_TEST_TAGS);
-		List<Question> questions = queryFactory.newQuestionApiQuery().withTags(TestConstants.STACK_OVERFLOW_TEST_TAGS.split(",")).withPaging(getPaging()).withTimePeriod(getTimePeriod()).withFetchOptions(EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS)).listTaggedQuestions();
+		List<Question> questions = queryFactory.newQuestionApiQuery().withTags(TestConstants.STACK_OVERFLOW_TEST_TAGS.split(",")).withPaging(getPaging()).withTimePeriod(getTimePeriod()).withFetchOptions(EnumSet.of(FilterOption.INCLUDE_BODY, FilterOption.INCLUDE_COMMENTS)).list();
 		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 
@@ -500,7 +500,7 @@ public class StackExchangeApiJsonQueryTest extends StackExchangeApiClientTest {
 	@Test
 	public void testGetTaggedQuestionsListOfString() {
     	assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Test Tags."), TestConstants.STACK_OVERFLOW_TEST_TAGS);
-		List<Question> questions = queryFactory.newQuestionApiQuery().withTags(TestConstants.STACK_OVERFLOW_TEST_TAGS.split(",")).listTaggedQuestions();
+		List<Question> questions = queryFactory.newQuestionApiQuery().withTags(TestConstants.STACK_OVERFLOW_TEST_TAGS.split(",")).list();
 		assertNotNullOrEmpty("Questions should never be null.", questions);
 	}
 

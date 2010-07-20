@@ -11,6 +11,7 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.Tag;
+import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.gson.JsonObject;
 
 /**
@@ -78,7 +79,19 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 		apiUrlBuilder.withRange(range);
 		return this;
 	}
-
+	
+	@Override
+	public TagApiQuery withFilter(String filter) {
+		apiUrlBuilder.withParameter("filter", filter);
+		return this;
+	}
+	
+	@Override
+	public TagApiQuery withTimePeriod(TimePeriod timePeriod) {
+		apiUrlBuilder.withTimePeriod(timePeriod);
+		return this;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.TagApiQuery#listByUser()
 	 */

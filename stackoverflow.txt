@@ -47,7 +47,7 @@ X. 10. PagedList
 X. 11. Use GSON..
 X. 12. Statistic and Error are not populated. 
 13. Write a google wave robot for the contest.
-14. Go through the API and do changes.
+X. 14. Go through the API and do changes.
 X. 15. Remove gson from schema.
 
 http://stackauth.com/0.9/sites?key=C9uyDMP_i0u1y7mXhB1GkQ
@@ -64,6 +64,18 @@ X. WARNING: Additional property 'owner' found in response for object.class com.g
 X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.BadgeImpl
 X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.PostTimelineImpl
 X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.RevisionImpl
+
+Missing API
+answers/{id}/comments
+posts/{id}/comments
+/questions/{id}/comments
+/users/moderators
+
+Field. Question.migrated
+SearchApiQuery
+
+Site in statistics.
+
 
 Query API
 Facade API
@@ -83,3 +95,17 @@ Match questions with the test.
 If distance < threshold display the most votedt answer.
 Otherwise display question as well.
 Another button for showing more answers.
+Translate text. Also provide a button.
+
+Approach 2:
+===========
+6fh6sEFAwUKaRyM9IWj9gg
+
+Search the site with google. Full text and extract question ids from urls.
+Match questions with the test.
+If distance < threshold display the most votedt answer.
+Otherwise display question as well.
+Another button for showing more answers.
+Translate text. Also provide a button ot change language..
+Display comments in conversation using the same algo.
+Involve user.

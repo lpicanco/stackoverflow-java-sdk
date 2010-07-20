@@ -7,6 +7,7 @@ package com.google.code.stackexchange.client.query.impl;
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.QuestionTimelineApiQuery;
 import com.google.code.stackexchange.common.PagedList;
+import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.PostTimeline;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.gson.JsonObject;
@@ -42,6 +43,13 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 		apiUrlBuilder.withTimePeriod(timePeriod);
 		return this;
 	}
+	
+	@Override
+	public QuestionTimelineApiQuery withPaging(Paging paging) {
+		apiUrlBuilder.withPaging(paging);
+		return this;
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)

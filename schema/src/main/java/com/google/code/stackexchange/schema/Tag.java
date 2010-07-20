@@ -104,6 +104,8 @@ public class Tag extends SchemaEntity {
 	
 	private boolean fulfillsRequired;
 	
+	private TagRestriction restrictedTo;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.Tag#getUserId()
 	 */
@@ -160,5 +162,19 @@ public class Tag extends SchemaEntity {
 	 */
 	public void setFulfillsRequired(boolean fulfillsRequired) {
 		this.fulfillsRequired = fulfillsRequired;
+	}
+
+	/**
+	 * @return the restrictedTo
+	 */
+	public TagRestriction getRestrictedTo() {
+		return restrictedTo;
+	}
+
+	/**
+	 * @param restrictedTo the restrictedTo to set
+	 */
+	public void setRestrictedTo(TagRestriction restrictedTo) {
+		this.restrictedTo = restrictedTo;
 	}
 }

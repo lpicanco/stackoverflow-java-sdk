@@ -233,6 +233,8 @@ public class Question extends SchemaEntity {
 	/** The question answers url. */
 	private String questionAnswersUrl;
 	
+	private Date protectedDate;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.Question#getAnswers()
 	 */
@@ -613,5 +615,19 @@ public class Question extends SchemaEntity {
 	
 	public void setQuestionAnswersUrl(String questionAnswersUrl) {
 		this.questionAnswersUrl = questionAnswersUrl;
+	}
+
+	/**
+	 * @return the protectedDate
+	 */
+	public Date getProtectedDate() {
+		return protectedDate;
+	}
+
+	/**
+	 * @param protectedDate the protectedDate to set
+	 */
+	public void setProtectedDate(Date protectedDate) {
+		this.protectedDate = protectedDate;
 	}
 }

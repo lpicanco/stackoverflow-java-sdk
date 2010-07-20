@@ -10,6 +10,7 @@ import com.google.code.stackexchange.client.query.UserApiQuery;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
+import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.code.stackexchange.schema.User;
 import com.google.gson.JsonObject;
 
@@ -96,7 +97,13 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 		apiUrlBuilder.withRange(range);
 		return this;
 	}
-
+	
+	@Override
+	public UserApiQuery withTimePeriod(TimePeriod timePeriod) {
+		apiUrlBuilder.withTimePeriod(timePeriod);
+		return this;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.UserApiQuery#listByBadge()
 	 */

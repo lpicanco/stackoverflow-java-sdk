@@ -6,6 +6,7 @@ package com.google.code.stackexchange.client.query;
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
+import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.code.stackexchange.schema.User;
 
 /**
@@ -73,4 +74,6 @@ public interface UserApiQuery extends StackExchangeApiQuery<User> {
 	 * @return the user api query
 	 */
 	public UserApiQuery withRange(Range range);
+	
+	public UserApiQuery withTimePeriod(TimePeriod timePeriod);
 }
