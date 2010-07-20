@@ -87,6 +87,9 @@ Spring configuration.
 http://blog.stackoverflow.com/2010/05/stack-exchange-api-contest/
 http://blog.stackoverflow.com/category/api/
 
+Look at other apps.
+http://stackauth.com/1.0/sites
+
 Robot
 =====
 Get keywords from text.
@@ -109,4 +112,5 @@ Another button for showing more answers.
 Translate text. Also provide a button ot change language..
 Display comments in conversation using the same algo.
 Involve user. Make him Like minded.
-If the user replys to an answer, search in comments and reply to him.
+If the user replies to an answer, search in comments and reply to him.
+Use partner sites as well. Add a Task Queue. http://code.google.com/appengine/docs/java/taskqueue/overview.html
