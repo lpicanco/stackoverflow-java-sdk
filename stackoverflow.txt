@@ -108,4 +108,5 @@ Otherwise display question as well.
 Another button for showing more answers.
 Translate text. Also provide a button ot change language..
 Display comments in conversation using the same algo.
-Involve user.
+Involve user. Make him Like minded.
+If the user replys to an answer, search in comments and reply to him.
