@@ -114,3 +114,4 @@ Display comments in conversation using the same algo.
 Involve user. Make him Like minded.
 If the user replies to an answer, search in comments and reply to him.
 Use partner sites as well. Add a Task Queue. http://code.google.com/appengine/docs/java/taskqueue/overview.html
+Automatically generate partial answers by rephrasing question.
