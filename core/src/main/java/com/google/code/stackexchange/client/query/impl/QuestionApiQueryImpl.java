@@ -157,15 +157,6 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#listTaggedQuestions()
-	 */
-	@Override
-	public PagedList<Question> listTaggedQuestions() {
-		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_TAGGED_QUESTIONS);
-		return super.list();
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#listUnansweredQuestions()
 	 */
 	@Override

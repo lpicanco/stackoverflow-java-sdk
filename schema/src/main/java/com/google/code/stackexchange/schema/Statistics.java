@@ -42,6 +42,12 @@ public class Statistics extends SchemaEntity {
 	/** The badges per minute. */
 	private double badgesPerMinute;
 	
+	private long totalAccepted;
+	
+	private double viewsPerDay;
+	
+	private Site site;
+	
 	/** The api version. */
 	private ApiVersion apiVersion;
 	
@@ -197,5 +203,47 @@ public class Statistics extends SchemaEntity {
 	 */
 	public void setApiVersion(ApiVersion apiVersion) {
 		this.apiVersion = apiVersion;
+	}
+
+	/**
+	 * @return the totalAccepted
+	 */
+	public long getTotalAccepted() {
+		return totalAccepted;
+	}
+
+	/**
+	 * @param totalAccepted the totalAccepted to set
+	 */
+	public void setTotalAccepted(long totalAccepted) {
+		this.totalAccepted = totalAccepted;
+	}
+
+	/**
+	 * @return the viewsPerDay
+	 */
+	public double getViewsPerDay() {
+		return viewsPerDay;
+	}
+
+	/**
+	 * @param viewsPerDay the viewsPerDay to set
+	 */
+	public void setViewsPerDay(double viewsPerDay) {
+		this.viewsPerDay = viewsPerDay;
+	}
+
+	/**
+	 * @return the site
+	 */
+	public Site getSite() {
+		return site;
+	}
+
+	/**
+	 * @param site the site to set
+	 */
+	public void setSite(Site site) {
+		this.site = site;
 	}
 }

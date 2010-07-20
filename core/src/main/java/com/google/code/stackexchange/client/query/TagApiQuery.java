@@ -7,6 +7,7 @@ import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
 import com.google.code.stackexchange.schema.Tag;
+import com.google.code.stackexchange.schema.TimePeriod;
 
 /**
  * The Interface TagApiQuery.
@@ -55,4 +56,8 @@ public interface TagApiQuery extends StackExchangeApiQuery<Tag> {
 	 * @return the tag api query
 	 */
 	public TagApiQuery withRange(Range range);
+	
+	public TagApiQuery withFilter(String filter);
+	
+	public TagApiQuery withTimePeriod(TimePeriod timePeriod);
 }

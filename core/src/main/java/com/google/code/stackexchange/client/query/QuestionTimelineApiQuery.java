@@ -3,6 +3,7 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.PostTimeline;
 import com.google.code.stackexchange.schema.TimePeriod;
 
@@ -28,4 +29,6 @@ public interface QuestionTimelineApiQuery extends StackExchangeApiQuery<PostTime
 	 * @return the question timeline api query
 	 */
 	public QuestionTimelineApiQuery withTimePeriod(TimePeriod timePeriod);
+	
+	public QuestionTimelineApiQuery withPaging(Paging paging);
 }

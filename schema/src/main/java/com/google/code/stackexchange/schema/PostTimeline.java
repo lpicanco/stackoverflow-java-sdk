@@ -55,6 +55,8 @@ public class PostTimeline extends SchemaEntity {
 	/** The post revision url. */
 	private String postRevisionUrl;
 	
+	private long questionId;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.PostTimeline#getTimelineType()
 	 */
@@ -225,5 +227,19 @@ public class PostTimeline extends SchemaEntity {
 	 */
 	public void setPostRevisionUrl(String postRevisionUrl) {
 		this.postRevisionUrl = postRevisionUrl;
+	}
+
+	/**
+	 * @return the questionId
+	 */
+	public long getQuestionId() {
+		return questionId;
+	}
+
+	/**
+	 * @param questionId the questionId to set
+	 */
+	public void setQuestionId(long questionId) {
+		this.questionId = questionId;
 	}
 }

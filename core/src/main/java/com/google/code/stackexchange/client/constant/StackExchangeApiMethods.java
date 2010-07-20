@@ -26,9 +26,6 @@ public final class StackExchangeApiMethods {
 	/** The Constant GET_QUESTION_TIMELINE. */
 	public static final String GET_QUESTION_TIMELINE = "com.google.code.stackexchange.client.getQuestionTimeline";
 	
-	/** The Constant GET_TAGGED_QUESTIONS. */
-	public static final String GET_TAGGED_QUESTIONS = "com.google.code.stackexchange.client.getTaggedQuestions";
-	
 	/** The Constant GET_USERS. */
 	public static final String GET_USERS = "com.google.code.stackexchange.client.getUsers";
 	

@@ -33,13 +33,6 @@ public interface QuestionApiQuery extends StackExchangeApiQuery<Question> {
 	public PagedList<Question> listFavoriteQuestions();
 
 	/**
-	 * List tagged questions.
-	 * 
-	 * @return the paged list< question>
-	 */
-	public PagedList<Question> listTaggedQuestions();
-	
-	/**
 	 * List questions by user.
 	 * 
 	 * @return the paged list< question>
