@@ -110,6 +110,7 @@ Search the site with google. Full text and extract question ids from urls.
 Match questions with the test.
 If distance < threshold display the most voted answer.
 Otherwise display rephrased question as well with detail button.
+Not what I mean button. To show more questions and answers.
 Another button for showing more answers. one at a time in separate blip sorted by votes.
 Translate text. Also provide a button ot change language..
 Display comments in conversation using the same algo. Show conversation button. show all comments in the same blip.
