@@ -235,6 +235,8 @@ public class Question extends SchemaEntity {
 	
 	private Date protectedDate;
 	
+	private Migration migrated;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.Question#getAnswers()
 	 */
@@ -629,5 +631,19 @@ public class Question extends SchemaEntity {
 	 */
 	public void setProtectedDate(Date protectedDate) {
 		this.protectedDate = protectedDate;
+	}
+
+	/**
+	 * @return the migrated
+	 */
+	public Migration getMigrated() {
+		return migrated;
+	}
+
+	/**
+	 * @param migrated the migrated to set
+	 */
+	public void setMigrated(Migration migrated) {
+		this.migrated = migrated;
 	}
 }

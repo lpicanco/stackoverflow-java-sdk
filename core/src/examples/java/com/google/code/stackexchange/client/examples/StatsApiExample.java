@@ -16,6 +16,7 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.stackexchange.client.StackExchangeApiClient;
 import com.google.code.stackexchange.client.StackExchangeApiClientFactory;
+import com.google.code.stackexchange.schema.Site;
 import com.google.code.stackexchange.schema.Statistics;
 
 /**
@@ -86,6 +87,11 @@ public class StatsApiExample {
 			System.out.println("Total users:" + stats.getTotalUsers());
 			System.out.println("Total votes:" + stats.getTotalVotes());
 			System.out.println("API Version:" + stats.getApiVersion().getVersion() + ":" + stats.getApiVersion().getRevision());
+			Site site = stats.getSite();
+			System.out.println("Site Name:" + site.getName());
+			System.out.println("API Endpoint:" + site.getApiEndpoint());
+			System.out.println("Site URL:" + site.getSiteUrl());
+			System.out.println("Site Styling:" + site.getStyling().getLinkColor());
 		}
 	}
 

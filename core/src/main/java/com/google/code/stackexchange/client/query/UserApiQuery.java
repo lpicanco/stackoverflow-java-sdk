@@ -22,6 +22,13 @@ public interface UserApiQuery extends StackExchangeApiQuery<User> {
 	public PagedList<User> listByBadge();
 	
 	/**
+	 * List by badge.
+	 * 
+	 * @return the paged list< user>
+	 */
+	public PagedList<User> listModerators();
+	
+	/**
 	 * With user ids.
 	 * 
 	 * @param userIds the user ids

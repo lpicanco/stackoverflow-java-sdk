@@ -4,13 +4,11 @@
 package com.google.code.stackexchange.client.query.impl;
 
 import java.util.Arrays;
-import java.util.Set;
 
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.SearchApiQuery;
 import com.google.code.stackexchange.common.PagedList;
-import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Question;
 import com.google.code.stackexchange.schema.Range;
@@ -33,15 +31,6 @@ public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> impl
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withFetchOptions(java.util.Set)
-	 */
-	@Override
-	public SearchApiQuery withFetchOptions(Set<FilterOption> fetchOptions) {
-		apiUrlBuilder.withFetchOptions(fetchOptions);
-		return this;
-	}
-
-	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withPaging(com.google.code.stackexchange.schema.Paging)
 	 */
 	@Override
@@ -51,46 +40,10 @@ public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> impl
 	}
 
 	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withQuestionIds(long[])
-	 */
-	@Override
-	public SearchApiQuery withQuestionIds(long... questionIds) {
-		apiUrlBuilder.withIds(questionIds);
-		return this;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.Question.SortOrder)
-	 */
-	@Override
-	public SearchApiQuery withSort(Question.SortOrder sort) {
-		apiUrlBuilder.withSort(sort);
-		return this;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.Question.UnansweredSortOrder)
-	 */
-	@Override
-	public SearchApiQuery withSort(Question.UnansweredSortOrder sort) {
-		apiUrlBuilder.withSort(sort);
-		return this;
-	}
-	
-	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.User.QuestionSortOrder)
 	 */
 	@Override
 	public SearchApiQuery withSort(User.QuestionSortOrder sort) {
-		apiUrlBuilder.withSort(sort);
-		return this;
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withSort(com.google.code.stackexchange.schema.User.FavoriteSortOrder)
-	 */
-	@Override
-	public SearchApiQuery withSort(User.FavoriteSortOrder sort) {
 		apiUrlBuilder.withSort(sort);
 		return this;
 	}
@@ -104,21 +57,18 @@ public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> impl
 		return this;
 	}
 
+	@Override
+	public SearchApiQuery withOutTags(String... tag) {
+		apiUrlBuilder.withParameters("nottagged", Arrays.asList(tag));
+		return this;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withTimePeriod(com.google.code.stackexchange.schema.TimePeriod)
 	 */
 	@Override
 	public SearchApiQuery withTimePeriod(TimePeriod timePeriod) {
 		apiUrlBuilder.withTimePeriod(timePeriod);
-		return this;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.query.QuestionApiQuery#withUserIds(long[])
-	 */
-	@Override
-	public SearchApiQuery withUserIds(long... userIds) {
-		apiUrlBuilder.withIds(userIds);
 		return this;
 	}
 

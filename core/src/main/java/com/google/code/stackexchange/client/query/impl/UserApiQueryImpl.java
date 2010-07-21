@@ -121,4 +121,10 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_USERS);
 		return super.list();
 	}
+
+	@Override
+	public PagedList<User> listModerators() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_MODERATORS);
+		return super.list();
+	}
 }

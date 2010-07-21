@@ -82,6 +82,18 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 		return this;
 	}
 
+	@Override
+	public CommentApiQuery withQuestionIds(long... questionIds) {
+		apiUrlBuilder.withIds(questionIds);
+		return this;
+	}
+	
+	@Override
+	public CommentApiQuery withAnswerIds(long... answerIds) {
+		apiUrlBuilder.withIds(answerIds);
+		return this;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.impl.BaseStackOverflowApiQuery#unmarshall(org.json.simple.JSONObject)
 	 */
@@ -116,6 +128,18 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 		return super.list();
 	}
 
+	@Override
+	public PagedList<Comment> listQuestionComments() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_COMMENTS_FOR_QUESTIONS);
+		return super.list();
+	}
+	
+	@Override
+	public PagedList<Comment> listAnswerComments() {
+		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_COMMENTS_FOR_ANSWERS);
+		return super.list();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.query.CommentApiQuery#listUserCommentsToUser()
 	 */
