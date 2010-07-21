@@ -6,10 +6,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.lang.reflect.Type;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.code.stackexchange.client.constant.ApplicationConstants;
 import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackexchange.common.PagedArrayList;
@@ -69,6 +71,8 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
     /** The parser. */
     private final JsonParser parser = new JsonParser();
     
+	protected static final Charset UTF_8_CHAR_SET = Charset.forName(ApplicationConstants.CONTENT_ENCODING);
+    
     /**
      * Instantiates a new stack exchange api json client.
      * 
@@ -90,7 +94,7 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
     
     protected <T> PagedList<T> unmarshallList(Class<T> clazz, InputStream jsonContent) {
         try {
-        	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+        	JsonElement response = parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
         	if (response.isJsonObject()) {
         		JsonObject adaptee = response.getAsJsonObject();
         		PagedList<T> list = new PagedArrayList<T>();
@@ -124,7 +128,7 @@ public class StackExchangeApiJsonClient extends BaseStackExchangeApiClient {
     protected <T> T unmarshallObject(Class<T> clazz, InputStream jsonContent) {
     	if (clazz.equals(Error.class)) {
             try {
-            	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+            	JsonElement response = parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
             	if (response.isJsonObject()) {
             		JsonObject adaptee = response.getAsJsonObject();
             		Gson gson = getGsonBuilder().create();

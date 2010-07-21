@@ -3,6 +3,7 @@ package com.google.code.stackexchange.client.query.impl;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.code.stackexchange.client.AsyncResponseHandler;
+import com.google.code.stackexchange.client.constant.ApplicationConstants;
 import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.client.impl.StackExchangeApiGateway;
 import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
@@ -54,6 +56,8 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 	/** The api url builder. */
 	protected ApiUrlBuilder apiUrlBuilder;
     
+	protected static final Charset UTF_8_CHAR_SET = Charset.forName(ApplicationConstants.CONTENT_ENCODING);
+	
     /** The parser. */
     private final JsonParser parser = new JsonParser();
     
@@ -109,7 +113,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 		InputStream jsonContent = null;
         try {
         	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
-        	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+        	JsonElement response = parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
         	if (response.isJsonObject()) {
         		PagedList<T> responseList = unmarshall(response.getAsJsonObject());
         		notifyObservers(responseList);
@@ -131,7 +135,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 		InputStream jsonContent = null;
         try {
         	jsonContent = callApiMethod(apiUrlBuilder.buildUrl());
-        	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+        	JsonElement response = parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
         	if (response.isJsonObject()) {
         		PagedList<T> responseList = unmarshall(response.getAsJsonObject());
         		notifyObservers(responseList);
@@ -167,7 +171,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 	protected <A> A unmarshallObject(Class<A> clazz, InputStream jsonContent) {
     	if (clazz.equals(Error.class)) {
             try {
-            	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+            	JsonElement response = parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
             	if (response.isJsonObject()) {
             		JsonObject adaptee = response.getAsJsonObject();
             		Gson gson = getGsonBuilder().create();
@@ -182,7 +186,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
     
     protected <A> PagedList<A> unmarshallList(Class<A> clazz, InputStream jsonContent) {
         try {
-        	JsonElement response = parser.parse(new InputStreamReader(jsonContent));
+        	JsonElement response = parser.parse(new InputStreamReader(jsonContent, UTF_8_CHAR_SET));
         	if (response.isJsonObject()) {
         		JsonObject adaptee = response.getAsJsonObject();
         		return unmarshallList(clazz, adaptee);
