@@ -90,8 +90,16 @@ public final class StackExchangeApiMethods {
 	public static final String GET_BADGE_RECIPIENTS = "com.google.code.stackexchange.client.getBadgesRecipients";
 	
 	/** The Constant SEARCH_QUESTIONS. */
-	public static final String SEARCH_QUESTIONS = "com.google.code.stackexchange.client.searchQuestions";;
+	public static final String SEARCH_QUESTIONS = "com.google.code.stackexchange.client.searchQuestions";
 
+	public static final String GET_MODERATORS = "com.google.code.stackexchange.client.getModerators";
+	
+	public static final String GET_COMMENTS_FOR_ANSWERS = "com.google.code.stackexchange.client.getCommentsForAnswers";
+	
+	public static final String GET_COMMENTS_FOR_POSTS = "com.google.code.stackexchange.client.getCommentsForPosts";
+
+	public static final String GET_COMMENTS_FOR_QUESTIONS = "com.google.code.stackexchange.client.getCommentsForQuestions";
+	
 	/**
 	 * Instantiates a new stack exchange api methods.
 	 */

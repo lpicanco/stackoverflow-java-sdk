@@ -66,15 +66,15 @@ X. WARNING: Additional property 'user' found in response for object.class com.go
 X. WARNING: Additional property 'user' found in response for object.class com.google.code.stackoverflow.schema.adapter.json.RevisionImpl
 
 Missing API
-answers/{id}/comments
+X. answers/{id}/comments
 posts/{id}/comments
-/questions/{id}/comments
-/users/moderators
+X. /questions/{id}/comments
+X. /users/moderators
 
-Field. Question.migrated
-SearchApiQuery
+X. Field. Question.migrated
+X. SearchApiQuery
 
-Site in statistics.
+X. Site in statistics.
 
 
 Query API

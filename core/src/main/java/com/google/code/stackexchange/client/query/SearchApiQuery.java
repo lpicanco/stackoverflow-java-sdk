@@ -3,9 +3,6 @@
  */
 package com.google.code.stackexchange.client.query;
 
-import java.util.Set;
-
-import com.google.code.stackexchange.schema.FilterOption;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Question;
 import com.google.code.stackexchange.schema.Range;
@@ -18,22 +15,13 @@ import com.google.code.stackexchange.schema.User;
 public interface SearchApiQuery extends StackExchangeApiQuery<Question> {
 	
 	/**
-	 * With question ids.
+	 * With tags.
 	 * 
-	 * @param questionIds the question ids
-	 * 
-	 * @return the question api query
-	 */
-	public SearchApiQuery withQuestionIds(long... questionIds);
-	
-	/**
-	 * With user ids.
-	 * 
-	 * @param userIds the user ids
+	 * @param tag the tag
 	 * 
 	 * @return the question api query
 	 */
-	public SearchApiQuery withUserIds(long... userIds);
+	public SearchApiQuery withTags(String... tag);
 	
 	/**
 	 * With tags.
@@ -42,7 +30,7 @@ public interface SearchApiQuery extends StackExchangeApiQuery<Question> {
 	 * 
 	 * @return the question api query
 	 */
-	public SearchApiQuery withTags(String... tag);
+	public SearchApiQuery withOutTags(String... tag);
 	
 	/**
 	 * With paging.
@@ -69,34 +57,7 @@ public interface SearchApiQuery extends StackExchangeApiQuery<Question> {
 	 * 
 	 * @return the question api query
 	 */
-	public SearchApiQuery withSort(Question.SortOrder sort);
-
-	/**
-	 * With sort.
-	 * 
-	 * @param sort the sort
-	 * 
-	 * @return the question api query
-	 */
-	public SearchApiQuery withSort(Question.UnansweredSortOrder sort);
-	
-	/**
-	 * With sort.
-	 * 
-	 * @param sort the sort
-	 * 
-	 * @return the question api query
-	 */
 	public SearchApiQuery withSort(User.QuestionSortOrder sort);
-	
-	/**
-	 * With sort.
-	 * 
-	 * @param sort the sort
-	 * 
-	 * @return the question api query
-	 */
-	public SearchApiQuery withSort(User.FavoriteSortOrder sort);
 	
 	/**
 	 * With range.
@@ -107,14 +68,5 @@ public interface SearchApiQuery extends StackExchangeApiQuery<Question> {
 	 */
 	public SearchApiQuery withRange(Range range);
 	
-	/**
-	 * With fetch options.
-	 * 
-	 * @param fetchOptions the fetch options
-	 * 
-	 * @return the question api query
-	 */
-	public SearchApiQuery withFetchOptions(Set<FilterOption> fetchOptions);
-
 	public SearchApiQuery withInTitle(String searchString);
 }

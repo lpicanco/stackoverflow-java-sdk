@@ -31,8 +31,10 @@ import com.google.code.stackexchange.schema.Reputation;
 import com.google.code.stackexchange.schema.Revision;
 import com.google.code.stackexchange.schema.RevisionType;
 import com.google.code.stackexchange.schema.SchemaEntity;
+import com.google.code.stackexchange.schema.SiteState;
 import com.google.code.stackexchange.schema.Statistics;
 import com.google.code.stackexchange.schema.Tag;
+import com.google.code.stackexchange.schema.TagRestriction;
 import com.google.code.stackexchange.schema.User;
 import com.google.code.stackexchange.schema.UserTimeline;
 import com.google.code.stackexchange.schema.UserTimelineType;
@@ -321,6 +323,23 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 				return RevisionType.fromValue(arg0.getAsString());
 			}
 			
+		});
+		builder.registerTypeAdapter(TagRestriction.class, new JsonDeserializer<TagRestriction>() {
+
+			@Override
+			public TagRestriction deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return TagRestriction.fromValue(arg0.getAsString());
+			}
+			
+		});
+		builder.registerTypeAdapter(SiteState.class, new JsonDeserializer<SiteState>() {
+
+			@Override
+			public SiteState deserialize(JsonElement arg0, Type arg1,
+					JsonDeserializationContext arg2) throws JsonParseException {
+				return SiteState.fromValue(arg0.getAsString());
+			}
 		});
 		
 		builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);

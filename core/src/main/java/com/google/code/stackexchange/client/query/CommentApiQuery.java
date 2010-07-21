@@ -22,6 +22,20 @@ public interface CommentApiQuery extends StackExchangeApiQuery<Comment> {
 	public PagedList<Comment> listUserComments();
 	
 	/**
+	 * List user comments.
+	 * 
+	 * @return the paged list< comment>
+	 */
+	public PagedList<Comment> listQuestionComments();
+	
+	/**
+	 * List user comments.
+	 * 
+	 * @return the paged list< comment>
+	 */
+	public PagedList<Comment> listAnswerComments();
+	
+	/**
 	 * List user mentions.
 	 * 
 	 * @return the paged list< comment>
@@ -52,6 +66,24 @@ public interface CommentApiQuery extends StackExchangeApiQuery<Comment> {
 	 * @return the comment api query
 	 */
 	public CommentApiQuery withUserIds(long... userIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the comment api query
+	 */
+	public CommentApiQuery withQuestionIds(long... questionIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the comment api query
+	 */
+	public CommentApiQuery withAnswerIds(long... answerIds);
 	
 	/**
 	 * With to user id.
