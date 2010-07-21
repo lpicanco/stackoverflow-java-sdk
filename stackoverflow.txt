@@ -103,15 +103,20 @@ Translate text. Also provide a button.
 Approach 2:
 ===========
 6fh6sEFAwUKaRyM9IWj9gg
+http://meta.stackoverflow.com/questions/172/what-kind-of-google-wave-integration-would-you-like
+http://meta.stackoverflow.com/questions/24880/stackoverflow-api-any-good-ideas-for-its-use
 
 Search the site with google. Full text and extract question ids from urls.
 Match questions with the test.
-If distance < threshold display the most votedt answer.
-Otherwise display question as well.
-Another button for showing more answers.
+If distance < threshold display the most voted answer.
+Otherwise display rephrased question as well with detail button.
+Another button for showing more answers. one at a time in separate blip sorted by votes.
 Translate text. Also provide a button ot change language..
-Display comments in conversation using the same algo.
-Involve user. Make him Like minded.
+Display comments in conversation using the same algo. Show conversation button. show all comments in the same blip.
+Involve user. Make him Like minded. Show his questions and answered questions.
 If the user replies to an answer, search in comments and reply to him.
 Use partner sites as well. Add a Task Queue. http://code.google.com/appengine/docs/java/taskqueue/overview.html
 Automatically generate partial answers by rephrasing question.
+
+Google Custom Search.
+http://stackapps.com/questions/345/stackguru-a-jabber-bot-for-all-stackapps-sites
