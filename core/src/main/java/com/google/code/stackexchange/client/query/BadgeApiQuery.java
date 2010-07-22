@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Badge;
 
@@ -53,4 +55,13 @@ public interface BadgeApiQuery extends StackExchangeApiQuery<Badge> {
 	 * @return the badge api query
 	 */
 	public BadgeApiQuery withUserIds(long... userIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the badge api query
+	 */
+	public BadgeApiQuery withUserIds(List<Long> userIds);
 }

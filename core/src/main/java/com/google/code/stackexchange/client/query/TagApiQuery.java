@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
@@ -42,6 +44,15 @@ public interface TagApiQuery extends StackExchangeApiQuery<Tag> {
 	 * @return the tag api query
 	 */
 	public TagApiQuery withUserIds(long... userIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the tag api query
+	 */
+	public TagApiQuery withUserIds(List<Long> userIds);
 	
 	/**
 	 * With paging.

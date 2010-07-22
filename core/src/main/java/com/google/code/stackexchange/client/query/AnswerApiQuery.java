@@ -16,6 +16,7 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
 import java.util.Set;
 
 import com.google.code.stackexchange.common.PagedList;
@@ -53,6 +54,15 @@ public interface AnswerApiQuery extends StackExchangeApiQuery<Answer> {
 	public AnswerApiQuery withAnswerIds(long... answerIds);
 	
 	/**
+	 * With answer ids.
+	 * 
+	 * @param answerIds the answer ids
+	 * 
+	 * @return the answer api query
+	 */
+	public AnswerApiQuery withAnswerIds(List<Long> answerIds);
+	
+	/**
 	 * With user ids.
 	 * 
 	 * @param userIds the user ids
@@ -62,6 +72,15 @@ public interface AnswerApiQuery extends StackExchangeApiQuery<Answer> {
 	public AnswerApiQuery withUserIds(long... userIds);
 	
 	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the answer api query
+	 */
+	public AnswerApiQuery withUserIds(List<Long> userIds);
+	
+	/**
 	 * With question ids.
 	 * 
 	 * @param questionIds the question ids
@@ -69,6 +88,15 @@ public interface AnswerApiQuery extends StackExchangeApiQuery<Answer> {
 	 * @return the answer api query
 	 */
 	public AnswerApiQuery withQuestionIds(long... questionIds);
+	
+	/**
+	 * With question ids.
+	 * 
+	 * @param questionIds the question ids
+	 * 
+	 * @return the answer api query
+	 */
+	public AnswerApiQuery withQuestionIds(List<Long> questionIds);
 	
 	/**
 	 * With sort.

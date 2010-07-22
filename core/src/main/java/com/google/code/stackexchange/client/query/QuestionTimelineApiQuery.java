@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.PostTimeline;
 import com.google.code.stackexchange.schema.TimePeriod;
@@ -33,6 +35,15 @@ public interface QuestionTimelineApiQuery extends StackExchangeApiQuery<PostTime
 	 * @return the question timeline api query
 	 */
 	public QuestionTimelineApiQuery withQuestionIds(long... questionIds);
+	
+	/**
+	 * With question ids.
+	 * 
+	 * @param questionIds the question ids
+	 * 
+	 * @return the question timeline api query
+	 */
+	public QuestionTimelineApiQuery withQuestionIds(List<Long> questionIds);
 	
 	/**
 	 * With time period.

@@ -17,6 +17,7 @@
 package com.google.code.stackexchange.client.query.impl;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
@@ -194,5 +195,23 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	public PagedList<Question> listQuestionsByUser() {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_QUESTIONS_BY_USER);
 		return super.list();
+	}
+
+	@Override
+	public QuestionApiQuery withQuestionIds(List<Long> questionIds) {
+		apiUrlBuilder.withIds(questionIds);
+		return this;
+	}
+
+	@Override
+	public QuestionApiQuery withTags(List<String> tag) {
+		apiUrlBuilder.withParameters("tagged", tag);
+		return this;
+	}
+
+	@Override
+	public QuestionApiQuery withUserIds(List<Long> userIds) {
+		apiUrlBuilder.withIds(userIds);
+		return this;
 	}
 }

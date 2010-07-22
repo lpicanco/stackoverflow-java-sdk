@@ -16,6 +16,7 @@
  */
 package com.google.code.stackexchange.client.query.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
@@ -146,5 +147,23 @@ public class AnswerApiQueryImpl extends BaseStackOverflowApiQuery<Answer> implem
 	public PagedList<Answer> list() {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_ANSWER);
 		return super.list();
+	}
+
+	@Override
+	public AnswerApiQuery withAnswerIds(List<Long> answerIds) {
+		apiUrlBuilder.withIds(answerIds);
+		return this;
+	}
+
+	@Override
+	public AnswerApiQuery withQuestionIds(List<Long> questionIds) {
+		apiUrlBuilder.withIds(questionIds);
+		return this;
+	}
+
+	@Override
+	public AnswerApiQuery withUserIds(List<Long> userIds) {
+		apiUrlBuilder.withIds(userIds);
+		return this;
 	}
 }

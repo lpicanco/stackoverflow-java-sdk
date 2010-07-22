@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Question;
 import com.google.code.stackexchange.schema.Range;
@@ -43,7 +45,25 @@ public interface SearchApiQuery extends StackExchangeApiQuery<Question> {
 	 * 
 	 * @return the question api query
 	 */
+	public SearchApiQuery withTags(List<String> tag);
+	
+	/**
+	 * With tags.
+	 * 
+	 * @param tag the tag
+	 * 
+	 * @return the question api query
+	 */
 	public SearchApiQuery withOutTags(String... tag);
+	
+	/**
+	 * With tags.
+	 * 
+	 * @param tag the tag
+	 * 
+	 * @return the question api query
+	 */
+	public SearchApiQuery withOutTags(List<String> tag);
 	
 	/**
 	 * With paging.

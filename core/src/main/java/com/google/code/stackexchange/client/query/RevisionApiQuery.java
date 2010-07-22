@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.schema.Revision;
 import com.google.code.stackexchange.schema.TimePeriod;
 
@@ -32,6 +34,15 @@ public interface RevisionApiQuery extends StackExchangeApiQuery<Revision> {
 	 * @return the revision api query
 	 */
 	public RevisionApiQuery withQuestionIds(long... questionIds);
+	
+	/**
+	 * With question ids.
+	 * 
+	 * @param questionIds the question ids
+	 * 
+	 * @return the revision api query
+	 */
+	public RevisionApiQuery withQuestionIds(List<Long> questionIds);
 	
 	/**
 	 * With time period.
