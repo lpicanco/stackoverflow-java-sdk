@@ -113,6 +113,9 @@ public final class StackExchangeApiMethods {
 
 	public static final String GET_COMMENTS_FOR_QUESTIONS = "com.google.code.stackexchange.client.getCommentsForQuestions";
 	
+	public static final String GET_ASSOCIATED_USERS = "com.google.code.stackexchange.client.getAssociatedUsers";
+	
+	public static final String GET_SITES = "com.google.code.stackexchange.client.getSites";
 	/**
 	 * Instantiates a new stack exchange api methods.
 	 */

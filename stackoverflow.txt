@@ -118,6 +118,22 @@ Involve user. Make him Like minded. Show his questions and answered questions.
 If the user replies to an answer, search in comments and reply to him.
 Use partner sites as well. Add a Task Queue. http://code.google.com/appengine/docs/java/taskqueue/overview.html
 Automatically generate partial answers by rephrasing question.
+Some reference to inception.
 
 Google Custom Search.
 http://stackapps.com/questions/345/stackguru-a-jabber-bot-for-all-stackapps-sites
+
+
+<div id="cse" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('015203706368483719477:w4zebhpqxyu');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+  }, true);
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+
+      

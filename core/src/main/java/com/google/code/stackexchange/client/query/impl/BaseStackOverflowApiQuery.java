@@ -47,6 +47,7 @@ import com.google.code.stackexchange.schema.Reputation;
 import com.google.code.stackexchange.schema.Revision;
 import com.google.code.stackexchange.schema.RevisionType;
 import com.google.code.stackexchange.schema.SchemaEntity;
+import com.google.code.stackexchange.schema.Site;
 import com.google.code.stackexchange.schema.SiteState;
 import com.google.code.stackexchange.schema.Statistics;
 import com.google.code.stackexchange.schema.Tag;
@@ -93,6 +94,7 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
 		LIST_PLACE_HOLDERS.put(User.class, "users");
 		LIST_PLACE_HOLDERS.put(UserTimeline.class, "user_timelines");
 		LIST_PLACE_HOLDERS.put(Revision.class, "revisions");
+		LIST_PLACE_HOLDERS.put(Site.class, "api_sites");
 	}
     
     /** The handlers. */

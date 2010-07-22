@@ -364,6 +364,8 @@ public class User extends SchemaEntity {
 	
 	private String associationId;
 	
+	private Site onSite;
+	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.schema.User#getUserId()
 	 */
@@ -768,5 +770,19 @@ public class User extends SchemaEntity {
 	 */
 	public void setAssociationId(String associationId) {
 		this.associationId = associationId;
+	}
+
+	/**
+	 * @return the onSite
+	 */
+	public Site getOnSite() {
+		return onSite;
+	}
+
+	/**
+	 * @param onSite the onSite to set
+	 */
+	public void setOnSite(Site onSite) {
+		this.onSite = onSite;
 	}
 }
