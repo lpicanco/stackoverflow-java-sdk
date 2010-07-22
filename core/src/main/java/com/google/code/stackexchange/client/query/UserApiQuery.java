@@ -42,6 +42,13 @@ public interface UserApiQuery extends StackExchangeApiQuery<User> {
 	public PagedList<User> listModerators();
 	
 	/**
+	 * List by badge.
+	 * 
+	 * @return the paged list< user>
+	 */
+	public PagedList<User> listAssociatedAccounts();
+	
+	/**
 	 * With user ids.
 	 * 
 	 * @param userIds the user ids
@@ -96,4 +103,6 @@ public interface UserApiQuery extends StackExchangeApiQuery<User> {
 	public UserApiQuery withRange(Range range);
 	
 	public UserApiQuery withTimePeriod(TimePeriod timePeriod);
+	
+	public UserApiQuery withAssociationId(String associationId);
 }

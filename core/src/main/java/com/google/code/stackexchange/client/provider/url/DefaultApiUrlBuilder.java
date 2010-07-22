@@ -429,14 +429,14 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 
 
 		if (fieldsLeftMap.size() > 0) {
-			logger.warning("Field [" + fieldsLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
+			logger.fine("Field [" + fieldsLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
 		}
 		
 		if (parametersLeftMap.size() > 0) {
-			logger.warning("Parameter [" + parametersLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
+			logger.fine("Parameter [" + parametersLeftMap.keySet().iterator().next() + "] not suitable for API: " + urlFormat);
 		}
 		
-		logger.log(Level.FINE, "URL generated: " + urlBuilder.toString());
+		logger.fine("URL generated: " + urlBuilder.toString());
 		
 		return urlBuilder.toString();
 	}

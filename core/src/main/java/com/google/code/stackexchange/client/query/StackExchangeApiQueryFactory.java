@@ -24,6 +24,7 @@ import com.google.code.stackexchange.client.query.impl.QuestionTimelineApiQueryI
 import com.google.code.stackexchange.client.query.impl.ReputationApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.RevisionApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.SearchApiQueryImpl;
+import com.google.code.stackexchange.client.query.impl.StackAuthApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.StatisticsApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.TagApiQueryImpl;
 import com.google.code.stackexchange.client.query.impl.UserApiQueryImpl;
@@ -165,4 +166,14 @@ public class StackExchangeApiQueryFactory {
     public UserTimelineApiQuery newUserTimelineApiQuery() {
     	return new UserTimelineApiQueryImpl(applicationKey);
     }
+    
+    /**
+     * New user timeline api query.
+     * 
+     * @return the user timeline api query
+     */
+    public StackAuthApiQuery newStackAuthApiQuery() {
+    	return new StackAuthApiQueryImpl(applicationKey);
+    }
+    
 }
