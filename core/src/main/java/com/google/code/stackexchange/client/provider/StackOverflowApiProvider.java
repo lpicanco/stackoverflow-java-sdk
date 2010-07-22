@@ -25,7 +25,7 @@ import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 public class StackOverflowApiProvider implements ApiProvider {
 	
 	/** The Constant HOST_NAME. */
-	private static final String HOST_NAME = "api.stackoverflow.com";
+	private static final String HOST_NAME = "http://api.stackoverflow.com";
 	
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.provider.ApiProvider#createApiUrlBuilder(java.lang.String, java.lang.String, java.lang.String)
