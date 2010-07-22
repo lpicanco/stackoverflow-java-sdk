@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.TimePeriod;
 import com.google.code.stackexchange.schema.UserTimeline;
@@ -33,6 +35,15 @@ public interface UserTimelineApiQuery extends StackExchangeApiQuery<UserTimeline
 	 * @return the user timeline api query
 	 */
 	public UserTimelineApiQuery withUserIds(long... userIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the user timeline api query
+	 */
+	public UserTimelineApiQuery withUserIds(List<Long> userIds);
 	
 	/**
 	 * With time period.

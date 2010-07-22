@@ -17,6 +17,7 @@
 package com.google.code.stackexchange.client.query.impl;
 
 import java.util.Arrays;
+import java.util.List;
 
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
@@ -126,5 +127,17 @@ public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> impl
 	public PagedList<Question> list() {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.SEARCH_QUESTIONS);
 		return super.list();
+	}
+
+	@Override
+	public SearchApiQuery withOutTags(List<String> tag) {
+		apiUrlBuilder.withParameters("nottagged", tag);
+		return this;
+	}
+
+	@Override
+	public SearchApiQuery withTags(List<String> tag) {
+		apiUrlBuilder.withParameters("tagged", tag);
+		return this;
 	}
 }

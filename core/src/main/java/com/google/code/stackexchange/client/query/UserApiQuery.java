@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Paging;
 import com.google.code.stackexchange.schema.Range;
@@ -58,6 +60,15 @@ public interface UserApiQuery extends StackExchangeApiQuery<User> {
 	public UserApiQuery withUserIds(long... userIds);
 	
 	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the user api query
+	 */
+	public UserApiQuery withUserIds(List<Long> userIds);
+	
+	/**
 	 * With badge ids.
 	 * 
 	 * @param badgeIds the badge ids
@@ -65,6 +76,15 @@ public interface UserApiQuery extends StackExchangeApiQuery<User> {
 	 * @return the user api query
 	 */
 	public UserApiQuery withBadgeIds(long... badgeIds);
+	
+	/**
+	 * With badge ids.
+	 * 
+	 * @param badgeIds the badge ids
+	 * 
+	 * @return the user api query
+	 */
+	public UserApiQuery withBadgeIds(List<Long> badgeIds);
 	
 	/**
 	 * With filter.

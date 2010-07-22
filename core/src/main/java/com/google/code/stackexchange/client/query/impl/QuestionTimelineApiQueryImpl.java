@@ -17,6 +17,8 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
+import java.util.List;
+
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.QuestionTimelineApiQuery;
 import com.google.code.stackexchange.common.PagedList;
@@ -78,5 +80,11 @@ public class QuestionTimelineApiQueryImpl extends BaseStackOverflowApiQuery<Post
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackExchangeApiMethods.GET_QUESTION_TIMELINE, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public QuestionTimelineApiQuery withQuestionIds(List<Long> questionIds) {
+		apiUrlBuilder.withIds(questionIds);
+		return this;
 	}
 }

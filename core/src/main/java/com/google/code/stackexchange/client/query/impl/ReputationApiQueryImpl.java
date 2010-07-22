@@ -17,6 +17,8 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
+import java.util.List;
+
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.ReputationApiQuery;
 import com.google.code.stackexchange.common.PagedList;
@@ -80,5 +82,11 @@ public class ReputationApiQueryImpl extends BaseStackOverflowApiQuery<Reputation
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackExchangeApiMethods.GET_USER_REPUTATIONS, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public ReputationApiQuery withUserIds(List<Long> userIds) {
+		apiUrlBuilder.withIds(userIds);
+		return this;
 	}
 }

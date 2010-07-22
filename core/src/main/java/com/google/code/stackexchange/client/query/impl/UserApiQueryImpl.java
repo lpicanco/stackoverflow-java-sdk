@@ -17,6 +17,8 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
+import java.util.List;
+
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.UserApiQuery;
@@ -150,6 +152,18 @@ public class UserApiQueryImpl extends BaseStackOverflowApiQuery<User> implements
 	@Override
 	public UserApiQuery withAssociationId(String associationId) {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withField("id", associationId, false);
+		return this;
+	}
+
+	@Override
+	public UserApiQuery withBadgeIds(List<Long> badgeIds) {
+		apiUrlBuilder.withIds(badgeIds);
+		return this;
+	}
+
+	@Override
+	public UserApiQuery withUserIds(List<Long> userIds) {
+		apiUrlBuilder.withIds(userIds);
 		return this;
 	}
 }

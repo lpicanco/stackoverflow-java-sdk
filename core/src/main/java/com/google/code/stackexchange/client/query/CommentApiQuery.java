@@ -16,6 +16,8 @@
  */
 package com.google.code.stackexchange.client.query;
 
+import java.util.List;
+
 import com.google.code.stackexchange.common.PagedList;
 import com.google.code.stackexchange.schema.Comment;
 import com.google.code.stackexchange.schema.Paging;
@@ -87,6 +89,15 @@ public interface CommentApiQuery extends StackExchangeApiQuery<Comment> {
 	 * 
 	 * @return the comment api query
 	 */
+	public CommentApiQuery withUserIds(List<Long> userIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the comment api query
+	 */
 	public CommentApiQuery withQuestionIds(long... questionIds);
 	
 	/**
@@ -96,7 +107,25 @@ public interface CommentApiQuery extends StackExchangeApiQuery<Comment> {
 	 * 
 	 * @return the comment api query
 	 */
+	public CommentApiQuery withQuestionIds(List<Long> questionIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the comment api query
+	 */
 	public CommentApiQuery withAnswerIds(long... answerIds);
+	
+	/**
+	 * With user ids.
+	 * 
+	 * @param userIds the user ids
+	 * 
+	 * @return the comment api query
+	 */
+	public CommentApiQuery withAnswerIds(List<Long> answerIds);
 	
 	/**
 	 * With to user id.

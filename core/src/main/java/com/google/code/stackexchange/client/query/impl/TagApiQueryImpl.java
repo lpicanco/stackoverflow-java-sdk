@@ -17,6 +17,8 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
+import java.util.List;
+
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.TagApiQuery;
@@ -121,5 +123,11 @@ public class TagApiQueryImpl extends BaseStackOverflowApiQuery<Tag> implements T
 	public PagedList<Tag> list() {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_TAGS);
 		return super.list();
+	}
+
+	@Override
+	public TagApiQuery withUserIds(List<Long> userIds) {
+		apiUrlBuilder.withIds(userIds);
+		return this;
 	}
 }

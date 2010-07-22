@@ -17,6 +17,7 @@
 package com.google.code.stackexchange.client.provider.url;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -92,6 +93,15 @@ public interface ApiUrlBuilder {
 	 * @return the api url builder
 	 */
 	public ApiUrlBuilder withIds(long... ids);
+	
+	/**
+	 * With ids.
+	 * 
+	 * @param ids the ids
+	 * 
+	 * @return the api url builder
+	 */
+	public ApiUrlBuilder withIds(List<Long> ids);
 	
 	/**
 	 * With paging.

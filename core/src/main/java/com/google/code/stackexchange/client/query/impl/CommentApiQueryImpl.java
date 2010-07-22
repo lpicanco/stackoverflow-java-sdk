@@ -17,6 +17,8 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
+import java.util.List;
+
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 import com.google.code.stackexchange.client.query.CommentApiQuery;
@@ -178,5 +180,23 @@ public class CommentApiQueryImpl extends BaseStackOverflowApiQuery<Comment> impl
 	public PagedList<Comment> list() {
 		((DefaultApiUrlBuilder) apiUrlBuilder).withMethod(StackExchangeApiMethods.GET_COMMENT);
 		return super.list();
+	}
+
+	@Override
+	public CommentApiQuery withAnswerIds(List<Long> answerIds) {
+		apiUrlBuilder.withIds(answerIds);
+		return this;
+	}
+
+	@Override
+	public CommentApiQuery withQuestionIds(List<Long> questionIds) {
+		apiUrlBuilder.withIds(questionIds);
+		return this;
+	}
+
+	@Override
+	public CommentApiQuery withUserIds(List<Long> userIds) {
+		apiUrlBuilder.withIds(userIds);
+		return this;
 	}
 }

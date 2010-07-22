@@ -22,6 +22,7 @@ import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -263,6 +264,19 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		for (int i = 0; i < ids.length; i++) {
 			builder.append(ids[i]);
 			if (i < ids.length - 1) {
+				builder.append(";");
+			}
+		}
+		withField("id", builder.toString(), false);
+		return this;
+	}
+	
+	@Override
+	public ApiUrlBuilder withIds(List<Long> ids) {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < ids.size(); i++) {
+			builder.append(ids.get(i));
+			if (i < ids.size() - 1) {
 				builder.append(";");
 			}
 		}

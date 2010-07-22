@@ -17,6 +17,8 @@
 package com.google.code.stackexchange.client.query.impl;
 
 
+import java.util.List;
+
 import com.google.code.stackexchange.client.constant.StackExchangeApiMethods;
 import com.google.code.stackexchange.client.query.RevisionApiQuery;
 import com.google.code.stackexchange.common.PagedList;
@@ -79,5 +81,11 @@ public class RevisionApiQueryImpl extends BaseStackOverflowApiQuery<Revision> im
 	@Override
 	public void reset() {
 		apiUrlBuilder = getApiProvider().createApiUrlBuilder(StackExchangeApiMethods.GET_REVISION_FOR_POST, getApplicationKey(), getApiVersion());
+	}
+
+	@Override
+	public RevisionApiQuery withQuestionIds(List<Long> questionIds) {
+		apiUrlBuilder.withIds(questionIds);
+		return this;
 	}
 }
