@@ -22,14 +22,13 @@ import com.google.code.stackexchange.client.provider.url.DefaultApiUrlBuilder;
 /**
  * The Class StackOverflowApiProvider.
  */
-public class StackAppsApiProvider implements ApiProvider {
+public class CustomApiProvider implements ApiProvider {
+	private final String HOST_NAME;
 	
-	/** The Constant HOST_NAME. */
-	private static final String HOST_NAME = "http://api.stackapps.com";
+	public CustomApiProvider(String apiEndPoint) {
+		this.HOST_NAME = apiEndPoint;
+	}
 	
-	/* (non-Javadoc)
-	 * @see com.google.code.stackexchange.client.provider.ApiProvider#createApiUrlBuilder(java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@Override
 	public ApiUrlBuilder createApiUrlBuilder(String methodName, String applicationKey, String apiVersion) {
 		return new DefaultApiUrlBuilder(methodName, applicationKey, HOST_NAME, apiVersion);
