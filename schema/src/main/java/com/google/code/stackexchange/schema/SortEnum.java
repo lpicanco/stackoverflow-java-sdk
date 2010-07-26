@@ -27,10 +27,10 @@ public interface SortEnum extends ValueEnum {
 	public enum Order implements ValueEnum {
 		
 		/** The ASCENDING. */
-		ASCENDING("asc"), 
+		DESCENDING("desc"), 
  
  /** The DESCENDING. */
- DESCENDING("desc");
+ ASCENDING("asc");
 
 		/** The value. */
 		private final String value;
