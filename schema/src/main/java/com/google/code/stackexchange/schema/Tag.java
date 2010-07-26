@@ -32,22 +32,22 @@ public class Tag extends SchemaEntity {
 	public enum SortOrder implements SortEnum {
 		
 		/** The MOS t_ popular. */
-		MOST_POPULAR("popular", Order.ASCENDING),
+		MOST_POPULAR("popular", Order.DESCENDING),
 		
 		/** The LEAS t_ popular. */
-		LEAST_POPULAR("popular", Order.DESCENDING),
+		LEAST_POPULAR("popular", Order.ASCENDING),
 		
 		/** The NAM e_ ascending. */
-		NAME_ASCENDING("name", Order.ASCENDING),
+		NAME_ASCENDING("name", Order.DESCENDING),
 		
 		/** The NAM e_ descending. */
-		NAME_DESCENDING("name", Order.DESCENDING),
+		NAME_DESCENDING("name", Order.ASCENDING),
 		
 		/** The MOS t_ recentl y_ updated. */
-		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		MOST_RECENTLY_UPDATED("activity", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ updated. */
-		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING);
+		LEAST_RECENTLY_UPDATED("activity", Order.ASCENDING);
 		
 	    /** The Constant stringToEnum. */
 		private static final Map<String, SortOrder> stringToEnum = new HashMap<String, SortOrder>();

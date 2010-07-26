@@ -34,16 +34,16 @@ public class Comment extends SchemaEntity {
 	public enum SortOrder implements SortEnum {
 		
 		/** The MOS t_ recentl y_ created. */
-		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ created. */
-		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.ASCENDING),
 		
 		/** The MOS t_ voted. */
-		MOST_VOTED("votes", Order.ASCENDING),
+		MOST_VOTED("votes", Order.DESCENDING),
 		
 		/** The LEAS t_ voted. */
-		LEAST_VOTED("votes", Order.DESCENDING);
+		LEAST_VOTED("votes", Order.ASCENDING);
 		
 	    /** The Constant stringToEnum. */
 		private static final Map<String, SortOrder> stringToEnum = new HashMap<String, SortOrder>();

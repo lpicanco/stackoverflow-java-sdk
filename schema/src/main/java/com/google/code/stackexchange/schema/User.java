@@ -33,22 +33,22 @@ public class User extends SchemaEntity {
 	public enum SortOrder implements SortEnum {
 		
 		/** The MOS t_ reputed. */
-		MOST_REPUTED("reputation", Order.ASCENDING),
+		MOST_REPUTED("reputation", Order.DESCENDING),
 		
 		/** The LEAS t_ reputed. */
-		LEAST_REPUTED("reputation", Order.DESCENDING),
+		LEAST_REPUTED("reputation", Order.ASCENDING),
 		
 		/** The MOS t_ recentl y_ created. */
-		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ created. */
-		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.ASCENDING),
 		
 		/** The NAM e_ ascending. */
-		NAME_ASCENDING("name", Order.ASCENDING),
+		NAME_ASCENDING("name", Order.DESCENDING),
 		
 		/** The NAM e_ descending. */
-		NAME_DESCENDING("name", Order.DESCENDING);
+		NAME_DESCENDING("name", Order.ASCENDING);
 		
 	    /** The Constant stringToEnum. */
 		private static final Map<String, SortOrder> stringToEnum = new HashMap<String, SortOrder>();
@@ -110,34 +110,34 @@ public class User extends SchemaEntity {
 	public enum FavoriteSortOrder implements SortEnum {
 		
 		/** The MOS t_ recentl y_ updated. */
-		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		MOST_RECENTLY_UPDATED("activity", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ updated. */
-		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		LEAST_RECENTLY_UPDATED("activity", Order.ASCENDING),
 		
 		/** The MOS t_ viewed. */
-		MOST_VIEWED("views", Order.ASCENDING),
+		MOST_VIEWED("views", Order.DESCENDING),
 		
 		/** The LEAS t_ viewed. */
-		LEAST_VIEWED("views", Order.DESCENDING),
+		LEAST_VIEWED("views", Order.ASCENDING),
 		
 		/** The MOS t_ recentl y_ created. */
-		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ created. */
-		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.ASCENDING),
 		
 		/** The MOS t_ recentl y_ added. */
-		MOST_RECENTLY_ADDED("added", Order.ASCENDING),
+		MOST_RECENTLY_ADDED("added", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ added. */
-		LEAST_RECENTLY_ADDED("added", Order.DESCENDING),
+		LEAST_RECENTLY_ADDED("added", Order.ASCENDING),
 		
 		/** The MOS t_ voted. */
-		MOST_VOTED("votes", Order.ASCENDING),
+		MOST_VOTED("votes", Order.DESCENDING),
 		
 		/** The LEAS t_ voted. */
-		LEAST_VOTED("votes", Order.DESCENDING);
+		LEAST_VOTED("votes", Order.ASCENDING);
 		
 	    /** The Constant stringToEnum. */
 		private static final Map<String, FavoriteSortOrder> stringToEnum = new HashMap<String, FavoriteSortOrder>();
@@ -199,28 +199,28 @@ public class User extends SchemaEntity {
 	public enum QuestionSortOrder implements SortEnum {
 		
 		/** The MOS t_ recentl y_ updated. */
-		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		MOST_RECENTLY_UPDATED("activity", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ updated. */
-		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		LEAST_RECENTLY_UPDATED("activity", Order.ASCENDING),
 		
 		/** The MOS t_ viewed. */
-		MOST_VIEWED("views", Order.ASCENDING),
+		MOST_VIEWED("views", Order.DESCENDING),
 		
 		/** The LEAS t_ viewed. */
-		LEAST_VIEWED("views", Order.DESCENDING),
+		LEAST_VIEWED("views", Order.ASCENDING),
 		
 		/** The MOS t_ recentl y_ created. */
-		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ created. */
-		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.ASCENDING),
 		
 		/** The MOS t_ voted. */
-		MOST_VOTED("votes", Order.ASCENDING),
+		MOST_VOTED("votes", Order.DESCENDING),
 		
 		/** The LEAS t_ voted. */
-		LEAST_VOTED("votes", Order.DESCENDING);
+		LEAST_VOTED("votes", Order.ASCENDING);
 		
 	    /** The Constant stringToEnum. */
 		private static final Map<String, QuestionSortOrder> stringToEnum = new HashMap<String, QuestionSortOrder>();

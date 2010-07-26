@@ -37,28 +37,28 @@ public class Answer extends SchemaEntity {
 	public enum SortOrder implements SortEnum {
 		
 		/** The MOS t_ recentl y_ updated. */
-		MOST_RECENTLY_UPDATED("activity", Order.ASCENDING),
+		MOST_RECENTLY_UPDATED("activity", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ updated. */
-		LEAST_RECENTLY_UPDATED("activity", Order.DESCENDING),
+		LEAST_RECENTLY_UPDATED("activity", Order.ASCENDING),
 		
 		/** The MOS t_ viewed. */
-		MOST_VIEWED("views", Order.ASCENDING),
+		MOST_VIEWED("views", Order.DESCENDING),
 		
 		/** The LEAS t_ viewed. */
-		LEAST_VIEWED("views", Order.DESCENDING),
+		LEAST_VIEWED("views", Order.ASCENDING),
 		
 		/** The MOS t_ recentl y_ created. */
-		MOST_RECENTLY_CREATED("creation", Order.ASCENDING),
+		MOST_RECENTLY_CREATED("creation", Order.DESCENDING),
 		
 		/** The LEAS t_ recentl y_ created. */
-		LEAST_RECENTLY_CREATED("creation", Order.DESCENDING),
+		LEAST_RECENTLY_CREATED("creation", Order.ASCENDING),
 		
 		/** The MOS t_ voted. */
-		MOST_VOTED("votes", Order.ASCENDING),
+		MOST_VOTED("votes", Order.DESCENDING),
 		
 		/** The LEAS t_ voted. */
-		LEAST_VOTED("votes", Order.DESCENDING);
+		LEAST_VOTED("votes", Order.ASCENDING);
 		
 	    /** The Constant stringToEnum. */
 		private static final Map<String, SortOrder> stringToEnum = new HashMap<String, SortOrder>();
