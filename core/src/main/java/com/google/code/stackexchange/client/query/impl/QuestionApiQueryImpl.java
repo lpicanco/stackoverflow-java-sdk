@@ -114,7 +114,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 	 */
 	@Override
 	public QuestionApiQuery withTags(String... tag) {
-		apiUrlBuilder.withParameters("tagged", Arrays.asList(tag));
+		apiUrlBuilder.withParameters("tagged", Arrays.asList(tag), ";");
 		return this;
 	}
 
@@ -205,7 +205,7 @@ public class QuestionApiQueryImpl extends BaseStackOverflowApiQuery<Question> im
 
 	@Override
 	public QuestionApiQuery withTags(List<String> tag) {
-		apiUrlBuilder.withParameters("tagged", tag);
+		apiUrlBuilder.withParameters("tagged", tag, ";");
 		return this;
 	}
 

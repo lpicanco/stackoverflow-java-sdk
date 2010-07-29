@@ -55,6 +55,17 @@ public interface ApiUrlBuilder {
 			Collection<String> values);
 
 	/**
+	 * With parameters.
+	 * 
+	 * @param name the name
+	 * @param values the values
+	 * 
+	 * @return the api url builder
+	 */
+	public ApiUrlBuilder withParameters(String name,
+			Collection<String> values, String delimiter);
+	
+	/**
 	 * With fields.
 	 * 
 	 * @param name the name

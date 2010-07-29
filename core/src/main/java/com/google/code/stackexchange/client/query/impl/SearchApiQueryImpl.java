@@ -67,13 +67,13 @@ public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> impl
 	 */
 	@Override
 	public SearchApiQuery withTags(String... tag) {
-		apiUrlBuilder.withParameters("tagged", Arrays.asList(tag));
+		apiUrlBuilder.withParameters("tagged", Arrays.asList(tag), ";");
 		return this;
 	}
 
 	@Override
 	public SearchApiQuery withOutTags(String... tag) {
-		apiUrlBuilder.withParameters("nottagged", Arrays.asList(tag));
+		apiUrlBuilder.withParameters("nottagged", Arrays.asList(tag), ";");
 		return this;
 	}
 	
@@ -131,13 +131,13 @@ public class SearchApiQueryImpl extends BaseStackOverflowApiQuery<Question> impl
 
 	@Override
 	public SearchApiQuery withOutTags(List<String> tag) {
-		apiUrlBuilder.withParameters("nottagged", tag);
+		apiUrlBuilder.withParameters("nottagged", tag, ";");
 		return this;
 	}
 
 	@Override
 	public SearchApiQuery withTags(List<String> tag) {
-		apiUrlBuilder.withParameters("tagged", tag);
+		apiUrlBuilder.withParameters("tagged", tag, ";");
 		return this;
 	}
 }

@@ -148,17 +148,21 @@ public class DefaultApiUrlBuilder implements ApiUrlBuilder {
 		return this;
 	}
 
+	public ApiUrlBuilder withParameters(String name,
+			Collection<String> values) {
+		return withParameters(name, values, " ");
+	}
 	/* (non-Javadoc)
 	 * @see com.google.code.stackexchange.client.provider.url.ApiUrlBuilder#withParameters(java.lang.String, java.util.Collection)
 	 */
 	public ApiUrlBuilder withParameters(String name,
-			Collection<String> values) {
+			Collection<String> values, String delimiter) {
 		if (values != null && !values.isEmpty()) {
 			StringBuilder builder = new StringBuilder();
 			for (Iterator<String> iterator = values.iterator(); iterator.hasNext();) {
 				builder.append(iterator.next());
 				if (iterator.hasNext()) {
-					builder.append(" ");
+					builder.append(delimiter);
 				}
 			}
 			parametersMap.put(name, encodeUrl(builder.toString()));
