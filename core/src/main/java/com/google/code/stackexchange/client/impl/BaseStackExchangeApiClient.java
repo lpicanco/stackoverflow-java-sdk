@@ -343,7 +343,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 			Paging paging, TimePeriod timePeriod,
 			Set<FilterOption> filterOptions) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
-        String                apiUrl  = builder.withParameters("tagged", tags).withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
+        String                apiUrl  = builder.withParameters("tagged", tags, ";").withPaging(paging).withTimePeriod(timePeriod).withFetchOptions(filterOptions).buildUrl();
 
         return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
@@ -732,7 +732,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 	@Override
 	public PagedList<Question> getTaggedQuestions(List<String> tags) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.GET_QUESTIONS);
-        String                apiUrl  = builder.withParameters("tagged", tags).buildUrl();
+        String                apiUrl  = builder.withParameters("tagged", tags, ";").buildUrl();
 
         return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
@@ -1228,7 +1228,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 	public PagedList<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
-        String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).buildUrl();
+        String                apiUrl  = builder.withParameters("tagged", includeTags, ";").withParameters("nottagged", excludeTags, ";").buildUrl();
 
         return unmarshallList(Question.class, callApiMethod(apiUrl));
         
@@ -1242,7 +1242,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 	public PagedList<Question> searchQuestions(List<String> includeTags,
 			List<String> excludeTags, QuestionSortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
-        String                apiUrl  = builder.withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
+        String                apiUrl  = builder.withParameters("tagged", includeTags, ";").withParameters("nottagged", excludeTags, ";").withSort(sort).withPaging(paging).buildUrl();
 
         return unmarshallList(Question.class, callApiMethod(apiUrl));
         
@@ -1257,7 +1257,7 @@ public abstract class BaseStackExchangeApiClient extends StackExchangeApiGateway
 			List<String> includeTags, List<String> excludeTags,
 			QuestionSortOrder sort, Paging paging) {
 		ApiUrlBuilder builder = createStackOverflowApiUrlBuilder(StackExchangeApiMethods.SEARCH_QUESTIONS);
-        String                apiUrl  = builder.withParameter("intitle", query).withParameters("tagged", includeTags).withParameters("nottagged", excludeTags).withSort(sort).withPaging(paging).buildUrl();
+        String                apiUrl  = builder.withParameter("intitle", query).withParameters("tagged", includeTags, ";").withParameters("nottagged", excludeTags, ";").withSort(sort).withPaging(paging).buildUrl();
 
         return unmarshallList(Question.class, callApiMethod(apiUrl));
 	}
