@@ -246,6 +246,9 @@ public class Question extends SchemaEntity {
 	/** The question answers url. */
 	private String questionAnswersUrl;
 	
+	/** The question answers url. */
+	private String questionUrl;
+	
 	private Date protectedDate;
 	
 	private Migration migrated;
@@ -658,5 +661,19 @@ public class Question extends SchemaEntity {
 	 */
 	public void setMigrated(Migration migrated) {
 		this.migrated = migrated;
+	}
+
+	/**
+	 * @return the questionUrl
+	 */
+	public String getQuestionUrl() {
+		return questionUrl;
+	}
+
+	/**
+	 * @param questionUrl the questionUrl to set
+	 */
+	public void setQuestionUrl(String questionUrl) {
+		this.questionUrl = questionUrl;
 	}
 }
