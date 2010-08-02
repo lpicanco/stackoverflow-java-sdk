@@ -30,6 +30,7 @@ import com.google.code.stackexchange.client.AsyncResponseHandler;
 import com.google.code.stackexchange.client.constant.ApplicationConstants;
 import com.google.code.stackexchange.client.exception.StackExchangeApiException;
 import com.google.code.stackexchange.client.impl.StackExchangeApiGateway;
+import com.google.code.stackexchange.client.provider.ApiProvider;
 import com.google.code.stackexchange.client.provider.url.ApiUrlBuilder;
 import com.google.code.stackexchange.client.query.StackExchangeApiQuery;
 import com.google.code.stackexchange.common.PagedArrayList;
@@ -112,6 +113,12 @@ public abstract class BaseStackOverflowApiQuery<T> extends StackExchangeApiGatew
         // by default we compress contents
         requestHeaders.put("Accept-Encoding", "gzip, deflate");
         this.reset();
+	}
+	
+	@Override
+	public void setApiProvider(ApiProvider apiProvider) {
+		super.setApiProvider(apiProvider);
+		this.reset();
 	}
 
 	/**
